@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import './Popular.scss'
+import './Popular.scss';
+import image_1 from '../../assets/img/europe.jpg';
 
 const Popular = () => {
     return (
@@ -49,7 +50,7 @@ const Popular = () => {
                             <div className="package-img">
                             </div>
                             <div className="package-overlay">
-                                <img src="./assets/img/buddha.png" alt="" className="package-icon" />
+                                <img src={image_1}  alt="" className="package-icon"/>
                                 <div className="package-info">
                                     <h3 className="package-heading">thailand</h3>
                                     <span className="package-desc">1 package</span>
