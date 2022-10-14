@@ -1,0 +1,38 @@
+.slider__adversiment {
+    margin-top: 10px;
+    background: #42a5f5;
+    height: 350px;
+
+    .slick-dots {
+        background: #42a5f5;
+        padding-top: 5px;
+    }
+
+    .slider__item {
+        width: 800px;
+        height: 250px;
+        margin: auto;
+    }
+
+    .card__top__book {
+        background: #ffffff;
+        height: 80px;
+        width: 900px;
+        margin: auto;
+        margin-top: 3%;
+
+        .link__book {
+            padding-left: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            padding-top: -30px;
+
+            p {
+                margin: 0;
+                padding-left: 10px;
+                color: black;
+            }
+        }
+    }
+}
