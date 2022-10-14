@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
     return (
         <div className="footer">
-            <div class="footer__contact grid wide">
-                <div class="footer__contact-name">
-                    <span class="footer__contact-text">KEEP IN TOUCH</span>
-                    <h4 class="footer__contact-heading">Travel with Us</h4>
+            <div className="footer__contact grid wide">
+                <div className="footer__contact-name">
+                    <span className="footer__contact-text">KEEP IN TOUCH</span>
+                    <h4 className="footer__contact-heading">Travel with Us</h4>
                 </div>
-                <form action="" class="footer__contact-form">
-                    <input type="text" name="" id="" class="footer__contact__input" />
-                    <label for="footer__contact-submit" class="footer__contact-submit-btn">
+                <form action="" className="footer__contact-form">
+                    <input type="text" name="" id="" className="footer__contact__input" />
+                    <label htmlFor="footer__contact-submit" className="footer__contact-submit-btn">
                         SEND
                     </label>
                     <input type="submit" value="" hidden id="footer__contact-submit" />
