@@ -7,9 +7,19 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     margin-top: -50px;
     position: relative;
+    z-index: 99;
 
     .info__book {
-        padding-top: 7%;
+        padding-top: 15px;
+        
+        .link__book {
+            padding-left: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            padding-top: -30px;
+            padding-top: 10px;
+        }
 
         p {
             padding-top: 15px;
@@ -18,7 +28,21 @@
             font-weight: bold;
         }
 
+        .input-search-book {
+            width: 90%;
+            margin-left: 5%;
+        }
+
         .date__book {
+            display: flex;
+            flex-wrap: wrap;
+
+            .day {
+                width: 30%;
+            }
+        }
+
+        .count-book {
             display: flex;
         }
     }
