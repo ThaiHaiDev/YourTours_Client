@@ -1,0 +1,16 @@
+.calendarWrap {
+    display: flex;  
+    flex-direction: column;
+    width: 100%;
+    z-index: 99;
+
+    .info_date {
+        display: flex;
+        flex-wrap: wrap;
+
+        .output {
+            width: 30%;
+            margin-left: 10px;
+        }
+    }
+}

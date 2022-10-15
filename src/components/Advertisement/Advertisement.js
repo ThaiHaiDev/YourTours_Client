@@ -6,7 +6,6 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 import './Advertisement.scss';
-import { Link } from 'react-router-dom';
 
 export default function SimpleSlider() {
     var settings = {
@@ -58,11 +57,7 @@ export default function SimpleSlider() {
                 </div>
             </Slider>
 
-            <div className="card__top__book">
-                <Link className="link__book">
-                    <p>Tìm ưu đãi khách sạn, chỗ nghỉ dạng nhà và nhiều hơn nữa...</p>
-                </Link>
-            </div>
+            <div className="card__top__book"></div>
         </div>
     );
 }

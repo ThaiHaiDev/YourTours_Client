@@ -7,13 +7,13 @@ import Popular from './components/Popular/Popular';
 
 function App() {
     return (
-      <div>
-        <Navbar />
-        <SimpleSlider />
-        <Book />
-        <Popular />
-        <Footer />
-      </div>
+        <div>
+            <Navbar />
+            <SimpleSlider />
+            <Book />
+            <Popular />
+            <Footer />
+        </div>
     );
 }
 
