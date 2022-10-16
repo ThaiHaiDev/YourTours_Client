@@ -28,11 +28,6 @@
             font-weight: bold;
         }
 
-        .input-search-book {
-            width: 90%;
-            margin-left: 5%;
-        }
-
         .date__book {
             display: flex;
             flex-wrap: wrap;
@@ -44,6 +39,7 @@
 
         .count-book {
             display: flex;
+            margin-top: 20px;
         }
     }
 

@@ -1,12 +1,23 @@
 import './Dropdown.scss';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 const Dropdown = () => {
     const [isActive, setIsActive] = useState(false);
+    const refOne = useRef(null);
+
+    useEffect(() => {
+        document.addEventListener('click', hideOnClickOutside, true);
+    }, []);
+
+    const hideOnClickOutside = (e) => {
+        if (refOne.current && !refOne.current.contains(e.target)) {
+            setIsActive(false);
+        }
+    };
 
     return (
-        <div className="dropdown">
+        <div className="dropdown" ref={refOne}>
             <div className="dropdown-btn" onClick={(e) => setIsActive(!isActive)}>
                 Choose One
                 <ExpandMoreIcon />

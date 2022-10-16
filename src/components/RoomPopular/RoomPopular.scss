@@ -1,0 +1,44 @@
+.room__popular {
+    margin: 0 50px;
+
+    .l-3 {
+        padding: 10px;
+        position: relative;
+    }
+
+
+    .slick-next {
+        border-radius: 100%;
+        left: 90%;
+        z-index: 100;
+    }
+
+    .slick-prev {
+        width: 100px;
+        // left: 0;
+        z-index: 100;
+    }
+    
+    .slick-dots {
+        padding: 35px;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    .love_room {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin-top: 15px;
+        margin-right: 20px;
+        
+        .icon_love {
+            cursor: pointer;
+            color: white;
+            font-size: 30px;
+        }
+    }
+    
+}
