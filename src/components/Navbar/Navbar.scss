@@ -1,5 +1,5 @@
 .navbar {
-	background-color: burlywood;
+	background-color: white;
 	padding: 10px 90px;
 	position: relative;
 	top: 0;
@@ -7,6 +7,7 @@
 	right: 0;
 	z-index: 1;
 	display: flex;
+	border-style: solid;
 
 	a {
 		float: left;

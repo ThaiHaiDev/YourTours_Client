@@ -10,8 +10,8 @@ function App() {
     return (
         <div>
             <Navbar />
-            <SimpleSlider />
-            <Book />
+            {/* <SimpleSlider /> */}
+            {/* <Book /> */}
             <Popular />
             <RoomPopular />
             <Footer />

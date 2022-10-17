@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Slider from 'react-slick';
 import './RoomPopular.scss';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
+import FmdGoodIcon from '@mui/icons-material/FmdGood';
 
 export default class RoomPopular extends Component {
     render() {
@@ -44,8 +45,42 @@ export default class RoomPopular extends Component {
                                 />
                             </div>
                         </Slider>
-                        <div className='love_room'>
-                            <FavoriteOutlinedIcon className='icon_love' />
+                        <div className="love_room">
+                            <FavoriteOutlinedIcon className="icon_love" />
+                        </div>
+                        <div className="info__room">
+                            <h2>Khách Sạn Hoài Niệm Hội An</h2>
+                            <div className="obility__room">
+                                <p>Khách Sạn</p>
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                            </div>
+                            <div className="locate__room">
+                                <FmdGoodIcon className="icon_locate" />
+                                <p>Hội An, Quảng Nam</p>
+                            </div>
+                            <div className="price__room">
+                                <p>Giá: 700.000 VND / Đêm</p>
+                                <p>Đánh giá: 4.5</p>
+                            </div>
                         </div>
                     </div>
                     <div className="col l-3 m-6 c-12">
@@ -75,8 +110,42 @@ export default class RoomPopular extends Component {
                                 />
                             </div>
                         </Slider>
-                        <div className='love_room'>
-                            <FavoriteOutlinedIcon className='icon_love' />
+                        <div className="love_room">
+                            <FavoriteOutlinedIcon className="icon_love" />
+                        </div>
+                        <div className="info__room">
+                            <h2>Khách Sạn Hoài Niệm Hội An</h2>
+                            <div className="obility__room">
+                                <p>Khách Sạn</p>
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                            </div>
+                            <div className="locate__room">
+                                <FmdGoodIcon className="icon_locate" />
+                                <p>Hội An, Quảng Nam</p>
+                            </div>
+                            <div className="price__room">
+                                <p>Giá: 700.000 VND / Đêm</p>
+                                <p>Đánh giá: 4.5</p>
+                            </div>
                         </div>
                     </div>
                     <div className="col l-3 m-6 c-12">
@@ -106,8 +175,42 @@ export default class RoomPopular extends Component {
                                 />
                             </div>
                         </Slider>
-                        <div className='love_room'>
-                            <FavoriteOutlinedIcon className='icon_love' />
+                        <div className="love_room">
+                            <FavoriteOutlinedIcon className="icon_love" />
+                        </div>
+                        <div className="info__room">
+                            <h2>Khách Sạn Hoài Niệm Hội An</h2>
+                            <div className="obility__room">
+                                <p>Khách Sạn</p>
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                            </div>
+                            <div className="locate__room">
+                                <FmdGoodIcon className="icon_locate" />
+                                <p>Hội An, Quảng Nam</p>
+                            </div>
+                            <div className="price__room">
+                                <p>Giá: 700.000 VND / Đêm</p>
+                                <p>Đánh giá: 4.5</p>
+                            </div>
                         </div>
                     </div>
                     <div className="col l-3 m-6 c-12">
@@ -137,8 +240,42 @@ export default class RoomPopular extends Component {
                                 />
                             </div>
                         </Slider>
-                        <div className='love_room'>
-                            <FavoriteOutlinedIcon className='icon_love' />
+                        <div className="love_room">
+                            <FavoriteOutlinedIcon className="icon_love" />
+                        </div>
+                        <div className="info__room">
+                            <h2>Khách Sạn Hoài Niệm Hội An</h2>
+                            <div className="obility__room">
+                                <p>Khách Sạn</p>
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                            </div>
+                            <div className="locate__room">
+                                <FmdGoodIcon className="icon_locate" />
+                                <p>Hội An, Quảng Nam</p>
+                            </div>
+                            <div className="price__room">
+                                <p>Giá: 700.000 VND / Đêm</p>
+                                <p>Đánh giá: 4.5</p>
+                            </div>
                         </div>
                     </div>
                     <div className="col l-3 m-6 c-12">
@@ -168,8 +305,42 @@ export default class RoomPopular extends Component {
                                 />
                             </div>
                         </Slider>
-                        <div className='love_room'>
-                            <FavoriteOutlinedIcon className='icon_love' />
+                        <div className="love_room">
+                            <FavoriteOutlinedIcon className="icon_love" />
+                        </div>
+                        <div className="info__room">
+                            <h2>Khách Sạn Hoài Niệm Hội An</h2>
+                            <div className="obility__room">
+                                <p>Khách Sạn</p>
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                            </div>
+                            <div className="locate__room">
+                                <FmdGoodIcon className="icon_locate" />
+                                <p>Hội An, Quảng Nam</p>
+                            </div>
+                            <div className="price__room">
+                                <p>Giá: 700.000 VND / Đêm</p>
+                                <p>Đánh giá: 4.5</p>
+                            </div>
                         </div>
                     </div>
                     <div className="col l-3 m-6 c-12">
@@ -199,8 +370,42 @@ export default class RoomPopular extends Component {
                                 />
                             </div>
                         </Slider>
-                        <div className='love_room'>
-                            <FavoriteOutlinedIcon className='icon_love' />
+                        <div className="love_room">
+                            <FavoriteOutlinedIcon className="icon_love" />
+                        </div>
+                        <div className="info__room">
+                            <h2>Khách Sạn Hoài Niệm Hội An</h2>
+                            <div className="obility__room">
+                                <p>Khách Sạn</p>
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                            </div>
+                            <div className="locate__room">
+                                <FmdGoodIcon className="icon_locate" />
+                                <p>Hội An, Quảng Nam</p>
+                            </div>
+                            <div className="price__room">
+                                <p>Giá: 700.000 VND / Đêm</p>
+                                <p>Đánh giá: 4.5</p>
+                            </div>
                         </div>
                     </div>
                     <div className="col l-3 m-6 c-12">
@@ -230,8 +435,42 @@ export default class RoomPopular extends Component {
                                 />
                             </div>
                         </Slider>
-                        <div className='love_room'>
-                            <FavoriteOutlinedIcon className='icon_love' />
+                        <div className="love_room">
+                            <FavoriteOutlinedIcon className="icon_love" />
+                        </div>
+                        <div className="info__room">
+                            <h2>Khách Sạn Hoài Niệm Hội An</h2>
+                            <div className="obility__room">
+                                <p>Khách Sạn</p>
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                            </div>
+                            <div className="locate__room">
+                                <FmdGoodIcon className="icon_locate" />
+                                <p>Hội An, Quảng Nam</p>
+                            </div>
+                            <div className="price__room">
+                                <p>Giá: 700.000 VND / Đêm</p>
+                                <p>Đánh giá: 4.5</p>
+                            </div>
                         </div>
                     </div>
                     <div className="col l-3 m-6 c-12">
@@ -261,8 +500,42 @@ export default class RoomPopular extends Component {
                                 />
                             </div>
                         </Slider>
-                        <div className='love_room'>
-                            <FavoriteOutlinedIcon className='icon_love' />
+                        <div className="love_room">
+                            <FavoriteOutlinedIcon className="icon_love" />
+                        </div>
+                        <div className="info__room">
+                            <h2>Khách Sạn Hoài Niệm Hội An</h2>
+                            <div className="obility__room">
+                                <p>Khách Sạn</p>
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                                <img
+                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                    alt="icon__star"
+                                />
+                            </div>
+                            <div className="locate__room">
+                                <FmdGoodIcon className="icon_locate" />
+                                <p>Hội An, Quảng Nam</p>
+                            </div>
+                            <div className="price__room">
+                                <p>Giá: 700.000 VND / Đêm</p>
+                                <p>Đánh giá: 4.5</p>
+                            </div>
                         </div>
                     </div>
                 </div>
