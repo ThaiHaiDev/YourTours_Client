@@ -6,10 +6,10 @@ import { Link } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchData from '../../mockdata/SearchData.json'
 
-const Book = () => {
+const Book = (props) => {
     return (
         <div className="book__tour">
-            <div className="card">
+            <div className="card" ref={props.refOne}>
                 <div className="info__book">
                     <Link className="link__book" to="/morebook">
                         Tìm ưu đãi khách sạn, chỗ nghỉ dạng nhà và nhiều hơn nữa...
@@ -26,7 +26,7 @@ const Book = () => {
                         <div className="day count">
                             <p>Số đêm:</p>
                         </div>
-                        <DateGo />
+                        <DateGo size="horizontal" />
                     </div>
                     <div className="count-book">
                         <p>Số khách:</p>

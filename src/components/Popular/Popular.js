@@ -10,7 +10,7 @@ import image_5 from '../../assets/img/thailand.jpg';
 const Popular = () => {
     return (
         <div className="web-content">
-            <div className="package-menu grid wide">
+            <div className="package-menu">
                 <div className="package-menu__head">
                     <p>Khám phá Việt Nam</p>
                     <h3 className="package-menu__heading">
