@@ -1,10 +1,23 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { NavLink} from "react-router-dom";
 import Book from "../Book/Book";
 import './Navbar.scss'
 
-const Navbar = (props) => {
-    const [isHiden, setIsHiden] = useState(false)
+const Navbar = () => {
+    const [isActive, setIsActive] = useState(false);
+    const refOne = useRef(null);
+
+    useEffect(() => {
+        document.addEventListener('click', hideOnClickOutside, true);
+        document.addEventListener("scroll", hideOnClickOutside);
+    }, []);
+
+    const hideOnClickOutside = (e) => {
+        if (refOne.current && !refOne.current.contains(e.target)) {
+            setIsActive(false);
+        }
+    };
+
     return (
         <div>
             <div className="navbar" >
@@ -16,7 +29,7 @@ const Navbar = (props) => {
                 <div className="navbar-right menu">
                     <NavLink to="/">Home</NavLink>
                     <NavLink to="/about">About</NavLink>
-                    <NavLink to="/" onClick={() => setIsHiden(!isHiden)}>Book</NavLink>
+                    <NavLink to="/" onClick={() => setIsActive(!isActive)}>Book</NavLink>
                     <NavLink to="/product">None</NavLink>
                     <NavLink to="/info-player">None</NavLink>
                     <NavLink to="/contacts">Contacts</NavLink>
@@ -28,7 +41,7 @@ const Navbar = (props) => {
                     </NavLink>
                 </div>
             </div>
-            {isHiden && <Book />}
+            {isActive && <Book refOne={refOne} />}
         </div>
     )
 }

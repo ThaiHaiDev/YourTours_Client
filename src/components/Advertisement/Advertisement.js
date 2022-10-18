@@ -57,7 +57,7 @@ export default function SimpleSlider() {
                 </div>
             </Slider>
 
-            <div className="card__top__book"></div>
+            {/* <div className="card__top__book"></div> */}
         </div>
     );
 }

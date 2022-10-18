@@ -9,7 +9,7 @@ import 'react-date-range/dist/theme/default.css';
 
 import './DateGo.scss';
 
-const DateRangePickerComp = () => {
+const DateRangePickerComp = (props) => {
     // date state
     const [range, setRange] = useState([
         {
@@ -78,7 +78,7 @@ const DateRangePickerComp = () => {
                         moveRangeOnFirstSelection={false}
                         ranges={range}
                         months={2}
-                        direction="horizontal"
+                        direction={props.size}
                         className="calendarElement"
                     />
                 )}

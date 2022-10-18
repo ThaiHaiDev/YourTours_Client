@@ -1,0 +1,30 @@
+.convenient-room {
+    margin-top: 20px;
+
+    h1 {
+        padding-bottom: 20px;
+    }
+
+    p {
+        padding: 0;
+        font-size: 1.5rem;
+    }
+
+    .convenient-item {
+        display: flex;
+        padding-bottom: 10px;
+
+        .icon-convenient {
+            margin: 0;
+            padding: 0;
+            font-size: 2rem;
+        }
+
+        p {
+            margin: 0;
+            padding-top: 3px;
+            padding-left: 8px;
+            font-size: 1.5rem;
+        }
+    }
+}
