@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import './Popular.scss';
-import image_0 from '../../assets/img/italy.jpg';
+// import image_0 from '../../assets/img/italy.jpg';
 import image_1 from '../../assets/img/europe.jpg';
 import image_2 from '../../assets/img/berlin.jpg';
 import image_3 from '../../assets/img/japan.jpg';
@@ -25,9 +25,8 @@ const Popular = () => {
                 <div className="row">
                     <div className="col l-3 m-6 c-12">
                         <div className="package">
-                            <div className="package-img"></div>
                             <div className="package-overlay">
-                                <img src={image_0} alt="" className="package-thumbnail" />
+                                <img src="https://ik.imagekit.io/tvlk/image/imageResource/2018/07/17/1531814622858-5300a3226e630822d61007a9aab8baef.jpeg?tr=q-75" alt="" className="package-thumbnail" />
                                 <div className="package-info">
                                     <h3 className="package-heading">europe</h3>
                                     <span className="package-desc">3 packages</span>
@@ -64,7 +63,6 @@ const Popular = () => {
                     </div>
                     <div className="col l-3 m-6 c-12">
                         <div className="package">
-                            <div className="package-img"></div>
                             <div className="package-overlay">
                                 <img src={image_1} alt="" className="package-thumbnail" />
                                 <div className="package-info">
@@ -93,7 +91,6 @@ const Popular = () => {
                     </div>
                     <div className="col l-3 m-6 c-12">
                         <div className="package">
-                            <div className="package-img"></div>
                             <div className="package-overlay">
                                 <img src={image_2} alt="" className="package-thumbnail" />
                                 <div className="package-info">
@@ -127,7 +124,6 @@ const Popular = () => {
                     </div>
                     <div className="col l-3 m-6 c-12">
                         <div className="package">
-                            <div className="package-img"></div>
                             <div className="package-overlay">
                                 <img src={image_3} alt="" className="package-thumbnail" />
                                 <div className="package-info">
@@ -156,7 +152,6 @@ const Popular = () => {
                     </div>
                     <div className="col l-3 m-6 c-12">
                         <div className="package">
-                            <div className="package-img"></div>
                             <div className="package-overlay">
                                 <img src={image_4} alt="" className="package-thumbnail" />
                                 <div className="package-info">
@@ -185,7 +180,6 @@ const Popular = () => {
                     </div>
                     <div className="col l-3 m-6 c-12">
                         <div className="package">
-                            <div className="package-img"></div>
                             <div className="package-overlay">
                                 <img src={image_5} alt="" className="package-thumbnail" />
                                 <div className="package-info">
@@ -214,7 +208,6 @@ const Popular = () => {
                     </div>
                     <div className="col l-3 m-6 c-12">
                         <div className="package">
-                            <div className="package-img"></div>
                             <div className="package-overlay">
                                 <img src={image_5} alt="" className="package-thumbnail" />
                                 <div className="package-info">
@@ -243,7 +236,6 @@ const Popular = () => {
                     </div>
                     <div className="col l-3 m-6 c-12">
                         <div className="package">
-                            <div className="package-img"></div>
                             <div className="package-overlay">
                                 <img src={image_5} alt="" className="package-thumbnail" />
                                 <div className="package-info">

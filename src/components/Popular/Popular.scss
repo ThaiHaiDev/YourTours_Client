@@ -1,5 +1,9 @@
 .web-content {
     position: relative;
+
+    .package {
+        height: 150px;
+    }
 }
 
 .package-menu {
@@ -10,6 +14,7 @@
         text-align: center;
         margin-top: 40px;
         margin-bottom: 20px;
+        z-index: 90;
 
         p {
             font-size: 1.6rem;
@@ -35,7 +40,8 @@
     }
 
     .package-img {
-        padding-top: 100%;
+        padding: 0;
+        // padding-top: 80%;
         background-position: center;
         background-size: contain;
         opacity: 1;

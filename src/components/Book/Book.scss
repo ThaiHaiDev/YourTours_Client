@@ -1,11 +1,19 @@
+.book__tour {
+    position: fixed;
+    top: 80px;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);  // Làm mờ page
+    z-index: 99;
+}
 .card {
     width: 900px;
     height: 400px;
     margin: auto;
-    background-color: var(--white-color);
+    background: white;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    margin-top: -50px;
     position: relative;
     z-index: 99;
 
@@ -28,11 +36,6 @@
             font-weight: bold;
         }
 
-        .input-search-book {
-            width: 90%;
-            margin-left: 5%;
-        }
-
         .date__book {
             display: flex;
             flex-wrap: wrap;
@@ -44,6 +47,7 @@
 
         .count-book {
             display: flex;
+            margin-top: 20px;
         }
     }
 

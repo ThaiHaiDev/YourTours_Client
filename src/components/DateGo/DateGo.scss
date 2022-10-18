@@ -2,7 +2,9 @@
     display: flex;  
     flex-direction: column;
     width: 100%;
-    z-index: 99;
+    z-index: 91;
+    position: absolute;
+    margin-top: 55px;
 
     .info_date {
         display: flex;

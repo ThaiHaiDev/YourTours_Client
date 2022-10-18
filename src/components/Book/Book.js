@@ -3,6 +3,8 @@ import Dropdown from '../Dropdown/Dropdown';
 import './Book.scss';
 
 import { Link } from 'react-router-dom';
+import SearchBar from '../SearchBar/SearchBar';
+import SearchData from '../../mockdata/SearchData.json'
 
 const Book = () => {
     return (
@@ -13,7 +15,7 @@ const Book = () => {
                         Tìm ưu đãi khách sạn, chỗ nghỉ dạng nhà và nhiều hơn nữa...
                     </Link>
                     <p>Thành phố, địa điểm hoặc tên khách sạn:</p>
-                    <input className="input-search-book" />
+                    <SearchBar placeholder="Thành phố, khách sạn, điểm đến" data={SearchData} />
                     <div className="date__book">
                         <div className="day start">
                             <p>Nhận phòng:</p>
