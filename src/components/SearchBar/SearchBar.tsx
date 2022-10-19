@@ -4,26 +4,26 @@ import CloseIcon from '@mui/icons-material/Close';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import { Link } from 'react-router-dom';
 
-function SearchBar({ placeholder, data }) {
-    const [filteredData, setFilteredData] = useState([]);
+function SearchBar({ placeholder, data } : any) {
+    const [filteredData, setFilteredData] = useState<any>([]);
     const [wordEntered, setWordEntered] = useState('');
-    const refOne = useRef(null);
+    const refOne = useRef<HTMLInputElement | null>(null);
 
     useEffect(() => {
         document.addEventListener('click', hideOnClickOutside, true);
     }, []);
 
-    const hideOnClickOutside = (e) => {
+    const hideOnClickOutside = (e : any) => {
         if (refOne.current && !refOne.current.contains(e.target)) {
             setFilteredData([])
         }
         setWordEntered('')
     };
 
-    const handleFilter = (event) => {
+    const handleFilter = (event : any) => {
         const searchWord = event.target.value;
         setWordEntered(searchWord);
-        const newFilter = data.filter((value) => {
+        const newFilter = data.filter((value : any) => {
             return value.title.toLowerCase().includes(searchWord.toLowerCase());
         });
 
@@ -54,7 +54,7 @@ function SearchBar({ placeholder, data }) {
             </div>
             {filteredData.length !== 0 && (
                 <div className="dataResult" ref={refOne}>
-                    {filteredData.slice(0, 15).map((value, key) => {
+                    {filteredData.slice(0, 15)?.map((value:any, key:any) => {
                         return (
                             <Link className="dataItem" to={value.link} target="_blank">
                                 <p>{value.title} </p>

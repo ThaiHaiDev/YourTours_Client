@@ -33,28 +33,28 @@ const Popular = () => {
                                 </div>
                             </div>
 
-                            <Link href="#" className="mobile-package__link"></Link>
+                            <Link to="#" className="mobile-package__link"></Link>
                             <div className="package-cover hide-on-mobile-tablet">
                                 <h4 className="package-cover-head">packages</h4>
                                 <ul className="package-list">
                                     <li className="package-item">
-                                        <Link href="#" className="package-link">
+                                        <Link to="#" className="package-link">
                                             berlin
                                         </Link>
                                     </li>
                                     <li className="package-item">
-                                        <Link href="#" className="package-link">
+                                        <Link to="#" className="package-link">
                                             amsterdam
                                         </Link>
                                     </li>
                                     <li className="package-item">
-                                        <Link href="#" className="package-link">
+                                        <Link to="#" className="package-link">
                                             tuscany
                                         </Link>
                                     </li>
                                 </ul>
                                 <div className="package-btn">
-                                    <Link href="#" className="package-btn-link">
+                                    <Link to="#" className="package-btn-link">
                                         view destination
                                     </Link>
                                 </div>
@@ -71,18 +71,18 @@ const Popular = () => {
                                 </div>
                             </div>
 
-                            <Link href="#" className="mobile-package__link"></Link>
+                            <Link to="#" className="mobile-package__link"></Link>
                             <div className="package-cover hide-on-mobile-tablet">
                                 <h4 className="package-cover-head">packages</h4>
                                 <ul className="package-list">
                                     <li className="package-item">
-                                        <Link href="#" className="package-link">
+                                        <Link to="#" className="package-link">
                                             phuket
                                         </Link>
                                     </li>
                                 </ul>
                                 <div className="package-btn">
-                                    <Link href="#" className="package-btn-link">
+                                    <Link to="#" className="package-btn-link">
                                         view destination
                                     </Link>
                                 </div>
@@ -99,23 +99,23 @@ const Popular = () => {
                                 </div>
                             </div>
 
-                            <Link href="#" className="mobile-package__link"></Link>
+                            <Link to="#" className="mobile-package__link"></Link>
                             <div className="package-cover hide-on-mobile-tablet">
                                 <h4 className="package-cover-head">packages</h4>
                                 <ul className="package-list">
                                     <li className="package-item">
-                                        <Link href="#" className="package-link">
+                                        <Link to="#" className="package-link">
                                             hong kong
                                         </Link>
                                     </li>
                                     <li className="package-item">
-                                        <Link href="#" className="package-link">
+                                        <Link to="#" className="package-link">
                                             phuket
                                         </Link>
                                     </li>
                                 </ul>
                                 <div className="package-btn">
-                                    <Link href="#" className="package-btn-link">
+                                    <Link to="#" className="package-btn-link">
                                         view destination
                                     </Link>
                                 </div>
@@ -132,18 +132,18 @@ const Popular = () => {
                                 </div>
                             </div>
 
-                            <Link href="#" className="mobile-package__link"></Link>
+                            <Link to="#" className="mobile-package__link"></Link>
                             <div className="package-cover hide-on-mobile-tablet">
                                 <h4 className="package-cover-head">packages</h4>
                                 <ul className="package-list">
                                     <li className="package-item">
-                                        <Link href="#" className="package-link">
+                                        <Link to="#" className="package-link">
                                             tuscany
                                         </Link>
                                     </li>
                                 </ul>
                                 <div className="package-btn">
-                                    <Link href="#" className="package-btn-link">
+                                    <Link to="#" className="package-btn-link">
                                         view destination
                                     </Link>
                                 </div>
@@ -160,18 +160,18 @@ const Popular = () => {
                                 </div>
                             </div>
 
-                            <Link href="#" className="mobile-package__link"></Link>
+                            <Link to="#" className="mobile-package__link"></Link>
                             <div className="package-cover hide-on-mobile-tablet">
                                 <h4 className="package-cover-head">packages</h4>
                                 <ul className="package-list">
                                     <li className="package-item">
-                                        <Link href="#" className="package-link">
+                                        <Link to="#" className="package-link">
                                             amsterdam
                                         </Link>
                                     </li>
                                 </ul>
                                 <div className="package-btn">
-                                    <Link href="#" className="package-btn-link">
+                                    <Link to="#" className="package-btn-link">
                                         view destination
                                     </Link>
                                 </div>
@@ -188,18 +188,18 @@ const Popular = () => {
                                 </div>
                             </div>
 
-                            <Link href="#" className="mobile-package__link"></Link>
+                            <Link to="#" className="mobile-package__link"></Link>
                             <div className="package-cover hide-on-mobile-tablet">
                                 <h4 className="package-cover-head">packages</h4>
                                 <ul className="package-list">
                                     <li className="package-item">
-                                        <Link href="#" className="package-link">
+                                        <Link to="#" className="package-link">
                                             san francisco
                                         </Link>
                                     </li>
                                 </ul>
                                 <div className="package-btn">
-                                    <Link href="#" className="package-btn-link">
+                                    <Link to="#" className="package-btn-link">
                                         view destination
                                     </Link>
                                 </div>
@@ -216,18 +216,18 @@ const Popular = () => {
                                 </div>
                             </div>
 
-                            <Link href="#" className="mobile-package__link"></Link>
+                            <Link to="#" className="mobile-package__link"></Link>
                             <div className="package-cover hide-on-mobile-tablet">
                                 <h4 className="package-cover-head">packages</h4>
                                 <ul className="package-list">
                                     <li className="package-item">
-                                        <Link href="#" className="package-link">
+                                        <Link to="#" className="package-link">
                                             san francisco
                                         </Link>
                                     </li>
                                 </ul>
                                 <div className="package-btn">
-                                    <Link href="#" className="package-btn-link">
+                                    <Link to="#" className="package-btn-link">
                                         view destination
                                     </Link>
                                 </div>
@@ -244,18 +244,18 @@ const Popular = () => {
                                 </div>
                             </div>
 
-                            <Link href="#" className="mobile-package__link"></Link>
+                            <Link to="#" className="mobile-package__link"></Link>
                             <div className="package-cover hide-on-mobile-tablet">
                                 <h4 className="package-cover-head">packages</h4>
                                 <ul className="package-list">
                                     <li className="package-item">
-                                        <Link href="#" className="package-link">
+                                        <Link to="#" className="package-link">
                                             san francisco
                                         </Link>
                                     </li>
                                 </ul>
                                 <div className="package-btn">
-                                    <Link href="#" className="package-btn-link">
+                                    <Link to="#" className="package-btn-link">
                                         view destination
                                     </Link>
                                 </div>

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchData from '../../mockdata/SearchData.json'
 
-const Book = (props) => {
+const Book = (props : any) => {
     return (
         <div className="book__tour">
             <div className="card" ref={props.refOne}>
