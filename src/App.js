@@ -1,14 +1,13 @@
 import './App.css';
 import SimpleSlider from './components/Advertisement/Advertisement';
-import HomePage from './pages/HomePage/HomePage';
 import RoomDetail from './pages/RoomDetail/RoomDetail';
+import Auth from './routes/Auth';
 
 function App() {
     return (
         <div>
-            {/* <HomePage /> */}
             {/* <SimpleSlider /> */}
-            <RoomDetail />
+            <Auth />
         </div>
     );
 }

@@ -8,6 +8,7 @@ import StarIcon from '@mui/icons-material/Star';
 import { Link } from 'react-router-dom';
 import Convenient from '../../components/Convenient/Convenient';
 import DateGo from '../../components/DateGo/DateGo';
+import Dropdown from '../../components/Dropdown/Dropdown';
 
 const RoomDetail = () => {
     return (
@@ -61,7 +62,7 @@ const RoomDetail = () => {
                         <div className="col l-8">
                             <div className="title-room">
                                 <h1>Toàn bộ biệt thự. Chủ nhà Hải Nguyễn</h1>
-                                <p className='count-detail'>4 khách . 2 phòng ngủ . 2 giường . 2 phòng tắm</p>
+                                <p className="count-detail">4 khách . 2 phòng ngủ . 2 giường . 2 phòng tắm</p>
                                 <hr className="line" />
                                 <Convenient />
                             </div>
@@ -69,7 +70,29 @@ const RoomDetail = () => {
                         <div className="col l-4">
                             <div className="card-book__detail">
                                 <div className="price-room">700.000 VND</div>
-                                <DateGo size="vertical" />
+                                <div className="date-book">
+                                    <div className="title__date-book">
+                                        <p>Nhận phòng</p>
+                                        <p>Trả phòng</p>
+                                    </div>
+                                    <DateGo size="vertical" />
+                                </div>
+                                <div className="count__guest">
+                                    <p>Số khách</p>
+                                    <Dropdown />
+                                </div>
+                                <div className="line">
+                                    <hr />
+                                </div>
+
+                                <div className="price-total">
+                                    <div className="title-price">
+                                        <p>700.000 x 7 ngày</p>
+                                    </div>
+                                    <div className="real-price">
+                                        <p>4.900.000 VND</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

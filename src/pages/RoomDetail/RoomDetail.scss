@@ -109,28 +109,65 @@
 
             .price-room {
                 padding: 20px;
+                padding-top: 30px;
                 font-size: 1.8rem;
                 font-weight: bold;
             }
 
-            .info_date {
-                display: flex;
-                margin: auto;
+            .date-book {
+                .title__date-book {
+                    display: flex;
+                    margin-left: 30px;
 
-                .output {
-                    width: 160px;
-                    margin-left: 0;
-    
-                    input {
-                        padding: 10px;
-                        width: 100%;
+                    p {
+                        font-size: 1.3rem;
+                        margin: 0;
+                        margin-bottom: 5px;
+                        margin-right: 85px;
+                        font-weight: bold;
                     }
+                }
+
+                .info_date {
+                    display: flex;
+                    margin: auto;
+    
+                    .output {
+                        width: 160px;
+                        margin-left: 0;
+        
+                        input {
+                            padding: 10px;
+                            width: 100%;
+                        }
+                    }
+                }
+    
+                .calendarElement {
+                    margin-left: -100px;
+                }
+
+                .calendarWrap {
+                    margin-top: 0;
                 }
             }
 
-            .calendarElement {
-                margin-left: -100px;
+            .count__guest {
+                margin-top: 50px;
+                p {
+                    padding-left: 30px;
+                    font-size: 1.3rem;
+                    font-weight: bold;
+                }
+
+                .dropdown {
+                    width: auto;
+                    padding: 0;
+                    margin-right: 28px;
+                    margin-left: 28px;
+                }
             }
+            
         }
 
         .title-room {
@@ -145,6 +182,21 @@
 
             .line {
                 border: 0.2px solid #e0e0e0;;
+            }
+        }
+
+        .line {
+            margin: 30px 25px 10px 25px;
+        }
+
+        .price-total {
+            display: flex;
+            justify-content: space-between;
+            margin-left: 25px;
+            margin-right: 25px;
+
+            p {
+                font-size: 1.5rem;
             }
         }
     }
