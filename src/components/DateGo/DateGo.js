@@ -22,6 +22,7 @@ const DateRangePickerComp = (props) => {
     // open close
     const [open, setOpen] = useState(false);
 
+
     // get the target element to toggle
     const refOne = useRef(null);
 
@@ -30,7 +31,10 @@ const DateRangePickerComp = (props) => {
         document.addEventListener('keydown', hideOnEscape, true);
         document.addEventListener('click', hideOnClickOutside, true);
     }, []);
-    console.log(format(range[0].startDate, 'MM/dd/yyyy'));
+
+    // console.log('start',format(range[0].startDate, 'MM/dd/yyyy'));
+    // console.log('end',format(range[0].endDate, 'MM/dd/yyyy'));
+
     // hide dropdown on ESC press
     const hideOnEscape = (e) => {
         // console.log(e.key)

@@ -1,0 +1,180 @@
+.signup {
+    position: relative;
+    margin-top: 70px;
+    .nav-item {
+        width: calc(var(--nav-size) * 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    
+        /* Icon Button */
+        .icon-button {
+            --button-size: calc(var(--nav-size) * 0.5);
+            width: var(--button-size);
+            height: var(--button-size);
+            background-color: #484a4d;
+            border-radius: 50%;
+            padding: 5px;
+            margin: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: filter 300ms;
+        }
+    
+        .icon-button:hover {
+            filter: brightness(1.2);
+        }
+    
+        .icon-button svg {
+            fill: var(--text-color);
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    .dropdown {
+        height: 400px !important;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        width: 600px;
+        margin: auto;
+        padding: 1rem;
+        overflow: hidden;
+        transition: height var(--speed) ease;
+
+        .menu {
+            width: 100%;
+            
+            .form-email {
+                h1 {
+                    font-weight: bold;
+                    margin-top: 30px;
+                    margin-bottom: 30px;
+                    text-align: center;
+                    
+                }
+
+                input {
+                    border: solid;
+                    border-color: #eee;
+                    padding: 10px 15px;
+                    width: 100%;
+                    margin-bottom: 5px;
+                    margin-top: 7px;
+                    font-size: 1.4rem;
+                }
+
+                .label-email {
+                    margin-left: 5px;
+                }
+            }
+
+            .form-info {
+                input {
+                    border: solid;
+                    border-color: #eee;
+                    padding: 10px 15px;
+                    width: 100%;
+                    margin-bottom: 10px;
+                    font-size: 1.4rem;
+                }
+            }
+            
+            .customs-btn { 
+                position: absolute;
+                background: #4f46e5;
+                padding: 10px 150px;
+                font-size: 1.6rem;
+                color: white;
+                margin-left: 110px;
+                margin-right: 110px;
+                bottom: 60px;
+            }
+
+            .customs-btn:hover {
+                background: #1e88e5;
+            }
+
+        }
+
+        .menu-item {
+            height: 50px;
+            display: flex;
+            align-items: center;
+            border-radius: var(--border-radius);
+            transition: background var(--speed);
+            padding: 0.5rem;
+
+            .icon-button {
+                margin-right: 0.5rem;
+            }
+
+            .icon-button:hover {
+                filter: none;
+            }
+
+            .icon-right {
+                margin-left: auto;
+            }
+        }
+
+
+        .policy {
+            position: absolute;
+            bottom: 15px;
+            
+            p {
+                margin: 0;
+                font-size: 1.2rem;
+                text-align: center;
+                margin-left: 50px;
+                margin-right: 50px;
+
+                .link-policy {
+                    color: #1877f2;
+                }
+            }
+        }
+    }
+
+    /* CSSTransition classes  */
+    .menu-primary-enter {
+        position: absolute;
+        transform: translateX(-110%);
+    }
+    .menu-primary-enter-active {
+        transform: translateX(0%);
+        transition: all var(--speed) ease;
+    }
+    .menu-primary-exit {
+        position: absolute;
+    }
+    .menu-primary-exit-active {
+        transform: translateX(-110%);
+        transition: all var(--speed) ease;
+    }
+
+    .menu-secondary-enter {
+        transform: translateX(110%);
+    }
+    .menu-secondary-enter-active {
+        transform: translateX(0%);
+        transition: all var(--speed) ease;
+    }
+
+    .menu-secondary-exit-active {
+        transform: translateX(110%);
+        transition: all var(--speed) ease;
+    }
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+
+
+
