@@ -4,13 +4,13 @@ import { useState, useRef, useEffect } from 'react';
 
 const Dropdown = () => {
     const [isActive, setIsActive] = useState(false);
-    const refOne = useRef(null);
+    const refOne = useRef<HTMLInputElement | null>(null);
 
     useEffect(() => {
         document.addEventListener('click', hideOnClickOutside, true);
     }, []);
 
-    const hideOnClickOutside = (e) => {
+    const hideOnClickOutside = (e : any) => {
         if (refOne.current && !refOne.current.contains(e.target)) {
             setIsActive(false);
         }

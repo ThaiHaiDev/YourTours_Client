@@ -19,19 +19,19 @@ function Signup() {
 
 function DropdownMenu() {
     const [activeMenu, setActiveMenu] = useState('main');
-    const [menuHeight, setMenuHeight] = useState(null);
-    const dropdownRef = useRef(null);
+    const [menuHeight, setMenuHeight] = useState<any>(null);
+    const dropdownRef = useRef<any>(null);
 
     useEffect(() => {
         setMenuHeight(dropdownRef.current?.firstChild.offsetHeight);
     }, []);
 
-    function calcHeight(el) {
+    function calcHeight(el:any) {
         const height = el.offsetHeight;
         setMenuHeight(height);
     }
 
-    function DropdownItem(props) {
+    function DropdownItem(props : any) {
         return (
             <Link to="#" className="menu-item" onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
                 <span className="icon-button">{props.leftIcon}</span>
@@ -91,8 +91,8 @@ function DropdownMenu() {
             <div className="policy">
                 <p>
                     Bằng cách đăng ký hoặc đăng nhập, bạn đã hiểu và đồng ý với{' '}
-                    <Link className="link-policy">Điều Khoản Sử Dụng</Link> và{' '}
-                    <Link className="link-policy">Chính Sách Bảo Mật</Link> của Yourtours.
+                    <Link to='' className="link-policy">Điều Khoản Sử Dụng</Link> và{' '}
+                    <Link to='' className="link-policy">Chính Sách Bảo Mật</Link> của Yourtours.
                 </p>
             </div>
         </div>

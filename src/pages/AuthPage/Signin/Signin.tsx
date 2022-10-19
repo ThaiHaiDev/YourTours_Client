@@ -12,7 +12,7 @@ const Signin = () => {
         formState: { errors },
     } = useForm();
 
-    const onSubmit = async (data) => {
+    const onSubmit = async (data: any) => {
         try {
             console.log(data)
             reset();
@@ -81,8 +81,8 @@ const Signin = () => {
                     </div>
                     <div className="policy">
                         <p>
-                            Bằng cách đăng ký hoặc đăng nhập, bạn đã hiểu và đồng ý với <Link className='link-policy'>Điều Khoản Sử Dụng</Link>{' '}
-                            và <Link className='link-policy'>Chính Sách Bảo Mật</Link> của Yourtours.
+                            Bằng cách đăng ký hoặc đăng nhập, bạn đã hiểu và đồng ý với <Link to='' className='link-policy'>Điều Khoản Sử Dụng</Link>{' '}
+                            và <Link to='' className='link-policy'>Chính Sách Bảo Mật</Link> của Yourtours.
                         </p>
                     </div>
                 </div>
