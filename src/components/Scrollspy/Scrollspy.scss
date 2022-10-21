@@ -1,0 +1,20 @@
+.scroll-spy {
+    li {
+        padding-bottom: 10px;
+        padding-top: 10px;
+        padding-left: 20px;
+        list-style: none;
+        border-left: 4px solid var(--border-scroll);
+        color: var(--border-scroll);
+    }
+
+    .is-current {
+        border-left: 4px solid black;
+
+        a {
+            color: black;
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+    }
+}

@@ -1,3 +1,4 @@
+import SimpleSlider from "../../components/Advertisement/Advertisement"
 import Footer from "../../components/Footer/Footer"
 import Navbar from "../../components/Navbar/Navbar"
 import Popular from "../../components/Popular/Popular"
@@ -8,6 +9,7 @@ const HomePage = () => {
         <div>
             <Navbar />
             <Popular />
+            <SimpleSlider />
             <RoomPopular />
             <Footer />
         </div>

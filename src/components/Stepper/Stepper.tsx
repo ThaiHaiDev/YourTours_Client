@@ -12,12 +12,15 @@ import StepperThree from '../../pages/SetupOwner/StepperThree/StepperThree';
 import StepperFour from '../../pages/SetupOwner/StepperFour/StepperFour';
 import StepperFive from '../../pages/SetupOwner/StepperFive/StepperFive';
 import StepperSix from '../../pages/SetupOwner/StepperSix/StepperSix';
+import { useNavigate } from 'react-router-dom';
 
 const steps = ['Setup vị trí', 'Setup phòng', 'Setup tiện ích', 'Setup ảnh', 'Mô tả phòng', 'Chi tiết phòng'];
 
 export default function StepperComponent() {
     const [activeStep, setActiveStep] = React.useState(0);
     const [skipped, setSkipped] = React.useState(new Set<number>());
+
+    const navigate = useNavigate();
 
     const isStepOptional = (step: number) => {
         return step === 1;
@@ -58,7 +61,7 @@ export default function StepperComponent() {
     };
 
     const handleReset = () => {
-        setActiveStep(0);
+        navigate('/congratulation')
     };
 
     return (
