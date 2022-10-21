@@ -23,6 +23,7 @@
     "react-hook-form": "^7.38.0",
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
+    "react-scrollspy": "^3.4.3",
     "react-select": "^5.5.4",
     "react-slick": "^0.29.0",
     "react-transition-group": "^4.4.5",
@@ -57,6 +58,7 @@
   },
   "devDependencies": {
     "@types/react-date-range": "^1.4.4",
+    "@types/react-scrollspy": "^3.3.5",
     "@types/react-slick": "^0.23.10"
   }
 }
