@@ -5,9 +5,13 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+
 import StepperOne from '../../pages/SetupOwner/StepperOne/StepperOne';
 import StepperTwo from '../../pages/SetupOwner/StepperTwo/StepperTwo';
 import StepperThree from '../../pages/SetupOwner/StepperThree/StepperThree';
+import StepperFour from '../../pages/SetupOwner/StepperFour/StepperFour';
+import StepperFive from '../../pages/SetupOwner/StepperFive/StepperFive';
+import StepperSix from '../../pages/SetupOwner/StepperSix/StepperSix';
 
 const steps = ['Setup vị trí', 'Setup phòng', 'Setup tiện ích', 'Setup ảnh', 'Mô tả phòng', 'Chi tiết phòng'];
 
@@ -94,9 +98,15 @@ export default function StepperComponent() {
                             return <StepperOne />
                         } else if (activeStep === 1) {
                             return <StepperTwo />
-                        } else {
+                        } else if (activeStep === 2){
                             return <StepperThree />
-                        }
+                        } else if (activeStep === 3){
+                            return <StepperFour />
+                        } else if (activeStep === 4){
+                            return <StepperFive />
+                        } else if (activeStep === 5){
+                            return <StepperSix />
+                        } 
                     })()}
                     <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
                         <Button color="inherit" disabled={activeStep === 0} onClick={handleBack} sx={{ mr: 1 }}>
