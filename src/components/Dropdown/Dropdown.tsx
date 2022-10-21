@@ -19,7 +19,7 @@ const Dropdown = () => {
     return (
         <div className="dropdown" ref={refOne}>
             <div className="dropdown-btn" onClick={(e) => setIsActive(!isActive)}>
-                Choose One
+                2 Người lớn, 0 Trẻ em, 1 phòng
                 <ExpandMoreIcon />
             </div>
             {isActive && (

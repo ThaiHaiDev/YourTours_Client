@@ -9,7 +9,7 @@
 }
 .card {
     width: 900px;
-    height: 400px;
+    height: 350px;
     margin: auto;
     background: white;
     border-radius: 10px;
@@ -27,28 +27,41 @@
             text-decoration: none;
             padding-top: -30px;
             padding-top: 10px;
+            color: var(--blue-link);
         }
 
-        p {
-            padding-top: 15px;
-            padding-left: 10px;
-            font-size: 1.4rem;
-            font-weight: bold;
+        .line {
+            margin-top: 15px;
+            margin-left: 15px;
+            margin-right: 30px;
         }
 
-        .date__book {
-            display: flex;
-            flex-wrap: wrap;
-
-            .day {
-                width: 30%;
+        .content-book {
+            margin-top: -10px;
+            p {
+                padding-top: 15px;
+                padding-left: 10px;
+                font-size: 1.4rem;
+                font-weight: bold;
+                // margin-top: 0;
+            }
+    
+            .date__book {
+                display: flex;
+                flex-wrap: wrap;
+    
+                .day {
+                    width: 30%;
+                }
+            }
+    
+            .count-book {
+                display: flex;
+                margin-top: 25px;
             }
         }
 
-        .count-book {
-            display: flex;
-            margin-top: 20px;
-        }
+        
     }
 
     .btn-search__book {

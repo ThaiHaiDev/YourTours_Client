@@ -4,7 +4,7 @@ import Book from '../Book/Book';
 import './Navbar.scss';
 
 const Navbar = () => {
-    const [isActive, setIsActive] = useState(false);
+    const [isActive, setIsActive] = useState<boolean>(false);
     const refOne = useRef<HTMLInputElement | null>(null);
 
     useEffect(() => {
@@ -32,11 +32,11 @@ const Navbar = () => {
                 </NavLink>
                 <div className="navbar-right menu">
                     <NavLink to="/">Home</NavLink>
-                    <NavLink to="/about">About</NavLink>
+                    <NavLink to="/detail">Detail</NavLink>
                     <NavLink to="/" onClick={() => setIsActive(!isActive)}>
                         Book
                     </NavLink>
-                    <NavLink to="/product">None</NavLink>
+                    <NavLink to="/stepsetupowner">Owner</NavLink>
                     <NavLink to="/info-player">None</NavLink>
                     <NavLink to="/contacts">Contacts</NavLink>
                 </div>
