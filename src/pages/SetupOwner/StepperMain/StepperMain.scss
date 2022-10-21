@@ -1,0 +1,46 @@
+.step-main {
+    width: 90%;
+    margin-top: 20px !important;
+    margin: auto;
+    position: relative;
+
+    svg {
+        width: 25px;
+        height: 25px;
+
+        .MuiStepIcon-text {
+            font-size: 10px;
+        }
+    }
+
+    span {
+        font-size: 1.2rem;
+    }
+
+    .css-a1sg1c-MuiButtonBase-root-MuiButton-root {
+        font-size: 1.4rem;
+        color: black !important;
+        text-transform: none;
+        text-decoration: underline;
+        padding-left: 0;
+        text-align: start;
+        margin-left: -10px;
+
+    }
+
+    .css-a1sg1c-MuiButtonBase-root-MuiButton-root:hover {
+        background: var(--white-color);
+    }
+
+    .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+        background: var(--btn-blue);
+        font-size: 1.4rem;
+        color: var(--white-color);
+        text-transform: none;
+        padding: 5px 40px;
+    }
+
+    .css-1e6y48t-MuiButtonBase-root-MuiButton-root:hover {
+        background: var(--btn-blue-hover);
+    }
+}

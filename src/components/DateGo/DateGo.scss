@@ -11,8 +11,17 @@
         flex-wrap: wrap;
 
         .output {
-            width: 30%;
+            width: 27%;
             margin-left: 10px;
+
+            input {
+                padding: 8px;
+                width: 100%;
+            }
+        }
+
+        .output:nth-child(2) {
+            margin-left: 28px;
         }
     }
 }

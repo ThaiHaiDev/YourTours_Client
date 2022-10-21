@@ -1,0 +1,29 @@
+.step-five {
+    margin-top: 20px;
+
+    .l-6:nth-child(1) {
+        position: relative;
+        height: 80vh;
+        background: red;
+
+        h1 {
+            text-align: center;
+            position: absolute;
+            top: 45%;
+            width: 100%;
+        }
+    }
+
+    .l-6:nth-child(2) {
+        position: relative;
+        height: 80vh;
+
+        .selected-locate {
+            position: absolute;
+            width: 100%;
+            top: 45%;
+            left: 25%;
+
+        }
+    }
+}
