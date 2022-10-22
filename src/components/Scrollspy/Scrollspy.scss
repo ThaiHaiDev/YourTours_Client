@@ -1,5 +1,20 @@
 .scroll-spy {
+    padding-top: 100px;
+    padding-bottom: 400px;
+
+    .link-sidebar {
+        position: relative;
+        z-index: 1;
+        width: 30%;
+        font-size: 1.7rem;
+        font-weight: bold;
+        color: black;
+        margin-bottom: 100px;
+        padding-bottom: 20px;
+    }
+
     li {
+        position: relative;
         padding-bottom: 10px;
         padding-top: 10px;
         padding-left: 20px;
@@ -8,12 +23,16 @@
         color: var(--border-scroll);
     }
 
+    li:nth-child(2) {
+        margin-top: 10px !important;
+    }
+
     .is-current {
         border-left: 4px solid black;
 
         a {
             color: black;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 600;
         }
     }

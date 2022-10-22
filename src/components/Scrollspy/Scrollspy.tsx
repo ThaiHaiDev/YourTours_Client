@@ -1,51 +1,49 @@
+import { Link } from 'react-router-dom';
 import Scrollspy from 'react-scrollspy';
 
 import './Scrollspy.scss';
 
-const ScrollspyComponent = () => {
+const ScrollspyComponent = (props : any) => {
     return (
         <div className="scroll-spy">
             <div>
                 <div>
-                    <section id="section1" style={{ height: '800px', marginLeft: '30%', background: 'red' }}>
-                        section 1
-                    </section>
-                    <section id="section2" style={{ height: '800px', marginLeft: '30%', background: 'green' }}>
-                        section 2
-                    </section>
-                    <section id="section3" style={{ height: '800px', marginLeft: '30%', background: 'yellow' }}>
-                        section 3
-                    </section>
+                    {props.children?.map((child: any, index : number) => (
+                        <section
+                            id={child.to}
+                            key={index}
+                            style={{ marginLeft: '30%',  }}
+                        >
+                            {child?.comp}
+                        </section>
+                    ))}
 
                     <Scrollspy
-                        items={['section1', 'section2', 'section3']}
+                        items={props.item}
                         currentClassName="is-current"
                         style={{
                             position: 'fixed',
                             height: '100vh',
-                            width: '30%',
-                            marginTop: '66px',
+                            marginTop: '120px',
                             top: '0',
                             backgroundColor: 'white',
                             listStyle: 'none',
                             color: 'var(--border-scroll)',
                             fontSize: '1.5rem',
                             fontWeight: '600',
-                            paddingTop: '20px'
+                            paddingLeft: '150px'
                         }}
                     >
-                        <li>
-                            <a href="#section1">Thông tin cơ bản</a>
-                        </li>
-                        <li >
-                            <a href="#section2">Tiện nghi</a>
-                        </li>
-                        <li>
-                            <a href="#section3">Vị trí</a>
-                        </li>
+                        <Link to={props.infoLink.urlLink} className='link-sidebar'>{props.infoLink.name}</Link>
+                        {props.children?.map((child: any, index: number) => (
+                            <li key={index}>
+                                <a href={child.id}>{child.info}</a>
+                            </li>
+                        ))}
                     </Scrollspy>
                 </div>
             </div>
+
         </div>
     );
 };

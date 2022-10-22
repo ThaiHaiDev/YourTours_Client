@@ -1,0 +1,19 @@
+.setting-image {
+    padding-bottom: 50px;
+    .header-setting__image {
+        display: flex;
+        justify-content: space-between;
+
+        p {
+            font-size: 1.75rem;
+            padding-right: 80px;
+            font-weight: bold;
+        }
+
+        p:nth-child(2) {
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+    }
+}
