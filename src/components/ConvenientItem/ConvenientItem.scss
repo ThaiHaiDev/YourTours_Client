@@ -1,0 +1,12 @@
+.convenient-item {
+    .item {
+        display: flex;
+        justify-content: space-between;
+        padding-right: 60px;
+
+        p {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+    }
+}

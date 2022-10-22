@@ -4,7 +4,8 @@ import Signup from '../pages/AuthPage/Signup/Signup';
 import CongratulationPage from '../pages/CongratulationPage/Congratulation';
 import HomePage from '../pages/HomePage/HomePage';
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
-import OwnerSetting from '../pages/OwnerSetting/OwnerSetting';
+import ConvenientOwnerSetting from '../pages/OwnerSetting/ConvenientOwnerSetting/ConvenientOwnerSetting';
+import OwnerSetting from '../pages/OwnerSetting/MainOwnerSetting/OwnerSetting';
 import RoomDetail from '../pages/RoomDetail/RoomDetail';
 import StepperMain from '../pages/SetupOwner/StepperMain/StepperMain';
 
@@ -16,11 +17,13 @@ const Auth = () => {
             <Route path="/stepsetupowner" element={<StepperMain />} />
             <Route path="/signin" element={<Signin />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path='/congratulation' element={<CongratulationPage />} />
-            <Route path='/test' element={<OwnerSetting />} />
-            <Route path='*' exact={true} element={<NotFoundPage />} />
+            <Route path="/congratulation" element={<CongratulationPage />} />
+            <Route path="/host/setting" element={<OwnerSetting />} />
+            <Route path="/test1" element={<OwnerSetting />} />
+            <Route path="/host/setting/convenient" element={<ConvenientOwnerSetting />} />
+            {/* <Route path='*' exact={true} element={<NotFoundPage />} /> */}
         </Routes>
-    )
-}
+    );
+};
 
-export default Auth
+export default Auth;
