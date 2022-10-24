@@ -1,13 +1,11 @@
 import { Link } from 'react-router-dom';
 import './Popular.scss';
-// import image_0 from '../../assets/img/italy.jpg';
-import image_1 from '../../assets/img/europe.jpg';
-import image_2 from '../../assets/img/berlin.jpg';
-import image_3 from '../../assets/img/japan.jpg';
-import image_4 from '../../assets/img/phuket.jpg';
-import image_5 from '../../assets/img/thailand.jpg';
+
+import Provice from '../../mockdata/ProvinceVN.json'
 
 const Popular = () => {
+
+    console.log(Provice[0].thumbnail)
     return (
         <div className="web-content">
             <div className="package-menu">
@@ -26,9 +24,9 @@ const Popular = () => {
                     <div className="col l-3 m-6 c-12">
                         <div className="package">
                             <div className="package-overlay">
-                                <img src="https://ik.imagekit.io/tvlk/image/imageResource/2018/07/17/1531814622858-5300a3226e630822d61007a9aab8baef.jpeg?tr=q-75" alt="" className="package-thumbnail" />
+                                <img src={Provice[0].thumbnail} alt="" className="package-thumbnail" />
                                 <div className="package-info">
-                                    <h3 className="package-heading">europe</h3>
+                                    <h3 className="package-heading">{Provice[0].name}</h3>
                                     <span className="package-desc">3 packages</span>
                                 </div>
                             </div>
@@ -64,9 +62,9 @@ const Popular = () => {
                     <div className="col l-3 m-6 c-12">
                         <div className="package">
                             <div className="package-overlay">
-                                <img src={image_1} alt="" className="package-thumbnail" />
+                                <img src={Provice[1].thumbnail} alt="" className="package-thumbnail" />
                                 <div className="package-info">
-                                    <h3 className="package-heading">thailand</h3>
+                                    <h3 className="package-heading">{Provice[1].name}</h3>
                                     <span className="package-desc">1 package</span>
                                 </div>
                             </div>
@@ -92,9 +90,9 @@ const Popular = () => {
                     <div className="col l-3 m-6 c-12">
                         <div className="package">
                             <div className="package-overlay">
-                                <img src={image_2} alt="" className="package-thumbnail" />
+                                <img src={Provice[2].thumbnail} alt="" className="package-thumbnail" />
                                 <div className="package-info">
-                                    <h3 className="package-heading">asia</h3>
+                                    <h3 className="package-heading">{Provice[2].name}</h3>
                                     <span className="package-desc">2 packages</span>
                                 </div>
                             </div>
@@ -125,9 +123,9 @@ const Popular = () => {
                     <div className="col l-3 m-6 c-12">
                         <div className="package">
                             <div className="package-overlay">
-                                <img src={image_3} alt="" className="package-thumbnail" />
+                                <img src={Provice[3].thumbnail} alt="" className="package-thumbnail" />
                                 <div className="package-info">
-                                    <h3 className="package-heading">italy</h3>
+                                    <h3 className="package-heading">{Provice[3].name}</h3>
                                     <span className="package-desc">1 packages</span>
                                 </div>
                             </div>
@@ -153,9 +151,9 @@ const Popular = () => {
                     <div className="col l-3 m-6 c-12">
                         <div className="package">
                             <div className="package-overlay">
-                                <img src={image_4} alt="" className="package-thumbnail" />
+                                <img src={Provice[4].thumbnail} alt="" className="package-thumbnail" />
                                 <div className="package-info">
-                                    <h3 className="package-heading">netherlands</h3>
+                                    <h3 className="package-heading">{Provice[4].name}</h3>
                                     <span className="package-desc">1 package</span>
                                 </div>
                             </div>
@@ -181,9 +179,9 @@ const Popular = () => {
                     <div className="col l-3 m-6 c-12">
                         <div className="package">
                             <div className="package-overlay">
-                                <img src={image_5} alt="" className="package-thumbnail" />
+                                <img src={Provice[5].thumbnail} alt="" className="package-thumbnail" />
                                 <div className="package-info">
-                                    <h3 className="package-heading">United states</h3>
+                                    <h3 className="package-heading">{Provice[5].name}</h3>
                                     <span className="package-desc">1 package</span>
                                 </div>
                             </div>
@@ -209,9 +207,9 @@ const Popular = () => {
                     <div className="col l-3 m-6 c-12">
                         <div className="package">
                             <div className="package-overlay">
-                                <img src={image_5} alt="" className="package-thumbnail" />
+                                <img src={Provice[6].thumbnail} alt="" className="package-thumbnail" />
                                 <div className="package-info">
-                                    <h3 className="package-heading">United states</h3>
+                                    <h3 className="package-heading">{Provice[6].name}</h3>
                                     <span className="package-desc">1 package</span>
                                 </div>
                             </div>
@@ -237,9 +235,9 @@ const Popular = () => {
                     <div className="col l-3 m-6 c-12">
                         <div className="package">
                             <div className="package-overlay">
-                                <img src={image_5} alt="" className="package-thumbnail" />
+                                <img src={Provice[7].thumbnail} alt="" className="package-thumbnail" />
                                 <div className="package-info">
-                                    <h3 className="package-heading">United states</h3>
+                                    <h3 className="package-heading">{Provice[7].name}</h3>
                                     <span className="package-desc">1 package</span>
                                 </div>
                             </div>
