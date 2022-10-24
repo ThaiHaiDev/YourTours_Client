@@ -6,7 +6,7 @@
         "codename": "thanh_pho_ha_noi",
         "phone_code": 24,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/hanoi.jpg"
     },
     {
         "name": "Tỉnh Hà Giang",
@@ -15,7 +15,7 @@
         "codename": "tinh_ha_giang",
         "phone_code": 219,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/hagiang.jpg"
     },
     {
         "name": "Tỉnh Cao Bằng",
@@ -24,7 +24,7 @@
         "codename": "tinh_cao_bang",
         "phone_code": 206,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/caobang.jpg"
     },
     {
         "name": "Tỉnh Bắc Kạn",
@@ -33,7 +33,7 @@
         "codename": "tinh_bac_kan",
         "phone_code": 209,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/backan.jpg"
     },
     {
         "name": "Tỉnh Tuyên Quang",
@@ -42,7 +42,7 @@
         "codename": "tinh_tuyen_quang",
         "phone_code": 207,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/tuyenquang.jpg"
     },
     {
         "name": "Tỉnh Lào Cai",
@@ -51,7 +51,7 @@
         "codename": "tinh_lao_cai",
         "phone_code": 214,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/laocai.jpg"
     },
     {
         "name": "Tỉnh Điện Biên",
@@ -60,7 +60,7 @@
         "codename": "tinh_dien_bien",
         "phone_code": 215,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/dienbien.jpg"
     },
     {
         "name": "Tỉnh Lai Châu",
@@ -69,7 +69,7 @@
         "codename": "tinh_lai_chau",
         "phone_code": 213,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/laichau.jpg"
     },
     {
         "name": "Tỉnh Sơn La",
@@ -78,7 +78,7 @@
         "codename": "tinh_son_la",
         "phone_code": 212,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/sonla.jpg"
     },
     {
         "name": "Tỉnh Yên Bái",
@@ -87,7 +87,7 @@
         "codename": "tinh_yen_bai",
         "phone_code": 216,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/yenbai.jpg"
     },
     {
         "name": "Tỉnh Hoà Bình",
@@ -96,7 +96,7 @@
         "codename": "tinh_hoa_binh",
         "phone_code": 218,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/hoabinh.jpg"
     },
     {
         "name": "Tỉnh Thái Nguyên",
@@ -105,7 +105,7 @@
         "codename": "tinh_thai_nguyen",
         "phone_code": 208,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/thainguyen.jpg"
     },
     {
         "name": "Tỉnh Lạng Sơn",
@@ -114,7 +114,7 @@
         "codename": "tinh_lang_son",
         "phone_code": 205,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/langson.jpg"
     },
     {
         "name": "Tỉnh Quảng Ninh",
@@ -123,7 +123,7 @@
         "codename": "tinh_quang_ninh",
         "phone_code": 203,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/quangninh.jpg"
     },
     {
         "name": "Tỉnh Bắc Giang",
@@ -132,7 +132,7 @@
         "codename": "tinh_bac_giang",
         "phone_code": 204,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/bacgiang.jpg"
     },
     {
         "name": "Tỉnh Phú Thọ",
@@ -141,7 +141,7 @@
         "codename": "tinh_phu_tho",
         "phone_code": 210,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/phutho.jpg"
     },
     {
         "name": "Tỉnh Vĩnh Phúc",
@@ -150,7 +150,7 @@
         "codename": "tinh_vinh_phuc",
         "phone_code": 211,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/vinhphuc.jpg"
     },
     {
         "name": "Tỉnh Bắc Ninh",
@@ -159,7 +159,7 @@
         "codename": "tinh_bac_ninh",
         "phone_code": 222,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/bacninh.jpg"
     },
     {
         "name": "Tỉnh Hải Dương",
@@ -168,7 +168,7 @@
         "codename": "tinh_hai_duong",
         "phone_code": 220,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/haiduong.jpg"
     },
     {
         "name": "Thành phố Hải Phòng",
@@ -177,7 +177,7 @@
         "codename": "thanh_pho_hai_phong",
         "phone_code": 225,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/haiphong.jpg"
     },
     {
         "name": "Tỉnh Hưng Yên",
@@ -186,7 +186,7 @@
         "codename": "tinh_hung_yen",
         "phone_code": 221,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/hungyen.jpg"
     },
     {
         "name": "Tỉnh Thái Bình",
@@ -195,7 +195,7 @@
         "codename": "tinh_thai_binh",
         "phone_code": 227,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/thaibinh.jpg"
     },
     {
         "name": "Tỉnh Hà Nam",
@@ -204,7 +204,7 @@
         "codename": "tinh_ha_nam",
         "phone_code": 226,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/hanam.jpg"
     },
     {
         "name": "Tỉnh Nam Định",
@@ -213,7 +213,7 @@
         "codename": "tinh_nam_dinh",
         "phone_code": 228,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/namdinh.jpg"
     },
     {
         "name": "Tỉnh Ninh Bình",
@@ -222,7 +222,7 @@
         "codename": "tinh_ninh_binh",
         "phone_code": 229,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "ninhbinh"
     },
     {
         "name": "Tỉnh Thanh Hóa",
@@ -231,7 +231,7 @@
         "codename": "tinh_thanh_hoa",
         "phone_code": 237,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/thanhhoa.jpg"
     },
     {
         "name": "Tỉnh Nghệ An",
@@ -240,7 +240,7 @@
         "codename": "tinh_nghe_an",
         "phone_code": 238,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/nghean.jpg"
     },
     {
         "name": "Tỉnh Hà Tĩnh",
@@ -249,7 +249,7 @@
         "codename": "tinh_ha_tinh",
         "phone_code": 239,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/hatinh.jpg"
     },
     {
         "name": "Tỉnh Quảng Bình",
@@ -258,7 +258,7 @@
         "codename": "tinh_quang_binh",
         "phone_code": 232,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/quangbinh.jpg"
     },
     {
         "name": "Tỉnh Quảng Trị",
@@ -267,7 +267,7 @@
         "codename": "tinh_quang_tri",
         "phone_code": 233,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/quangtri.jpg"
     },
     {
         "name": "Tỉnh Thừa Thiên Huế",
@@ -276,7 +276,7 @@
         "codename": "tinh_thua_thien_hue",
         "phone_code": 234,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/hue.jpg"
     },
     {
         "name": "Thành phố Đà Nẵng",
@@ -285,7 +285,7 @@
         "codename": "thanh_pho_da_nang",
         "phone_code": 236,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/danang.jpg"
     },
     {
         "name": "Tỉnh Quảng Nam",
@@ -294,7 +294,7 @@
         "codename": "tinh_quang_nam",
         "phone_code": 235,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/quangnam.jpg"
     },
     {
         "name": "Tỉnh Quảng Ngãi",
@@ -303,7 +303,7 @@
         "codename": "tinh_quang_ngai",
         "phone_code": 255,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/quangngai.jpg"
     },
     {
         "name": "Tỉnh Bình Định",
@@ -312,7 +312,7 @@
         "codename": "tinh_binh_dinh",
         "phone_code": 256,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/binhdinh.jpg"
     },
     {
         "name": "Tỉnh Phú Yên",
@@ -321,7 +321,7 @@
         "codename": "tinh_phu_yen",
         "phone_code": 257,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/phuyen.jpg"
     },
     {
         "name": "Tỉnh Khánh Hòa",
@@ -330,7 +330,7 @@
         "codename": "tinh_khanh_hoa",
         "phone_code": 258,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/khanhhoa.jpg"
     },
     {
         "name": "Tỉnh Ninh Thuận",
@@ -339,7 +339,7 @@
         "codename": "tinh_ninh_thuan",
         "phone_code": 259,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/ninhthuan.jpg"
     },
     {
         "name": "Tỉnh Bình Thuận",
@@ -348,7 +348,7 @@
         "codename": "tinh_binh_thuan",
         "phone_code": 252,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/binhthuan.jpg"
     },
     {
         "name": "Tỉnh Kon Tum",
@@ -357,7 +357,7 @@
         "codename": "tinh_kon_tum",
         "phone_code": 260,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/kontum.jpg"
     },
     {
         "name": "Tỉnh Gia Lai",
@@ -366,7 +366,7 @@
         "codename": "tinh_gia_lai",
         "phone_code": 269,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/gialai.jpg"
     },
     {
         "name": "Tỉnh Đắk Lắk",
@@ -375,7 +375,7 @@
         "codename": "tinh_dak_lak",
         "phone_code": 262,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/daklak.jpg"
     },
     {
         "name": "Tỉnh Đắk Nông",
@@ -384,7 +384,7 @@
         "codename": "tinh_dak_nong",
         "phone_code": 261,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/daknong.jpg"
     },
     {
         "name": "Tỉnh Lâm Đồng",
@@ -393,7 +393,7 @@
         "codename": "tinh_lam_dong",
         "phone_code": 263,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/lamdong.jpg"
     },
     {
         "name": "Tỉnh Bình Phước",
@@ -402,7 +402,7 @@
         "codename": "tinh_binh_phuoc",
         "phone_code": 271,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/binhphuoc.jpg"
     },
     {
         "name": "Tỉnh Tây Ninh",
@@ -411,7 +411,7 @@
         "codename": "tinh_tay_ninh",
         "phone_code": 276,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/tayninh.jpg"
     },
     {
         "name": "Tỉnh Bình Dương",
@@ -420,7 +420,7 @@
         "codename": "tinh_binh_duong",
         "phone_code": 274,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/binhduong.jpg"
     },
     {
         "name": "Tỉnh Đồng Nai",
@@ -429,7 +429,7 @@
         "codename": "tinh_dong_nai",
         "phone_code": 251,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/dongnai.jpg"
     },
     {
         "name": "Tỉnh Bà Rịa - Vũng Tàu",
@@ -438,7 +438,7 @@
         "codename": "tinh_ba_ria_vung_tau",
         "phone_code": 254,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/vungtau.jpg"
     },
     {
         "name": "Thành phố Hồ Chí Minh",
@@ -447,7 +447,7 @@
         "codename": "thanh_pho_ho_chi_minh",
         "phone_code": 28,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/hcm.jpg"
     },
     {
         "name": "Tỉnh Long An",
@@ -456,7 +456,7 @@
         "codename": "tinh_long_an",
         "phone_code": 272,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/longan.jpg"
     },
     {
         "name": "Tỉnh Tiền Giang",
@@ -465,7 +465,7 @@
         "codename": "tinh_tien_giang",
         "phone_code": 273,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/tiengiang.jpg"
     },
     {
         "name": "Tỉnh Bến Tre",
@@ -474,7 +474,7 @@
         "codename": "tinh_ben_tre",
         "phone_code": 275,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/bentre.jpg"
     },
     {
         "name": "Tỉnh Trà Vinh",
@@ -483,7 +483,7 @@
         "codename": "tinh_tra_vinh",
         "phone_code": 294,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/travinh.jpg"
     },
     {
         "name": "Tỉnh Vĩnh Long",
@@ -492,7 +492,7 @@
         "codename": "tinh_vinh_long",
         "phone_code": 270,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/vinhlong.jpg"
     },
     {
         "name": "Tỉnh Đồng Tháp",
@@ -501,7 +501,7 @@
         "codename": "tinh_dong_thap",
         "phone_code": 277,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/dongthap.jpg"
     },
     {
         "name": "Tỉnh An Giang",
@@ -510,7 +510,7 @@
         "codename": "tinh_an_giang",
         "phone_code": 296,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "angiang"
     },
     {
         "name": "Tỉnh Kiên Giang",
@@ -519,7 +519,7 @@
         "codename": "tinh_kien_giang",
         "phone_code": 297,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/kiengiang.jpg"
     },
     {
         "name": "Thành phố Cần Thơ",
@@ -528,7 +528,7 @@
         "codename": "thanh_pho_can_tho",
         "phone_code": 292,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/cantho.jpg"
     },
     {
         "name": "Tỉnh Hậu Giang",
@@ -537,7 +537,7 @@
         "codename": "tinh_hau_giang",
         "phone_code": 293,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/haugiang.jpg"
     },
     {
         "name": "Tỉnh Sóc Trăng",
@@ -546,7 +546,7 @@
         "codename": "tinh_soc_trang",
         "phone_code": 299,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/soctrang.jpg"
     },
     {
         "name": "Tỉnh Bạc Liêu",
@@ -555,7 +555,7 @@
         "codename": "tinh_bac_lieu",
         "phone_code": 291,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "baclieu"
     },
     {
         "name": "Tỉnh Cà Mau",
@@ -564,6 +564,6 @@
         "codename": "tinh_ca_mau",
         "phone_code": 290,
         "districts": [],
-        "thumbnail": ""
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/camau.jpg"
     }
 ]
