@@ -21,7 +21,6 @@ const Auth = () => {
             <Route path="/confirm" element={<ConfirmOwner />} />
             <Route path="/congratulation" element={<CongratulationPage />} />
             <Route path="/host/setting" element={<OwnerSetting />} />
-            <Route path="/test1" element={<OwnerSetting />} />
             <Route path="/host/setting/convenient" element={<ConvenientOwnerSetting />} />
             {/* <Route path='*' exact={true} element={<NotFoundPage />} /> */}
         </Routes>
