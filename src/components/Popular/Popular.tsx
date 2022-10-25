@@ -4,8 +4,6 @@ import './Popular.scss';
 import Provice from '../../mockdata/ProvinceVN.json'
 
 const Popular = () => {
-
-    console.log(Provice[0].thumbnail)
     return (
         <div className="web-content">
             <div className="package-menu">

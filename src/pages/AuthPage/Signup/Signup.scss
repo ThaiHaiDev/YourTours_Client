@@ -1,6 +1,7 @@
 .signup {
     position: relative;
     margin-top: 70px;
+
     .nav-item {
         width: calc(var(--nav-size) * 0.8);
         display: flex;
@@ -34,7 +35,7 @@
     }
 
     .dropdown {
-        height: 400px !important;
+        height: 450px !important;
         background-color: #fff;
         border-radius: 10px;
         box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -48,12 +49,13 @@
             width: 100%;
             
             .form-email {
+
                 h1 {
                     font-weight: bold;
-                    margin-top: 30px;
+                    margin-top: 25px;
                     margin-bottom: 30px;
                     text-align: center;
-                    
+                    font-size: 2.2rem;
                 }
 
                 input {
@@ -61,13 +63,33 @@
                     border-color: #eee;
                     padding: 10px 15px;
                     width: 100%;
-                    margin-bottom: 5px;
-                    margin-top: 7px;
+                    margin-bottom: 12px;
+                    margin-top: 3px;
                     font-size: 1.4rem;
                 }
 
                 .label-email {
                     margin-left: 5px;
+                }
+
+                .message_error {
+                    margin: 0;
+                    color: red;
+                    font-size: 1.2rem;
+                }
+
+                .customs-btn { 
+                    position: absolute;
+                    background: #4f46e5;
+                    padding: 10px 150px;
+                    font-size: 1.6rem;
+                    color: white;
+                    margin-left: 18%;
+                    bottom: 60px;
+                }
+    
+                .customs-btn:hover {
+                    background: #1e88e5;
                 }
             }
 
@@ -82,20 +104,7 @@
                 }
             }
             
-            .customs-btn { 
-                position: absolute;
-                background: #4f46e5;
-                padding: 10px 150px;
-                font-size: 1.6rem;
-                color: white;
-                margin-left: 110px;
-                margin-right: 110px;
-                bottom: 60px;
-            }
 
-            .customs-btn:hover {
-                background: #1e88e5;
-            }
 
         }
 
