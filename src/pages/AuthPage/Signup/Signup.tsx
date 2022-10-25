@@ -5,6 +5,8 @@ import { CSSTransition } from 'react-transition-group';
 import { Link } from 'react-router-dom';
 import Navbar from '../../../components/Navbar/Navbar';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+
+import { useForm, ValidationRule } from 'react-hook-form';
 import OTPBox from '../../../components/OTPBox/OTPBox';
 
 function Signup() {
@@ -23,9 +25,15 @@ function DropdownMenu() {
     const [menuHeight, setMenuHeight] = useState<any>(null);
     const dropdownRef = useRef<any>(null);
 
-    const initialValues = { email: '', password: '', confirmPassword: '' };
-    const [formValues, setFormValues] = useState(initialValues);
-    const [formErrors, setFormErrors] = useState<any>({});
+    const regexPassword: ValidationRule<RegExp> = /^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=.]).*$/;
+
+    const {
+        register,
+        reset,
+        watch,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
 
     useEffect(() => {
         setMenuHeight(dropdownRef.current?.firstChild.offsetHeight);
@@ -35,6 +43,16 @@ function DropdownMenu() {
         const height = el.offsetHeight;
         setMenuHeight(height);
     }
+
+    const onSubmit = async (data: any) => {
+        try {
+            console.log(data);
+            setActiveMenu('info_user');
+            reset();
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     function DropdownItem(props: any) {
         return (
@@ -46,40 +64,8 @@ function DropdownMenu() {
         );
     }
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        setFormErrors(validate(formValues));
-        if (formErrors.email === '' && formErrors.password === '') {
-            setActiveMenu('info_user');
-        }
-    };
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setFormValues({ ...formValues, [name]: value });
-    };
-
-    const validate = (values: any) => {
-        const errors = { email: '', password: '', confirmPassword: '' };
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-
-        if (!values.email) {
-            errors.email = 'Email is required!';
-        } else if (!regex.test(values.email)) {
-            errors.email = 'This is not a valid email format!';
-        }
-        if (!values.password) {
-            errors.password = 'Password is required';
-        } else if (values.password.length < 4) {
-            errors.password = 'Password must be more than 4 characters';
-        } else if (values.password.length > 10) {
-            errors.password = 'Password cannot exceed more than 10 characters';
-        }
-        return errors;
-    };
-
     return (
-        <div className="dropdown" style={{ height: menuHeight }} >
+        <div className="dropdown" style={{ height: menuHeight }}>
             <CSSTransition
                 in={activeMenu === 'main'}
                 timeout={500}
@@ -90,31 +76,87 @@ function DropdownMenu() {
             >
                 <div className="menu" ref={dropdownRef}>
                     <div className="form-email">
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={handleSubmit(onSubmit)}>
                             <h1>Đăng ký</h1>
                             <label>
                                 <label className="label-email">Địa chỉ Email</label>
-                                <input type="email" name="email" value={formValues.email} onChange={handleChange} />
-                                {formErrors.email && <p className="message_error">{`${formErrors.email}`}</p>}
+                                <input
+                                    type="email"
+                                    {...register('email', {
+                                        required: 'Email is required',
+                                        pattern: {
+                                            value: /^\S+@\S+$/i,
+                                            message: 'This is not a valid email',
+                                        },
+                                    })}
+                                />
+                                {errors.email && (
+                                    <p className="message_error">{`${errors.email && errors.email?.message}`}</p>
+                                )}
                             </label>
-
-                            <label style={{ paddingTop: '5px' }}>
+                            <label>
+                                <label className="label-email">Họ tên</label>
+                                <input
+                                    type="text"
+                                    {...register('name', {
+                                        required: 'Name is required',
+                                    })}
+                                />
+                                {errors.name && (
+                                    <p className="message_error">{`${errors.name && errors.name?.message}`}</p>
+                                )}
+                            </label>
+                            <label>
                                 <label className="label-email">Mật khẩu</label>
                                 <input
+                                    className="signup__form-input"
                                     type="password"
-                                    name="password"
-                                    value={formValues.password}
-                                    onChange={handleChange}
+                                    {...register('password', {
+                                        required: 'Mật khẩu được yêu cầu',
+                                        pattern: {
+                                            value: regexPassword,
+                                            message:
+                                                'Mật khẩu phải bao gồm chữ thường và kí tự in hoa, ít nhất 1 kí tự đặt biệt và 1 con số.',
+                                        },
+                                        minLength: {
+                                            value: 6,
+                                            message: 'Mật khẩu phải ít từ 6 kí tự ',
+                                        },
+                                        maxLength: {
+                                            value: 16,
+                                            message: 'Mật khẩu chỉ có thể nhiều nhất 16 kí tự',
+                                        },
+                                    })}
                                 />
-                                {formErrors.password && <p className="message_error">{`${formErrors.password}`}</p>}
+                                {errors.password && (
+                                    <p className="message_error">{`${errors.password && errors.password?.message}`}</p>
+                                )}
                             </label>
 
                             <label>
                                 <label className="label-email">Xác nhận mật khẩu</label>
-                                <input type="password" />
+                                <input
+                                    type="password"
+                                    {...register('password_confirmation', {
+                                        required: 'Mật khẩu được yêu cầu',
+                                        validate: (val: string) => {
+                                            if (watch('password') !== val) {
+                                                return 'Xác nhận mật khẩu không khớp với mật khẩu của bạn';
+                                            }
+                                        },
+                                    })}
+                                />
+                                {errors.password_confirmation && (
+                                    <p className="message_error">{`${
+                                        errors.password_confirmation && errors.password_confirmation?.message
+                                    }`}</p>
+                                )}
                             </label>
+
                             <br />
-                            <button className="customs-btn">Tiếp tục</button>
+                            <button type="submit" className="customs-btn">
+                                Đăng kí
+                            </button>
                         </form>
                     </div>
                     {/* <OTPBox /> */}
@@ -136,13 +178,8 @@ function DropdownMenu() {
                     <DropdownItem goToMenu="main" leftIcon={<ArrowBackIosIcon style={{ marginLeft: '5px' }} />}>
                         <p style={{ marginTop: '12px', marginLeft: '-5px', color: 'black' }}>Quay lại</p>
                     </DropdownItem>
-                    <div className="form-info">
-                        <label>
-                            <input type="text" placeholder="Họ và tên đệm" />
-                        </label>
-                        <label>
-                            <input type="text" placeholder="Tên đầy đủ" />
-                        </label>
+                    <div className="form-otp">
+                        <OTPBox />
                     </div>
                 </div>
             </CSSTransition>

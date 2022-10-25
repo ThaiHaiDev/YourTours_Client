@@ -27,6 +27,26 @@
     h1 {
         text-align: center;
         font-family: arimo;
-        color: honeydew;
+        color: black;
+    }
+
+    p {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .customs-btn { 
+
+        background: #4f46e5;
+        padding: 10px 150px;
+        font-size: 1.6rem;
+        color: white;
+        margin-left: 18%;
+        margin-top: 20px;
+        border: none;
+    }
+
+    .customs-btn:hover {
+        background: #1e88e5;
     }
 }

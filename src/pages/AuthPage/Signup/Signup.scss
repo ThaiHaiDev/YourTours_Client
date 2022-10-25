@@ -1,6 +1,6 @@
 .signup {
     position: relative;
-    margin-top: 70px;
+    margin-top: 50px;
 
     .nav-item {
         width: calc(var(--nav-size) * 0.8);
@@ -35,7 +35,7 @@
     }
 
     .dropdown {
-        height: 450px !important;
+        height: 570px !important;
         background-color: #fff;
         border-radius: 10px;
         box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -76,6 +76,9 @@
                     margin: 0;
                     color: red;
                     font-size: 1.2rem;
+                    margin-top: -10px;
+                    margin-bottom: 8px;
+                    padding-left: 5px;
                 }
 
                 .customs-btn { 
@@ -86,26 +89,13 @@
                     color: white;
                     margin-left: 18%;
                     bottom: 60px;
+                    border: none;
                 }
     
                 .customs-btn:hover {
                     background: #1e88e5;
                 }
             }
-
-            .form-info {
-                input {
-                    border: solid;
-                    border-color: #eee;
-                    padding: 10px 15px;
-                    width: 100%;
-                    margin-bottom: 10px;
-                    font-size: 1.4rem;
-                }
-            }
-            
-
-
         }
 
         .menu-item {
