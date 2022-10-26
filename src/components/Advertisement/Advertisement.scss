@@ -1,20 +1,34 @@
 .slider__adversiment {
     margin-top: 10px;
-    background: #42a5f5;
+    // background: #42a5f5;
     margin-bottom: 50px;
-    margin-left: 100px;
-    margin-right: 100px;
-    // height: 350px;
+    margin-left: 110px;
+    margin-right: 110px;
+
+    h1 {
+        font-size: 2rem;
+        margin-left: -10px;
+    }
 
     .slick-dots {
-        background: #42a5f5;
+        // background: #42a5f5;
         padding-top: 5px;
     }
 
     .slider__item {
-        width: 800px;
-        height: 250px;
+        width: 100%;
+        height: 190px;
         margin: auto;
+        border-radius: 18px;
+        padding-right: 10px;
+        padding-left: 10px;
+        cursor: pointer;
+        padding-top: 10px;
+        transition: margin-top 1s ease-in-out;
+    }
+
+    .slider__item:hover {
+        margin-top: -5px;
     }
 
     .card__top__book {
