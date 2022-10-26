@@ -1,5 +1,4 @@
 import ConvenientItem from "../../../components/ConvenientItem/ConvenientItem";
-import ImageSetting from "../../../components/HostSetting/ImageSetting/ImageSetting";
 import NavbarOwner from "../../../components/NavbarOwner/NavbarOwner";
 import ScrollspyComponent from "../../../components/Scrollspy/Scrollspy";
 

@@ -8,6 +8,12 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 import { useForm, ValidationRule } from 'react-hook-form';
 import OTPBox from '../../../components/OTPBox/OTPBox';
+import { useDispatch } from 'react-redux';
+import userSlice from '../userSlice';
+import authApi from '../../../services/authApi';
+
+import regexCons from '../../../constants/regexCons';
+
 
 function Signup() {
     return (
@@ -25,7 +31,7 @@ function DropdownMenu() {
     const [menuHeight, setMenuHeight] = useState<any>(null);
     const dropdownRef = useRef<any>(null);
 
-    const regexPassword: ValidationRule<RegExp> = /^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=.]).*$/;
+    const regexPassword: ValidationRule<RegExp> = regexCons.email;
 
     const {
         register,
@@ -34,6 +40,8 @@ function DropdownMenu() {
         handleSubmit,
         formState: { errors },
     } = useForm();
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
         setMenuHeight(dropdownRef.current?.firstChild.offsetHeight);
@@ -46,7 +54,16 @@ function DropdownMenu() {
 
     const onSubmit = async (data: any) => {
         try {
-            console.log(data);
+            const newData = {
+                email: data.email,
+                fullName: data.name,
+                password: data.password,
+                phoneNumber: '0979409568'
+            }
+            // await authApi.signUp(newData).then((dataRe) => {
+            //     dispatch(userSlice.actions.signup(data))
+            // })
+            
             setActiveMenu('info_user');
             reset();
         } catch (error) {
@@ -81,7 +98,7 @@ function DropdownMenu() {
                             <label>
                                 <label className="label-email">Địa chỉ Email</label>
                                 <input
-                                    type="email"
+                                    type="text"
                                     {...register('email', {
                                         required: 'Email is required',
                                         pattern: {

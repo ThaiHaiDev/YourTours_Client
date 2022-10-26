@@ -2,7 +2,9 @@ import Navbar from '../../../components/Navbar/Navbar';
 import './Signin.scss';
 
 import { Link } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import authApi from '../../../services/authApi';
+import { LoginRequest } from '../../../share/models/auth';
 
 const Signin = () => {
     const {
@@ -10,12 +12,15 @@ const Signin = () => {
         reset,
         handleSubmit,
         formState: { errors },
-    } = useForm();
+    } = useForm<LoginRequest>();
 
-    const onSubmit = async (data: any) => {
+    const onSubmit: SubmitHandler<LoginRequest> = async (data: LoginRequest) => {
         try {
-            console.log(data)
-            reset();
+            await authApi.signIn(data).then((userData) => {
+                console.log(userData)
+                reset();
+                document.location = '/';
+            })
         } catch (error) {
             console.log(error)
         }
@@ -43,7 +48,7 @@ const Signin = () => {
                         <label>
                             <input
                                 type="email"
-                                placeholder="Địa chỉ Email"
+                                placeholder="Email"
                                 {...register('email', {
                                     required: 'Email is required',
                                     pattern: {
@@ -61,7 +66,7 @@ const Signin = () => {
                             <input
                                 className="signup__form-input"
                                 type="password"
-                                placeholder="Mật khẩu"
+                                placeholder="Enter password"
                                 {...register('password', {
                                     required: 'Password is required',
                                     maxLength: {
@@ -74,14 +79,23 @@ const Signin = () => {
                         </label>
                         <button type="submit">Đăng nhập</button>
                     </form>
-                    <div className='forgot-password'>
+                    <div className="forgot-password">
                         <p>Quên mật khẩu</p>
-                        <Link to='/signup' className='link-create'>Tạo tài khoản ngay</Link>
+                        <Link to="/signup" className="link-create">
+                            Tạo tài khoản ngay
+                        </Link>
                     </div>
                     <div className="policy">
                         <p>
-                            Bằng cách đăng ký hoặc đăng nhập, bạn đã hiểu và đồng ý với <Link to='' className='link-policy'>Điều Khoản Sử Dụng</Link>{' '}
-                            và <Link to='' className='link-policy'>Chính Sách Bảo Mật</Link> của Yourtours.
+                            Bằng cách đăng ký hoặc đăng nhập, bạn đã hiểu và đồng ý với{' '}
+                            <Link to="" className="link-policy">
+                                Điều Khoản Sử Dụng
+                            </Link>{' '}
+                            và{' '}
+                            <Link to="" className="link-policy">
+                                Chính Sách Bảo Mật
+                            </Link>{' '}
+                            của Yourtours.
                         </p>
                     </div>
                 </div>
