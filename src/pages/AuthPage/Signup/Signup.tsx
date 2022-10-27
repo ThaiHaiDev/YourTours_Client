@@ -61,7 +61,8 @@ function DropdownMenu() {
                 phoneNumber: '0979409568'
             }
             await authApi.signUp(newData).then((dataRe) => {
-                dispatch(userSlice.actions.signup(data))
+                // dispatch(userSlice.actions.signup(data))
+                console.log(dataRe)
             })
             
             setActiveMenu('info_user');
@@ -70,6 +71,13 @@ function DropdownMenu() {
             console.log(error);
         }
     };
+
+    const handleSubmitOTP = async (otp:any) => {
+        await authApi.otpConfirm(otp).then((dataRe) => {
+            // dispatch(userSlice.actions.signup(data))
+            console.log(dataRe)
+        })
+    }
 
     function DropdownItem(props: any) {
         return (
@@ -196,7 +204,7 @@ function DropdownMenu() {
                         <p style={{ marginTop: '12px', marginLeft: '-5px', color: 'black' }}>Quay lại</p>
                     </DropdownItem>
                     <div className="form-otp">
-                        <OTPBox />
+                        <OTPBox handleSubmitOTP={handleSubmitOTP}/>
                     </div>
                 </div>
             </CSSTransition>
