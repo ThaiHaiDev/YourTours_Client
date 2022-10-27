@@ -19,7 +19,7 @@ const Signin = () => {
             await authApi.signIn(data).then((userData) => {
                 console.log(userData)
                 reset();
-                document.location = '/';
+                // document.location = '/';
             })
         } catch (error) {
             console.log(error)

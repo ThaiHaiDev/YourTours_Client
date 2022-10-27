@@ -60,9 +60,9 @@ function DropdownMenu() {
                 password: data.password,
                 phoneNumber: '0979409568'
             }
-            // await authApi.signUp(newData).then((dataRe) => {
-            //     dispatch(userSlice.actions.signup(data))
-            // })
+            await authApi.signUp(newData).then((dataRe) => {
+                dispatch(userSlice.actions.signup(data))
+            })
             
             setActiveMenu('info_user');
             reset();
