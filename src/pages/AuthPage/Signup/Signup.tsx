@@ -1,4 +1,5 @@
 import './Signup.scss';
+import { AxiosError } from 'axios';
 
 import React, { useState, useEffect, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
@@ -14,7 +15,6 @@ import authApi from '../../../services/authApi';
 
 import regexCons from '../../../constants/regexCons';
 
-
 function Signup() {
     return (
         <div>
@@ -29,6 +29,7 @@ function Signup() {
 function DropdownMenu() {
     const [activeMenu, setActiveMenu] = useState('main');
     const [menuHeight, setMenuHeight] = useState<any>(null);
+    const [emailSend, setEmailSend] = useState<string>('');
     const dropdownRef = useRef<any>(null);
 
     const regexPassword: ValidationRule<RegExp> = regexCons.email;
@@ -53,31 +54,31 @@ function DropdownMenu() {
     }
 
     const onSubmit = async (data: any) => {
-        try {
-            const newData = {
-                email: data.email,
-                fullName: data.name,
-                password: data.password,
-                phoneNumber: '0979409568'
-            }
-            await authApi.signUp(newData).then((dataRe) => {
+        setEmailSend(data.email);
+        const newData = {
+            email: data.email,
+            fullName: data.name,
+            password: data.password,
+        };
+        await authApi
+            .signUp(newData)
+            .then((dataRe) => {
                 // dispatch(userSlice.actions.signup(data))
-                console.log(dataRe)
+                console.log(dataRe);
             })
-            
-            setActiveMenu('info_user');
-            reset();
-        } catch (error) {
-            console.log(error);
-        }
+            .catch((error: AxiosError<any>) => {
+                console.log(error.response?.data.message);
+            });
+        setActiveMenu('info_user');
+        reset();
     };
 
-    const handleSubmitOTP = async (otp:any) => {
+    const handleSubmitOTP = async (otp: any) => {
         await authApi.otpConfirm(otp).then((dataRe) => {
             // dispatch(userSlice.actions.signup(data))
-            console.log(dataRe)
-        })
-    }
+            console.log(dataRe);
+        });
+    };
 
     function DropdownItem(props: any) {
         return (
@@ -108,10 +109,10 @@ function DropdownMenu() {
                                 <input
                                     type="text"
                                     {...register('email', {
-                                        required: 'Email is required',
+                                        required: 'Email được yêu cầu',
                                         pattern: {
                                             value: /^\S+@\S+$/i,
-                                            message: 'This is not a valid email',
+                                            message: 'Đây không phải là một email hợp lệ',
                                         },
                                     })}
                                 />
@@ -124,7 +125,7 @@ function DropdownMenu() {
                                 <input
                                     type="text"
                                     {...register('name', {
-                                        required: 'Name is required',
+                                        required: 'Họ tên được yêu cầu',
                                     })}
                                 />
                                 {errors.name && (
@@ -204,7 +205,7 @@ function DropdownMenu() {
                         <p style={{ marginTop: '12px', marginLeft: '-5px', color: 'black' }}>Quay lại</p>
                     </DropdownItem>
                     <div className="form-otp">
-                        <OTPBox handleSubmitOTP={handleSubmitOTP}/>
+                        <OTPBox handleSubmitOTP={handleSubmitOTP} emailSend={emailSend} />
                     </div>
                 </div>
             </CSSTransition>

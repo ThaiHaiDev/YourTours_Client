@@ -16,6 +16,10 @@ const authApi = {
         const url = `${API_BASE_URL}api/v1/auth/active-account`;
         return axios.post(url, data);
     },
+    reSendOtp(data: any): Promise<AxiosResponse> {
+        const url = `${API_BASE_URL}api/v1/auth/resend-otp`;
+        return axios.post(url, data);
+    },
 };
 
 export default authApi;
