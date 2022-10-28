@@ -1,4 +1,5 @@
 import './Signup.scss';
+import { AxiosError } from 'axios';
 
 import React, { useState, useEffect, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
@@ -8,6 +9,11 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 import { useForm, ValidationRule } from 'react-hook-form';
 import OTPBox from '../../../components/OTPBox/OTPBox';
+import { useDispatch } from 'react-redux';
+import userSlice from '../userSlice';
+import authApi from '../../../services/authApi';
+
+import regexCons from '../../../constants/regexCons';
 
 function Signup() {
     return (
@@ -23,9 +29,10 @@ function Signup() {
 function DropdownMenu() {
     const [activeMenu, setActiveMenu] = useState('main');
     const [menuHeight, setMenuHeight] = useState<any>(null);
+    const [emailSend, setEmailSend] = useState<string>('');
     const dropdownRef = useRef<any>(null);
 
-    const regexPassword: ValidationRule<RegExp> = /^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=.]).*$/;
+    const regexPassword: ValidationRule<RegExp> = regexCons.email;
 
     const {
         register,
@@ -34,6 +41,8 @@ function DropdownMenu() {
         handleSubmit,
         formState: { errors },
     } = useForm();
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
         setMenuHeight(dropdownRef.current?.firstChild.offsetHeight);
@@ -45,13 +54,30 @@ function DropdownMenu() {
     }
 
     const onSubmit = async (data: any) => {
-        try {
-            console.log(data);
-            setActiveMenu('info_user');
-            reset();
-        } catch (error) {
-            console.log(error);
-        }
+        setEmailSend(data.email);
+        const newData = {
+            email: data.email,
+            fullName: data.name,
+            password: data.password,
+        };
+        await authApi
+            .signUp(newData)
+            .then((dataRe) => {
+                // dispatch(userSlice.actions.signup(data))
+                console.log(dataRe);
+            })
+            .catch((error: AxiosError<any>) => {
+                console.log(error.response?.data.message);
+            });
+        setActiveMenu('info_user');
+        reset();
+    };
+
+    const handleSubmitOTP = async (otp: any) => {
+        await authApi.otpConfirm(otp).then((dataRe) => {
+            // dispatch(userSlice.actions.signup(data))
+            console.log(dataRe);
+        });
     };
 
     function DropdownItem(props: any) {
@@ -81,12 +107,12 @@ function DropdownMenu() {
                             <label>
                                 <label className="label-email">Địa chỉ Email</label>
                                 <input
-                                    type="email"
+                                    type="text"
                                     {...register('email', {
-                                        required: 'Email is required',
+                                        required: 'Email được yêu cầu',
                                         pattern: {
                                             value: /^\S+@\S+$/i,
-                                            message: 'This is not a valid email',
+                                            message: 'Đây không phải là một email hợp lệ',
                                         },
                                     })}
                                 />
@@ -99,7 +125,7 @@ function DropdownMenu() {
                                 <input
                                     type="text"
                                     {...register('name', {
-                                        required: 'Name is required',
+                                        required: 'Họ tên được yêu cầu',
                                     })}
                                 />
                                 {errors.name && (
@@ -179,7 +205,7 @@ function DropdownMenu() {
                         <p style={{ marginTop: '12px', marginLeft: '-5px', color: 'black' }}>Quay lại</p>
                     </DropdownItem>
                     <div className="form-otp">
-                        <OTPBox />
+                        <OTPBox handleSubmitOTP={handleSubmitOTP} emailSend={emailSend} />
                     </div>
                 </div>
             </CSSTransition>

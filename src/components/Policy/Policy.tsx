@@ -2,7 +2,7 @@ import './Policy.scss';
 
 const Policy = () => {
     return (
-        <div className="policy">
+        <div className="policy-card">
             <h1>Vì sao bạn nên chọn Klook</h1>
             <div className="row">
                 <div className="col l-3">
