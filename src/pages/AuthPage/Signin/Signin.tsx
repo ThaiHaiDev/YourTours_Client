@@ -1,10 +1,14 @@
-import Navbar from '../../../components/Navbar/Navbar';
 import './Signin.scss';
+import { AxiosError } from 'axios';
 
+import Navbar from '../../../components/Navbar/Navbar';
 import { Link } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import authApi from '../../../services/authApi';
 import { LoginRequest } from '../../../share/models/auth';
+import { useSnackbar } from 'notistack';
+import { useDispatch } from 'react-redux';
+import userSlice from '../userSlice';
 
 const Signin = () => {
     const {
@@ -14,15 +18,25 @@ const Signin = () => {
         formState: { errors },
     } = useForm<LoginRequest>();
 
+    const { enqueueSnackbar } = useSnackbar();
+
+    const dispatch = useDispatch();
+
     const onSubmit: SubmitHandler<LoginRequest> = async (data: LoginRequest) => {
         try {
-            await authApi.signIn(data).then((userData) => {
-                console.log(userData)
-                reset();
-                // document.location = '/';
-            })
+            await authApi
+                .signIn(data)
+                .then((userData) => {
+                    dispatch(userSlice.actions.signin(userData.data));
+                    enqueueSnackbar('Register Success.', { variant: 'success' });
+                    reset();
+                    document.location = '/';
+                })
+                .catch((error: AxiosError<any>) => {
+                    enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+                });
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     };
 
