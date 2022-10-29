@@ -1,6 +1,7 @@
+// Sign in
 export interface LoginRequest {
-    email: string,
-    password: string
+    email: string;
+    password: string;
 }
 
 export interface BaseResponseLoginResponse {
@@ -25,4 +26,54 @@ export interface LoginResponse {
     error_description?: string;
     error_uri?: string;
     isBlocked?: boolean;
+}
+
+export interface LoginErrorResponse {
+    message: string;
+    errors: {
+        user?: string;
+    };
+}
+
+// Sign up
+export interface RegisterRequest {
+    /** @pattern (([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,})) */
+    email: string;
+    fullName: string;
+    password: string;
+}
+
+export interface BaseResponseRegisterResponse {
+    success?: boolean;
+    data?: RegisterResponse;
+}
+
+export interface RegisterResponse {
+    success?: boolean;
+}
+
+export interface RegisterErrorResponse {
+    message: string;
+    errors: {
+        user?: string;
+    };
+}
+
+// OTP
+export interface OTPErrorResponse {
+    message: string;
+    errors: {
+        user?: string;
+    };
+}
+
+// Re Send OTP
+export interface ReSendOTPRequest {
+    email: string;
+    otpType: string;
+}
+
+// Forgot Password
+export interface ForgotPasswordRequest {
+    email: string;
 }

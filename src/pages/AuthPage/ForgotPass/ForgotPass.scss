@@ -1,0 +1,177 @@
+.signin {
+
+    .container__sign-in {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        position: relative;
+        overflow: hidden;
+        width: 600px;
+        max-width: 100%;
+        min-height: 350px;
+        margin: auto;
+        margin-top: 90px;
+
+        form {
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0 50px;
+            height: 100%;
+        }
+
+        h1 {
+            font-weight: bold;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        p {
+            font-size: 14px;
+            font-weight: 100;
+            line-height: 20px;
+            letter-spacing: 0.5px;
+            margin: 20px 0 30px;
+        }
+
+        span {
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: #333;
+            font-size: 12px;
+            text-decoration: none;
+            margin: 15px 0;
+        }
+        a:not(.social):hover {
+            text-decoration: underline;
+        }
+
+        button {
+            cursor: pointer;
+            border-radius: 5px;
+            border: none;
+            background-color: var(--btn-blue);
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 12px 150px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: transform 50ms ease-in;
+            margin-top: 10px;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        button:hover {
+            background-color: var(--btn-blue-hover);
+        }
+
+        form > label {
+            width: 100%;
+            margin: 4px 0;
+        }
+
+        form > label[for='password'] {
+            margin-top: 2px;
+        }
+
+        label.error {
+            width: 100%;
+            text-align: right;
+            display: inline-block;
+            color: #ff0000;
+            font-size: 10px;
+        }
+
+        input {
+            border: solid;
+            border-color: #eee;
+            padding: 10px 15px;
+            width: 100%;
+            margin-bottom: 5px;
+            font-size: 1.4rem;
+        }
+
+        h2 {
+            position: relative;
+        }
+        
+        h2:before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 3px;
+            background: #1e76bd;
+        }
+
+        .invalid {
+            color: red;
+        }
+
+        .message_error {
+            color: red;
+        }
+
+        .forgot-password {
+            display: flex;
+            justify-content: space-between;
+            margin-left: 50px;
+            margin-right: 50px;
+
+            p {
+                font-size: 1.3rem; 
+                cursor: pointer;
+            }
+
+            p:hover {
+                color: var(--blue-link);
+            }
+
+            .link-create {
+                padding-top: 6px;
+                font-size: 1.3rem; 
+            }
+
+            .link-create:hover {
+                text-decoration: none;
+                color: var(--blue-link);
+            }
+        }
+
+        .policy {
+            position: absolute;
+            bottom: 15px;
+            
+            p {
+                margin: 0;
+                font-size: 1.2rem;
+                text-align: center;
+                margin-left: 50px;
+                margin-right: 50px;
+
+                .link-policy {
+                    color: var(--blue-link);
+                }
+            }
+        }
+    }
+}

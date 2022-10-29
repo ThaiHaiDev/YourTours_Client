@@ -1,40 +1,40 @@
-import './Signin.scss';
+import './ForgotPass.scss';
 import { AxiosError } from 'axios';
 
 import Navbar from '../../../components/Navbar/Navbar';
 import { Link } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import authApi from '../../../services/authApi';
-import { LoginErrorResponse, LoginRequest } from '../../../share/models/auth';
+import { ForgotPasswordRequest, LoginErrorResponse } from '../../../share/models/auth';
 import { useSnackbar } from 'notistack';
 import { useDispatch } from 'react-redux';
 import userSlice from '../userSlice';
 
-const Signin = () => {
+const ForgotPass = () => {
     const {
         register,
         reset,
         handleSubmit,
         formState: { errors },
-    } = useForm<LoginRequest>();
+    } = useForm<ForgotPasswordRequest>();
 
     const { enqueueSnackbar } = useSnackbar();
 
     const dispatch = useDispatch();
 
-    const onSubmit: SubmitHandler<LoginRequest> = (data: LoginRequest) => {
-        authApi
-            .signIn(data)
-            .then((userData) => {
-                dispatch(userSlice.actions.signin(userData.data));
-                console.log(userData)
-                enqueueSnackbar('Đăng nhập thành công', { variant: 'success' });
-                reset();
-                document.location = '/';
-            })
-            .catch((error: AxiosError<LoginErrorResponse>) => {
-                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
-            });
+    const onSubmit: SubmitHandler<ForgotPasswordRequest> = (data: ForgotPasswordRequest) => {
+        // authApi
+        //     .signIn(data)
+        //     .then((userData) => {
+        //         dispatch(userSlice.actions.signin(userData.data));
+        //         console.log(userData)
+        //         enqueueSnackbar('Đăng nhập thành công', { variant: 'success' });
+        //         reset();
+        //         document.location = '/';
+        //     })
+        //     .catch((error: AxiosError<LoginErrorResponse>) => {
+        //         enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+        //     });
     };
 
     return (
@@ -43,19 +43,7 @@ const Signin = () => {
             <div className="signin">
                 <div className="container__sign-in">
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <h1>Đăng nhập</h1>
-                        <div className="social-container">
-                            <Link to="#" className="socialg">
-                                <img src="https://img.icons8.com/color/344/google-logo.png" alt="go_icon" />
-                            </Link>
-                            <Link to="#" className="social">
-                                <img src="https://img.icons8.com/fluency/344/facebook-new.png" alt="fa_icon" />
-                            </Link>
-                            <Link to="#" className="social">
-                                <img src="https://img.icons8.com/ios-glyphs/344/github.png" alt="gi_icon" />
-                            </Link>
-                        </div>
-                        <span>hoặc đăng nhập bằng</span>
+                        <h1>Lấy lại mật khẩu</h1>
                         <label>
                             <input
                                 type="email"
@@ -72,23 +60,7 @@ const Signin = () => {
                                 <span className="message_error">{`${errors.email && errors.email?.message}`}</span>
                             )}
                         </label>
-
-                        <label>
-                            <input
-                                className="signup__form-input"
-                                type="password"
-                                placeholder="Enter password"
-                                {...register('password', {
-                                    required: 'Password is required',
-                                    maxLength: {
-                                        value: 16,
-                                        message: 'Password must be less than 16 characters',
-                                    },
-                                })}
-                            />
-                            {errors.password && <span className="message_error">{`${errors.password?.message}`}</span>}
-                        </label>
-                        <button type="submit">Đăng nhập</button>
+                        <button type="submit">Lấy lại mật khẩu</button>
                     </form>
                     <div className="forgot-password">
                         <p>Quên mật khẩu</p>
@@ -115,4 +87,4 @@ const Signin = () => {
     );
 };
 
-export default Signin;
+export default ForgotPass;
