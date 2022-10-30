@@ -9,13 +9,16 @@ import store from './redux/store';
 
 import './assets/css/grid.scss';
 import './assets/css/index.scss';
+import { SnackbarProvider } from 'notistack';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
     <React.StrictMode>
         <BrowserRouter>
             <Provider store={store}>
-                <App />
+                <SnackbarProvider maxSnack={3} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} style={{fontSize: '14px'}}>
+                    <App />
+                </SnackbarProvider>
             </Provider>
         </BrowserRouter>
     </React.StrictMode>,

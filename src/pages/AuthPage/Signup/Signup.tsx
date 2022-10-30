@@ -6,14 +6,23 @@ import { CSSTransition } from 'react-transition-group';
 import { Link } from 'react-router-dom';
 import Navbar from '../../../components/Navbar/Navbar';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import { useSnackbar } from 'notistack';
 
-import { useForm, ValidationRule } from 'react-hook-form';
+import { useForm, ValidationRule, SubmitHandler } from 'react-hook-form';
 import OTPBox from '../../../components/OTPBox/OTPBox';
 import { useDispatch } from 'react-redux';
 import userSlice from '../userSlice';
 import authApi from '../../../services/authApi';
 
 import regexCons from '../../../constants/regexCons';
+import { OTPErrorResponse, RegisterErrorResponse } from '../../../share/models/auth';
+
+interface FormRegisterData {
+    password: string;
+    fullName: string;
+    email: string;
+    password_confirmation: string;
+}
 
 function Signup() {
     return (
@@ -40,7 +49,9 @@ function DropdownMenu() {
         watch,
         handleSubmit,
         formState: { errors },
-    } = useForm();
+    } = useForm<FormRegisterData>();
+
+    const { enqueueSnackbar } = useSnackbar();
 
     const dispatch = useDispatch();
 
@@ -53,31 +64,37 @@ function DropdownMenu() {
         setMenuHeight(height);
     }
 
-    const onSubmit = async (data: any) => {
+    const onSubmit: SubmitHandler<FormRegisterData> = (data: FormRegisterData) => {
         setEmailSend(data.email);
-        const newData = {
+        const dataSignUp = {
             email: data.email,
-            fullName: data.name,
+            fullName: data.fullName,
             password: data.password,
         };
-        await authApi
-            .signUp(newData)
-            .then((dataRe) => {
-                // dispatch(userSlice.actions.signup(data))
-                console.log(dataRe);
+        authApi
+            .signUp(dataSignUp)
+            .then((dataRes) => {
+                dispatch(userSlice.actions.signup(dataRes));
+                enqueueSnackbar('Đăng kí thành công', { variant: 'success' });
+                setActiveMenu('info_user');
+                reset();
             })
-            .catch((error: AxiosError<any>) => {
-                console.log(error.response?.data.message);
+            .catch((error: AxiosError<RegisterErrorResponse>) => {
+                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
             });
-        setActiveMenu('info_user');
-        reset();
     };
 
-    const handleSubmitOTP = async (otp: any) => {
-        await authApi.otpConfirm(otp).then((dataRe) => {
-            // dispatch(userSlice.actions.signup(data))
-            console.log(dataRe);
-        });
+    const handleSubmitOTP = (otp: {}) => {
+        authApi
+            .otpConfirm(otp)
+            .then((dataResend) => {
+                // dispatch(userSlice.actions.signup(data))
+                enqueueSnackbar('Xác thực tài khoản thành công', { variant: 'success' });
+                console.log(dataResend);
+            })
+            .catch((error: AxiosError<OTPErrorResponse>) => {
+                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+            });
     };
 
     function DropdownItem(props: any) {
@@ -124,12 +141,12 @@ function DropdownMenu() {
                                 <label className="label-email">Họ tên</label>
                                 <input
                                     type="text"
-                                    {...register('name', {
+                                    {...register('fullName', {
                                         required: 'Họ tên được yêu cầu',
                                     })}
                                 />
-                                {errors.name && (
-                                    <p className="message_error">{`${errors.name && errors.name?.message}`}</p>
+                                {errors.fullName && (
+                                    <p className="message_error">{`${errors.fullName && errors.fullName?.message}`}</p>
                                 )}
                             </label>
                             <label>
@@ -165,7 +182,7 @@ function DropdownMenu() {
                                     type="password"
                                     {...register('password_confirmation', {
                                         required: 'Mật khẩu được yêu cầu',
-                                        validate: (val: string) => {
+                                        validate: (val: string | undefined) => {
                                             if (watch('password') !== val) {
                                                 return 'Xác nhận mật khẩu không khớp với mật khẩu của bạn';
                                             }
@@ -185,7 +202,6 @@ function DropdownMenu() {
                             </button>
                         </form>
                     </div>
-                    {/* <OTPBox /> */}
                     <p style={{ fontStyle: 'italic', marginLeft: '5px', fontSize: '1.2rem', marginTop: '3px' }}>
                         Thông tin của bạn hoàn toàn được bảo mật.
                     </p>

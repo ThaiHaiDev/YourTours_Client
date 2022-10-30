@@ -1,10 +1,14 @@
-import Navbar from '../../../components/Navbar/Navbar';
 import './Signin.scss';
+import { AxiosError } from 'axios';
 
+import Navbar from '../../../components/Navbar/Navbar';
 import { Link } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import authApi from '../../../services/authApi';
-import { LoginRequest } from '../../../share/models/auth';
+import { LoginErrorResponse, LoginRequest } from '../../../share/models/auth';
+import { useSnackbar } from 'notistack';
+import { useDispatch } from 'react-redux';
+import userSlice from '../userSlice';
 
 const Signin = () => {
     const {
@@ -14,16 +18,23 @@ const Signin = () => {
         formState: { errors },
     } = useForm<LoginRequest>();
 
-    const onSubmit: SubmitHandler<LoginRequest> = async (data: LoginRequest) => {
-        try {
-            await authApi.signIn(data).then((userData) => {
+    const { enqueueSnackbar } = useSnackbar();
+
+    const dispatch = useDispatch();
+
+    const onSubmit: SubmitHandler<LoginRequest> = (data: LoginRequest) => {
+        authApi
+            .signIn(data)
+            .then((userData) => {
+                dispatch(userSlice.actions.signin(userData.data));
                 console.log(userData)
+                enqueueSnackbar('Đăng nhập thành công', { variant: 'success' });
                 reset();
-                // document.location = '/';
+                document.location = '/';
             })
-        } catch (error) {
-            console.log(error)
-        }
+            .catch((error: AxiosError<LoginErrorResponse>) => {
+                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+            });
     };
 
     return (
@@ -50,10 +61,10 @@ const Signin = () => {
                                 type="email"
                                 placeholder="Email"
                                 {...register('email', {
-                                    required: 'Email is required',
+                                    required: 'Email được yêu cầu',
                                     pattern: {
                                         value: /^\S+@\S+$/i,
-                                        message: 'This is not a valid email',
+                                        message: 'Đây không phải là một email hợp lệ',
                                     },
                                 })}
                             />
@@ -68,10 +79,10 @@ const Signin = () => {
                                 type="password"
                                 placeholder="Enter password"
                                 {...register('password', {
-                                    required: 'Password is required',
+                                    required: 'Mật khẩu được yêu cầu',
                                     maxLength: {
                                         value: 16,
-                                        message: 'Password must be less than 16 characters',
+                                        message: 'Mật khẩu chỉ giới hạn 16 kí tự',
                                     },
                                 })}
                             />

@@ -30,12 +30,16 @@ import authApi from '../../services/authApi'
 const userSlice = createSlice({
     name: 'user',
     initialState: {
-        current:  {},
-        settings: {}
+        current:  JSON.parse(localStorage.getItem('user') || '{}'),
+        // settings: {}
     },
     reducers: {
         signup(state, action) {
             console.log(action.payload)
+        },
+        signin(state, action) {
+            localStorage.setItem('access_token', action.payload.data.access_token)
+            localStorage.setItem('user', JSON.stringify(action.payload.data.userInfo))
         },
         logout(state) {
             localStorage.removeItem('user')

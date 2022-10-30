@@ -10,14 +10,20 @@ import OwnerSetting from '../pages/OwnerSetting/MainOwnerSetting/OwnerSetting';
 import RoomDetail from '../pages/RoomDetail/RoomDetail';
 import StepperMain from '../pages/SetupOwner/StepperMain/StepperMain';
 
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store'
+import ForgotPass from '../pages/AuthPage/ForgotPass/ForgotPass';
+
 const Auth = () => {
+    const user = useSelector((state: RootState) => state.user)
     return (
         <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={user.current.role === 'USER' ? <HomePage /> : <RoomDetail />}  />
             <Route path="/detail" element={<RoomDetail />} />
             <Route path="/stepsetupowner" element={<StepperMain />} />
             <Route path="/signin" element={<Signin />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/forgotpassword" element={<ForgotPass />} />
             <Route path="/confirm" element={<ConfirmOwner />} />
             <Route path="/congratulation" element={<CongratulationPage />} />
             <Route path="/host/setting" element={<OwnerSetting />} />
