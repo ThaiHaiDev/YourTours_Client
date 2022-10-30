@@ -77,3 +77,16 @@ export interface ReSendOTPRequest {
 export interface ForgotPasswordRequest {
     email: string;
 }
+
+export interface ForgotPasswordErrorResponse {
+    message: string;
+    errors: {
+        user?: string;
+    };
+}
+
+export interface OTPForgotPasswordRequest {
+    otp: string,
+    newPassword: string,
+    confirmPassword: string
+}

@@ -157,7 +157,7 @@
             }
         }
 
-        .policy {
+        .noti-reset {
             position: absolute;
             bottom: 15px;
             
@@ -167,10 +167,8 @@
                 text-align: center;
                 margin-left: 50px;
                 margin-right: 50px;
-
-                .link-policy {
-                    color: var(--blue-link);
-                }
+                background: #e0e0e0;
+                padding: 5px 20px;
             }
         }
     }

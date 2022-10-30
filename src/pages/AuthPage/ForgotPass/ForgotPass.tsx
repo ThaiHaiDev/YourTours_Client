@@ -5,10 +5,15 @@ import Navbar from '../../../components/Navbar/Navbar';
 import { Link } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import authApi from '../../../services/authApi';
-import { ForgotPasswordRequest, LoginErrorResponse } from '../../../share/models/auth';
+import {
+    ForgotPasswordErrorResponse,
+    ForgotPasswordRequest,
+    OTPErrorResponse,
+    OTPForgotPasswordRequest,
+} from '../../../share/models/auth';
 import { useSnackbar } from 'notistack';
-import { useDispatch } from 'react-redux';
-import userSlice from '../userSlice';
+import { useState } from 'react';
+import OTPBoxForgotPass from '../../../components/OTPBoxForgotPass/OTPBoxForgotPass';
 
 const ForgotPass = () => {
     const {
@@ -20,21 +25,32 @@ const ForgotPass = () => {
 
     const { enqueueSnackbar } = useSnackbar();
 
-    const dispatch = useDispatch();
+    const [hidenNoti, setHidenNoti] = useState<boolean>(false);
 
     const onSubmit: SubmitHandler<ForgotPasswordRequest> = (data: ForgotPasswordRequest) => {
-        // authApi
-        //     .signIn(data)
-        //     .then((userData) => {
-        //         dispatch(userSlice.actions.signin(userData.data));
-        //         console.log(userData)
-        //         enqueueSnackbar('Đăng nhập thành công', { variant: 'success' });
-        //         reset();
-        //         document.location = '/';
-        //     })
-        //     .catch((error: AxiosError<LoginErrorResponse>) => {
-        //         enqueueSnackbar(error.response?.data.message, { variant: 'error' });
-        //     });
+        authApi
+            .forgotPassword(data)
+            .then((userData) => {
+                console.log(userData);
+                enqueueSnackbar('Thành công', { variant: 'success' });
+                setHidenNoti(true);
+                reset();
+            })
+            .catch((error: AxiosError<ForgotPasswordErrorResponse>) => {
+                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+            });
+    };
+
+    const handleSubmitOTP = (otp: OTPForgotPasswordRequest) => {
+        console.log(otp);
+        authApi
+            .otpForgotPassword(otp)
+            .then((dataResend) => {
+                enqueueSnackbar('Đổi mật khẩu thành công', { variant: 'success' });
+            })
+            .catch((error: AxiosError<OTPErrorResponse>) => {
+                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+            });
     };
 
     return (
@@ -42,45 +58,48 @@ const ForgotPass = () => {
             <Navbar />
             <div className="signin">
                 <div className="container__sign-in">
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <h1>Lấy lại mật khẩu</h1>
-                        <label>
-                            <input
-                                type="email"
-                                placeholder="Email"
-                                {...register('email', {
-                                    required: 'Email is required',
-                                    pattern: {
-                                        value: /^\S+@\S+$/i,
-                                        message: 'This is not a valid email',
-                                    },
-                                })}
-                            />
-                            {errors.email && (
-                                <span className="message_error">{`${errors.email && errors.email?.message}`}</span>
-                            )}
-                        </label>
-                        <button type="submit">Lấy lại mật khẩu</button>
-                    </form>
+                    {!hidenNoti ? (
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <h1>Lấy lại mật khẩu</h1>
+                            <span>
+                                Nhập địa chỉ email sử dụng để tạo tài khoản Yourtours và chúng tôi sẽ gửi link để đặt
+                                lại tài khoản đến bạn
+                            </span>
+                            <label>
+                                <input
+                                    type="email"
+                                    placeholder="Email"
+                                    {...register('email', {
+                                        required: 'Email được yêu cầu',
+                                        pattern: {
+                                            value: /^\S+@\S+$/i,
+                                            message: 'Đây không phải là một email hợp lệ',
+                                        },
+                                    })}
+                                />
+                                {errors.email && (
+                                    <span className="message_error">{`${errors.email && errors.email?.message}`}</span>
+                                )}
+                            </label>
+                            <button type="submit">Lấy lại mật khẩu</button>
+                        </form>
+                    ) : (
+                        <OTPBoxForgotPass handleSubmitOTP={handleSubmitOTP} emailSend="test" />
+                    )}
                     <div className="forgot-password">
-                        <p>Quên mật khẩu</p>
+                        <p>Đăng nhập</p>
                         <Link to="/signup" className="link-create">
                             Tạo tài khoản ngay
                         </Link>
                     </div>
-                    <div className="policy">
-                        <p>
-                            Bằng cách đăng ký hoặc đăng nhập, bạn đã hiểu và đồng ý với{' '}
-                            <Link to="" className="link-policy">
-                                Điều Khoản Sử Dụng
-                            </Link>{' '}
-                            và{' '}
-                            <Link to="" className="link-policy">
-                                Chính Sách Bảo Mật
-                            </Link>{' '}
-                            của Yourtours.
-                        </p>
-                    </div>
+                    {hidenNoti && (
+                        <div className="noti-reset">
+                            <p>
+                                Chúng tôi đã gửi OTP để thay đổi mật khẩu thông qua email. Vui lòng kiểm tra email của
+                                bạn.
+                            </p>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

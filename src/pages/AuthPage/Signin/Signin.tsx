@@ -61,10 +61,10 @@ const Signin = () => {
                                 type="email"
                                 placeholder="Email"
                                 {...register('email', {
-                                    required: 'Email is required',
+                                    required: 'Email được yêu cầu',
                                     pattern: {
                                         value: /^\S+@\S+$/i,
-                                        message: 'This is not a valid email',
+                                        message: 'Đây không phải là một email hợp lệ',
                                     },
                                 })}
                             />
@@ -79,10 +79,10 @@ const Signin = () => {
                                 type="password"
                                 placeholder="Enter password"
                                 {...register('password', {
-                                    required: 'Password is required',
+                                    required: 'Mật khẩu được yêu cầu',
                                     maxLength: {
                                         value: 16,
-                                        message: 'Password must be less than 16 characters',
+                                        message: 'Mật khẩu chỉ giới hạn 16 kí tự',
                                     },
                                 })}
                             />
