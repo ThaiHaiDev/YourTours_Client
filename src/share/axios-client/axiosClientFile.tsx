@@ -9,16 +9,17 @@ const getAccessTokenFromLocalStorage = (): any => {
     return localStorage.getItem('access_token') || '{}';
 };
 
-const axiosClient = axios.create({
+const axiosClientFile = axios.create({
     baseURL: API_BASE_URL,
     headers: {
-        Accept: 'application/json',
+        'Accept': 'application/json, text/plain, multipart/form-data, */*',
+        'Content-Type': 'multipart/form-data',
         Authorization: `Bearer ${getAccessTokenFromLocalStorage()}`,
     },
 });
 
 // Add a request interceptor
-axiosClient.interceptors.request.use(
+axiosClientFile.interceptors.request.use(
     (config) => {
         return config;
     },
@@ -28,7 +29,7 @@ axiosClient.interceptors.request.use(
 );
 
 // Add a response interceptor
-axiosClient.interceptors.response.use(
+axiosClientFile.interceptors.response.use(
     (response) => {
         return response.data;
     },
@@ -37,4 +38,4 @@ axiosClient.interceptors.response.use(
     },
 );
 
-export default axiosClient;
+export default axiosClientFile;

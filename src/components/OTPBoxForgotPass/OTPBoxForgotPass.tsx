@@ -12,8 +12,8 @@ interface OTPBoxForgotData {
 }
 
 interface OTPBoxForgotDataForm {
-    password: string,
-    password_confirmation: string
+    password: string;
+    password_confirmation: string;
 }
 
 const OTPBoxForgotPass = (props: OTPBoxForgotData) => {
@@ -72,7 +72,7 @@ const OTPBoxForgotPass = (props: OTPBoxForgotData) => {
     };
 
     return (
-        <div className="otp-box">
+        <div className="otp-box-forgot__pass">
             <div className="container">
                 <h1>Tạo mật khẩu mới</h1>
                 <p style={{ marginTop: '0' }}>
@@ -83,6 +83,7 @@ const OTPBoxForgotPass = (props: OTPBoxForgotData) => {
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="userInput">
                         <input
+                            className="input-otp"
                             type="text"
                             id="ist"
                             maxLength={1}
@@ -90,6 +91,7 @@ const OTPBoxForgotPass = (props: OTPBoxForgotData) => {
                             onChange={nameChangeHandler1}
                         />
                         <input
+                            className="input-otp"
                             type="text"
                             id="sec"
                             maxLength={1}
@@ -97,6 +99,7 @@ const OTPBoxForgotPass = (props: OTPBoxForgotData) => {
                             onChange={nameChangeHandler2}
                         />
                         <input
+                            className="input-otp"
                             type="text"
                             id="third"
                             maxLength={1}
@@ -104,6 +107,7 @@ const OTPBoxForgotPass = (props: OTPBoxForgotData) => {
                             onChange={nameChangeHandler3}
                         />
                         <input
+                            className="input-otp"
                             type="text"
                             id="fourth"
                             maxLength={1}
@@ -111,6 +115,7 @@ const OTPBoxForgotPass = (props: OTPBoxForgotData) => {
                             onChange={nameChangeHandler4}
                         />
                         <input
+                            className="input-otp"
                             type="text"
                             id="fifth"
                             maxLength={1}
@@ -121,7 +126,7 @@ const OTPBoxForgotPass = (props: OTPBoxForgotData) => {
                     <label>
                         <label className="label-email">Mật khẩu</label>
                         <input
-                            className="signup__form-input"
+                            className="forgot__form-input"
                             type="password"
                             {...register('password', {
                                 required: 'Mật khẩu được yêu cầu',
@@ -148,6 +153,7 @@ const OTPBoxForgotPass = (props: OTPBoxForgotData) => {
                     <label>
                         <label className="label-email">Xác nhận mật khẩu</label>
                         <input
+                            className="forgot__form-input"
                             type="password"
                             {...register('password_confirmation', {
                                 required: 'Mật khẩu được yêu cầu',

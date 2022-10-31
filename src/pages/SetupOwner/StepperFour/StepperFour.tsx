@@ -2,9 +2,15 @@ import UploadFile from '../../../components/UploadFile/UploadFile';
 
 import './StepperFour.scss';
 
-const StepperFour = () => {
+interface StepperFourData {
+    setDataStep4: (value: File[]) => void
+}
+
+const StepperFour = (props : StepperFourData) => {
     const onFileChange = (files: File[]) => {
-        console.log(files);
+        if (props.setDataStep4) {
+            props.setDataStep4(files)
+        }
     };
 
     return (

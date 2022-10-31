@@ -1,7 +1,23 @@
+import { useEffect, useState } from 'react';
 import CountNumber from '../../../components/CountNumber/CountNumber';
+import CountNumberGuest from '../../../components/CountNumber/CountNumberGuest';
+import roomCategoryApi from '../../../services/roomCategoryApi';
+import { RoomOfHomeCreateRequest } from '../../../share/models/roomHome';
 import './StepperTwo.scss';
 
-const StepperTwo = () => {
+interface StepperTwoData {
+    setDataStep2?: RoomOfHomeCreateRequest[],
+    setCountGuest?: (value:number) => void
+}
+
+const StepperTwo = (props: StepperTwoData) => {
+    const [data, setData] = useState<any>();
+    useEffect(() => {
+        roomCategoryApi.getRoomCategory().then((data) => {
+            setData(data.data.content);
+        });
+    }, []);
+
     return (
         <div className="step-two">
             <div className="row">
@@ -10,25 +26,20 @@ const StepperTwo = () => {
                 </div>
                 <div className="col l-6 m-6">
                     <div className="info-count__room">
-                        <div className="count tenant">
-                            <p>Khách</p>
-                            <CountNumber />
-                        </div>
-
-                        <div className="count bed">
-                            <p>Giường</p>
-                            <CountNumber />
-                        </div>
-
-                        <div className="count bedroom">
-                            <p>Phòng ngủ</p>
-                            <CountNumber />
-                        </div>
-
-                        <div className="count  bathroom">
-                            <p>Phòng tắm</p>
-                            <CountNumber />
-                        </div>
+                        {data?.map((room: any, index: number) => (
+                            <div key={room.id}>
+                                {index === 0 && (
+                                    <div className="count tenant">
+                                        <p>Khách</p>
+                                        <CountNumberGuest setCountGuest={props.setCountGuest} />
+                                    </div>
+                                )}
+                                <div className="count bed" key={room.id}>
+                                    <p>{room.name}</p>
+                                    <CountNumber idRoom={room.id} setData={props.setDataStep2} />
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
