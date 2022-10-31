@@ -79,9 +79,7 @@ export default function StepperComponent() {
                 dataIdList.push({ id: dataStep3[i].value });
             }
             dispatch(setupOwnerSlice.actions.addamenitiesOfHomeRoom(dataIdList));
-        } else if (activeStep === 3) {
-            console.log('Data 4: ', setDataStep4URL);
-        }
+        } 
 
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
         setSkipped(newSkipped);
@@ -116,26 +114,20 @@ export default function StepperComponent() {
         }
         dispatch(setupOwnerSlice.actions.addimagesOfHomeRoom(setDataStep4URL));
         setLoad(false);
-        // setActiveStep((prevActiveStep) => prevActiveStep + 1);
-        // setSkipped((prevSkipped) => {
-        //     const newSkipped = new Set(prevSkipped.values());
-        //     newSkipped.add(activeStep);
-        //     return newSkipped;
-        // });
     };
 
     const handleReset = () => {
-        console.log('Data gửi xuông: ',setupRoomHost)
+        // console.log('Data gửi xuông: ',setupRoomHost)
         homeDetailApi
             .createHomeDetailByHost(setupRoomHost)
-            .then((d: any) => {
-                console.log(d);
+            .then((dataResponse: any) => {
+                enqueueSnackbar('Đăng kí thành công', { variant: 'success' });
+                navigate('/congratulation')
             })
             .catch((error: AxiosError<any>) => {
                 enqueueSnackbar(error.response?.data.message, { variant: 'error' });
             });
         // console.log(setupRoomHost)
-        // navigate('/congratulation')
     };
 
     return (
