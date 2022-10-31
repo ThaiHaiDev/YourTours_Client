@@ -2,9 +2,15 @@ import { useEffect, useState } from 'react';
 import CountNumber from '../../../components/CountNumber/CountNumber';
 import CountNumberGuest from '../../../components/CountNumber/CountNumberGuest';
 import roomCategoryApi from '../../../services/roomCategoryApi';
+import { RoomOfHomeCreateRequest } from '../../../share/models/roomHome';
 import './StepperTwo.scss';
 
-const StepperTwo = (props: any) => {
+interface StepperTwoData {
+    setDataStep2?: RoomOfHomeCreateRequest[],
+    setCountGuest?: (value:number) => void
+}
+
+const StepperTwo = (props: StepperTwoData) => {
     const [data, setData] = useState<any>();
     useEffect(() => {
         roomCategoryApi.getRoomCategory().then((data) => {

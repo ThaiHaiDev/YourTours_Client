@@ -1,8 +1,11 @@
 import SelectedLocate from './SelectedLocate';
-import './StepperOne.scss'
+import './StepperOne.scss';
 
-const StepperOne = (props: any) => {
+interface StepperOneData {
+    setDataStep1: (value : string) => void
+}
 
+const StepperOne = (props: StepperOneData) => {
     return (
         <div className="step-one">
             <div className='row'>

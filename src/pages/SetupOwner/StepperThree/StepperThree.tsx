@@ -1,9 +1,14 @@
 import { useEffect, useState } from 'react';
 import amenityCategoryApi from '../../../services/amenityCategoryApi';
+import { ConvenientOptionShow } from '../../../share/models/convenient';
 import SelectedMultiple from './SelectedMultiple';
 import './StepperThree.scss';
 
-const StepperThree = (props : any) => {
+interface StepperThreeData {
+    setDataStep3: (value: ConvenientOptionShow[]) => void
+}
+
+const StepperThree = (props : StepperThreeData) => {
     const [data, setData] = useState<any>()
     useEffect(() => {
         amenityCategoryApi.getAmenityCategories().then((data) => {

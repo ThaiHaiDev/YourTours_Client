@@ -22,6 +22,9 @@ import { RootState } from '../../redux/store';
 import homeDetailApi from '../../services/homeDetailApi';
 import { useSnackbar } from 'notistack';
 import { AxiosError } from 'axios';
+import { RoomOfHomeCreateRequest } from '../../share/models/roomHome';
+import { ConvenientOptionShow } from '../../share/models/convenient';
+import { ImageHomeDetail } from '../../share/models/imageList';
 
 const steps = ['Setup vị trí', 'Setup phòng', 'Setup tiện ích', 'Setup ảnh', 'Mô tả phòng', 'Chi tiết phòng'];
 
@@ -38,11 +41,11 @@ export default function StepperComponent() {
     const [load, setLoad] = React.useState<boolean>(false);
 
     const [dataStep1, setDataStep1] = React.useState<string>('');
-    const setDataStep2: any = [];
+    const setDataStep2: RoomOfHomeCreateRequest[] = [];
     const [countGuest, setCountGuest] = React.useState<number>(0);
-    const [dataStep3, setDataStep3] = React.useState<any>([]);
+    const [dataStep3, setDataStep3] = React.useState<ConvenientOptionShow[]>([]);
     const [dataStep4, setDataStep4] = React.useState<File[]>([]);
-    const setDataStep4URL: any = [];
+    const setDataStep4URL: ImageHomeDetail[] = [];
 
     const navigate = useNavigate();
 
@@ -64,7 +67,7 @@ export default function StepperComponent() {
         if (activeStep === 0) {
             dispatch(setupOwnerSlice.actions.addProvinceIdRoom(dataStep1));
         } else if (activeStep === 1) {
-            if (parseInt(setDataStep2.length) > 0) {
+            if (setDataStep2.length > 0) {
                 dispatch(setupOwnerSlice.actions.addroomsOfHomeRoom(setDataStep2));
             }
             if (countGuest !== 0) {
