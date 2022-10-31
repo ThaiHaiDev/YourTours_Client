@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import CountNumber from '../../../components/CountNumber/CountNumber';
+import CountNumberGuest from '../../../components/CountNumber/CountNumberGuest';
 import roomCategoryApi from '../../../services/roomCategoryApi';
 import './StepperTwo.scss';
 
@@ -19,15 +20,18 @@ const StepperTwo = (props: any) => {
                 </div>
                 <div className="col l-6 m-6">
                     <div className="info-count__room">
-                        <div className="count tenant">
-                            <p>Khách</p>
-                            <CountNumber />
-                        </div>
-
-                        {data?.map((room: any) => (
-                            <div className="count bed" key={room.id}>
-                                <p>{room.name}</p>
-                                <CountNumber idRoom={room.id} setData={props.setDataStep2}/>
+                        {data?.map((room: any, index: number) => (
+                            <div key={room.id}>
+                                {index === 0 && (
+                                    <div className="count tenant">
+                                        <p>Khách</p>
+                                        <CountNumberGuest setCountGuest={props.setCountGuest} />
+                                    </div>
+                                )}
+                                <div className="count bed" key={room.id}>
+                                    <p>{room.name}</p>
+                                    <CountNumber idRoom={room.id} setData={props.setDataStep2} />
+                                </div>
                             </div>
                         ))}
                     </div>

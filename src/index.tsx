@@ -13,7 +13,7 @@ import { SnackbarProvider } from 'notistack';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
-    // <React.StrictMode>
+    <React.StrictMode>
         <BrowserRouter>
             <Provider store={store}>
                 <SnackbarProvider maxSnack={3} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} style={{fontSize: '14px'}}>
@@ -21,7 +21,7 @@ root.render(
                 </SnackbarProvider>
             </Provider>
         </BrowserRouter>
-    // </React.StrictMode>,
+    </React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function

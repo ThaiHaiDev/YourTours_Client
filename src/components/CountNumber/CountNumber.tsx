@@ -7,7 +7,7 @@ const CountNumber = (props: any) => {
 
     const handleIncrease = () => {
         setCounter((preState) => preState + 1); // Set state Callback
-
+        
         if (!props.setData.some((person: any) => person.categoryId === props.idRoom)) {
             props.setData.push({
                 categoryId: props.idRoom,
@@ -21,10 +21,13 @@ const CountNumber = (props: any) => {
                 }
             }
         }
+
+        
     };
 
     const handleReducer = () => {
         setCounter((preState) => preState - 1); // Set state Callback
+
         if (!props.setData.some((person: any) => person.categoryId === props.idRoom)) {
             props.setData.push({
                 categoryId: props.idRoom,
@@ -38,6 +41,8 @@ const CountNumber = (props: any) => {
                 }
             }
         }
+
+
     };
     return (
         <div className="count-number">

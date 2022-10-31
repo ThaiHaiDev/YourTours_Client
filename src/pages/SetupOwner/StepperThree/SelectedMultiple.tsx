@@ -33,8 +33,6 @@ const customStyles = {
     }),
 };
 
-
-
 export default function SelectedMultiple(props : any) {
     const [selectedOption, setSelectedOption] = useState<any | []>();
 

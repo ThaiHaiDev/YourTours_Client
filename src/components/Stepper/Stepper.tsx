@@ -15,19 +15,34 @@ import StepperSix from '../../pages/SetupOwner/StepperSix/StepperSix';
 import { useNavigate } from 'react-router-dom';
 import imageRoomApi from '../../services/imageRoomApi';
 
+import { LoadingButton } from '@mui/lab';
+import { useDispatch, useSelector } from 'react-redux';
+import setupOwnerSlice from '../../pages/SetupOwner/setupOwnerSlice';
+import { RootState } from '../../redux/store';
+import homeDetailApi from '../../services/homeDetailApi';
+import { useSnackbar } from 'notistack';
+import { AxiosError } from 'axios';
+
 const steps = ['Setup vị trí', 'Setup phòng', 'Setup tiện ích', 'Setup ảnh', 'Mô tả phòng', 'Chi tiết phòng'];
 
 export default function StepperComponent() {
     const [activeStep, setActiveStep] = React.useState(0);
     const [skipped, setSkipped] = React.useState(new Set<number>());
 
-    const [lodding, setLoadding] = React.useState<boolean>(false)
+    const dispatch = useDispatch();
 
-    const [dataStep1, setDataStep1] = React.useState<string>('')
-    const setDataStep2:any = []
-    const [dataStep3, setDataStep3] = React.useState<any>([])
-    const [dataStep4, setDataStep4] = React.useState<File[]>([])
-    const setDataStep4URL:any = []
+    const setupRoomHost = useSelector((state: RootState) => state.settingowner.detailRoom);
+
+    const { enqueueSnackbar } = useSnackbar();
+
+    const [load, setLoad] = React.useState<boolean>(false);
+
+    const [dataStep1, setDataStep1] = React.useState<string>('');
+    const setDataStep2: any = [];
+    const [countGuest, setCountGuest] = React.useState<number>(0);
+    const [dataStep3, setDataStep3] = React.useState<any>([]);
+    const [dataStep4, setDataStep4] = React.useState<File[]>([]);
+    const setDataStep4URL: any = [];
 
     const navigate = useNavigate();
 
@@ -47,21 +62,24 @@ export default function StepperComponent() {
         }
 
         if (activeStep === 0) {
-            console.log('Data 1: ',dataStep1)
+            dispatch(setupOwnerSlice.actions.addProvinceIdRoom(dataStep1));
+        } else if (activeStep === 1) {
+            if (parseInt(setDataStep2.length) > 0) {
+                dispatch(setupOwnerSlice.actions.addroomsOfHomeRoom(setDataStep2));
+            }
+            if (countGuest !== 0) {
+                dispatch(setupOwnerSlice.actions.addNumberOfGuestsRoom(countGuest));
+            }
+        } else if (activeStep === 2) {
+            const dataIdList: any = [];
+            for (var i = 0; i < dataStep3.length; i++) {
+                dataIdList.push({ id: dataStep3[i].value });
+            }
+            dispatch(setupOwnerSlice.actions.addamenitiesOfHomeRoom(dataIdList));
+        } else if (activeStep === 3) {
+            console.log('Data 4: ', setDataStep4URL);
         }
 
-        else if (activeStep === 1) {
-            console.log('Data 2: ',setDataStep2)
-        }
-
-        else if (activeStep === 2) {
-            console.log('Data 3: ',dataStep3)
-        }
-
-        else if (activeStep === 3) {
-            console.log('Data 4: ',setDataStep4URL)
-        }
-        
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
         setSkipped(newSkipped);
     };
@@ -85,14 +103,16 @@ export default function StepperComponent() {
         });
     };
 
-    const handleUpload = async() => {
+    const handleUpload = async () => {
+        setLoad(true);
         for (var i = 0; i < dataStep4.length; i++) {
             const formData = new FormData();
-            formData.append('file', dataStep4[i]);
-            const dataUrlImage = await imageRoomApi.uploadImage(formData)
-            setDataStep4URL.push(dataUrlImage.data.previewUrl)
+            await formData.append('file', dataStep4[i]);
+            const dataUrlImage = await imageRoomApi.uploadImage(formData);
+            await setDataStep4URL.push({ path: dataUrlImage.data.previewUrl });
         }
-        
+        dispatch(setupOwnerSlice.actions.addimagesOfHomeRoom(setDataStep4URL));
+        setLoad(false);
         // setActiveStep((prevActiveStep) => prevActiveStep + 1);
         // setSkipped((prevSkipped) => {
         //     const newSkipped = new Set(prevSkipped.values());
@@ -102,7 +122,17 @@ export default function StepperComponent() {
     };
 
     const handleReset = () => {
-        navigate('/congratulation')
+        console.log('Data gửi xuông: ',setupRoomHost)
+        homeDetailApi
+            .createHomeDetailByHost(setupRoomHost)
+            .then((d: any) => {
+                console.log(d);
+            })
+            .catch((error: AxiosError<any>) => {
+                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+            });
+        // console.log(setupRoomHost)
+        // navigate('/congratulation')
     };
 
     return (
@@ -120,7 +150,7 @@ export default function StepperComponent() {
                         stepProps.completed = false;
                     }
                     return (
-                        <Step key={label} {...stepProps} sx={{fontSize: '30px'}}>
+                        <Step key={label} {...stepProps} sx={{ fontSize: '30px' }}>
                             <StepLabel {...labelProps}>{label}</StepLabel>
                         </Step>
                     );
@@ -139,18 +169,18 @@ export default function StepperComponent() {
                     {/* Content */}
                     {(() => {
                         if (activeStep === 0) {
-                            return <StepperOne setDataStep1={setDataStep1} />
+                            return <StepperOne setDataStep1={setDataStep1} />;
                         } else if (activeStep === 1) {
-                            return <StepperTwo setDataStep2={setDataStep2} />
-                        } else if (activeStep === 2){
-                            return <StepperThree setDataStep3={setDataStep3} />
-                        } else if (activeStep === 3){
-                            return <StepperFour setDataStep4={setDataStep4} />
-                        } else if (activeStep === 4){
-                            return <StepperFive />
-                        } else if (activeStep === 5){
-                            return <StepperSix />
-                        } 
+                            return <StepperTwo setDataStep2={setDataStep2} setCountGuest={setCountGuest} />;
+                        } else if (activeStep === 2) {
+                            return <StepperThree setDataStep3={setDataStep3} />;
+                        } else if (activeStep === 3) {
+                            return <StepperFour setDataStep4={setDataStep4} />;
+                        } else if (activeStep === 4) {
+                            return <StepperFive />;
+                        } else if (activeStep === 5) {
+                            return <StepperSix />;
+                        }
                     })()}
                     <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
                         <Button color="inherit" disabled={activeStep === 0} onClick={handleBack} sx={{ mr: 1 }}>
@@ -163,9 +193,17 @@ export default function StepperComponent() {
                             </Button>
                         )} */}
                         {activeStep === 3 && (
-                            <Button color="inherit" onClick={handleUpload} sx={{ mr: 1 }}>
+                            // <Button color="inherit" onClick={handleUpload} sx={{ mr: 1 }}>
+                            //     Tải ảnh lên
+                            // </Button>
+                            <LoadingButton
+                                variant="contained"
+                                loading={load}
+                                onClick={handleUpload}
+                                style={{ marginRight: '10px', textAlign: 'center' }}
+                            >
                                 Tải ảnh lên
-                            </Button>
+                            </LoadingButton>
                         )}
                         <Button onClick={handleNext}>{activeStep === steps.length - 1 ? 'Finish' : 'Next'}</Button>
                     </Box>
