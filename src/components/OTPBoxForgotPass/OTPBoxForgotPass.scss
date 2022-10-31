@@ -1,4 +1,4 @@
-.otp-box {
+.otp-box-forgot__pass {
     .container {
         display: flex;
         flex-flow: column;
@@ -10,18 +10,27 @@
     .userInput {
         display: flex;
         justify-content: center;
+
+        .input-otp {
+            margin: 10px;
+            height: 35px;
+            width: 65px;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            font-family: arimo;
+            font-size: 1.2rem;
+            background: #eef2f3;
+        }
     }
 
-    input {
-        margin: 10px;
-        height: 35px;
-        width: 65px;
-        border: none;
-        border-radius: 5px;
-        text-align: center;
-        font-family: arimo;
-        font-size: 1.2rem;
-        background: #eef2f3;
+    .forgot__form-input {
+        border: solid;
+        border-color: #eee;
+        padding: 10px 15px;
+        width: 100%;
+        margin-bottom: 5px;
+        font-size: 1.4rem;
     }
 
     h1 {
@@ -33,6 +42,7 @@
     p {
         padding-left: 20px;
         padding-right: 20px;
+        margin-bottom: 5px !important;
     }
 
     .customs-btn { 
@@ -49,10 +59,9 @@
     .customs-btn:hover {
         background: #1e88e5;
     }
-
-    .re-send {
-        width: 100%;
-        text-align: center;
-        cursor: pointer;
+    .message_error {
+        color: blue !important;
+        margin-top: 0 !important;
+        padding-left: 0 !important;
     }
 }

@@ -5,6 +5,8 @@ import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
+import Province from '../../../mockdata/ProvinceVN.json';
+
 export default function SelectedLocate(props:any) {
     const [age, setAge] = React.useState('');
 
@@ -12,8 +14,6 @@ export default function SelectedLocate(props:any) {
         setAge(event.target.value);
         props.setValueStepOne(event.target.value)
     };
-
-    
 
     return (
         <div className='selected-locate'>
@@ -29,9 +29,9 @@ export default function SelectedLocate(props:any) {
                     <MenuItem value="">
                         <em>None</em>
                     </MenuItem>
-                    <MenuItem value={10}>Đà Nẳng</MenuItem>
-                    <MenuItem value={20}>Hội An</MenuItem>
-                    <MenuItem value={30}>Hồ Chí Minh</MenuItem>
+                    {Province?.map((province) => (
+                        <MenuItem value={province.code} style={{fontSize: '15px'}} key={province.code}>{province.name}</MenuItem>
+                    ))}
                 </Select>
                 <FormHelperText>With label + helper text</FormHelperText>
             </FormControl>

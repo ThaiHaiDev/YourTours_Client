@@ -4,7 +4,7 @@ import './OTPBox.scss';
 
 import { useSnackbar } from 'notistack';
 import { AxiosError } from 'axios';
-import { OTPErrorResponse, ReSendOTPRequest } from '../../share/models/auth';
+import { OTPErrorResponse } from '../../share/models/auth';
 
 interface OTPBoxData {
     handleSubmitOTP: (otp: {}) => void;
@@ -66,7 +66,7 @@ const OTPBox = (props: OTPBoxData) => {
         authApi
             .reSendOtp(newDataReSend)
             .then((dataRe) => {
-                console.log(dataRe);
+                enqueueSnackbar('Chúng tôi đã gửi OTP lại đến email của bạn', { variant: 'success' });
             })
             .catch((error: AxiosError<OTPErrorResponse>) => {
                 enqueueSnackbar(error.response?.data.message, { variant: 'error' });

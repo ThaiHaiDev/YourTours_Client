@@ -13,12 +13,21 @@ import StepperFour from '../../pages/SetupOwner/StepperFour/StepperFour';
 import StepperFive from '../../pages/SetupOwner/StepperFive/StepperFive';
 import StepperSix from '../../pages/SetupOwner/StepperSix/StepperSix';
 import { useNavigate } from 'react-router-dom';
+import imageRoomApi from '../../services/imageRoomApi';
 
 const steps = ['Setup vị trí', 'Setup phòng', 'Setup tiện ích', 'Setup ảnh', 'Mô tả phòng', 'Chi tiết phòng'];
 
 export default function StepperComponent() {
     const [activeStep, setActiveStep] = React.useState(0);
     const [skipped, setSkipped] = React.useState(new Set<number>());
+
+    const [lodding, setLoadding] = React.useState<boolean>(false)
+
+    const [dataStep1, setDataStep1] = React.useState<string>('')
+    const setDataStep2:any = []
+    const [dataStep3, setDataStep3] = React.useState<any>([])
+    const [dataStep4, setDataStep4] = React.useState<File[]>([])
+    const setDataStep4URL:any = []
 
     const navigate = useNavigate();
 
@@ -37,6 +46,22 @@ export default function StepperComponent() {
             newSkipped.delete(activeStep);
         }
 
+        if (activeStep === 0) {
+            console.log('Data 1: ',dataStep1)
+        }
+
+        else if (activeStep === 1) {
+            console.log('Data 2: ',setDataStep2)
+        }
+
+        else if (activeStep === 2) {
+            console.log('Data 3: ',dataStep3)
+        }
+
+        else if (activeStep === 3) {
+            console.log('Data 4: ',setDataStep4URL)
+        }
+        
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
         setSkipped(newSkipped);
     };
@@ -58,6 +83,22 @@ export default function StepperComponent() {
             newSkipped.add(activeStep);
             return newSkipped;
         });
+    };
+
+    const handleUpload = async() => {
+        for (var i = 0; i < dataStep4.length; i++) {
+            const formData = new FormData();
+            formData.append('file', dataStep4[i]);
+            const dataUrlImage = await imageRoomApi.uploadImage(formData)
+            setDataStep4URL.push(dataUrlImage.data.previewUrl)
+        }
+        
+        // setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        // setSkipped((prevSkipped) => {
+        //     const newSkipped = new Set(prevSkipped.values());
+        //     newSkipped.add(activeStep);
+        //     return newSkipped;
+        // });
     };
 
     const handleReset = () => {
@@ -98,13 +139,13 @@ export default function StepperComponent() {
                     {/* Content */}
                     {(() => {
                         if (activeStep === 0) {
-                            return <StepperOne />
+                            return <StepperOne setDataStep1={setDataStep1} />
                         } else if (activeStep === 1) {
-                            return <StepperTwo />
+                            return <StepperTwo setDataStep2={setDataStep2} />
                         } else if (activeStep === 2){
-                            return <StepperThree />
+                            return <StepperThree setDataStep3={setDataStep3} />
                         } else if (activeStep === 3){
-                            return <StepperFour />
+                            return <StepperFour setDataStep4={setDataStep4} />
                         } else if (activeStep === 4){
                             return <StepperFive />
                         } else if (activeStep === 5){
@@ -116,9 +157,14 @@ export default function StepperComponent() {
                             Back
                         </Button>
                         <Box sx={{ flex: '1 1 auto' }} />
-                        {isStepOptional(activeStep) && (
+                        {/* {isStepOptional(activeStep) && (
                             <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
                                 Skip
+                            </Button>
+                        )} */}
+                        {activeStep === 3 && (
+                            <Button color="inherit" onClick={handleUpload} sx={{ mr: 1 }}>
+                                Tải ảnh lên
                             </Button>
                         )}
                         <Button onClick={handleNext}>{activeStep === steps.length - 1 ? 'Finish' : 'Next'}</Button>
