@@ -1,12 +1,15 @@
-import './Test.scss';
+import './DropdownUser.scss';
 
 import YardOutlinedIcon from '@mui/icons-material/YardOutlined';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import SettingsIcon from '@mui/icons-material/Settings';
+
 import React, { useState, useEffect, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { Link } from 'react-router-dom';
 
-function Test() {
+function DropdownUser() {
     return (
         <div className="info-dropdown">
             <NavItem icon={<AccountCircleIcon />}>
@@ -64,13 +67,14 @@ function DropdownMenu() {
                 onEnter={calcHeight}
             >
                 <div className="menu">
-                    <DropdownItem>My Profile</DropdownItem>
-                    <DropdownItem leftIcon={<YardOutlinedIcon />} rightIcon={<YardOutlinedIcon />} goToMenu="settings">
+                    <DropdownItem>Tài khoản</DropdownItem>
+                    <DropdownItem>Danh sách yêu thích</DropdownItem>
+                    <DropdownItem>Trợ giúp</DropdownItem>
+                    <DropdownItem>Quản lý nhà / phòng cho thuê</DropdownItem>
+                    <DropdownItem leftIcon={<SettingsIcon />} rightIcon={<NavigateNextIcon />} goToMenu="settings">
                         Settings
                     </DropdownItem>
-                    <DropdownItem leftIcon="🦧" rightIcon={<YardOutlinedIcon />} goToMenu="animals">
-                        Animals
-                    </DropdownItem>
+                    <DropdownItem>Đăng xuất</DropdownItem>
                 </div>
             </CSSTransition>
 
@@ -113,9 +117,4 @@ function DropdownMenu() {
     );
 }
 
-export default Test
-
-
-
-
-
+export default DropdownUser

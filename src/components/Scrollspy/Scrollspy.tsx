@@ -12,7 +12,7 @@ const ScrollspyComponent = (props : any) => {
                         <section
                             id={child.to}
                             key={index}
-                            style={{ marginLeft: '30%',  }}
+                            style={{ marginLeft: '28%',  }}
                         >
                             {child?.comp}
                         </section>
@@ -24,12 +24,12 @@ const ScrollspyComponent = (props : any) => {
                         style={{
                             position: 'fixed',
                             height: '100vh',
-                            marginTop: '120px',
+                            marginTop: '110px',
                             top: '0',
                             backgroundColor: 'white',
                             listStyle: 'none',
                             color: 'var(--border-scroll)',
-                            fontSize: '1.5rem',
+                            fontSize: '1.4rem',
                             fontWeight: '600',
                             paddingLeft: '150px'
                         }}

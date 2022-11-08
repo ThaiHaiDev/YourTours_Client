@@ -1,3 +1,33 @@
 .owner__setting {
     position: relative;
+
+    .welcome-card {
+        position: relative;
+        width: 100%;
+        height: 300px;
+        background: linear-gradient(45deg, #498dc5bd, #ef5350);
+
+        .welcome-content {
+            padding-top: 100px;
+            padding-left: 150px;
+            h1 {
+                color: var(--white-color);
+            }
+            p {
+                color: var(--white-color);
+                font-size: 16px;
+            }
+        }
+
+        .tab-content {
+            margin-top: 150px;
+            padding-left: 100px;
+            padding-right: 100px;
+
+            button {
+                font-size: 16px;
+                text-transform: none;
+            }
+        }
+    }
 }

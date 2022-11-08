@@ -14,6 +14,8 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store'
 import ForgotPass from '../pages/AuthPage/ForgotPass/ForgotPass';
 import IntroSettingOwnerPage from '../pages/IntroSettingOwnerPage/IntroSettingOwnerPage';
+import Test from '../pages/Test/Test';
+import ManagerRoom from '../pages/OwnerSetting/ManagerRoom/ManagerRoom';
 
 const Auth = () => {
     const user = useSelector((state: RootState) => state.user)
@@ -28,8 +30,11 @@ const Auth = () => {
             <Route path="/confirm" element={<ConfirmOwner />} />
             <Route path="/congratulation" element={<CongratulationPage />} />
             <Route path="/intro-host" element={<IntroSettingOwnerPage />} />
-            <Route path="/host/setting" element={<OwnerSetting />} />
+            <Route path="/test" element={<Test />} />
+            <Route path="/host" element={<OwnerSetting />} />
+            <Route path="/host/setting" element={<ManagerRoom />} />
             <Route path="/host/setting/convenient" element={<ConvenientOwnerSetting />} />
+            
             {/* <Route path='*' exact={true} element={<NotFoundPage />} /> */}
         </Routes>
     );
