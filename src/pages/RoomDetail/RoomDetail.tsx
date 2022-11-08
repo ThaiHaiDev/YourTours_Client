@@ -81,6 +81,7 @@ const RoomDetail = () => {
                                     <p>Số khách</p>
                                     <Dropdown />
                                 </div>
+                                
                                 <div className="line">
                                     <hr />
                                 </div>
