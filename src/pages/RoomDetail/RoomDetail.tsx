@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import Convenient from '../../components/Convenient/Convenient';
 import DateGo from '../../components/DateGo/DateGo';
 import Dropdown from '../../components/Dropdown/Dropdown';
+import DialogConvenient from '../../components/DialogConvenient/DialogConvenient';
 
 const RoomDetail = () => {
     return (
@@ -65,8 +66,22 @@ const RoomDetail = () => {
                                 <p className="count-detail">4 khách . 2 phòng ngủ . 2 giường . 2 phòng tắm</p>
                                 <hr className="line" />
                                 <Convenient />
+                                <DialogConvenient />
+                                <hr className="line" />
+                                
+                                <div className="desc-room">
+                                    <h1>Giới thiệu về nhà / phòng</h1>
+                                    <p>
+                                        Rooms are equipped with full facilities: mineral water, free tea, coffee, cable TV, free Wi-Fi, IDD telephone, air conditioning, wardrobe, mini bar, hairdryer, electric kettle, Hooks, Hangers, Towels, Restroom with standing bathtub, Free toiletries in bathroom, Child safety door.
+                                        Rooms are equipped with full facilities: mineral water, free tea, coffee, cable TV, free Wi-Fi, IDD telephone, air conditioning, wardrobe, mini bar, hairdryer, electric kettle, Hooks, Hangers, Towels, Restroom with standing bathtub, Free toiletries in bathroom, Child safety door.
+                                        Rooms are equipped with full facilities: mineral water, free tea, coffee, cable TV, free Wi-Fi, IDD telephone, air conditioning, wardrobe, mini bar, hairdryer, electric kettle, Hooks, Hangers, Towels, Restroom with standing bathtub, Free toiletries in bathroom, Child safety door.
+                                    </p>
+                                </div>
+
+                                <hr className="line" />
                             </div>
                         </div>
+
                         <div className="col l-4">
                             <div className="card-book__detail">
                                 <div className="price-room">700.000 VND</div>
@@ -81,7 +96,7 @@ const RoomDetail = () => {
                                     <p>Số khách</p>
                                     <Dropdown />
                                 </div>
-                                
+
                                 <div className="line">
                                     <hr />
                                 </div>
