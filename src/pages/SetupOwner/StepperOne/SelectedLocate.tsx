@@ -18,7 +18,7 @@ export default function SelectedLocate(props:any) {
     return (
         <div className='selected-locate'>
             <FormControl sx={{ m: 1, minWidth: 120, width: '50%' }}>
-                <InputLabel id="demo-simple-select-helper-label">Tỉnh thành</InputLabel>
+                <InputLabel id="demo-simple-select-helper-label" style={{zIndex: '80', background: 'white', paddingRight: '5px'}}>Province</InputLabel>
                 <Select
                     labelId="demo-simple-select-helper-label"
                     id="demo-simple-select-helper"
@@ -33,7 +33,7 @@ export default function SelectedLocate(props:any) {
                         <MenuItem value={province.code} style={{fontSize: '15px'}} key={province.code}>{province.name}</MenuItem>
                     ))}
                 </Select>
-                <FormHelperText>With label + helper text</FormHelperText>
+                <FormHelperText sx={{fontSize: '10px'}}>Vui lòng chọn tỉnh thành</FormHelperText>
             </FormControl>
         </div>
     );

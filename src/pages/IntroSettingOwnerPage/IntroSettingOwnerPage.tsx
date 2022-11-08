@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import './Congratulation.scss';
+import './IntroSettingOwnerPage.scss';
 
-const CongratulationPage = () => {
+const IntroSettingOwnerPage = () => {
     const navigate = useNavigate();
 
     const backHome = () => {
@@ -9,11 +9,11 @@ const CongratulationPage = () => {
     }
 
     const nextPage = () => {
-        navigate('/confirm');
+        navigate('/stepsetupowner')
     }
 
     return (
-        <div className="congratulation-page">
+        <div className="introsettingowner-page">
             <div className="row">
                 <div className="col l-6">
                     <div className="sidebar__logo" onClick={backHome}>
@@ -26,13 +26,13 @@ const CongratulationPage = () => {
                 </div>
                 <div className="col l-6">
                     <div className="text-thanks">
-                        <h1>Hân hạnh chào đón Hải!</h1>
+                        <h1>Trở thành chủ nhà sau 6 bước đơn giản</h1>
                         <p>
-                            Chủ nhà là trung tâm trong mọi hoạt động của chúng tôi và chúng tôi rất mong bạn sẽ được
-                            trải nghiệm sự kì diệu của việc đón tiếp khách.
+                            Hãy tham gia cùng chúng tôi. Chúng tôi sẽ trợ giúp bạn qua từng bước của quy trình
                         </p>
                         <h2>-- Curry</h2>
                     </div>
+                    <p className='btn-out' onClick={backHome}>Thoát</p>
                     <button type="submit" onClick={nextPage}>Tiếp tục</button>
                 </div>
             </div>
@@ -40,4 +40,4 @@ const CongratulationPage = () => {
     );
 };
 
-export default CongratulationPage;
+export default IntroSettingOwnerPage;

@@ -116,7 +116,7 @@ export default function StepperComponent() {
         setLoad(false);
     };
 
-    const handleReset = () => {
+    const handlePostRoom = () => {
         // console.log('Data gửi xuông: ',setupRoomHost)
         homeDetailApi
             .createHomeDetailByHost(setupRoomHost)
@@ -127,7 +127,6 @@ export default function StepperComponent() {
             .catch((error: AxiosError<any>) => {
                 enqueueSnackbar(error.response?.data.message, { variant: 'error' });
             });
-        // console.log(setupRoomHost)
     };
 
     return (
@@ -156,7 +155,7 @@ export default function StepperComponent() {
                     <Typography sx={{ mt: 2, mb: 1 }}>All steps completed - you&apos;re finished</Typography>
                     <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
                         <Box sx={{ flex: '1 1 auto' }} />
-                        <Button onClick={handleReset}>Reset</Button>
+                        <Button onClick={handlePostRoom}>Đăng lên</Button>
                     </Box>
                 </React.Fragment>
             ) : (
@@ -177,7 +176,7 @@ export default function StepperComponent() {
                             return <StepperSix />;
                         }
                     })()}
-                    <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+                    <Box sx={{ display: 'flex', pt: 2, position: 'absolute', right: '0', bottom: '-90vh' }}>
                         <Button color="inherit" disabled={activeStep === 0} onClick={handleBack} sx={{ mr: 1 }}>
                             Back
                         </Button>

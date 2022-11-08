@@ -36,7 +36,7 @@ const Navbar = () => {
                     <NavLink to="/" onClick={() => setIsActive(!isActive)}>
                         Book
                     </NavLink>
-                    <NavLink to="/stepsetupowner">Owner</NavLink>
+                    <NavLink to="/intro-host">Owner</NavLink>
                     <NavLink to="/info-player">None</NavLink>
                     <NavLink to="/contacts">Contacts</NavLink>
                 </div>

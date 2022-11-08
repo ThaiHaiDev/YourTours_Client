@@ -9,7 +9,7 @@ const setupOwnerSlice = createSlice({
             description: '',
             wifi: '',
             passWifi: '',
-            costPerNightDefault: 12345,
+            costPerNightDefault: '12345',
             numberOfGuests: 0,
             imagesOfHome: [],
             roomsOfHome: [],

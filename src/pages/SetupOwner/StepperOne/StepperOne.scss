@@ -1,10 +1,13 @@
 .step-one {
-    margin-top: 20px;
+    margin-top: -50px;
+    position: absolute;
+    width: 100%;
 
     .l-6:nth-child(1) {
         position: relative;
-        height: 80vh;
+        height: 100vh;
         background: red;
+        z-index: -1;
 
         h1 {
             text-align: center;
@@ -16,13 +19,14 @@
 
     .l-6:nth-child(2) {
         position: relative;
-        height: 80vh;
+        height: 90vh;
+        display: grid;
+        justify-items: center; /* Căn giữa chiều ngang */
+        align-content: center; /* Căn giữa chiều dọc */
 
         .selected-locate {
-            position: absolute;
-            width: 100%;
-            top: 45%;
-            left: 25%;
+            width: 600px;
+            margin-left: 150px;
 
             li {
                 font-size: 20px !important;

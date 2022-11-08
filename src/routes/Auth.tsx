@@ -13,6 +13,7 @@ import StepperMain from '../pages/SetupOwner/StepperMain/StepperMain';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store'
 import ForgotPass from '../pages/AuthPage/ForgotPass/ForgotPass';
+import IntroSettingOwnerPage from '../pages/IntroSettingOwnerPage/IntroSettingOwnerPage';
 
 const Auth = () => {
     const user = useSelector((state: RootState) => state.user)
@@ -26,6 +27,7 @@ const Auth = () => {
             <Route path="/forgotpassword" element={<ForgotPass />} />
             <Route path="/confirm" element={<ConfirmOwner />} />
             <Route path="/congratulation" element={<CongratulationPage />} />
+            <Route path="/intro-host" element={<IntroSettingOwnerPage />} />
             <Route path="/host/setting" element={<OwnerSetting />} />
             <Route path="/host/setting/convenient" element={<ConvenientOwnerSetting />} />
             {/* <Route path='*' exact={true} element={<NotFoundPage />} /> */}
