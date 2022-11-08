@@ -3,7 +3,17 @@ import './ConfirmOwner.scss';
 
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
+import Province from '../../mockdata/ProvinceVN.json';
+
+import { RootState } from '../../redux/store';
+import { useSelector } from 'react-redux';
+
+import formatPrice from '../../utils/formatPrice';
+
 const ConfirmOwner = () => {
+    const setupRoomHost = useSelector((state: RootState) => state.settingowner.detailRoom);
+    const provinceName = Province.filter((pro:any) => {return parseInt(pro.code) === parseInt(setupRoomHost.provinceCode)})
+    const priceRoom = formatPrice(setupRoomHost.costPerNightDefault);
     return (
         <div className="confirm-page">
             <div className="nav">
@@ -23,6 +33,7 @@ const ConfirmOwner = () => {
                             height: '80vh',
                             display: 'grid',
                             alignContent: 'center',
+                            paddingLeft: '50px'
                         }}
                     >
                         <h1>Bạn đã sẵn sàng đăng!</h1>
@@ -55,6 +66,7 @@ const ConfirmOwner = () => {
                             height: '90vh',
                             display: 'grid',
                             alignContent: 'center',
+                            paddingRight: '50px'
                         }}
                     >
                         <div className="card">
@@ -64,9 +76,9 @@ const ConfirmOwner = () => {
                                     alt=""
                                 />
                             </div>
-                            <h2>Khách sạn hội an</h2>
-                            <p>Quảng nam, Việt Nam</p>
-                            <span>700.000 VND / ngày</span>
+                            <h2>{setupRoomHost.name}</h2>
+                            <p>{`${provinceName[0]?.name}, Việt Nam`}</p>
+                            <span>{`${priceRoom} VND / ngày`}</span>
                         </div>
 
                         <button className="btn-post">Đăng phòng/nhà cho thuê</button>

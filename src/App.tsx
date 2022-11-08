@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import Test from './pages/Test/Test';
 import Auth from './routes/Auth';
 
 
