@@ -32,6 +32,7 @@ export default function DialogConvenient() {
                 fullWidth={true}
                 maxWidth='md'
             >
+                <div>
                 <DialogTitle id="alert-dialog-title" sx={{fontSize: '18px', fontWeight: 'bold', width: '600px', marginBottom: '20px'}}>{"Nơi này có những gì cho bạn"}</DialogTitle>
                     <DialogContent sx={{fontSize: '16px', fontWeight: 'bold'}}>
                         Phòng tắm
@@ -80,11 +81,12 @@ export default function DialogConvenient() {
                         </DialogContentText>
                         <hr />
                     </DialogContent>
+                </div>
                     
                 <DialogActions>
-                    <Button onClick={handleClose}>Disagree</Button>
-                    <Button onClick={handleClose} autoFocus>
-                        Agree
+                    <Button onClick={handleClose} color='error' sx={{fontSize: '14px'}}>Close</Button>
+                    <Button onClick={handleClose} autoFocus sx={{fontSize: '14px', textTransform: 'none'}}>
+                        OK
                     </Button>
                 </DialogActions>
             </Dialog>

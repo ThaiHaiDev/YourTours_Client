@@ -1,0 +1,15 @@
+.DateRangeDetail {
+    margin-top: 30px;
+
+    .rdrDefinedRangesWrapper {
+        display: none;
+    }
+
+    .info_date {
+        font-size: 15px;
+        margin: 0;
+        padding-bottom: 10px;
+        padding-top: 15px;
+        color: var(--text-color);
+    }
+}
