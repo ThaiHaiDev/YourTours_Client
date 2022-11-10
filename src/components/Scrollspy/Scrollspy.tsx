@@ -3,16 +3,19 @@ import Scrollspy from 'react-scrollspy';
 
 import './Scrollspy.scss';
 
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+
 const ScrollspyComponent = (props : any) => {
     return (
         <div className="scroll-spy">
+            {props.backUrl && <Link to={props.backUrl} style={{ fontSize: '16px', paddingTop: '-40px', paddingLeft: '150px', position: 'fixed', color: 'black'}}><ArrowBackIosIcon />Quay lại trang</Link>}
             <div>
                 <div>
                     {props.children?.map((child: any, index : number) => (
                         <section
                             id={child.to}
                             key={index}
-                            style={{ marginLeft: '28%',  }}
+                            style={{ marginLeft: '28%', paddingTop: '20px' }}
                         >
                             {child?.comp}
                         </section>
@@ -24,7 +27,7 @@ const ScrollspyComponent = (props : any) => {
                         style={{
                             position: 'fixed',
                             height: '100vh',
-                            marginTop: '110px',
+                            marginTop: '130px',
                             top: '0',
                             backgroundColor: 'white',
                             listStyle: 'none',

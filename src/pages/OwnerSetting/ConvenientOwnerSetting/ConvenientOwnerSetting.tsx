@@ -2,12 +2,15 @@ import ConvenientItem from "../../../components/ConvenientItem/ConvenientItem";
 import NavbarOwner from "../../../components/NavbarOwner/NavbarOwner";
 import ScrollspyComponent from "../../../components/Scrollspy/Scrollspy";
 
+
 const infoLink = {
     name: 'Tiện nghi',
     urlLink: '/host/setting/convenient',
 };
 
 const item = ['', 'section1', 'section2', 'section3', 'section4', 'section5', 'section6', 'section7'];
+
+const backUrl = '/host/setting'
 
 const children = [
     {
@@ -59,7 +62,7 @@ const ConvenientOwnerSetting = () => {
     return (
         <div className="owner-convenient__setting">
             <NavbarOwner />
-            <ScrollspyComponent children={children} item={item} infoLink={infoLink} />
+            <ScrollspyComponent children={children} item={item} infoLink={infoLink} backUrl={backUrl} />
         </div>
     );
 };

@@ -6,6 +6,7 @@ import TittleSetting from '../../../components/HostSetting/TitleSetting/TitleSet
 
 import './ManagerRoom.scss';
 import ConvenientSetting from '../../../components/HostSetting/ConvenientSetting/ConvenientSetting';
+import CountRoomSetting from '../../../components/HostSetting/CountRoomSetting/CountRoomSetting';
 
 const infoLink = {
     name: 'Chi tiết nhà cho thuê',
@@ -31,7 +32,7 @@ const children = [
         id: '#section3',
         to: 'section3',
         info: 'Chổ ở và phòng',
-        comp: <TittleSetting />,
+        comp: <CountRoomSetting />,
     },
     {
         id: '#section4',

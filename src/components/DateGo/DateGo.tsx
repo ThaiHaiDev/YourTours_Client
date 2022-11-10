@@ -37,7 +37,6 @@ const DateRangePickerComp = (props:any) => {
 
     // hide dropdown on ESC press
     const hideOnEscape = (e:any) => {
-        // console.log(e.key)
         if (e.key === 'Escape') {
             setOpen(false);
         }
