@@ -6,7 +6,9 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-export default function AlertDialog() {
+import './DialogConvenient.scss';
+
+export default function DialogConvenient() {
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -18,27 +20,73 @@ export default function AlertDialog() {
     };
 
     return (
-        <div>
-            <Button variant="outlined" onClick={handleClickOpen}>
-                Open alert dialog
+        <div className='dialog-convenient'>
+            <Button variant="outlined" onClick={handleClickOpen} className='btn-show' >
+                Hiện tất cả các tiện nghi
             </Button>
             <Dialog
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
+                fullWidth={true}
+                maxWidth='md'
             >
-                <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
-                <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                        Let Google help apps determine location. This means sending anonymous location data to Google,
-                        even when no apps are running.
-                    </DialogContentText>
-                </DialogContent>
+                <div>
+                <DialogTitle id="alert-dialog-title" sx={{fontSize: '18px', fontWeight: 'bold', width: '600px', marginBottom: '20px'}}>{"Nơi này có những gì cho bạn"}</DialogTitle>
+                    <DialogContent sx={{fontSize: '16px', fontWeight: 'bold'}}>
+                        Phòng tắm
+                        <DialogContentText id="alert-dialog-description" sx={{fontSize: '14px', marginTop: '20px'}}>
+                            Sản phẩm vệ sinh
+                        </DialogContentText>
+                        <hr />
+                        <DialogContentText id="alert-dialog-description" sx={{fontSize: '14px', marginTop: '20px'}}>
+                            Vòi sen tắm ngoài trời
+                        </DialogContentText>
+                        <hr />
+                    </DialogContent>
+
+                    <DialogContent sx={{fontSize: '16px', fontWeight: 'bold'}}>
+                        Phòng tắm
+                        <DialogContentText id="alert-dialog-description" sx={{fontSize: '14px', marginTop: '20px'}}>
+                            Sản phẩm vệ sinh
+                        </DialogContentText>
+                        <hr />
+                        <DialogContentText id="alert-dialog-description" sx={{fontSize: '14px', marginTop: '20px'}}>
+                            Vòi sen tắm ngoài trời
+                        </DialogContentText>
+                        <hr />
+                    </DialogContent>
+
+                    <DialogContent sx={{fontSize: '16px', fontWeight: 'bold'}}>
+                        Phòng tắm
+                        <DialogContentText id="alert-dialog-description" sx={{fontSize: '14px', marginTop: '20px'}}>
+                            Sản phẩm vệ sinh
+                        </DialogContentText>
+                        <hr />
+                        <DialogContentText id="alert-dialog-description" sx={{fontSize: '14px', marginTop: '20px'}}>
+                            Vòi sen tắm ngoài trời
+                        </DialogContentText>
+                        <hr />
+                    </DialogContent>
+                    
+                    <DialogContent sx={{fontSize: '16px', fontWeight: 'bold'}}>
+                        Phòng tắm
+                        <DialogContentText id="alert-dialog-description" sx={{fontSize: '14px', marginTop: '20px'}}>
+                            Sản phẩm vệ sinh
+                        </DialogContentText>
+                        <hr />
+                        <DialogContentText id="alert-dialog-description" sx={{fontSize: '14px', marginTop: '20px'}}>
+                            Vòi sen tắm ngoài trời
+                        </DialogContentText>
+                        <hr />
+                    </DialogContent>
+                </div>
+                    
                 <DialogActions>
-                    <Button onClick={handleClose}>Disagree</Button>
-                    <Button onClick={handleClose} autoFocus>
-                        Agree
+                    <Button onClick={handleClose} color='error' sx={{fontSize: '14px'}}>Close</Button>
+                    <Button onClick={handleClose} autoFocus sx={{fontSize: '14px', textTransform: 'none'}}>
+                        OK
                     </Button>
                 </DialogActions>
             </Dialog>

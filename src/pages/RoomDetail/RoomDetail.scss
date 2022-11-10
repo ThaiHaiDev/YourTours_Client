@@ -1,5 +1,6 @@
 .info-room {
     margin-top: 30px;
+    position: relative;
 
     .header-room {
         margin-left: 180px;
@@ -95,6 +96,7 @@
         .l-4 {
             background: blue;
             height: 30px;
+            display: block;
         }
 
         .card-book__detail {
@@ -183,6 +185,24 @@
             .line {
                 border: 0.2px solid #e0e0e0;;
             }
+
+            .desc-room {
+                margin-top: 20px;
+
+                p {
+                    font-size: 14px;
+                    line-height: 1.5;
+                }
+            }
+
+            .bed-room {
+                margin-top: 20px;
+
+                p {
+                    font-size: 14px;
+                    line-height: 1.5;
+                }
+            }
         }
 
         .line {
@@ -201,3 +221,9 @@
         }
     }
 }
+
+
+.footer-page {
+    margin-top: 180vh;
+}
+

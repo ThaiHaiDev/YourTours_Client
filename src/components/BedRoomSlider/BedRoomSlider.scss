@@ -1,0 +1,49 @@
+.slider__bedroom {
+    margin-top: 30px;
+    margin-bottom: 50px;
+
+    h1 {
+        font-size: 2rem;
+        margin-left: -10px;
+    }
+
+    .slick-dots {
+        // background: #42a5f5;
+        padding-top: 5px;
+    }
+
+    .slider__item {
+        width: 92%;
+        height: 140px;
+        margin: auto;
+        border-radius: 18px;
+        margin: 5px;
+        margin-left: 10px;
+        cursor: pointer;
+        border: 1px solid var(--text-color);
+        display: grid;
+        justify-content: center;
+
+
+        .icon-bed {
+            display: flex;
+            margin-top: 25px;
+            padding-left: 15px;
+
+            svg {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+        .title-bed {
+            margin-top: -15px;
+
+            p {
+                padding-left: 3px;
+            }
+        }
+
+        
+    }
+}

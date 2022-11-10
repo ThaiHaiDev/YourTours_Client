@@ -9,10 +9,14 @@ import { Link } from 'react-router-dom';
 import Convenient from '../../components/Convenient/Convenient';
 import DateGo from '../../components/DateGo/DateGo';
 import Dropdown from '../../components/Dropdown/Dropdown';
+import DialogConvenient from '../../components/DialogConvenient/DialogConvenient';
+import DateRangeDetail from '../../components/DateRangeDetail/DateRangeDetail';
+import Footer from '../../components/Footer/Footer';
+import BedRoomSlider from '../../components/BedRoomSlider/BedRoomSlider';
 
 const RoomDetail = () => {
     return (
-        <div>
+        <div className='detail-room'>
             <Navbar />
             <div className="info-room">
                 <div className="header-room">
@@ -59,15 +63,39 @@ const RoomDetail = () => {
                 <ListImage />
                 <div className="about-room">
                     <div className="row">
-                        <div className="col l-8">
+                        <div className="col l-8 m-7 c-12">
                             <div className="title-room">
                                 <h1>Toàn bộ biệt thự. Chủ nhà Hải Nguyễn</h1>
                                 <p className="count-detail">4 khách . 2 phòng ngủ . 2 giường . 2 phòng tắm</p>
                                 <hr className="line" />
                                 <Convenient />
+                                <DialogConvenient />
+                                <hr className="line" />
+                                
+                                <div className="desc-room">
+                                    <h1>Giới thiệu về nhà / phòng</h1>
+                                    <p>
+                                        Rooms are equipped with full facilities: mineral water, free tea, coffee, cable TV, free Wi-Fi, IDD telephone, air conditioning, wardrobe, mini bar, hairdryer, electric kettle, Hooks, Hangers, Towels, Restroom with standing bathtub, Free toiletries in bathroom, Child safety door.
+                                        Rooms are equipped with full facilities: mineral water, free tea, coffee, cable TV, free Wi-Fi, IDD telephone, air conditioning, wardrobe, mini bar, hairdryer, electric kettle, Hooks, Hangers, Towels, Restroom with standing bathtub, Free toiletries in bathroom, Child safety door.
+                                        Rooms are equipped with full facilities: mineral water, free tea, coffee, cable TV, free Wi-Fi, IDD telephone, air conditioning, wardrobe, mini bar, hairdryer, electric kettle, Hooks, Hangers, Towels, Restroom with standing bathtub, Free toiletries in bathroom, Child safety door.
+                                    </p>
+                                </div>
+
+                                <hr className="line" />
+                                <div className="bed-room">
+                                    <h1>Nơi bạn sẽ ngủ nghỉ</h1>
+                                    <BedRoomSlider />
+                                </div>
+
+                                <hr className="line" />
+                                <DateRangeDetail size="horizontal" />
+
+                                <hr className="line" />
+                                <h1>Đánh giá</h1>
                             </div>
                         </div>
-                        <div className="col l-4">
+
+                        <div className="col l-4 m-5 c-12">
                             <div className="card-book__detail">
                                 <div className="price-room">700.000 VND</div>
                                 <div className="date-book">
@@ -81,7 +109,7 @@ const RoomDetail = () => {
                                     <p>Số khách</p>
                                     <Dropdown />
                                 </div>
-                                
+
                                 <div className="line">
                                     <hr />
                                 </div>
@@ -98,6 +126,9 @@ const RoomDetail = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className='footer-page'>
+                <Footer />
             </div>
         </div>
     );

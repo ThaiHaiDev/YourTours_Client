@@ -30,13 +30,25 @@ const children = [
     {
         id: '#section3',
         to: 'section3',
-        info: 'Vị trí',
-        comp: <LocationSetting />,
+        info: 'Chổ ở và phòng',
+        comp: <TittleSetting />,
     },
     {
         id: '#section4',
         to: 'section4',
+        info: 'Vị trí',
+        comp: <LocationSetting />,
+    },
+    {
+        id: '#section5',
+        to: 'section5',
         info: 'Tiện nghi',
+        comp: <ConvenientSetting />,
+    },
+    {
+        id: '#section6',
+        to: 'section6',
+        info: 'Định giá và tình trạng phòng',
         comp: <ConvenientSetting />,
     },
 ];
