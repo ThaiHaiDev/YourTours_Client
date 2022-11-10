@@ -21,10 +21,21 @@ function DropdownUser() {
 
 function NavItem(props : any) {
     const [open, setOpen] = useState(false);
+    const refOne = useRef<any>(null);
+
+    useEffect(() => {
+        document.addEventListener('click', hideOnClickOutside, true);
+    }, []);
+
+    const hideOnClickOutside = (e : any) => {
+        if (refOne.current && !refOne.current.contains(e.target)) {
+            setOpen(false);
+        }
+    };
 
     return (
-        <li className="nav-item">
-            <Link to="#" className="icon-button" onClick={() => setOpen(!open)}>
+        <li className="nav-item" ref={refOne}>
+            <Link to="#" className="icon-button" onClick={() => setOpen(!open)} >
                 {props.icon}
             </Link>
 
@@ -41,6 +52,7 @@ function DropdownMenu() {
     useEffect(() => {
         setMenuHeight(dropdownRef.current?.firstChild.offsetHeight);
     }, []);
+    
 
     function calcHeight(el:any) {
         const height = el.offsetHeight;
