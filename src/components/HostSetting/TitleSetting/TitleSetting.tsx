@@ -4,7 +4,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-export default function TittleSetting() {
+export default function TittleSetting(props: any) {
     const [expanded, setExpanded] = React.useState<string | false>(false);
 
     const handleChange = (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
@@ -17,7 +17,7 @@ export default function TittleSetting() {
             <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1bh-content" id="panel1bh-header">
                     <p style={{ width: '33%', flexShrink: 0 }}>Tiêu đề phòng cho thuê</p>
-                    <p style={{ color: 'text.secondary' }}>Khách Sạn Hoài Niệm Hội An</p>
+                    <p style={{ color: 'text.secondary' }}>{props.infoRoom.name}</p>
                 </AccordionSummary>
                 <AccordionDetails>
                     <p>
@@ -29,7 +29,7 @@ export default function TittleSetting() {
             <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel2bh-content" id="panel2bh-header">
                     <p style={{ width: '33%', flexShrink: 0 }}>Mô tả</p>
-                    <p style={{ color: 'text.secondary' }}>Hải big mouse nè</p>
+                    <p style={{ color: 'text.secondary' }}>{props.infoRoom.desc}</p>
                 </AccordionSummary>
                 <AccordionDetails>
                     <p>
@@ -41,7 +41,7 @@ export default function TittleSetting() {
             <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel3bh-content" id="panel3bh-header">
                     <p style={{ width: '33%', flexShrink: 0 }}>Hướng dẫn</p>
-                    <p style={{ color: 'text.secondary' }}>Um ba la xi bùa</p>
+                    <p style={{ color: 'text.secondary' }}>{props.infoRoom.guide}</p>
                 </AccordionSummary>
                 <AccordionDetails>
                     <p>
@@ -53,7 +53,7 @@ export default function TittleSetting() {
             <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel4bh-content" id="panel4bh-header">
                     <p style={{ width: '33%', flexShrink: 0 }}>Chính sách hoàn tiền</p>
-                    <p style={{ color: 'text.secondary' }}>Có cái đéo</p>
+                    <p style={{ color: 'text.secondary' }}>{props.infoRoom.refundPolicy}</p>
                 </AccordionSummary>
                 <AccordionDetails>
                     <p>Có cái đéo</p>

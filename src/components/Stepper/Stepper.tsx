@@ -22,9 +22,10 @@ import { RootState } from '../../redux/store';
 import homeDetailApi from '../../services/homeDetailApi';
 import { useSnackbar } from 'notistack';
 import { AxiosError } from 'axios';
+
 import { RoomOfHomeCreateRequest } from '../../share/models/roomHome';
 import { ConvenientOptionShow } from '../../share/models/convenient';
-import { ImageHomeDetail } from '../../share/models/imageList';
+import { ImageHomeDetailRequest } from '../../share/models/imageList';
 
 const steps = ['Setup vị trí', 'Setup phòng', 'Setup tiện ích', 'Setup ảnh', 'Mô tả phòng', 'Chi tiết phòng'];
 
@@ -34,7 +35,7 @@ export default function StepperComponent() {
 
     const dispatch = useDispatch();
 
-    const setupRoomHost = useSelector((state: RootState) => state.settingowner.detailRoom);
+    const setupRoomHost : any = useSelector((state: RootState) => state.settingowner.detailRoom);
 
     const { enqueueSnackbar } = useSnackbar();
 
@@ -45,7 +46,7 @@ export default function StepperComponent() {
     const [countGuest, setCountGuest] = React.useState<number>(0);
     const [dataStep3, setDataStep3] = React.useState<ConvenientOptionShow[]>([]);
     const [dataStep4, setDataStep4] = React.useState<File[]>([]);
-    const setDataStep4URL: ImageHomeDetail[] = [];
+    const setDataStep4URL: ImageHomeDetailRequest[] = [];
 
     const navigate = useNavigate();
 
@@ -122,6 +123,7 @@ export default function StepperComponent() {
             .createHomeDetailByHost(setupRoomHost)
             .then((dataResponse: any) => {
                 enqueueSnackbar('Đăng kí thành công', { variant: 'success' });
+                dispatch(setupOwnerSlice.actions.addimagesOfHomeRoom(dataResponse.data.thumbnail));
                 navigate('/congratulation')
             })
             .catch((error: AxiosError<any>) => {

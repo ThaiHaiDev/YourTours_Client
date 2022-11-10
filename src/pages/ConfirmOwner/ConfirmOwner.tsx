@@ -14,11 +14,12 @@ const ConfirmOwner = () => {
     const setupRoomHost = useSelector((state: RootState) => state.settingowner.detailRoom);
     const provinceName = Province.filter((pro:any) => {return parseInt(pro.code) === parseInt(setupRoomHost.provinceCode)})
     const priceRoom = formatPrice(setupRoomHost.costPerNightDefault);
+
     return (
         <div className="confirm-page">
             <div className="nav">
                 <NavLink to="#" className="logo">
-                    <img
+                    <img 
                         src="https://cdn6.agoda.net/images/kite-js/logo/agoda/color-default.svg"
                         alt="company logo"
                         className="logo-bg"
@@ -72,7 +73,7 @@ const ConfirmOwner = () => {
                         <div className="card">
                             <div className="img-confirm">
                                 <img
-                                    src="https://a0.muscache.com/im/pictures/c0b5943a-9c0c-449c-ab3b-cf148b8471c3.jpg?im_w=720"
+                                    src={`${setupRoomHost?.imagesOfHome}`}
                                     alt=""
                                 />
                             </div>

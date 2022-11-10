@@ -1,6 +1,13 @@
+import { useNavigate } from 'react-router-dom';
 import './CountRoomSetting.scss';
 
-const CountRoomSetting = () => {
+const CountRoomSetting = (props:any) => {
+    const navigate = useNavigate();
+
+    const handleChangePage = () => {
+        navigate('/host/setting/countroomdetail')
+    }
+
     return (
         <div className="setting-count__room">
             <div className="header-setting__count__room">
@@ -16,12 +23,11 @@ const CountRoomSetting = () => {
 
                 <div className="title-count__room">
                     <h3>Phòng ngủ và không gian khác</h3>
-                    <p>Chỉnh sửa</p>
+                    <p onClick={handleChangePage}>Chỉnh sửa</p>
                 </div>
-                <p className="item-room">Phòng ngủ: 1</p>
-                <p className="item-room">Giường: 1</p>
-                <p className="item-room">Phòng tắm: 1</p>
-                <p className="item-room">Khu vực bổ sung: 2</p>
+                {props?.countRoom?.map((count:any, index:number) => (
+                    <p className="item-room" key={index}>{`${count.roomCategoryName} : ${count.number}`}</p>
+                ))}
                 <p>Khách có thể dùng chung một số khu vực</p>
             </div>
             {/* <ListImage /> */}

@@ -2,14 +2,14 @@ import ListImage from '../../ListImage/ListImage';
 
 import './ImageSetting.scss';
 
-const ImageSetting = () => {
+const ImageSetting = (props:any) => {
     return (
         <div className="setting-image">
             <div className="header-setting__image">
                 <p>Hình ảnh</p>
                 <p>Chỉnh sửa</p>
             </div>
-            <ListImage />
+            <ListImage listImage={props?.listImage} thumbnail={props?.thumbnail} />
         </div>
     );
 };

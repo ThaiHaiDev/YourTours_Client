@@ -16,6 +16,7 @@ import ForgotPass from '../pages/AuthPage/ForgotPass/ForgotPass';
 import IntroSettingOwnerPage from '../pages/IntroSettingOwnerPage/IntroSettingOwnerPage';
 import Test from '../pages/Test/Test';
 import ManagerRoom from '../pages/OwnerSetting/ManagerRoom/ManagerRoom';
+import CountRoomDetailSetting from '../pages/OwnerSetting/CountRoomDetailSetting/CountRoomDetailSetting';
 
 const Auth = () => {
     const user = useSelector((state: RootState) => state.user)
@@ -32,10 +33,11 @@ const Auth = () => {
             <Route path="/intro-host" element={<IntroSettingOwnerPage />} />
             <Route path="/test" element={<Test />} />
             <Route path="/host" element={<OwnerSetting />} />
-            <Route path="/host/setting" element={<ManagerRoom />} />
+            <Route path="/host/setting/:idHome" element={<ManagerRoom />} />
             <Route path="/host/setting/convenient" element={<ConvenientOwnerSetting />} />
+            <Route path="/host/setting/countroomdetail" element={<CountRoomDetailSetting />} />
             
-            {/* <Route path='*' exact={true} element={<NotFoundPage />} /> */}
+            <Route path='*' element={<NotFoundPage />} />
         </Routes>
     );
 };
