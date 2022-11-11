@@ -17,6 +17,7 @@ import IntroSettingOwnerPage from '../pages/IntroSettingOwnerPage/IntroSettingOw
 import Test from '../pages/Test/Test';
 import ManagerRoom from '../pages/OwnerSetting/ManagerRoom/ManagerRoom';
 import CountRoomDetailSetting from '../pages/OwnerSetting/CountRoomDetailSetting/CountRoomDetailSetting';
+import ListRoomOfHost from '../pages/OwnerSetting/ManagerRoom/ListRoomOfHost';
 
 const Auth = () => {
     const user = useSelector((state: RootState) => state.user)
@@ -33,6 +34,7 @@ const Auth = () => {
             <Route path="/intro-host" element={<IntroSettingOwnerPage />} />
             <Route path="/test" element={<Test />} />
             <Route path="/host" element={<OwnerSetting />} />
+            <Route path="/host/setting" element={<ListRoomOfHost />} />
             <Route path="/host/setting/:idHome" element={<ManagerRoom />} />
             <Route path="/host/setting/convenient" element={<ConvenientOwnerSetting />} />
             <Route path="/host/setting/countroomdetail" element={<CountRoomDetailSetting />} />

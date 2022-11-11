@@ -10,6 +10,7 @@ import CountRoomSetting from '../../../components/HostSetting/CountRoomSetting/C
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import homeApi from '../../../services/homeApi';
+import ValuationDiscountSetting from '../../../components/HostSetting/ValuationDiscountSetting/ValuationDiscount';
 
 const infoLink = {
     name: 'Chi tiết nhà cho thuê',
@@ -63,7 +64,7 @@ const ManagerRoom = () => {
             id: '#section6',
             to: 'section6',
             info: 'Định giá và tình trạng phòng',
-            comp: <ConvenientSetting />,
+            comp: <ValuationDiscountSetting />,
         },
     ];
 
