@@ -3,7 +3,7 @@ import { AxiosError } from 'axios';
 
 import React, { useState, useEffect, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../../../components/Navbar/Navbar';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useSnackbar } from 'notistack';
@@ -55,6 +55,8 @@ function DropdownMenu() {
 
     const dispatch = useDispatch();
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         setMenuHeight(dropdownRef.current?.firstChild.offsetHeight);
     }, []);
@@ -88,9 +90,8 @@ function DropdownMenu() {
         authApi
             .otpConfirm(otp)
             .then((dataResend) => {
-                // dispatch(userSlice.actions.signup(data))
                 enqueueSnackbar('Xác thực tài khoản thành công', { variant: 'success' });
-                console.log(dataResend);
+                navigate('/signin');
             })
             .catch((error: AxiosError<OTPErrorResponse>) => {
                 enqueueSnackbar(error.response?.data.message, { variant: 'error' });
