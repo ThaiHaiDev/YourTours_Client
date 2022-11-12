@@ -6,8 +6,9 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { useNavigate } from 'react-router-dom';
 
-export default function ConvenientSetting() {
+export default function ConvenientSetting(props:any) {
     const navigate = useNavigate()
+    const nameConvenient = `${props.convent ? props.convent[0].name : ''}, ${props.convent ? props.convent[1].name : ''}, ...`
 
     const handleChange = () => {
         navigate('/host/setting/convenient')
@@ -19,7 +20,7 @@ export default function ConvenientSetting() {
             <Accordion onClick={handleChange}>
                 <AccordionSummary expandIcon={<NavigateNextIcon />} aria-controls="panel1bh-content" id="panel1bh-header">
                     <p style={{ width: '33%', flexShrink: 0 }}>Tiện ích</p>
-                    <p style={{ color: 'text.secondary' }}>Wifi, ...</p>
+                    <p style={{ color: 'text.secondary' }}>{nameConvenient}</p>
                 </AccordionSummary>
             </Accordion>  
         </div>

@@ -29,6 +29,12 @@ const ManagerRoom = () => {
         refundPolicy: dataHomeDetail?.refundPolicy
     }
 
+    const detailPriceRoom = {
+        costPerNightDefault: dataHomeDetail?.costPerNightDefault,
+        discounts: dataHomeDetail?.discounts,
+        surcharges: dataHomeDetail?.surcharges
+    }
+
     const children = [
         {
             id: '#section1',
@@ -52,25 +58,23 @@ const ManagerRoom = () => {
             id: '#section4',
             to: 'section4',
             info: 'Vị trí',
-            comp: <LocationSetting />,
+            comp: <LocationSetting loca={dataHomeDetail?.provinceCode} />,
         },
         {
             id: '#section5',
             to: 'section5',
             info: 'Tiện nghi',
-            comp: <ConvenientSetting />,
+            comp: <ConvenientSetting convent={dataHomeDetail?.amenities} />,
         },
         {
             id: '#section6',
             to: 'section6',
             info: 'Định giá và tình trạng phòng',
-            comp: <ValuationDiscountSetting />,
+            comp: <ValuationDiscountSetting detailPriceRoom={detailPriceRoom} />,
         },
     ];
 
     const params = useParams();
-
-    console.log(dataHomeDetail)
 
     useEffect(() => {
         homeApi.getRoomCategory(params.idHome).then((dataResponse: any) => {

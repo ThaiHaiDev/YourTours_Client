@@ -77,7 +77,7 @@ export default function StepperComponent() {
         } else if (activeStep === 2) {
             const dataIdList: any = [];
             for (var i = 0; i < dataStep3.length; i++) {
-                dataIdList.push({ id: dataStep3[i].value });
+                dataIdList.push({ amenityId: dataStep3[i].value });
             }
             dispatch(setupOwnerSlice.actions.addamenitiesOfHomeRoom(dataIdList));
         } 
@@ -118,7 +118,6 @@ export default function StepperComponent() {
     };
 
     const handlePostRoom = () => {
-        // console.log('Data gửi xuông: ',setupRoomHost)
         homeDetailApi
             .createHomeDetailByHost(setupRoomHost)
             .then((dataResponse: any) => {

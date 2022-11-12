@@ -35,6 +35,7 @@ const customStyles = {
 
 export default function SelectedMultiple(props : any) {
     const [selectedOption, setSelectedOption] = useState<any | []>();
+    console.log(selectedOption)
 
     const A1:any = useMemo(() => [], []);
     const A2:any = useMemo(() => [], []);

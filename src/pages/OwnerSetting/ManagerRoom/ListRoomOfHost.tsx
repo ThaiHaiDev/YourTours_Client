@@ -3,10 +3,35 @@ import { DataGrid, GridCallbackDetails, GridCellParams, GridColDef, MuiEvent } f
 
 import './ListRoomOfHost.scss'
 import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import homeDetailApi from '../../../services/homeDetailApi';
+import mapProvince from '../../../utils/mapProvince';
+
 
 const ListRoomOfHost = () => {
+    const [dataListhome, setDataListHome] = useState<any>([])
+    useEffect(() => {
+        homeDetailApi.getListHomeOfHost().then((dataResponse:any) => {
+            setDataListHome(dataResponse.data.content)
+        })
+    }, [])
+
+    const test = []
+    for (var i = 0; i < dataListhome.length; i++) {
+        test.push({
+            id: i,
+            idroom: dataListhome[i].id,
+            name: dataListhome[i]?.name ? dataListhome[i].name : '',
+            status: dataListhome[i].status,
+            bedroom: dataListhome[i].roomsImportant[0] ? dataListhome[i].roomsImportant[0].number : '0',
+            giuong: dataListhome[i].numberOfBed,
+            badroom:  dataListhome[i].roomsImportant[2] ? dataListhome[i].roomsImportant[2].number : 0,
+            location: dataListhome[i].provinceCode ? mapProvince(dataListhome[i].provinceCode) : '',
+            editrecent: dataListhome[i].lastModifiedDate.toString()
+        })
+    }
     const rows = [
-        { id: 1, idroom: '123213213', name: 'Snow', status: 'Jon', bedroom: 35, giuong: 35, badroom: 20, location: 'Ho Chi Minh', editrecent: '1 ngày trước'},
+        { id: 1, idroom: '123213213', name: 'Snow', status: 'Jon', bedroom: dataListhome.numberOfBed, giuong: 35, badroom: 20, location: 'Ho Chi Minh', editrecent: '1 ngày trước'},
         { id: 2, idroom: '000000000', name: 'Snow', status: 'Jon', bedroom: 35, giuong: 35, badroom: 20, location: 'Ho Chi Minh', editrecent: '1 ngày trước'},
     ];
 
@@ -24,7 +49,7 @@ const ListRoomOfHost = () => {
                 <h1>{`${rows.length} nhà/phòng cho thuê`}</h1>
             </div>
             <div className="data-table">
-                <DataTable rows={rows}/>
+                <DataTable rows={test}/>
             </div>
         </div>
     );
