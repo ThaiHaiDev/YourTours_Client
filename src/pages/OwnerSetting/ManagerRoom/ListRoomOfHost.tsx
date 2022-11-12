@@ -16,9 +16,9 @@ const ListRoomOfHost = () => {
         })
     }, [])
 
-    const test = []
+    const rows = []
     for (var i = 0; i < dataListhome.length; i++) {
-        test.push({
+        rows.push({
             id: i,
             idroom: dataListhome[i].id,
             name: dataListhome[i]?.name ? dataListhome[i].name : '',
@@ -30,10 +30,6 @@ const ListRoomOfHost = () => {
             editrecent: dataListhome[i].lastModifiedDate.toString()
         })
     }
-    const rows = [
-        { id: 1, idroom: '123213213', name: 'Snow', status: 'Jon', bedroom: dataListhome.numberOfBed, giuong: 35, badroom: 20, location: 'Ho Chi Minh', editrecent: '1 ngày trước'},
-        { id: 2, idroom: '000000000', name: 'Snow', status: 'Jon', bedroom: 35, giuong: 35, badroom: 20, location: 'Ho Chi Minh', editrecent: '1 ngày trước'},
-    ];
 
     return (
         <div className="listroom__host">
@@ -49,7 +45,7 @@ const ListRoomOfHost = () => {
                 <h1>{`${rows.length} nhà/phòng cho thuê`}</h1>
             </div>
             <div className="data-table">
-                <DataTable rows={test}/>
+                <DataTable rows={rows}/>
             </div>
         </div>
     );
