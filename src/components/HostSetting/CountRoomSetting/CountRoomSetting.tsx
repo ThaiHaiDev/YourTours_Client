@@ -30,7 +30,6 @@ const CountRoomSetting = (props:any) => {
                 ))}
                 <p>Khách có thể dùng chung một số khu vực</p>
             </div>
-            {/* <ListImage /> */}
         </div>
     );
 };

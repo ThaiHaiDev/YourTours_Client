@@ -49,12 +49,12 @@ const CountNumber = (props: any) => {
             {counter === 0 ? (
                 <button className="btn-notallow">-</button>
             ) : (
-                <button onClick={handleReducer} className="btn reducer">
+                <button onClick={handleReducer} className="btn-reducer">
                     -
                 </button>
             )}
             <h1>{counter}</h1>
-            <button onClick={handleIncrease} className="btn increase">
+            <button onClick={handleIncrease} className="btn-increase">
                 +
             </button>
         </div>
