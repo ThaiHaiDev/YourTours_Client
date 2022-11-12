@@ -1,68 +1,65 @@
-import ConvenientItem from "../../../components/ConvenientItem/ConvenientItem";
-import NavbarOwner from "../../../components/NavbarOwner/NavbarOwner";
-import ScrollspyComponent from "../../../components/Scrollspy/Scrollspy";
-
+import { useEffect, useState } from 'react';
+import ConvenientItem from '../../../components/ConvenientItem/ConvenientItem';
+import NavbarOwner from '../../../components/NavbarOwner/NavbarOwner';
+import ScrollspyComponent from '../../../components/Scrollspy/Scrollspy';
+import amenityCategoryApi from '../../../services/amenityCategoryApi';
 
 const infoLink = {
     name: 'Tiện nghi',
     urlLink: '/host/setting/convenient',
 };
 
-const item = ['', 'section1', 'section2', 'section3', 'section4', 'section5', 'section6', 'section7'];
+const backUrl = '/host/setting';
 
-const backUrl = '/host/setting'
+var item = [''];
 
-const children = [
-    {
-        id: '#section1',
-        to: 'section1',
-        info: 'Phổ biến',
-        comp: <ConvenientItem />,
-    },
-    {
-        id: '#section2',
-        to: 'section2',
-        info: 'Phòng tắm',
-        comp: <ConvenientItem />,
-    },
-    {
-        id: '#section3',
-        to: 'section3',
-        info: 'Phòng ngủ và giặc ủi',
-        comp: <ConvenientItem />,
-    },
-    {
-        id: '#section4',
-        to: 'section4',
-        info: 'Giải trí',
-        comp: <ConvenientItem />,
-    },
-    {
-        id: '#section5',
-        to: 'section5',
-        info: 'Gia đình',
-        comp: <ConvenientItem />,
-    },
-    {
-        id: '#section6',
-        to: 'section6',
-        info: 'Hệ thống sưởi và làm mát',
-        comp: <ConvenientItem />,
-    },
-    {
-        id: '#section7',
-        to: 'section7',
-        info: 'An toàn nơi ở',
-        comp: <ConvenientItem />,
-    },
-];
+var childrenTest:any = []
 
+var dataTest = new Set()
 
 const ConvenientOwnerSetting = () => {
+    const [dataListCatagoryConvenient, setDataListCategoryConvenient] = useState<any>([]);
+    const [dataListChildrenConvenient, setDataListChildrenConvenient] = useState<any>([]);
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const dataResponse = await amenityCategoryApi.getAmenityCategoriesAll();
+                setDataListCategoryConvenient(dataResponse.data.content);
+
+                for (var i = 0; i < dataResponse.data.content.length; i++) {
+                    const indexTemp = i + 1;
+                    const temp = {
+                        id: `#section${indexTemp}`,
+                        to: `section${indexTemp}`,
+                        info: dataResponse.data.content[i]?.name,
+                        comp: <ConvenientItem />,
+                    }
+               
+                    if (!childrenTest.some((person: any) => person.id === temp.id)) {
+                        childrenTest.push(temp);
+                        item.push(`section${indexTemp}`);
+                    } 
+                }             
+                
+            } catch (error) {
+                console.log('Failed to fetch category list!', error);
+            }
+        })();
+    }, []);
+
+    // console.log(dataListCatagoryConvenient);
+
+    // console.log(childrenTest)
+
+    // console.log(dataListCatagoryConvenient)
+    // console.log(item);
+    // console.log(children)
+
     return (
         <div className="owner-convenient__setting">
             <NavbarOwner />
-            <ScrollspyComponent children={children} item={item} infoLink={infoLink} backUrl={backUrl} />
+            <ScrollspyComponent children={childrenTest} item={item} infoLink={infoLink} backUrl={backUrl} />
         </div>
     );
 };

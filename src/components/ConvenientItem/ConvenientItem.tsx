@@ -30,6 +30,8 @@ const PopularConvenient = {
 };
 
 const ConvenientItem = () => {
+    // const [dataListConvenient, setDataListConvenient] = useState<any>([])
+
     return (
         <div className="convenient-item">
             <div className="title-item">
@@ -37,7 +39,7 @@ const ConvenientItem = () => {
                 <span>{PopularConvenient.desc}</span>
             </div>
             {PopularConvenient.infoConvenient?.map((item, index) => (
-                <div>
+                <div key={index}>
                     <div className="item">
                         <p>{item.name}</p>
                         <CheckButton />

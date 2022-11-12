@@ -21,7 +21,6 @@ const CountNumber = (props: any) => {
                 }
             }
         }
-
         
     };
 
