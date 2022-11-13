@@ -36,7 +36,7 @@ const Auth = () => {
             <Route path="/host" element={<OwnerSetting />} />
             <Route path="/host/setting" element={<ListRoomOfHost />} />
             <Route path="/host/setting/:idHome" element={<ManagerRoom />} />
-            <Route path="/host/setting/convenient" element={<ConvenientOwnerSetting />} />
+            <Route path="/host/setting/convenient/:idHome" element={<ConvenientOwnerSetting />} />
             <Route path="/host/setting/countroomdetail" element={<CountRoomDetailSetting />} />
             
             <Route path='*' element={<NotFoundPage />} />
