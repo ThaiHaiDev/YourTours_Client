@@ -16,25 +16,47 @@ const CheckButton = (props: CheckButtonData) => {
     const params = useParams();
 
     const handleCheckNo = () => {
-        setCheckStatus(false);
-        const dataRequest = {
-            isHave: false,
-            amenityId: props?.amenityId,
-            homeId: params.idHome,
-        };
-        amenityCategoryApi.updateActiveConvenientItem(dataRequest).then(() => {});
         // Call api ở đây với /:id của tiện ích từ cha truyền xuống
+
+        if (checkStatus === false) {
+            const dataRequest = {
+                isHave: null,
+                amenityId: props?.amenityId,
+                homeId: params.idHome,
+            };
+            amenityCategoryApi.updateActiveConvenientItem(dataRequest).then(() => {});
+            setCheckStatus(null);
+        } else {
+            const dataRequest = {
+                isHave: false,
+                amenityId: props?.amenityId,
+                homeId: params.idHome,
+            };
+            amenityCategoryApi.updateActiveConvenientItem(dataRequest).then(() => {});
+            setCheckStatus(false);
+        }
     };
 
     const handleCheckYes = () => {
-        setCheckStatus(true);
-        const dataRequest = {
-            isHave: true,
-            amenityId: props?.amenityId,
-            homeId: params.idHome,
-        };
-        amenityCategoryApi.updateActiveConvenientItem(dataRequest).then(() => {});
         // Call api ở đây với /:id của tiện ích từ cha truyền xuống
+        
+        if (checkStatus === true) {
+            setCheckStatus(null);
+            const dataRequest = {
+                isHave: null,
+                amenityId: props?.amenityId,
+                homeId: params.idHome,
+            };
+            amenityCategoryApi.updateActiveConvenientItem(dataRequest).then(() => {});
+        } else {
+            setCheckStatus(true);
+            const dataRequest = {
+                isHave: true,
+                amenityId: props?.amenityId,
+                homeId: params.idHome,
+            };
+            amenityCategoryApi.updateActiveConvenientItem(dataRequest).then(() => {});
+        }
     };
 
     return (

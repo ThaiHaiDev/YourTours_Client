@@ -17,8 +17,6 @@ var item = [''];
 
 var children: any = [];
 
-var componentChildren : any = [];
-
 const ConvenientOwnerSetting = () => {
     const [dataListCatagoryConvenient, setDataListCategoryConvenient] = useState<any>([]);
 
@@ -30,7 +28,6 @@ const ConvenientOwnerSetting = () => {
             
             for (var i = 0; i < dataResponse.data.content.length; i++) {
                 let indexTemp = i + 1;
-                console.log(dataResponse.data.content)
                 const temp = {
                     id: `#section${indexTemp}`,
                     to: `section${indexTemp}`,
@@ -44,14 +41,12 @@ const ConvenientOwnerSetting = () => {
                 }
             }
         });
-    }, []);
-
-    
+    }, [params.idHome]);
 
     return (
         <div className="owner-convenient__setting">
             <NavbarOwner />
-            <ScrollspyComponent children={children} item={item} infoLink={infoLink} backUrl={backUrl} />
+            <ScrollspyComponent children={children} item={item} infoLink={infoLink} backUrl={backUrl} childrenData={dataListCatagoryConvenient}/>
         </div>
     );
 };

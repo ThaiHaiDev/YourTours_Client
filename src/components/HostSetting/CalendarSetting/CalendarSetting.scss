@@ -1,0 +1,30 @@
+.calendar {
+    padding-top: 100px;
+
+    // Nếu bị ăn css thì đoạn button này bị
+    button {
+        font-size: 20px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .css-epd502 {
+        margin: 0;
+        width: 500px;
+        height: 400px;
+
+        .PrivatePickersSlideTransition-root {
+            height: 250px;
+        }
+
+        .MuiDayPicker-monthContainer {
+            height: 100%;
+        }
+
+        .MuiCalendarPicker-root {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
