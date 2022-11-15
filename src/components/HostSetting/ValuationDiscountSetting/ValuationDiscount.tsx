@@ -11,13 +11,11 @@ export default function ValuationDiscountSetting(props: any) {
     const [expanded, setExpanded] = React.useState<string | false>(false);
     const [numberLength, setNumberLength] = React.useState<number>(0)
 
-    console.log(numberLength)
-
     React.useEffect(() => {
         if (props.detailPriceRoom.discounts) {
             setNumberLength(props.detailPriceRoom.discounts.length + 2)
         }
-    }, [])
+    }, [props.detailPriceRoom])
 
     const handleChange = (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
         setExpanded(isExpanded ? panel : false);
