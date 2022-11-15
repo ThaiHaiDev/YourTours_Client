@@ -27,7 +27,6 @@ const Signin = () => {
             .signIn(data)
             .then((userData) => {
                 dispatch(userSlice.actions.signin(userData.data));
-                console.log(userData)
                 enqueueSnackbar('Đăng nhập thành công', { variant: 'success' });
                 reset();
                 document.location = '/';

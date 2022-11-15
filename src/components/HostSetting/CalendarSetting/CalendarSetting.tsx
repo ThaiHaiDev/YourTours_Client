@@ -75,7 +75,7 @@ export default function CalendarSetting() {
         setDate(newValue);
         setDateFormat(`${newValue.$D} tháng ${parseInt(newValue.$M) + 1} năm ${newValue.$y}`);
         setMonth(`${parseInt(newValue.$M) + 1}`);
-        setDay(`${newValue.$D}`);
+        setDay(parseInt(newValue.$D) < 10 ? `0${newValue.$D}` : `${newValue.$D}`);
         setYear(`${newValue.$y}`);
         setPriceDay(listPriceDay[parseInt(newValue.$D) - 1]?.price);
     };
@@ -115,7 +115,7 @@ export default function CalendarSetting() {
                                 <button className="btn-save__price-notallow">Lưu</button>
                             )}
                         </form>
-                        <div className='img-price'>
+                        <div className="img-price">
                             <img
                                 src="https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/pricehome.png"
                                 alt=""

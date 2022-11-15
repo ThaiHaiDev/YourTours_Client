@@ -35,6 +35,11 @@ const ManagerRoom = () => {
         surcharges: dataHomeDetail?.surcharges
     }
 
+    const locationRoom = {
+        loca: dataHomeDetail?.provinceCode,
+        address: dataHomeDetail?.addressDetail
+    }
+
     const children = [
         {
             id: '#section1',
@@ -58,7 +63,7 @@ const ManagerRoom = () => {
             id: '#section4',
             to: 'section4',
             info: 'Vị trí',
-            comp: <LocationSetting loca={dataHomeDetail?.provinceCode} />,
+            comp: <LocationSetting locationRoom={locationRoom} />,
         },
         {
             id: '#section5',
