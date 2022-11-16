@@ -8,6 +8,7 @@ import './ValuationDiscount.scss';
 import formatPrice from '../../../utils/formatPrice';
 
 import { AxiosError } from 'axios';
+import { useSnackbar } from 'notistack';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
@@ -21,11 +22,17 @@ export default function ValuationDiscountSetting(props: any) {
 
     const params = useParams();
 
+    const { enqueueSnackbar } = useSnackbar();
+
     React.useEffect(() => {
         if (props.detailPriceRoom.discounts) {
             setNumberLength(props.detailPriceRoom.discounts.length + 2);
         }
     }, [props.detailPriceRoom]);
+
+    React.useEffect(() => {
+        setValue('costPerNightDefault', props?.detailPriceRoom.costPerNightDefault);
+    }, [props?.detailPriceRoom.costPerNightDefault, setValue]);
 
     const handleChange = (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
         setExpanded(isExpanded ? panel : false);
@@ -45,11 +52,10 @@ export default function ValuationDiscountSetting(props: any) {
         homeApi
             .updatePriceHome(newData)
             .then((dataResponse: any) => {
-                // enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
-                console.log(dataResponse);
+                enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
             })
             .catch((error: AxiosError<any>) => {
-                // enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
             });
     };
 

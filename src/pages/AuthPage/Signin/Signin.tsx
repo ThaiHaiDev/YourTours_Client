@@ -10,22 +10,27 @@ import { useSnackbar } from 'notistack';
 import { useDispatch } from 'react-redux';
 import userSlice from '../userSlice';
 
+import { useState } from 'react';
+
 const Signin = () => {
     const {
         register,
         reset,
         handleSubmit,
-        formState: { errors },
+        formState: { errors, isSubmitting },
     } = useForm<LoginRequest>();
 
     const { enqueueSnackbar } = useSnackbar();
+    const [loading, setLoading] = useState<boolean>(false);
 
     const dispatch = useDispatch();
 
     const onSubmit: SubmitHandler<LoginRequest> = (data: LoginRequest) => {
+        setLoading(true)
         authApi
             .signIn(data)
             .then((userData) => {
+                setLoading(false)
                 dispatch(userSlice.actions.signin(userData.data));
                 enqueueSnackbar('Đăng nhập thành công', { variant: 'success' });
                 reset();
@@ -42,6 +47,7 @@ const Signin = () => {
             <div className="signin">
                 <div className="container__sign-in">
                     <form onSubmit={handleSubmit(onSubmit)}>
+                        {loading ? '' : ''}
                         <h1>Đăng nhập</h1>
                         <div className="social-container">
                             <Link to="#" className="socialg">
@@ -87,7 +93,9 @@ const Signin = () => {
                             />
                             {errors.password && <span className="message_error">{`${errors.password?.message}`}</span>}
                         </label>
-                        <button type="submit">Đăng nhập</button>
+                        <button type="submit" disabled={isSubmitting}>
+                            Đăng nhập
+                        </button>
                     </form>
                     <div className="forgot-password">
                         <p>Quên mật khẩu</p>

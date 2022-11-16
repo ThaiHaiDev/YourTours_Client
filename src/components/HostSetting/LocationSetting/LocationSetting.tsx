@@ -9,8 +9,9 @@ import './LocationSetting.scss';
 import mapProvince from '../../../utils/mapProvince';
 
 import { AxiosError } from 'axios';
-
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useSnackbar } from 'notistack';
+
 import { useParams } from 'react-router-dom';
 import homeApi from '../../../services/homeApi';
 
@@ -22,6 +23,8 @@ export default function LocationSetting(props: any) {
     const { handleSubmit, register, setValue } = useForm();
 
     const params = useParams();
+
+    const { enqueueSnackbar } = useSnackbar();
 
     const handleChange = (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
         setExpanded(isExpanded ? panel : false);
@@ -40,7 +43,7 @@ export default function LocationSetting(props: any) {
 
     React.useEffect(() => {
         setValue('address', props?.locationRoom.address);
-    }, [props?.locationRoom.address]);
+    }, [props.locationRoom.address, setValue]);
 
     const onSubmit: SubmitHandler<any> = (dataAddress: any) => {
         const newData = {
@@ -53,11 +56,10 @@ export default function LocationSetting(props: any) {
         homeApi
             .updateAddressHome(newData)
             .then((dataResponse: any) => {
-                // enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
-                console.log(dataResponse);
+                enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
             })
             .catch((error: AxiosError<any>) => {
-                // enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
             });
     };
 

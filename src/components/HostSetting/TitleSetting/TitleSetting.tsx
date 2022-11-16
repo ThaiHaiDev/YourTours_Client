@@ -16,11 +16,12 @@ import homeApi from '../../../services/homeApi';
 export default function TittleSetting(props: any) {
     const [expanded, setExpanded] = React.useState<string | false>(false);
 
-    const { handleSubmit, register, setValue } = useForm();
+    const { handleSubmit, register, setValue, formState: { isSubmitting }, } = useForm();
 
     const params = useParams();
 
     const { enqueueSnackbar } = useSnackbar();
+    const [loading, setLoading] = React.useState<boolean>(false);
 
     const handleChange = (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
         setExpanded(isExpanded ? panel : false);
@@ -35,23 +36,26 @@ export default function TittleSetting(props: any) {
         setValue('description', props.infoRoom.desc);
         setValue('guide', props.infoRoom.guide);
         setValue('refundPolicy', 'BEFORE_ONE_DAY');
-    }, [props?.infoRoom?.name, props.infoRoom.desc, props.infoRoom.guide, props.infoRoom.refundPolicy]);
+    }, [props?.infoRoom?.name, props.infoRoom.desc, props.infoRoom.guide, props.infoRoom.refundPolicy, setValue]);
 
     const onSubmit: SubmitHandler<any> = (data: any) => {
         const newData = {
             data,
             id: params.idHome,
         };
+        setLoading(false);
         homeApi
             .updateTitleHome(newData)
             .then((dataResponse: any) => {
+                setLoading(true);
                 enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
-                console.log(dataResponse);
             })
             .catch((error: AxiosError<any>) => {
                 enqueueSnackbar(error.response?.data.message, { variant: 'error' });
             });
     };
+
+    console.log(loading)
 
     return (
         <div style={{ fontSize: '15px', paddingRight: '50px', paddingBottom: '50px' }}>
@@ -76,7 +80,7 @@ export default function TittleSetting(props: any) {
                             <p onClick={handleClose} className="btn-close">
                                 Hủy
                             </p>
-                            <button className="btn-save">Lưu</button>
+                            <button className="btn-save" disabled={isSubmitting}>Lưu</button>
                         </div>
                     </AccordionDetails>
                 </Accordion>
