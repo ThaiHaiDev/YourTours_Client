@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Book from '../Book/Book';
 import DropdownUser from '../DropdownUser/DropdownUser';
 import './Navbar.scss';
@@ -13,19 +13,10 @@ const Navbar = () => {
 
     const user = useSelector((state: RootState) => state.user);
 
-    const navigate = useNavigate();
-
     useEffect(() => {
         document.addEventListener('click', hideOnClickOutside, true);
         document.addEventListener('scroll', hideOnClickOutside);
     }, []);
-
-    useEffect(() => {
-        if (user.current?.id === undefined) {
-            navigate('/signin')
-        }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [user.current.id])
 
     const hideOnClickOutside = (e: any) => {
         if (refOne.current && !refOne.current.contains(e.target)) {
@@ -52,7 +43,7 @@ const Navbar = () => {
                         Book
                     </NavLink>
                     <NavLink to="/intro-host">Owner</NavLink>
-                    <NavLink to="/info-player">None</NavLink>
+                    <NavLink to="/list-room">Room</NavLink>
                     <NavLink to="/contacts">Contacts</NavLink>
                 </div>
 

@@ -19,6 +19,7 @@ import ManagerRoom from '../pages/OwnerSetting/ManagerRoom/ManagerRoom';
 import CountRoomDetailSetting from '../pages/OwnerSetting/CountRoomDetailSetting/CountRoomDetailSetting';
 import ListRoomOfHost from '../pages/OwnerSetting/ManagerRoom/ListRoomOfHost';
 import CalendarRoomSetting from '../pages/OwnerSetting/CalendarRoomSetting/CalendarRoomSetting';
+import ListRoomPage from '../pages/ListRoomPage/ListRoomPage';
 
 const Auth = () => {
     const user = useSelector((state: RootState) => state.user)
@@ -33,6 +34,7 @@ const Auth = () => {
             <Route path="/confirm" element={<ConfirmOwner />} />
             <Route path="/congratulation" element={<CongratulationPage />} />
             <Route path="/intro-host" element={<IntroSettingOwnerPage />} />
+            <Route path="/list-room" element={<ListRoomPage />} />
             <Route path="/test" element={<Test />} />
             <Route path="/host" element={<OwnerSetting />} />
             <Route path="/host/setting" element={<ListRoomOfHost />} />

@@ -1,0 +1,51 @@
+.filter-bar {
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+    display: flex;
+    
+    .slick-slider {
+        width: 90%;
+        margin-right: 25px;
+    }
+
+    .slider__item-filter {
+        display: grid;
+        justify-content: center;
+        margin-left: 5px;
+        margin-right: 5px;
+
+        .icon-filter {
+            display: grid;
+            justify-content: center;
+        }
+
+        .title-filter {
+            margin-top: 5px;
+            margin-bottom: 10px;
+
+            p {
+                margin: 0;
+                font-size: 14px;
+                font-weight: bold;
+            }
+        }
+    }
+
+    .slider__item-filter:hover {
+        border-bottom: 2px solid var(--text-color);
+    }
+
+    .active {
+        border-bottom: 2px solid black;
+    }
+
+    // .slick-prev {
+    //     background: var(--text-color);
+    //     border-radius: 100%;
+    // }
+
+    .slick-dots {
+        display: none !important;
+    }
+}
