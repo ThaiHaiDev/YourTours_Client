@@ -1,18 +1,33 @@
 import { useState, useRef, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Book from '../Book/Book';
+import DropdownUser from '../DropdownUser/DropdownUser';
 import './Navbar.scss';
+
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
 const Navbar = () => {
     const [isActive, setIsActive] = useState<boolean>(false);
     const refOne = useRef<HTMLInputElement | null>(null);
+
+    const user = useSelector((state: RootState) => state.user);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         document.addEventListener('click', hideOnClickOutside, true);
         document.addEventListener('scroll', hideOnClickOutside);
     }, []);
 
-    const hideOnClickOutside = (e : any) => {
+    useEffect(() => {
+        if (user.current?.id === undefined) {
+            navigate('/signin')
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [user.current.id])
+
+    const hideOnClickOutside = (e: any) => {
         if (refOne.current && !refOne.current.contains(e.target)) {
             setIsActive(false);
         }
@@ -40,13 +55,16 @@ const Navbar = () => {
                     <NavLink to="/info-player">None</NavLink>
                     <NavLink to="/contacts">Contacts</NavLink>
                 </div>
+
                 <div className="navbar-right">
-                    {/* <NavLink to="#" className="cart">
-                        <i className="bx bx-cart-alt"></i>
-                        <span className="badge">2</span>
-                    </NavLink> */}
-                    <NavLink to="/signin">Đăng nhập</NavLink>
-                    <NavLink to="/signup">Đăng ký</NavLink>
+                    {user.current?.id !== undefined ? (
+                        <DropdownUser />
+                    ) : (
+                        <>
+                            <NavLink to="/signin">Đăng nhập</NavLink>
+                            <NavLink to="/signup">Đăng ký</NavLink>
+                        </>
+                    )}
                 </div>
             </div>
             {isActive && <Book refOne={refOne} />}

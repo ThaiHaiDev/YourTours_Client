@@ -36,7 +36,7 @@ export default function TittleSetting(props: any) {
         setValue('description', props.infoRoom.desc);
         setValue('guide', props.infoRoom.guide);
         setValue('refundPolicy', 'BEFORE_ONE_DAY');
-    }, [props?.infoRoom?.name, props.infoRoom.desc, props.infoRoom.guide, props.infoRoom.refundPolicy, setValue]);
+    }, [props.infoRoom.name, props.infoRoom.desc, props.infoRoom.guide, props.infoRoom.refundPolicy, setValue]);
 
     const onSubmit: SubmitHandler<any> = (data: any) => {
         const newData = {

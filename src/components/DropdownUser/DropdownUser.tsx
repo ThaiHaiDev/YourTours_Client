@@ -8,6 +8,8 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import React, { useState, useEffect, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import userSlice from '../../pages/AuthPage/userSlice';
 
 function DropdownUser() {
     return (
@@ -49,19 +51,31 @@ function DropdownMenu() {
     const [menuHeight, setMenuHeight] = useState<any>(null);
     const dropdownRef = useRef<any>(null);
 
+    const dispatch = useDispatch();
+
     useEffect(() => {
         setMenuHeight(dropdownRef.current?.firstChild.offsetHeight);
     }, []);
-    
 
     function calcHeight(el:any) {
         const height = el.offsetHeight;
         setMenuHeight(height);
     }
 
+    const handleLogout = () => {
+        dispatch(userSlice.actions.logout());
+    }
+
     function DropdownItem(props:any) {
+        const handleClick = () => {
+            props.goToMenu && setActiveMenu(props.goToMenu)
+            if (props.handleLogout) {
+                props.handleLogout()
+            }
+        }
+       
         return (
-            <Link to="#" className="menu-item" onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
+            <Link to="#" className="menu-item" onClick={handleClick}>
                 <span className="icon-button">{props.leftIcon}</span>
                 {props.children}
                 <span className="icon-right">{props.rightIcon}</span>
@@ -86,7 +100,7 @@ function DropdownMenu() {
                     <DropdownItem leftIcon={<SettingsIcon />} rightIcon={<NavigateNextIcon />} goToMenu="settings">
                         Settings
                     </DropdownItem>
-                    <DropdownItem>Đăng xuất</DropdownItem>
+                    <DropdownItem handleLogout={handleLogout}>Đăng xuất</DropdownItem>
                 </div>
             </CSSTransition>
 

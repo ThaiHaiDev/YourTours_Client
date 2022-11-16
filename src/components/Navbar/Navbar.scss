@@ -32,26 +32,7 @@
 	}
 
 	.navbar-right {
-		.cart {
-			position: relative;
-			.badge {
-				position: absolute;
-				top: 0;
-				right: 1px;
-				font-size: 12px;
-				background-color: var(--red);
-				width: 20px;
-				height: 20px;
-				padding: 2px;
-				text-align: center;
-				justify-content: center;
-				border-radius: 50%;
-			}
-		}
 		
-		.cart i {
-			font-size: x-large;
-		}
 	}
 
 	.navbar-right a:hover {

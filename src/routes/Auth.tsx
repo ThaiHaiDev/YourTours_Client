@@ -11,7 +11,7 @@ import RoomDetail from '../pages/RoomDetail/RoomDetail';
 import StepperMain from '../pages/SetupOwner/StepperMain/StepperMain';
 
 import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store'
+import { RootState } from '../redux/store';
 import ForgotPass from '../pages/AuthPage/ForgotPass/ForgotPass';
 import IntroSettingOwnerPage from '../pages/IntroSettingOwnerPage/IntroSettingOwnerPage';
 import Test from '../pages/Test/Test';
