@@ -20,6 +20,10 @@ const homeApi = {
         const url = `api/v1/cms/homes/update/homes-price`;
         return axiosClient.put(url, data);
     },
+    getRoomFavorite(): Promise<any>  {
+        const url = `api/v1/public/homes/page?number=0&size=8`;
+        return axiosClient.get(url);
+    },
     
 };
 

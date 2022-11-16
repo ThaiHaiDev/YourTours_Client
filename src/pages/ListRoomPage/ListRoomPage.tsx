@@ -57,7 +57,7 @@ const ListRoomPage = () => {
                     <div className="row" style={{margin: 0}}>
                         <SkeletonRoomItem />
                         {state.items.map((i: any, index: number) => (
-                            <RoomItem />
+                            <RoomItem key={index}/>
                         ))}
                     </div>
                 </InfiniteScroll>

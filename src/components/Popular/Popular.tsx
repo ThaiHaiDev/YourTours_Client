@@ -1,9 +1,22 @@
 import { Link } from 'react-router-dom';
 import './Popular.scss';
 
-import Provice from '../../mockdata/ProvinceVN.json'
+import Provice from '../../mockdata/ProvinceVN.json';
+import { useEffect, useState } from 'react';
+import provinceApi from '../../services/provinceApi';
 
 const Popular = () => {
+    const [listProvince, setListProvince] = useState<any>([]);
+    useEffect(() => {
+        provinceApi.getProvincePopular().then((dataResponse: any) => {
+            if (dataResponse.data.content.length < 8) {
+                setListProvince(Provice.slice(0, 8));
+            } else {
+                setListProvince(dataResponse.data.content);
+            }
+        });
+    }, []);
+
     return (
         <div className="web-content">
             <div className="package-menu">
@@ -19,245 +32,52 @@ const Popular = () => {
                     </h3>
                 </div>
                 <div className="row">
-                    <div className="col l-3 m-6 c-12">
-                        <div className="package">
-                            <div className="package-overlay">
-                                <img src={Provice[0].thumbnail} alt="" className="package-thumbnail" />
-                                <div className="package-info">
-                                    <h3 className="package-heading">{Provice[0].name}</h3>
-                                    <span className="package-desc">3 packages</span>
-                                </div>
-                            </div>
+                    {listProvince?.map((province: any, index: number) => {
+                        const dataResult = Provice.find((d: any) => {
+                            // return d.code === province.provinceCode;
+                            return d.code === 1;
+                        });
+                        return (
+                            <div className="col l-3 m-6 c-12" key={index}>
+                                <div className="package">
+                                    <div className="package-overlay">
+                                        <img src={dataResult?.thumbnail} alt="" className="package-thumbnail" />
+                                        <div className="package-info">
+                                            <h3 className="package-heading">{dataResult?.name}</h3>
+                                            <span className="package-desc">3 packages</span>
+                                        </div>
+                                    </div>
 
-                            <Link to="#" className="mobile-package__link"></Link>
-                            <div className="package-cover hide-on-mobile-tablet">
-                                <h4 className="package-cover-head">packages</h4>
-                                <ul className="package-list">
-                                    <li className="package-item">
-                                        <Link to="#" className="package-link">
-                                            berlin
-                                        </Link>
-                                    </li>
-                                    <li className="package-item">
-                                        <Link to="#" className="package-link">
-                                            amsterdam
-                                        </Link>
-                                    </li>
-                                    <li className="package-item">
-                                        <Link to="#" className="package-link">
-                                            tuscany
-                                        </Link>
-                                    </li>
-                                </ul>
-                                <div className="package-btn">
-                                    <Link to="#" className="package-btn-link">
-                                        view destination
-                                    </Link>
+                                    <Link to="#" className="mobile-package__link"></Link>
+                                    <div className="package-cover hide-on-mobile-tablet">
+                                        <h4 className="package-cover-head">packages</h4>
+                                        <ul className="package-list">
+                                            <li className="package-item">
+                                                <Link to="#" className="package-link">
+                                                    berlin
+                                                </Link>
+                                            </li>
+                                            <li className="package-item">
+                                                <Link to="#" className="package-link">
+                                                    amsterdam
+                                                </Link>
+                                            </li>
+                                            <li className="package-item">
+                                                <Link to="#" className="package-link">
+                                                    tuscany
+                                                </Link>
+                                            </li>
+                                        </ul>
+                                        <div className="package-btn">
+                                            <Link to="#" className="package-btn-link">
+                                                view destination
+                                            </Link>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div className="col l-3 m-6 c-12">
-                        <div className="package">
-                            <div className="package-overlay">
-                                <img src={Provice[1].thumbnail} alt="" className="package-thumbnail" />
-                                <div className="package-info">
-                                    <h3 className="package-heading">{Provice[1].name}</h3>
-                                    <span className="package-desc">1 package</span>
-                                </div>
-                            </div>
-
-                            <Link to="#" className="mobile-package__link"></Link>
-                            <div className="package-cover hide-on-mobile-tablet">
-                                <h4 className="package-cover-head">packages</h4>
-                                <ul className="package-list">
-                                    <li className="package-item">
-                                        <Link to="#" className="package-link">
-                                            phuket
-                                        </Link>
-                                    </li>
-                                </ul>
-                                <div className="package-btn">
-                                    <Link to="#" className="package-btn-link">
-                                        view destination
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col l-3 m-6 c-12">
-                        <div className="package">
-                            <div className="package-overlay">
-                                <img src={Provice[2].thumbnail} alt="" className="package-thumbnail" />
-                                <div className="package-info">
-                                    <h3 className="package-heading">{Provice[2].name}</h3>
-                                    <span className="package-desc">2 packages</span>
-                                </div>
-                            </div>
-
-                            <Link to="#" className="mobile-package__link"></Link>
-                            <div className="package-cover hide-on-mobile-tablet">
-                                <h4 className="package-cover-head">packages</h4>
-                                <ul className="package-list">
-                                    <li className="package-item">
-                                        <Link to="#" className="package-link">
-                                            hong kong
-                                        </Link>
-                                    </li>
-                                    <li className="package-item">
-                                        <Link to="#" className="package-link">
-                                            phuket
-                                        </Link>
-                                    </li>
-                                </ul>
-                                <div className="package-btn">
-                                    <Link to="#" className="package-btn-link">
-                                        view destination
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col l-3 m-6 c-12">
-                        <div className="package">
-                            <div className="package-overlay">
-                                <img src={Provice[3].thumbnail} alt="" className="package-thumbnail" />
-                                <div className="package-info">
-                                    <h3 className="package-heading">{Provice[3].name}</h3>
-                                    <span className="package-desc">1 packages</span>
-                                </div>
-                            </div>
-
-                            <Link to="#" className="mobile-package__link"></Link>
-                            <div className="package-cover hide-on-mobile-tablet">
-                                <h4 className="package-cover-head">packages</h4>
-                                <ul className="package-list">
-                                    <li className="package-item">
-                                        <Link to="#" className="package-link">
-                                            tuscany
-                                        </Link>
-                                    </li>
-                                </ul>
-                                <div className="package-btn">
-                                    <Link to="#" className="package-btn-link">
-                                        view destination
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col l-3 m-6 c-12">
-                        <div className="package">
-                            <div className="package-overlay">
-                                <img src={Provice[4].thumbnail} alt="" className="package-thumbnail" />
-                                <div className="package-info">
-                                    <h3 className="package-heading">{Provice[4].name}</h3>
-                                    <span className="package-desc">1 package</span>
-                                </div>
-                            </div>
-
-                            <Link to="#" className="mobile-package__link"></Link>
-                            <div className="package-cover hide-on-mobile-tablet">
-                                <h4 className="package-cover-head">packages</h4>
-                                <ul className="package-list">
-                                    <li className="package-item">
-                                        <Link to="#" className="package-link">
-                                            amsterdam
-                                        </Link>
-                                    </li>
-                                </ul>
-                                <div className="package-btn">
-                                    <Link to="#" className="package-btn-link">
-                                        view destination
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col l-3 m-6 c-12">
-                        <div className="package">
-                            <div className="package-overlay">
-                                <img src={Provice[5].thumbnail} alt="" className="package-thumbnail" />
-                                <div className="package-info">
-                                    <h3 className="package-heading">{Provice[5].name}</h3>
-                                    <span className="package-desc">1 package</span>
-                                </div>
-                            </div>
-
-                            <Link to="#" className="mobile-package__link"></Link>
-                            <div className="package-cover hide-on-mobile-tablet">
-                                <h4 className="package-cover-head">packages</h4>
-                                <ul className="package-list">
-                                    <li className="package-item">
-                                        <Link to="#" className="package-link">
-                                            san francisco
-                                        </Link>
-                                    </li>
-                                </ul>
-                                <div className="package-btn">
-                                    <Link to="#" className="package-btn-link">
-                                        view destination
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col l-3 m-6 c-12">
-                        <div className="package">
-                            <div className="package-overlay">
-                                <img src={Provice[6].thumbnail} alt="" className="package-thumbnail" />
-                                <div className="package-info">
-                                    <h3 className="package-heading">{Provice[6].name}</h3>
-                                    <span className="package-desc">1 package</span>
-                                </div>
-                            </div>
-
-                            <Link to="#" className="mobile-package__link"></Link>
-                            <div className="package-cover hide-on-mobile-tablet">
-                                <h4 className="package-cover-head">packages</h4>
-                                <ul className="package-list">
-                                    <li className="package-item">
-                                        <Link to="#" className="package-link">
-                                            san francisco
-                                        </Link>
-                                    </li>
-                                </ul>
-                                <div className="package-btn">
-                                    <Link to="#" className="package-btn-link">
-                                        view destination
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col l-3 m-6 c-12">
-                        <div className="package">
-                            <div className="package-overlay">
-                                <img src={Provice[7].thumbnail} alt="" className="package-thumbnail" />
-                                <div className="package-info">
-                                    <h3 className="package-heading">{Provice[7].name}</h3>
-                                    <span className="package-desc">1 package</span>
-                                </div>
-                            </div>
-
-                            <Link to="#" className="mobile-package__link"></Link>
-                            <div className="package-cover hide-on-mobile-tablet">
-                                <h4 className="package-cover-head">packages</h4>
-                                <ul className="package-list">
-                                    <li className="package-item">
-                                        <Link to="#" className="package-link">
-                                            san francisco
-                                        </Link>
-                                    </li>
-                                </ul>
-                                <div className="package-btn">
-                                    <Link to="#" className="package-btn-link">
-                                        view destination
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        );
+                    })}
                 </div>
             </div>
         </div>
