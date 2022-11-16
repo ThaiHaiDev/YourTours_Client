@@ -1,8 +1,14 @@
 .filter-bar {
-    width: 90%;
+    width: 100%;
     margin: auto;
-    margin-top: 20px;
+    margin-top: 66px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 15px;
     display: flex;
+    position: fixed;
+    background: white;
+    z-index: 99;
     
     .slick-slider {
         width: 90%;
