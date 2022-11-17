@@ -2,7 +2,7 @@ import FilterBar from '../../components/FilterBar/FilterBar';
 import './ListRoomPage.scss';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import NavbarFix from '../../components/NavbarFix/NavbarFix';
 
 // Import css files
@@ -10,23 +10,19 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import RoomItem from '../../components/RoomItem/RoomItem';
 import SkeletonRoomItem from '../../components/Skeleton/SkeletonRoomItem';
+import filterApi from '../../services/filterApi';
 
 const ListRoomPage = () => {
-    const style = {
-        height: 30,
-        border: '1px solid green',
-        // margin: 6,
-        padding: 8,
-    };
+    const [listDataRoom, setListDataRoom] = useState<any>([])
+    const [loading, setLoading] = useState<boolean>(false)
 
-    const settings = {
-        dots: true,
-        fade: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-    };
+    useEffect(() => {
+        setLoading(true)
+        filterApi.getAllRoomsNew().then((dataResponse: any) => {
+            setListDataRoom(dataResponse.data.content)
+            setLoading(false)
+        })
+    }, [])
 
     const [state, setState] = useState<any>({
         items: Array.from({ length: 20 }),
@@ -55,9 +51,9 @@ const ListRoomPage = () => {
                     style={{ paddingTop: '160px', zIndex: '-1', margin: '0 100px' }}
                 >
                     <div className="row" style={{ margin: 0 }}>
-                        <SkeletonRoomItem />
-                        {state.items.map((i: any, index: number) => (
-                            <RoomItem key={index} />
+                        
+                        {loading ?  <SkeletonRoomItem /> : listDataRoom.map((room: any, index: number) => (
+                            <RoomItem key={index} infoRoom={room} />
                         ))}
                     </div>
                 </InfiniteScroll>

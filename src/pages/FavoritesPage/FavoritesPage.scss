@@ -1,0 +1,116 @@
+.favorites__page {
+    .no__favorites {
+        width: 100%;
+        margin-top: 80px;
+        padding-left: 100px;
+        padding-right: 100px;
+
+        h1 {
+            font-size: 30px;
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            font-size: 20px;
+        }
+
+        p {
+            color: var(--text-color);
+            font-size: 16px;
+            width: 500px;
+            line-height: 1.2;
+        }
+    }
+
+    .yes__favorites {
+        width: 100%;
+        margin-top: 80px;
+        padding-left: 100px;
+        padding-right: 100px;
+
+        h1 {
+            font-size: 30px;
+            margin-bottom: 50px;
+        }
+
+        .row {
+            // background: red;
+            margin-left: 40px;
+            margin-right: 40px;
+            height: 30px;
+
+            .col {
+                // background: blue;
+            }
+        }
+
+        .card-item__favorite {
+            background: white;
+            height: 350px;
+            border: 1px solid #bdbdbd;
+            cursor: pointer;
+            border-radius: 5px;
+            position: relative;
+
+            .content__favorite {
+                img {
+                    width: 100%;
+                    height: 240px;
+                }
+
+                .name__favorite {
+                    margin: 0;
+                    font-size: 15px;
+                    padding-left: 20px;
+                    padding-bottom: 10px;
+                }
+
+                .price__favorite {
+                    margin: 0;
+                    font-size: 13px;
+                    padding-left: 16px;
+                    display: flex;
+                    padding-right: 5px;
+                }
+
+                .book-now {
+                    margin: 0;
+                    font-size: 12px;
+                    color: var(--blue-link);
+                    padding-left: 16px;
+                }
+            }
+
+            .card-like {
+                position: absolute;
+                bottom: 0;
+                height: 40px;
+                width: 100%;
+                border-top: 1px solid #bdbdbd;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .icon_love {
+                    color: white;
+                    font-size: 25px;
+                }
+
+                .icon_love__true {
+                    color: red;
+                    font-size: 25px;
+                }
+
+                p {
+                    margin: 0;
+                    font-size: 16px;
+                    padding-left: 10px;
+                }
+            }
+        }
+
+        .card-item__favorite:hover {
+            border: 2px solid #bdbdbd;
+        }
+    }
+}

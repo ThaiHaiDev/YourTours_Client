@@ -6,6 +6,8 @@ import Slider from 'react-slick';
 
 import './FilterBar.scss';
 import DialogFilter from '../DialogFilter/DialogFilter';
+import { useEffect, useState } from 'react';
+import filterApi from '../../services/filterApi';
 
 const FilterBar = () => {
     var settings = {
@@ -16,149 +18,30 @@ const FilterBar = () => {
         slidesToScroll: 10,
         initialSlide: 0,
     };
+
+    const [listDataFilterNavbar, setListDataFilterNavbar] = useState<any>([]);
+
+    useEffect(() => {
+        filterApi.getAllFilterNavbar().then((dataResponse: any) => {
+            setListDataFilterNavbar(dataResponse.data.content);
+        });
+    }, []);
+
     return (
         <div className="filter-bar">
             <Slider {...settings}>
-                <div>
-                    <div className="slider__item-filter active">
-                        <div className="icon-filter">
-                            <img src="https://img.icons8.com/ios-filled/25/null/new.png" alt="icon-filter" />
-                        </div>
-                        <div className="title-filter">
-                            <p>Mới nhất</p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div className="slider__item-filter">
-                        <div className="icon-filter">
-                            <img src="https://img.icons8.com/ios/25/null/sunbathe.png" alt="icon-filter" />
-                        </div>
-                        <div className="title-filter">
-                            <p>View biển</p>
+                {listDataFilterNavbar?.map((filter: any, index: number) => (
+                    <div key={index}>
+                        <div className={`slider__item-filter ${index === 0 && 'active'}`}>
+                            <div className="icon-filter">
+                                <img src={filter?.icon} alt="icon-filter" />
+                            </div>
+                            <div className="title-filter">
+                                <p>{filter?.name}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div>
-                    <div className="slider__item-filter">
-                        <div className="icon-filter">
-                            <img src="https://img.icons8.com/ios-filled/25/null/new.png" alt="icon-filter" />
-                        </div>
-                        <div className="title-filter">
-                            <p>Mới nhất</p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div className="slider__item-filter">
-                        <div className="icon-filter">
-                            <img src="https://img.icons8.com/ios/25/null/sunbathe.png" alt="icon-filter" />
-                        </div>
-                        <div className="title-filter">
-                            <p>View biển</p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div className="slider__item-filter">
-                        <div className="icon-filter">
-                            <img src="https://img.icons8.com/ios-filled/25/null/new.png" alt="icon-filter" />
-                        </div>
-                        <div className="title-filter">
-                            <p>Mới nhất</p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div className="slider__item-filter">
-                        <div className="icon-filter">
-                            <img src="https://img.icons8.com/ios/25/null/sunbathe.png" alt="icon-filter" />
-                        </div>
-                        <div className="title-filter">
-                            <p>View biển</p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div className="slider__item-filter">
-                        <div className="icon-filter">
-                            <img src="https://img.icons8.com/ios-filled/25/null/new.png" alt="icon-filter" />
-                        </div>
-                        <div className="title-filter">
-                            <p>Mới nhất</p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div className="slider__item-filter">
-                        <div className="icon-filter">
-                            <img src="https://img.icons8.com/ios/25/null/sunbathe.png" alt="icon-filter" />
-                        </div>
-                        <div className="title-filter">
-                            <p>View biển</p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div className="slider__item-filter">
-                        <div className="icon-filter">
-                            <img src="https://img.icons8.com/ios-filled/25/null/new.png" alt="icon-filter" />
-                        </div>
-                        <div className="title-filter">
-                            <p>Mới nhất</p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div className="slider__item-filter">
-                        <div className="icon-filter">
-                            <img src="https://img.icons8.com/ios/25/null/sunbathe.png" alt="icon-filter" />
-                        </div>
-                        <div className="title-filter">
-                            <p>View biển</p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div className="slider__item-filter">
-                        <div className="icon-filter">
-                            <img src="https://img.icons8.com/ios-filled/25/null/new.png" alt="icon-filter" />
-                        </div>
-                        <div className="title-filter">
-                            <p>Mới nhất</p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div className="slider__item-filter">
-                        <div className="icon-filter">
-                            <img src="https://img.icons8.com/ios/25/null/sunbathe.png" alt="icon-filter" />
-                        </div>
-                        <div className="title-filter">
-                            <p>View biển</p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div className="slider__item-filter">
-                        <div className="icon-filter">
-                            <img src="https://img.icons8.com/ios-filled/25/null/new.png" alt="icon-filter" />
-                        </div>
-                        <div className="title-filter">
-                            <p>Mới nhất</p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div className="slider__item-filter">
-                        <div className="icon-filter">
-                            <img src="https://img.icons8.com/ios/25/null/sunbathe.png" alt="icon-filter" />
-                        </div>
-                        <div className="title-filter">
-                            <p>View biển</p>
-                        </div>
-                    </div>
-                </div>
+                ))}
             </Slider>
             <DialogFilter />
         </div>

@@ -36,7 +36,7 @@ const DataFakeCount = [
     },
 ];
 
-const CountRoomFilter = () => {
+const CountRoomFilter = (props: any) => {
     const [idActive, setIdActive] = useState<number>(0);
 
     const handleSetActive = (id: number) => {

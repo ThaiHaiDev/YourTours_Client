@@ -1,0 +1,50 @@
+.info-user__page {
+    background: #fafafa;
+    height: 100vh;
+    .content-account {
+        margin-top: 50px;
+        padding: 0 230px;
+
+        .card-info {
+            height: 600px;
+            background: white;
+            border: 1px solid #bdbdbd;
+            border-radius: 10px;
+
+            .avatar-info {
+                display: flex;
+                justify-content: center;
+
+                img {
+                    border-radius: 100%;
+                    width: 210px;
+                    height: 210px;
+                }
+            }
+
+            .name-info {
+                width: 100%;
+                
+                h1 {
+                    letter-spacing: 1;
+                    text-align: center;
+                }
+
+                .edit-info_-link {
+                    font-weight: bold;
+                    color: var(--blue-link);
+                    font-size: 14px;
+                    display: flex;
+                    justify-content: center;
+                }
+            }
+        }
+
+        .card-content {
+            height: 600px;
+            background: white;
+            border: 1px solid #bdbdbd;
+            border-radius: 10px;
+        }
+    }
+}

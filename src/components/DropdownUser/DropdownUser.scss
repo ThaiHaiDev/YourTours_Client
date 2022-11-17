@@ -23,7 +23,7 @@
         right: -100px;
         height: 300px !important;
         transform: translateX(-45%);
-        background-color: var(--white-color);
+        background-color: white;
         border: var(--border);
         border-radius: var(--border-radius);
         padding: 1rem;
@@ -95,5 +95,15 @@
     a {
         color: var(--text-color);
         text-decoration: none;
+    }
+
+    .dropdown__link {
+        color: var(--black-color);
+        width: 100%;
+    }
+
+    .dropdown__link:hover {
+        background: var(--text-color);
+        border-bottom: none !important;
     }
 }

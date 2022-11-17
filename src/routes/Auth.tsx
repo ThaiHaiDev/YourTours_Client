@@ -20,6 +20,8 @@ import CountRoomDetailSetting from '../pages/OwnerSetting/CountRoomDetailSetting
 import ListRoomOfHost from '../pages/OwnerSetting/ManagerRoom/ListRoomOfHost';
 import CalendarRoomSetting from '../pages/OwnerSetting/CalendarRoomSetting/CalendarRoomSetting';
 import ListRoomPage from '../pages/ListRoomPage/ListRoomPage';
+import FavoritesPage from '../pages/FavoritesPage/FavoritesPage';
+import InfoUserPage from '../pages/InfoUserPage/InfoUserPage';
 
 const Auth = () => {
     const user = useSelector((state: RootState) => state.user)
@@ -35,6 +37,8 @@ const Auth = () => {
             <Route path="/congratulation" element={<CongratulationPage />} />
             <Route path="/intro-host" element={<IntroSettingOwnerPage />} />
             <Route path="/list-room" element={<ListRoomPage />} />
+            <Route path="/wishlists" element={<FavoritesPage />} />
+            <Route path="/account" element={<InfoUserPage />} />
             <Route path="/test" element={<Test />} />
             <Route path="/host" element={<OwnerSetting />} />
             <Route path="/host/setting" element={<ListRoomOfHost />} />
