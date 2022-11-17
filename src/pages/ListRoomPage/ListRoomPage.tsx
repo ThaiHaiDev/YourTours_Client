@@ -9,7 +9,7 @@ import NavbarFix from '../../components/NavbarFix/NavbarFix';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import RoomItem from '../../components/RoomItem/RoomItem';
-import SkeletonRoomItem from '../../components/SkeletonRoomItem/SkeletonRoomItem';
+import SkeletonRoomItem from '../../components/Skeleton/SkeletonRoomItem';
 
 const ListRoomPage = () => {
     const style = {
@@ -54,10 +54,10 @@ const ListRoomPage = () => {
                     scrollableTarget="scrollableDiv"
                     style={{ paddingTop: '160px', zIndex: '-1', margin: '0 100px' }}
                 >
-                    <div className="row" style={{margin: 0}}>
+                    <div className="row" style={{ margin: 0 }}>
                         <SkeletonRoomItem />
                         {state.items.map((i: any, index: number) => (
-                            <RoomItem key={index}/>
+                            <RoomItem key={index} />
                         ))}
                     </div>
                 </InfiniteScroll>

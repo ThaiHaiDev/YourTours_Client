@@ -1,18 +1,12 @@
-import SkeletonRoomItem from '../../components/SkeletonRoomItem/SkeletonRoomItem';
+import SkeletonRoomItem from '../../components/Skeleton/SkeletonRoomItem';
 import './Test.scss';
-
 
 function Test() {
     return (
-       <div>
-        <SkeletonRoomItem />
-       </div>
+        <div>
+            <SkeletonRoomItem />
+        </div>
     );
 }
 
-export default Test
-
-
-
-
-
+export default Test;

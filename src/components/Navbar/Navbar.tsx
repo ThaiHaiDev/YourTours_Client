@@ -27,7 +27,7 @@ const Navbar = () => {
     return (
         <div>
             <div className="navbar">
-                <NavLink to="#" className="logo">
+                <NavLink to="/" className="logo">
                     <div className="sidebar__logo">
                         <img
                             src="https://cdn6.agoda.net/images/kite-js/logo/agoda/color-default.svg"

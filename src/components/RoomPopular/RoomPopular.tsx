@@ -10,6 +10,7 @@ import mapProvince from '../../utils/mapProvince';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import homeApi from '../../services/homeApi';
+import SkeletonRoomItem from '../Skeleton/SkeletonRoomItem';
 
 export default function RoomPopular() {
     const settings = {
@@ -22,10 +23,13 @@ export default function RoomPopular() {
     };
 
     const [listRoom, setListRoom] = useState<any>([]);
+    const [loading, setLoading] = useState<boolean>(false)
 
     useEffect(() => {
+        setLoading(true)
         homeApi.getRoomFavorite().then((dataResponse) => {
             setListRoom(dataResponse.data.content);
+            setLoading(false)
         });
     }, []);
 
@@ -35,7 +39,7 @@ export default function RoomPopular() {
         <div className="room__popular">
             <h1>Room nổi bậc được xem nhiều nhất</h1>
             <div className="row">
-                {listRoom?.map((room: any, index: number) => (
+                {loading ? <SkeletonRoomItem /> : listRoom?.map((room: any, index: number) => (
                     <div className="col l-3 m-6 c-12" key={index}>
                         <Slider {...settings}>
                             {room.imagesOfHome.length !== 0 && room?.imagesOfHome?.map((image: any) => (
