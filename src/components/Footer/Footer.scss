@@ -1,11 +1,11 @@
 .footer {
-    background-image: url(../../assets/img/footer-background.jpg);
     background-position: center;
     background-size: cover;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 40px;
+    margin-top: 100px;
+    border-top: 1px solid var(--text-color);
 
     .footer__contact {
         height: 210px;
@@ -16,7 +16,7 @@
         margin-top: 15px !important;
 
         .footer__contact-name {
-            margin-right: 144px;
+            margin-right: 90px;
 
             .footer__contact-text {
                 font-size: 14px;
@@ -25,20 +25,21 @@
 
             .footer__contact-heading {
                 margin: 24px 0;
-                font-size: 3.6rem;
+                font-size: 3rem;
                 color: black;
+                padding: 0;
             }
         }
 
         .footer__contact__input {
-            width: 250px;
-            height: 46px;
+            width: 300px;
+            height: 40px;
             padding: 0 18px;
             font-size: 1.8rem;
             color: black;
             border-radius: 100px;
             outline: none;
-            border: none;
+            border: 1px solid;
         }
 
         .footer__contact-submit-btn {
@@ -50,11 +51,16 @@
             border-radius: 100px;
             cursor: pointer;
         }
+        
+        .footer-input {
+            border: 1px solid black;
+        }
     }
 
     .footer__inner {
-        padding: 35px 30px 80px;
+        padding: 35px 30px 30px;
         background-color: white;
+        border-top: 1px solid var(--text-color);
         position: relative;
 
         .footer__logo {
@@ -64,7 +70,7 @@
         .footer__desc {
             color: black;
             font-size: 1.4rem;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             margin: 30px 0;
         }
 

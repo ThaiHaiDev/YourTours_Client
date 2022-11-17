@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import './RoomPopular.scss';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
@@ -9,6 +9,7 @@ import mapProvince from '../../utils/mapProvince';
 // Import css files
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+
 import homeApi from '../../services/homeApi';
 import SkeletonRoomItem from '../Skeleton/SkeletonRoomItem';
 
@@ -49,7 +50,7 @@ export default function RoomPopular() {
                             ))}
                         </Slider>
                         <div className="love_room">
-                            <FavoriteOutlinedIcon className="icon_love" />
+                            <FavoriteOutlinedIcon className={room?.isFavorite ? 'icon_love__true' : 'icon_love'}/>
                         </div>
                         <div className="info__room">
                             <h2>{room?.name}</h2>

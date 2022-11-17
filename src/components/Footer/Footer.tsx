@@ -6,22 +6,26 @@ const Footer = () => {
         <div className="footer">
             <div className="footer__contact grid wide">
                 <div className="footer__contact-name">
-                    <span className="footer__contact-text">KEEP IN TOUCH</span>
-                    <h4 className="footer__contact-heading">Travel with Us</h4>
+                    <h3 className="footer__contact-heading">Tiết kiệm thời gian và tiền bạc!</h3>
+                    <span className="footer__contact-text">Hãy đăng ký và chúng tôi sẽ gửi những ưu đãi tốt nhất cho bạn</span>
                 </div>
                 <form action="" className="footer__contact-form">
                     <input type="text" name="" id="" className="footer__contact__input" />
                     <label htmlFor="footer__contact-submit" className="footer__contact-submit-btn">
-                        SEND
+                        Đăng ký
                     </label>
-                    <input type="submit" value="" hidden id="footer__contact-submit" />
+                    <input type="submit" value="" hidden className="footer-input" />
                 </form>
             </div>
             <div className="footer__inner">
                 <div className="grid wide">
                     <div className="row">
                         <div className="col l-6 m-12 c-12">
-                            <img src="https://cdn6.agoda.net/images/kite-js/logo/agoda/color-default.svg" alt="" className="footer__logo" />
+                            <img
+                                src="https://cdn6.agoda.net/images/kite-js/logo/agoda/color-default.svg"
+                                alt=""
+                                className="footer__logo"
+                            />
                             <p className="footer__desc">
                                 Mọi nội dung tại đây © 2005 – 2022 Công ty TNHH Tư nhân Yourtours. Bảo Lưu Mọi Quyền.
                                 Yourtours.com là thành viên của Tập đoàn Min Close, nhà cung cấp dịch vụ du lịch trực
@@ -29,16 +33,16 @@ const Footer = () => {
                             </p>
                             <div className="footer__inner-contact">
                                 <Link to="#" className="footer__contact-logo fab fa-twitter">
-                                    T
+                                    <img src="https://img.icons8.com/fluency/40/null/twitter.png" alt="alt-t" />
                                 </Link>
                                 <Link to="#" className="footer__contact-logo fab fa-youtube">
-                                    Y
+                                    <img src="https://img.icons8.com/doodle/40/null/youtube-play--v2.png" alt="alt-y" />
                                 </Link>
                                 <Link to="#" className="footer__contact-logo fab fa-facebook-square">
-                                    F
+                                    <img src="https://img.icons8.com/color/40/null/facebook-new.png" alt="alt-f" />
                                 </Link>
                                 <Link to="#" className="footer__contact-logo fab fa-instagram-square">
-                                    Y
+                                    <img src="https://img.icons8.com/fluency/40/null/instagram-new.png" alt="alt-i" />
                                 </Link>
                             </div>
                         </div>
