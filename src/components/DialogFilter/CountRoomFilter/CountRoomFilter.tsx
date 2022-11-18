@@ -41,13 +41,20 @@ const CountRoomFilter = (props: any) => {
 
     const handleSetActive = (id: number) => {
         setIdActive(id);
+        if (props.handleChangeNumberOfBed) {
+            props.handleChangeNumberOfBed(id)
+        } else if (props.handleChangeNumberOfBedRoom) {
+            props.handleChangeNumberOfBedRoom(id)
+        } else if (props.handleChangeNumberOfBathRoom) {
+            props.handleChangeNumberOfBathRoom(id)
+        }
     };
 
     return (
         <div className="count-room__filter">
-            <p className="title-count__filter">Phòng ngủ</p>
+            <p className="title-count__filter">{props?.name}</p>
             <div className="list-number__choose">
-                <p className={idActive === 0 ? 'item-first active' : 'item-first'} onClick={() => setIdActive(0)}>Bất kì</p>
+                <p className={idActive === 0 ? 'item-first active' : 'item-first'} onClick={() => handleSetActive(0)}>Bất kì</p>
                 {DataFakeCount.map((count: any) => (
                     <p
                         className={idActive === count.index ? `item-chose active` : `item-chose`}

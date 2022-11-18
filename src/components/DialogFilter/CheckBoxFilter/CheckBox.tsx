@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import './CheckBox.scss';
 import filterApi from '../../../services/filterApi';
 
-export default function CheckBox() {
+export default function CheckBox(props:any) {
     const [listDataFilterConvenient, setListDataFilterConvenient] = useState<any>([]);
     const [idCheck, setIdCheck] = useState<any>([]);
 
@@ -18,18 +18,26 @@ export default function CheckBox() {
     }, []);
 
     const handleChangeBox = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (!idCheck.some((check: any) => check.id === event.target.value)) {
-            setIdCheck([...idCheck, { id: event.target.value }]);
+        if (!idCheck.some((check: any) => check === event.target.value)) {
+            setIdCheck([...idCheck, event.target.value]);
+            formatToString([...idCheck, event.target.value])
         } else {
             setIdCheck(
                 idCheck.filter((check: any) => {
-                    return check.id !== event.target.value;
+                    return check !== event.target.value;
                 }),
             );
+            formatToString([...idCheck, event.target.value])
         }
     };
 
-    console.log(idCheck);
+    const formatToString = (array:any) => {
+        if (props.setFilterAmenities) {
+            props.setFilterAmenities(array.join(['&amenities=']))
+        }
+    }
+
+
 
     return (
         <FormGroup>

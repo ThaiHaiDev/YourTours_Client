@@ -8,6 +8,7 @@ import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import mapProvince from '../../utils/mapProvince';
+import formatPrice from '../../utils/formatPrice';
 
 const RoomItem = (props: any) => {
     const settings = {
@@ -65,7 +66,7 @@ const RoomItem = (props: any) => {
                         <p>{mapProvince(props?.infoRoom?.provinceCode)}</p>
                     </div>
                     <div className="price__room">
-                        <p>Giá: 700.000 VND / Đêm</p>
+                        <p>{`Giá: ${formatPrice(props?.infoRoom?.costPerNightDefault)} / Đêm`}</p>
                         <p>Đánh giá: 4.5</p>
                     </div>
                 </div>

@@ -27,7 +27,24 @@ const InfoUserPage = () => {
                         </div>
                     </div>
                     <div className="col l-8">
-                        <div className="card-content"></div>
+                        <div className="card-content">
+                            <h2>Thông tin tài khoản</h2>
+                            <p className="desc-info-content">
+                                Thông tin này sẽ được từ nhập vào đơn hàng sau của bạn. Thông tin của bạn sẽ được mã hoá
+                                và không chia sẻ với bên thứ 3
+                            </p>
+                            <div className="row" style={{margin: '0 30px'}}>
+                                <div className="col l-6">
+                                    <p className="label-info__user">Họ tên đầy đủ</p>
+                                    <input type="text" className="input-info__user" />
+                                </div>
+
+                                <div className="col l-6">
+                                    <p className="label-info__user">Email (nhận voucher)</p>
+                                    <input type="email" className="input-info__user" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

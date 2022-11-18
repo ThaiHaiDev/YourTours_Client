@@ -9,7 +9,7 @@ import DialogFilter from '../DialogFilter/DialogFilter';
 import { useEffect, useState } from 'react';
 import filterApi from '../../services/filterApi';
 
-const FilterBar = () => {
+const FilterBar = (props: any) => {
     var settings = {
         dots: true,
         infinite: true,
@@ -43,7 +43,7 @@ const FilterBar = () => {
                     </div>
                 ))}
             </Slider>
-            <DialogFilter />
+            <DialogFilter filterData={props.filterData}/>
         </div>
     );
 };
