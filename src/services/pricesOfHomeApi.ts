@@ -17,7 +17,6 @@ const pricesOfHomeApi = {
         const url = 'api/v1/cms/surcharge-of-home/create/list';
         return axiosClient.post(url, data);
     }
-    
 };
 
 export default pricesOfHomeApi;

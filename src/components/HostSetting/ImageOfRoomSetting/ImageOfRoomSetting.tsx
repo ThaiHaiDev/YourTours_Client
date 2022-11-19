@@ -4,12 +4,10 @@ import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import React, { ChangeEvent, useState } from 'react';
+import React from 'react';
 
 const ImageOfRoomSetting = () => {
     const [expanded, setExpanded] = React.useState<string | false>(false);
-    const [previewSource, setPreviewSource] = React.useState<any>('');
-    const [fileImage, setFileImage] = useState<File>()
 
     const handleChange = (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
         setExpanded(isExpanded ? panel : false);
@@ -19,22 +17,6 @@ const ImageOfRoomSetting = () => {
         setExpanded(false);
     };
 
-    const previewFile = (file: any) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = () => {
-            setPreviewSource(reader.result);
-        };
-    };
-
-    const handleFileInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-        if (event.target.files) {
-            const file = event.target.files[0];
-            previewFile(file);
-            setFileImage(file)
-        } 
-    }
-
     return (
         <div className="image-of-room__setting">
             <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
@@ -43,11 +25,6 @@ const ImageOfRoomSetting = () => {
                 </AccordionSummary>
                 <AccordionDetails>
                     <form>
-                        <div className="content-input-image">
-                            <p>{!previewSource && 'Không có ảnh.'}</p>
-                            <input type="file" value="" onChange={handleFileInputChange}/>
-                        </div>
-                        {previewSource && <img src={previewSource} alt="chosen" style={{ height: '180px', width: '180px', marginBottom: '10px' }} />}
                         <div className="btn">
                             <p onClick={handleClose} className="btn-close">
                                 Hủy

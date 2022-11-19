@@ -172,6 +172,7 @@ export default function ValuationDiscountSetting(props: any) {
 
             {props?.detailPriceRoom.discounts?.map((discount: any, index: number) => {
                 var i = 2 + index;
+                console.log(discount)
                 return (
                     <form onSubmit={handleSubmit(onSubmitDiscount)} key={index}>
                         <Accordion expanded={expanded === `panel${i}`} onChange={handleChange(`panel${i}`)}>
@@ -188,7 +189,7 @@ export default function ValuationDiscountSetting(props: any) {
                             <AccordionDetails>
                                 <div className="content-input">
                                     <h4>Mô tả {discount?.category.name}</h4>
-                                    <p>{discount?.description ? discount?.description : 'Không có mô tả'}</p>
+                                    <p>{discount?.category.description ? discount?.category.description : 'Không có mô tả'}</p>
                                     <input className="input-price-room__setting" {...register(`percent${index}`)} />
                                     <input
                                         {...register(`idCategory_${index}`)}
