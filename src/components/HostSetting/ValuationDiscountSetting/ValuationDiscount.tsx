@@ -172,7 +172,6 @@ export default function ValuationDiscountSetting(props: any) {
 
             {props?.detailPriceRoom.discounts?.map((discount: any, index: number) => {
                 var i = 2 + index;
-                console.log(discount)
                 return (
                     <form onSubmit={handleSubmit(onSubmitDiscount)} key={index}>
                         <Accordion expanded={expanded === `panel${i}`} onChange={handleChange(`panel${i}`)}>

@@ -1,11 +1,13 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './CountRoomSetting.scss';
 
 const CountRoomSetting = (props:any) => {
     const navigate = useNavigate();
 
+    const params = useParams();
+
     const handleChangePage = () => {
-        navigate('/host/setting/countroomdetail')
+        navigate(`/host/setting/countroomdetail/${params.idHome}`)
     }
 
     return (

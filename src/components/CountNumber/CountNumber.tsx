@@ -20,8 +20,7 @@ const CountNumber = (props: any) => {
                     break;
                 }
             }
-        }
-        
+        } 
     };
 
     const handleReducer = () => {

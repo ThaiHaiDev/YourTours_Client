@@ -7,9 +7,19 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 import './DialogCountRoom.scss';
 import CountNumber from '../CountNumber/CountNumber';
+import roomCategoryApi from '../../services/roomCategoryApi';
 
 export default function DialogCountRoom() {
     const [open, setOpen] = React.useState(false);
+    const [listCategoryRoom, setListCategoryRoom] = React.useState<any>([]);
+
+    React.useEffect(() => {
+        roomCategoryApi.getAllRoomCategory().then((dataResponse) => {
+            setListCategoryRoom(dataResponse.data.content);
+        });
+    }, []);
+
+    console.log(listCategoryRoom);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -38,16 +48,15 @@ export default function DialogCountRoom() {
                         {'Khách có thể sử dụng những khu vực nào?'}
                     </DialogTitle>
                     <DialogContent sx={{ fontWeight: 'bold' }}>
-                        <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                            <p style={{fontSize: '15px'}}>Phòng tắm: </p>
-                            <CountNumber />
-                        </div>
-                        <hr />
-                        <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                            <p style={{fontSize: '15px'}}>Phòng vệ sinh cơ bản: </p>
-                            <CountNumber />
-                        </div>
-                        <hr />
+                        {listCategoryRoom?.map((categoryRoom: any, index: number) => (
+                            <div>
+                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                    <p style={{ fontSize: '15px' }}>{categoryRoom?.name}</p>
+                                    <CountNumber />
+                                </div>
+                                <hr />
+                            </div>
+                        ))}
                     </DialogContent>
                 </div>
 
