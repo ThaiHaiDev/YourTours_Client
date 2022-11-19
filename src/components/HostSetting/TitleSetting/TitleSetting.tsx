@@ -21,7 +21,6 @@ export default function TittleSetting(props: any) {
     const params = useParams();
 
     const { enqueueSnackbar } = useSnackbar();
-    const [loading, setLoading] = React.useState<boolean>(false);
 
     const handleChange = (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
         setExpanded(isExpanded ? panel : false);
@@ -43,19 +42,15 @@ export default function TittleSetting(props: any) {
             data,
             id: params.idHome,
         };
-        setLoading(false);
         homeApi
             .updateTitleHome(newData)
             .then((dataResponse: any) => {
-                setLoading(true);
                 enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
             })
             .catch((error: AxiosError<any>) => {
                 enqueueSnackbar(error.response?.data.message, { variant: 'error' });
             });
     };
-
-    console.log(loading)
 
     return (
         <div style={{ fontSize: '15px', paddingRight: '50px', paddingBottom: '50px' }}>

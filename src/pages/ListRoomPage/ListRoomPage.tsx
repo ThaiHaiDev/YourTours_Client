@@ -20,7 +20,7 @@ const ListRoomPage = () => {
     // URL defauld
     const location = useLocation();
     const queryParams = useMemo(() => {
-        return location.search;
+        return location.search.slice(1);
     }, [location.search]);
 
     useEffect(() => {

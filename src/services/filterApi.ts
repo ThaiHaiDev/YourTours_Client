@@ -13,7 +13,6 @@ const filterApi = {
         const url = `api/v1/public/homes/page/filter?${filter}number=0&size=20`;
         return axiosClient.get(url);
     },
-    // 
 };
 
 export default filterApi;

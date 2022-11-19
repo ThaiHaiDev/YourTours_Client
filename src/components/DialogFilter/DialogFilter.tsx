@@ -22,7 +22,7 @@ export default function DialogFilter(props: any) {
     const [filter, setFilter] = useState<string>('');
 
     useEffect(() => {
-        setFilter(`${valuePriceRange}${numberOfBed}&${numberOfBedRoom}&${numberOfBathRoom}&${filterAmenities}`)
+        setFilter(`${valuePriceRange}${numberOfBed}${numberOfBedRoom}${numberOfBathRoom}${filterAmenities}`)
     }, [filterAmenities, valuePriceRange, numberOfBed, numberOfBedRoom, numberOfBathRoom])
 
     const handleClickOpen = () => {
@@ -50,27 +50,28 @@ export default function DialogFilter(props: any) {
     const handleChangePriceRange = (value: number[]) => {
         setValuePriceRange(`priceFrom=${value[0]}&priceTo=${value[1]}&`);
     };
+    console.log(filter)
 
     const handleChangeFilterAmenities = (value: string) => {
         setFilterAmenities(`amenities=${value}&`);
     };
     const handleChangeNumberOfBed = (value: number) => {
         if (value !== 0) {
-            setNumberOfBed(`numberOfBed=${value}`);
+            setNumberOfBed(`numberOfBed=${value}&`);
         } else {
             setNumberOfBed('')
         }
     };
     const handleChangeNumberOfBedRoom = (value: number) => {
         if (value !== 0) {
-            setNumberOfBedRoom(`numberOfBedRoom=${value}`)
+            setNumberOfBedRoom(`numberOfBedRoom=${value}&`)
         } else {
             setNumberOfBedRoom('')
         }
     };
     const handleChangeNumberOfBathRoom = (value: number) => {
         if (value !== 0) {
-            setNumberOfBathRoom(`numberOfBathRoom=${value}`)
+            setNumberOfBathRoom(`numberOfBathRoom=${value}&`)
         } else {
             setNumberOfBathRoom('')
         }

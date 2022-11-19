@@ -9,6 +9,14 @@ const pricesOfHomeApi = {
         const url = `api/v1/cms/prices/create`;
         return axiosClient.post(url, data);
     },
+    setDiscountOfHome(data: any): Promise<any> {
+        const url = `api/v1/cms/discount-of-home/create/list`;
+        return axiosClient.post(url, data);
+    },
+    setSurchargeOfHome(data: any): Promise<any> {
+        const url = 'api/v1/cms/surcharge-of-home/create/list';
+        return axiosClient.post(url, data);
+    }
     
 };
 
