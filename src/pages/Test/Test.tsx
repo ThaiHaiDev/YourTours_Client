@@ -1,9 +1,9 @@
-import SkeletonRoomItem from '../../components/Skeleton/SkeletonRoomItem';
+import SkeletonFilter from '../../components/Skeleton/SkeletonFilter';
 
 function Test() {
     return (
         <div>
-            <SkeletonRoomItem />
+            <SkeletonFilter />
         </div>
     );
 }
