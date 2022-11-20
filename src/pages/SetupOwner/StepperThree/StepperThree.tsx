@@ -10,7 +10,7 @@ interface StepperThreeData {
 
 const StepperThree = (props : StepperThreeData) => {
     const [data, setData] = useState<any>()
-    console.log(data)
+
     useEffect(() => {
         amenityCategoryApi.getAmenityCategories().then((data) => {
             setData(data.data.content);

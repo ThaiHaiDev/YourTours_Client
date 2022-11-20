@@ -63,7 +63,7 @@ export default function TittleSetting(props: any) {
                         id="panel1bh-header"
                     >
                         <p style={{ width: '33%', flexShrink: 0 }}>Tiêu đề phòng cho thuê</p>
-                        <p style={{ color: 'text.secondary' }}>{props.infoRoom.name}</p>
+                        <p style={{ color: 'text.secondary' }}>{props?.infoRoom?.name}</p>
                     </AccordionSummary>
                     <AccordionDetails>
                         <div className="content-input">

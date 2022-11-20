@@ -1,9 +1,11 @@
 .step-five {
     margin-top: 20px;
+    position: absolute;
+    width: 100%;
 
     .l-6:nth-child(1) {
         position: relative;
-        height: 80vh;
+        height: 90vh;
         background: red;
 
         h1 {

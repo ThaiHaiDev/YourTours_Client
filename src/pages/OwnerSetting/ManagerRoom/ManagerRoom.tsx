@@ -23,7 +23,7 @@ const ManagerRoom = () => {
     const [dataHomeDetail, setDataHomeDetail] = useState<any>();
 
     const infoRoom = {
-        name: dataHomeDetail?.name,
+        name: dataHomeDetail?.name ? dataHomeDetail?.name : '',
         desc: dataHomeDetail?.description,
         guide: dataHomeDetail?.guide,
         refundPolicy: dataHomeDetail?.refundPolicy

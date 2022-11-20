@@ -10,7 +10,7 @@ export default function ConvenientSetting(props:any) {
     const navigate = useNavigate()
     const params = useParams();
 
-    const nameConvenient = `${props.convent ? props.convent[0].name : ''}, ${props.convent ? props.convent[1].name : ''}, ...`
+    const nameConvenient = `${props?.convent ? props?.convent[0]?.name : ''}, ${props?.convent ? props?.convent[1]?.name : ''}, ...`
 
     const handleChange = () => {
         navigate(`/host/setting/convenient/${params.idHome}`)

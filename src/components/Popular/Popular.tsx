@@ -44,8 +44,8 @@ const Popular = () => {
                     ) : (
                         listProvince?.map((province: any, index: number) => {
                             const dataResult = Provice.find((d: any) => {
-                                // return d.code === province.provinceCode;
-                                return d.code === 1;
+                                return d.code === province.provinceCode;
+                                // return d.code === 1;
                             });
                             return (
                                 <div className="col l-3 m-6 c-12" key={index}>
