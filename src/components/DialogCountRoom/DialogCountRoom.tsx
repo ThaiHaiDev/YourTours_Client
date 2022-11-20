@@ -5,16 +5,22 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 
+import { useSnackbar } from 'notistack';
+import { AxiosError } from 'axios';
+
 import './DialogCountRoom.scss';
-import CountNumber from '../CountNumber/CountNumber';
 import roomCategoryApi from '../../services/roomCategoryApi';
 import { useParams } from 'react-router-dom';
+import CountNumberRoom from '../CountNumber/CountNumberRoom';
 
 export default function DialogCountRoom() {
     const [open, setOpen] = React.useState(false);
     const [listCategoryRoom, setListCategoryRoom] = React.useState<any>([]);
+    const [dataSetRoomCount, setDataSetRoomCount] = React.useState<any>([]);
 
     const params = useParams();
+
+    const { enqueueSnackbar } = useSnackbar();
 
     React.useEffect(() => {
         roomCategoryApi.getAllRoomCategory(params?.idHome).then((dataResponse) => {
@@ -22,14 +28,40 @@ export default function DialogCountRoom() {
         });
     }, [params.idHome]);
 
-    console.log(listCategoryRoom);
-
     const handleClickOpen = () => {
         setOpen(true);
     };
 
     const handleClose = () => {
         setOpen(false);
+    };
+
+    const handleSetDataRoomCount = (value: any) => {
+        if (!dataSetRoomCount.some((check: any) => check.categoryId === value.categoryId)) {
+            setDataSetRoomCount([...dataSetRoomCount, value]);
+        } else {
+            for (const obj of dataSetRoomCount) {
+                if (obj.categoryId === value.categoryId) {
+                    obj.number = value.number;
+                    break;
+                }
+            }
+        }
+    };
+
+    const handleSave = () => {
+        const newCount = {
+            homeId: params?.idHome,
+            listCreate: dataSetRoomCount.filter((data: any) => { return data.number !== 0}),
+        };
+        roomCategoryApi
+            .saveCountRoomOfHome(newCount)
+            .then((data: any) => {
+                enqueueSnackbar('Lưu thành công', { variant: 'success' });
+            })
+            .catch((error: AxiosError<any>) => {
+                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+            });
     };
 
     return (
@@ -55,10 +87,10 @@ export default function DialogCountRoom() {
                     </DialogTitle>
                     <DialogContent sx={{ fontWeight: 'bold' }}>
                         {listCategoryRoom?.map((categoryRoom: any, index: number) => (
-                            <div>
+                            <div key={index}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                     <p style={{ fontSize: '15px' }}>{`${categoryRoom?.name}: ${categoryRoom?.numberOfHomes}`}</p>
-                                    <CountNumber />
+                                    <CountNumberRoom categoryId={categoryRoom.id} handleSetDataRoomCount={handleSetDataRoomCount}/>
                                 </div>
                                 <hr />
                             </div>
@@ -70,7 +102,7 @@ export default function DialogCountRoom() {
                     <Button onClick={handleClose} color="error" sx={{ fontSize: '14px' }}>
                         Close
                     </Button>
-                    <Button onClick={handleClose} autoFocus sx={{ fontSize: '14px', textTransform: 'none' }}>
+                    <Button onClick={handleSave} autoFocus sx={{ fontSize: '14px', textTransform: 'none' }}>
                         OK
                     </Button>
                 </DialogActions>

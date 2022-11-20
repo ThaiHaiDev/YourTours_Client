@@ -48,7 +48,7 @@ export default function DialogCountOfRoom(props: any) {
 
     const handleSave = () => {
         const newCount = {
-            listBedOfHomeDetail: dataSetBedCount,
+            listBedOfHomeDetail: dataSetBedCount.filter((data:any) => { return data.amount !== 0}),
         };
         roomOfHomeApi
             .saveCountBedOfHome(newCount)

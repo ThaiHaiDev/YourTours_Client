@@ -9,6 +9,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import mapProvince from '../../utils/mapProvince';
 import formatPrice from '../../utils/formatPrice';
+import { useNavigate } from 'react-router-dom';
 
 const RoomItem = (props: any) => {
     const settings = {
@@ -19,6 +20,13 @@ const RoomItem = (props: any) => {
         slidesToShow: 1,
         slidesToScroll: 1,
     };
+
+    const navigate = useNavigate();
+
+    const handleLinkToDetail = (idRoom : string) => {
+        navigate(`/detail/${idRoom}`)
+    }
+
     return (
         <div className="col l-3 m-6 c-12">
             <div className="room-item">
@@ -36,7 +44,7 @@ const RoomItem = (props: any) => {
                 <div className="love_room">
                     <FavoriteOutlinedIcon className="icon_love" />
                 </div>
-                <div className="info__room">
+                <div className="info__room" onClick={() => handleLinkToDetail(props?.infoRoom?.id)}>
                     <h2>{props?.infoRoom?.name}</h2>
                     <div className="obility__room">
                         <p>Resort</p>

@@ -40,6 +40,7 @@ const ImageOfRoomSetting = () => {
             .deleteRoomOfHome(idRoom)
             .then(() => {
                 enqueueSnackbar('Xóa thành công', { variant: 'success' });
+                setListRoomOfHome(listRoomOfHome.filter(((room:any) => {return room.id !== idRoom})))
             })
             .catch((error: AxiosError<any>) => {
                 enqueueSnackbar(error.response?.data.message, { variant: 'error' });

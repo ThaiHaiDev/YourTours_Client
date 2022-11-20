@@ -28,7 +28,7 @@ const Auth = () => {
     return (
         <Routes>
             <Route path="/" element={user.current.role === 'USER' ? <HomePage /> : <RoomDetail />}  />
-            <Route path="/detail" element={<RoomDetail />} />
+            <Route path="/detail/:idRoom" element={<RoomDetail />} />
             <Route path="/stepsetupowner" element={<StepperMain />} />
             <Route path="/signin" element={<Signin />} />
             <Route path="/signup" element={<Signup />} />
