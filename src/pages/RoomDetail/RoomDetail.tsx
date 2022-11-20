@@ -21,11 +21,13 @@ import SkeletonRoomDetail from '../../components/Skeleton/SkeletonRoomDetail';
 import format from 'date-fns/format';
 import pricesOfHomeApi from '../../services/pricesOfHomeApi';
 import formatPrice from '../../utils/formatPrice';
+import PopoverPrice from '../../components/PopoverPrice/PopoverPrice';
 
 const RoomDetail = () => {
     const [dataDetailHome, setDataDetalHome] = useState<any>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [priceDay, setPriceDay] = useState<any>('');
+    const [detailPrice, setDetailPrice] = useState<any>([]);
 
     const params = useParams();
 
@@ -41,7 +43,8 @@ const RoomDetail = () => {
         const dateFrom = format(value[0].startDate, 'yyyy-MM-dd');
         const dateTo = format(value[0].endDate, 'yyyy-MM-dd');
         pricesOfHomeApi.showPriceByRangeDay(params?.idHome, dateFrom, dateTo).then((dataResponse) => {
-            setPriceDay(dataResponse.data.totalCost)
+            setPriceDay(dataResponse.data.totalCost);
+            setDetailPrice(dataResponse.data.detail);
         })
     }
 
@@ -150,10 +153,10 @@ const RoomDetail = () => {
 
                                 <div className="price-total">
                                     <div className="title-price">
-                                        <p>700.000 x 7 ngày</p>
+                                        <PopoverPrice detailPrice={detailPrice}/>
                                     </div>
                                     <div className="real-price">
-                                        <p>{formatPrice(priceDay)}</p>
+                                        <p>{priceDay !== '' ? formatPrice(priceDay) : ''}</p>
                                     </div>
                                 </div>
                             </div>

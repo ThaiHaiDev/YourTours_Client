@@ -215,6 +215,11 @@
             margin-left: 25px;
             margin-right: 25px;
 
+            .title-price {
+                display: flex;
+                align-items: center;
+            }
+
             p {
                 font-size: 1.5rem;
             }

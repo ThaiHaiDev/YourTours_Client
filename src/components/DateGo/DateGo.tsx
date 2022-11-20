@@ -14,7 +14,7 @@ const DateRangePickerComp = (props:any) => {
     const [range, setRange] = useState<any>([
         {
             startDate: new Date(),
-            endDate: addDays(new Date(), 7),
+            endDate: addDays(new Date(), 0),
             key: 'selection',
         },
     ]);

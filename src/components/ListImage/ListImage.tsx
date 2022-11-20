@@ -6,7 +6,7 @@ const ListImage = (props: any) => {
             {props.listImage ? (
                 <div className="row">
                     <div className="col l-6 c-12">
-                        <div className="image-item">
+                        <div className="image-item-thumbnail">
                             <img src={`${props?.thumbnail}`} alt="room_hot" />
                         </div>
                     </div>

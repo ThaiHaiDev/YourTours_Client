@@ -26,6 +26,15 @@
             width: 100%;
         }
     }
+
+    .image-item-thumbnail {
+        margin: 0 auto;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
 }
 
 /* Tablet: width >= 740px and width < 1024px */
