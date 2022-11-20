@@ -76,7 +76,12 @@ const DateRangePickerComp = (props:any) => {
             <div ref={refOne}>
                 {open && (
                     <DateRangePicker
-                        onChange={(item) => setRange([item.selection])}
+                        onChange={(item) => {
+                            setRange([item.selection])
+                            if (props?.setDataDay) {
+                                props.setDataDay([item.selection])
+                            }
+                        }}
                         editableDateInputs={true}
                         moveRangeOnFirstSelection={false}
                         ranges={range}

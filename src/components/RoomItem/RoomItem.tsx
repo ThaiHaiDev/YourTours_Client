@@ -6,6 +6,7 @@ import FmdGoodIcon from '@mui/icons-material/FmdGood';
 // Import css files
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+
 import mapProvince from '../../utils/mapProvince';
 import formatPrice from '../../utils/formatPrice';
 import { useNavigate } from 'react-router-dom';

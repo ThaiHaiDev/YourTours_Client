@@ -18,9 +18,14 @@ import homeDetailApi from '../../services/homeDetailApi';
 import mapProvince from '../../utils/mapProvince';
 import SkeletonRoomDetail from '../../components/Skeleton/SkeletonRoomDetail';
 
+import format from 'date-fns/format';
+import pricesOfHomeApi from '../../services/pricesOfHomeApi';
+import formatPrice from '../../utils/formatPrice';
+
 const RoomDetail = () => {
     const [dataDetailHome, setDataDetalHome] = useState<any>([]);
     const [loading, setLoading] = useState<boolean>(false);
+    const [priceDay, setPriceDay] = useState<any>('');
 
     const params = useParams();
 
@@ -31,6 +36,14 @@ const RoomDetail = () => {
             setLoading(false);
         });
     }, [params?.idHome]);
+
+    const handleChangeDayBooking = (value : any) => {
+        const dateFrom = format(value[0].startDate, 'yyyy-MM-dd');
+        const dateTo = format(value[0].endDate, 'yyyy-MM-dd');
+        pricesOfHomeApi.showPriceByRangeDay(params?.idHome, dateFrom, dateTo).then((dataResponse) => {
+            setPriceDay(dataResponse.data.totalCost)
+        })
+    }
 
     return (
         <div className="detail-room">
@@ -109,7 +122,7 @@ const RoomDetail = () => {
                                 </div>
 
                                 <hr className="line" />
-                                <DateRangeDetail size="horizontal" />
+                                <DateRangeDetail size="horizontal" setDataDay={handleChangeDayBooking} />
 
                                 <hr className="line" />
                                 <h1>Đánh giá</h1>
@@ -118,13 +131,13 @@ const RoomDetail = () => {
 
                         <div className="col l-4 m-5 c-12">
                             <div className="card-book__detail">
-                                <div className="price-room">700.000 VND</div>
+                                <div className="price-room">{formatPrice(dataDetailHome?.costPerNightDefault)}</div>
                                 <div className="date-book">
                                     <div className="title__date-book">
                                         <p>Nhận phòng</p>
                                         <p>Trả phòng</p>
                                     </div>
-                                    <DateGo size="vertical" />
+                                    <DateGo size="vertical" setDataDay={handleChangeDayBooking}/>
                                 </div>
                                 <div className="count__guest">
                                     <p>Số khách</p>
@@ -140,7 +153,7 @@ const RoomDetail = () => {
                                         <p>700.000 x 7 ngày</p>
                                     </div>
                                     <div className="real-price">
-                                        <p>4.900.000 VND</p>
+                                        <p>{formatPrice(priceDay)}</p>
                                     </div>
                                 </div>
                             </div>

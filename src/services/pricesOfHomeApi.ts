@@ -16,7 +16,11 @@ const pricesOfHomeApi = {
     setSurchargeOfHome(data: any): Promise<any> {
         const url = 'api/v1/cms/surcharge-of-home/create/list';
         return axiosClient.post(url, data);
-    }
+    },
+    showPriceByRangeDay(idHoom: string | undefined, dateFrom: string | undefined, dateTo: string | undefined): Promise<any> {
+        const url = `api/v1/public/prices?homeId=${idHoom}&dateFrom=${dateFrom}&dateTo=${dateTo}`;
+        return axiosClient.get(url);
+    },
 };
 
 export default pricesOfHomeApi;
