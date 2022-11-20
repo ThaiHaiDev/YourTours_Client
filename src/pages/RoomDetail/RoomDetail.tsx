@@ -5,7 +5,7 @@ import './RoomDetail.scss';
 
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import StarIcon from '@mui/icons-material/Star';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Convenient from '../../components/Convenient/Convenient';
 import DateGo from '../../components/DateGo/DateGo';
 import Dropdown from '../../components/Dropdown/Dropdown';
@@ -13,78 +13,99 @@ import DialogConvenient from '../../components/DialogConvenient/DialogConvenient
 import DateRangeDetail from '../../components/DateRangeDetail/DateRangeDetail';
 import Footer from '../../components/Footer/Footer';
 import BedRoomSlider from '../../components/BedRoomSlider/BedRoomSlider';
+import { useEffect, useState } from 'react';
+import homeDetailApi from '../../services/homeDetailApi';
+import mapProvince from '../../utils/mapProvince';
+import SkeletonRoomDetail from '../../components/Skeleton/SkeletonRoomDetail';
 
 const RoomDetail = () => {
+    const [dataDetailHome, setDataDetalHome] = useState<any>([]);
+    const [loading, setLoading] = useState<boolean>(false);
+
+    const params = useParams();
+
+    useEffect(() => {
+        setLoading(true);
+        homeDetailApi.getDetailHome(params?.idHome).then((dataResponse) => {
+            setDataDetalHome(dataResponse.data);
+            setLoading(false);
+        });
+    }, [params?.idHome]);
+
     return (
-        <div className='detail-room'>
+        <div className="detail-room">
             <Navbar />
             <div className="info-room">
-                <div className="header-room">
-                    <h1>Khách Sạn Hoài Niệm Hội An</h1>
-                    <div className="heading">
-                        <div className="heading__left">
-                            <div className="obility__room">
-                                <p>Khách Sạn</p>
-                                <img
-                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
-                                    alt="icon__star"
-                                />
-                                <img
-                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
-                                    alt="icon__star"
-                                />
-                                <img
-                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
-                                    alt="icon__star"
-                                />
-                                <img
-                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
-                                    alt="icon__star"
-                                />
-                                <img
-                                    src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
-                                    alt="icon__star"
-                                />
-                            </div>
-                            <div className="locate__room">
-                                <FmdGoodIcon className="icon_locate" />
-                                <p>Hội An, Quảng Nam</p>
+                {loading ? (
+                    <SkeletonRoomDetail />
+                ) : (
+                    <>
+                        <div className="header-room">
+                            <h1>{dataDetailHome?.name}</h1>
+                            <div className="heading">
+                                <div className="heading__left">
+                                    <div className="obility__room">
+                                        <p>Resort</p>
+                                        <img
+                                            src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                            alt="icon__star"
+                                        />
+                                        <img
+                                            src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                            alt="icon__star"
+                                        />
+                                        <img
+                                            src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                            alt="icon__star"
+                                        />
+                                        <img
+                                            src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                            alt="icon__star"
+                                        />
+                                        <img
+                                            src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
+                                            alt="icon__star"
+                                        />
+                                    </div>
+                                    <div className="locate__room">
+                                        <FmdGoodIcon className="icon_locate" />
+                                        <p>{`${dataDetailHome?.addressDetail}, ${mapProvince(
+                                            dataDetailHome?.provinceCode,
+                                        )}`}</p>
+                                    </div>
+                                </div>
+                                <div className="heading__right">
+                                    <StarIcon className="icon_rate" />
+                                    <p>5.0</p>
+                                    <Link to="/" className="link__rate">
+                                        {`(${dataDetailHome?.view} lượt xem)`}
+                                    </Link>
+                                </div>
                             </div>
                         </div>
-                        <div className="heading__right">
-                            <StarIcon className="icon_rate" />
-                            <p>5.0</p>
-                            <Link to="/" className="link__rate">
-                                (100 lượt đánh giá)
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-                <ListImage />
+                        <ListImage listImage={dataDetailHome?.imagesOfHome} thumbnail={dataDetailHome?.thumbnail} />
+                    </>
+                )}
                 <div className="about-room">
                     <div className="row">
                         <div className="col l-8 m-7 c-12">
                             <div className="title-room">
-                                <h1>Toàn bộ biệt thự. Chủ nhà Hải Nguyễn</h1>
+                                <h1>Toàn bộ biệt thự. Chủ nhà {dataDetailHome?.ownerName}</h1>
                                 <p className="count-detail">4 khách . 2 phòng ngủ . 2 giường . 2 phòng tắm</p>
                                 <hr className="line" />
-                                <Convenient />
-                                <DialogConvenient />
+                                <Convenient listConvenient={dataDetailHome?.amenitiesView} />
+                                <DialogConvenient listConvenient={dataDetailHome?.amenitiesView} />
                                 <hr className="line" />
-                                
+
                                 <div className="desc-room">
                                     <h1>Giới thiệu về nhà / phòng</h1>
-                                    <p>
-                                        Rooms are equipped with full facilities: mineral water, free tea, coffee, cable TV, free Wi-Fi, IDD telephone, air conditioning, wardrobe, mini bar, hairdryer, electric kettle, Hooks, Hangers, Towels, Restroom with standing bathtub, Free toiletries in bathroom, Child safety door.
-                                        Rooms are equipped with full facilities: mineral water, free tea, coffee, cable TV, free Wi-Fi, IDD telephone, air conditioning, wardrobe, mini bar, hairdryer, electric kettle, Hooks, Hangers, Towels, Restroom with standing bathtub, Free toiletries in bathroom, Child safety door.
-                                        Rooms are equipped with full facilities: mineral water, free tea, coffee, cable TV, free Wi-Fi, IDD telephone, air conditioning, wardrobe, mini bar, hairdryer, electric kettle, Hooks, Hangers, Towels, Restroom with standing bathtub, Free toiletries in bathroom, Child safety door.
-                                    </p>
+                                    <p>{dataDetailHome?.description}</p>
                                 </div>
 
                                 <hr className="line" />
                                 <div className="bed-room">
                                     <h1>Nơi bạn sẽ ngủ nghỉ</h1>
-                                    <BedRoomSlider />
+                                    <BedRoomSlider listRoom={dataDetailHome?.rooms} />
                                 </div>
 
                                 <hr className="line" />
@@ -127,7 +148,7 @@ const RoomDetail = () => {
                     </div>
                 </div>
             </div>
-            <div className='footer-page'>
+            <div className="footer-page">
                 <Footer />
             </div>
         </div>

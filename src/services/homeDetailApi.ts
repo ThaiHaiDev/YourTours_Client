@@ -10,8 +10,8 @@ const homeDetailApi = {
         const url = `api/v1/cms/homes/page`;
         return axiosClient.get(url);
     },
-    getDetailHome(): Promise<any> {
-        const url ='';
+    getDetailHome(idHome : string | undefined): Promise<any> {
+        const url =`api/v1/public/homes/${idHome}/detail`;
         return axiosClient.get(url);
     },
 };

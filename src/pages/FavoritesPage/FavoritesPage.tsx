@@ -9,11 +9,9 @@ import IconLoveLike from '../../components/IconLoveLike/IconLoveLike';
 const FavoritesPage = () => {
     const [listDataFavorites, setListDataFavorites] = useState<any>([]);
     
-
     useEffect(() => {
         favoriteApi.getAllFavoritesRoom().then((dataResponse: any) => {
             setListDataFavorites(dataResponse.data.content);
-            console.log(dataResponse.data.content);
         });
     }, []);
 

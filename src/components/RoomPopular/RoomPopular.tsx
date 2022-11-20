@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import './RoomPopular.scss';
-import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
 
 import mapProvince from '../../utils/mapProvince';
@@ -12,10 +11,9 @@ import 'slick-carousel/slick/slick-theme.css';
 
 import homeApi from '../../services/homeApi';
 import SkeletonRoomItem from '../Skeleton/SkeletonRoomItem';
-import favoriteApi from '../../services/favoriteApi';
 
-import { useSnackbar } from 'notistack';
-import { AxiosError } from 'axios';
+import { useNavigate } from 'react-router-dom';
+import IconLove from './IconLove';
 
 export default function RoomPopular() {
     const settings = {
@@ -30,8 +28,6 @@ export default function RoomPopular() {
     const [listRoom, setListRoom] = useState<any>([]);
     const [loading, setLoading] = useState<boolean>(false);
 
-    const { enqueueSnackbar } = useSnackbar();
-
     useEffect(() => {
         setLoading(true);
         homeApi.getRoomFavorite().then((dataResponse) => {
@@ -40,22 +36,10 @@ export default function RoomPopular() {
         });
     }, []);
 
-    const handleFavorite = (idHome: string) => {
-        const dataSend = {
-            homeId: idHome,
-        };
-        favoriteApi
-            .likeFavoriteRoom(dataSend)
-            .then((data: any) => {
-                if (data.data.success) {
-                    enqueueSnackbar('Đã thêm vào mục đã thích', { variant: 'success' });
-                } else {
-                    enqueueSnackbar('Đã xóa khỏi mục đã thích', { variant: 'success' });
-                }
-            })
-            .catch((error: AxiosError<any>) => {
-                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
-            });
+    const navigate = useNavigate();
+
+    const handleLinkToDetail = (idRoom: string) => {
+        navigate(`/detail/${idRoom}`);
     };
 
     return (
@@ -75,13 +59,8 @@ export default function RoomPopular() {
                                         </div>
                                     ))}
                             </Slider>
-                            <div className="love_room">
-                                <FavoriteOutlinedIcon
-                                    className={room?.isFavorite ? 'icon_love__true' : 'icon_love'}
-                                    onClick={() => handleFavorite(room?.id)}
-                                />
-                            </div>
-                            <div className="info__room">
+                            <IconLove idHome={room?.id} isFavorite={room?.isFavorite}/>
+                            <div className="info__room" onClick={() => handleLinkToDetail(room?.id)}>
                                 <h2>{room?.name}</h2>
                                 <div className="obility__room">
                                     <p>Resort</p>

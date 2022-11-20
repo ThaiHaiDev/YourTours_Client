@@ -1,4 +1,5 @@
-.list-image {
+.list-image-in__setting {
+
     position: relative;
     margin: 10px 180px 0 180px;
 
@@ -23,16 +24,6 @@
 
         img {
             width: 100%;
-            height: 214px;
-        }
-    }
-
-    .image-item-thumbnail {
-        margin: 0 auto;
-
-        img {
-            width: 100%;
-            height: 432.5px;
         }
     }
 }

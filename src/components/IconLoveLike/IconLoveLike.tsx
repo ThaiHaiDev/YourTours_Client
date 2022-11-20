@@ -15,10 +15,9 @@ const IconLoveLike = (props: any) => {
     };
 
     return (
-        <div className="card-like">
+        <div className="card-like" onClick={handleFavorite}>
             <FavoriteOutlinedIcon
                 className={like ? 'icon_love__true' : 'icon_love'}
-                onClick={handleFavorite}
             />
             <p>{like ? 'Bỏ khỏi mục yêu thích' : 'Thêm vào mục yêu thích'}</p>
         </div>

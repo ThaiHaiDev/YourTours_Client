@@ -1,8 +1,8 @@
-import './ListImage.scss';
+import './ListImageInSetting.scss';
 
-const ListImage = (props: any) => {
+const ListImageInSetting = (props: any) => {
     return (
-        <div className="list-image">
+        <div className="list-image-in__setting">
             {props.listImage ? (
                 <div className="row">
                     <div className="col l-6 c-12">
@@ -28,7 +28,7 @@ const ListImage = (props: any) => {
             ) : (
                 <div className="row">
                     <div className="col l-6 c-12">
-                        <div className="image-item-thumbnail">
+                        <div className="image-item">
                             <img
                                 src="https://a0.muscache.com/im/pictures/c0b5943a-9c0c-449c-ab3b-cf148b8471c3.jpg?im_w=720"
                                 alt="room_hot"
@@ -77,4 +77,4 @@ const ListImage = (props: any) => {
     );
 };
 
-export default ListImage;
+export default ListImageInSetting;

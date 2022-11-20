@@ -8,7 +8,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 import './DialogConvenient.scss';
 
-export default function DialogConvenient() {
+export default function DialogConvenient(props: any) {
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -20,8 +20,8 @@ export default function DialogConvenient() {
     };
 
     return (
-        <div className='dialog-convenient'>
-            <Button variant="outlined" onClick={handleClickOpen} className='btn-show' >
+        <div className="dialog-convenient">
+            <Button variant="outlined" onClick={handleClickOpen} className="btn-show">
                 Hiện tất cả các tiện nghi
             </Button>
             <Dialog
@@ -30,62 +30,34 @@ export default function DialogConvenient() {
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
                 fullWidth={true}
-                maxWidth='md'
+                maxWidth="md"
             >
                 <div>
-                <DialogTitle id="alert-dialog-title" sx={{fontSize: '18px', fontWeight: 'bold', width: '600px', marginBottom: '20px'}}>{"Nơi này có những gì cho bạn"}</DialogTitle>
-                    <DialogContent sx={{fontSize: '16px', fontWeight: 'bold'}}>
-                        Phòng tắm
-                        <DialogContentText id="alert-dialog-description" sx={{fontSize: '14px', marginTop: '20px'}}>
-                            Sản phẩm vệ sinh
-                        </DialogContentText>
-                        <hr />
-                        <DialogContentText id="alert-dialog-description" sx={{fontSize: '14px', marginTop: '20px'}}>
-                            Vòi sen tắm ngoài trời
-                        </DialogContentText>
-                        <hr />
-                    </DialogContent>
-
-                    <DialogContent sx={{fontSize: '16px', fontWeight: 'bold'}}>
-                        Phòng tắm
-                        <DialogContentText id="alert-dialog-description" sx={{fontSize: '14px', marginTop: '20px'}}>
-                            Sản phẩm vệ sinh
-                        </DialogContentText>
-                        <hr />
-                        <DialogContentText id="alert-dialog-description" sx={{fontSize: '14px', marginTop: '20px'}}>
-                            Vòi sen tắm ngoài trời
-                        </DialogContentText>
-                        <hr />
-                    </DialogContent>
-
-                    <DialogContent sx={{fontSize: '16px', fontWeight: 'bold'}}>
-                        Phòng tắm
-                        <DialogContentText id="alert-dialog-description" sx={{fontSize: '14px', marginTop: '20px'}}>
-                            Sản phẩm vệ sinh
-                        </DialogContentText>
-                        <hr />
-                        <DialogContentText id="alert-dialog-description" sx={{fontSize: '14px', marginTop: '20px'}}>
-                            Vòi sen tắm ngoài trời
-                        </DialogContentText>
-                        <hr />
-                    </DialogContent>
-                    
-                    <DialogContent sx={{fontSize: '16px', fontWeight: 'bold'}}>
-                        Phòng tắm
-                        <DialogContentText id="alert-dialog-description" sx={{fontSize: '14px', marginTop: '20px'}}>
-                            Sản phẩm vệ sinh
-                        </DialogContentText>
-                        <hr />
-                        <DialogContentText id="alert-dialog-description" sx={{fontSize: '14px', marginTop: '20px'}}>
-                            Vòi sen tắm ngoài trời
-                        </DialogContentText>
-                        <hr />
-                    </DialogContent>
+                    <DialogTitle
+                        id="alert-dialog-title"
+                        sx={{ fontSize: '18px', fontWeight: 'bold', width: '600px', marginBottom: '20px' }}
+                    >
+                        {'Nơi này có những gì cho bạn'}
+                    </DialogTitle>
+                    {props?.listConvenient?.map((convi: any, index: number) => (
+                        <DialogContent sx={{ fontSize: '16px', fontWeight: 'bold' }} key={index}>
+                            {convi?.name}
+                            <DialogContentText
+                                id="alert-dialog-description"
+                                sx={{ fontSize: '14px', marginTop: '20px' }}
+                            >
+                                {convi?.description}
+                            </DialogContentText>
+                            <hr />
+                        </DialogContent>
+                    ))}
                 </div>
-                    
+
                 <DialogActions>
-                    <Button onClick={handleClose} color='error' sx={{fontSize: '14px'}}>Close</Button>
-                    <Button onClick={handleClose} autoFocus sx={{fontSize: '14px', textTransform: 'none'}}>
+                    <Button onClick={handleClose} color="error" sx={{ fontSize: '14px' }}>
+                        Close
+                    </Button>
+                    <Button onClick={handleClose} autoFocus sx={{ fontSize: '14px', textTransform: 'none' }}>
                         OK
                     </Button>
                 </DialogActions>

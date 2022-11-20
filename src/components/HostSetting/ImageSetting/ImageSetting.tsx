@@ -1,4 +1,4 @@
-import ListImage from '../../ListImage/ListImage';
+import ListImageInSetting from '../../ListImage/ListImageInSetting';
 
 import './ImageSetting.scss';
 
@@ -9,7 +9,7 @@ const ImageSetting = (props:any) => {
                 <p>Hình ảnh</p>
                 <p>Chỉnh sửa</p>
             </div>
-            <ListImage listImage={props?.listImage} thumbnail={props?.thumbnail} />
+            <ListImageInSetting listImage={props?.listImage} thumbnail={props?.thumbnail} />
         </div>
     );
 };

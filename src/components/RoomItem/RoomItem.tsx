@@ -1,7 +1,6 @@
 import React from 'react';
 import Slider from 'react-slick';
 import './RoomItem.scss';
-import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
 
 // Import css files
@@ -10,6 +9,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import mapProvince from '../../utils/mapProvince';
 import formatPrice from '../../utils/formatPrice';
 import { useNavigate } from 'react-router-dom';
+import IconLove from '../RoomPopular/IconLove';
 
 const RoomItem = (props: any) => {
     const settings = {
@@ -23,9 +23,9 @@ const RoomItem = (props: any) => {
 
     const navigate = useNavigate();
 
-    const handleLinkToDetail = (idRoom : string) => {
-        navigate(`/detail/${idRoom}`)
-    }
+    const handleLinkToDetail = (idRoom: string) => {
+        navigate(`/detail/${idRoom}`);
+    };
 
     return (
         <div className="col l-3 m-6 c-12">
@@ -33,17 +33,11 @@ const RoomItem = (props: any) => {
                 <Slider {...settings}>
                     {props?.infoRoom?.imagesOfHome?.map((image: any, index: number) => (
                         <div key={index}>
-                            <img
-                                src={image?.path}
-                                alt="room_hot"
-                            />
+                            <img src={image?.path} alt="room_hot" />
                         </div>
                     ))}
-
                 </Slider>
-                <div className="love_room">
-                    <FavoriteOutlinedIcon className="icon_love" />
-                </div>
+                <IconLove idHome={props?.infoRoom?.id} isFavorite={props?.infoRoom?.isFavorite}/>
                 <div className="info__room" onClick={() => handleLinkToDetail(props?.infoRoom?.id)}>
                     <h2>{props?.infoRoom?.name}</h2>
                     <div className="obility__room">

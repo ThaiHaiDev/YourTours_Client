@@ -9,7 +9,7 @@ import './BedRoomSlider.scss';
 
 import BedIcon from '@mui/icons-material/Bed';
 
-export default function BedRoomSlider() {
+export default function BedRoomSlider(props: any) {
     var settings = {
         dots: true,
         infinite: true,
@@ -49,66 +49,20 @@ export default function BedRoomSlider() {
     return (
         <div className="slider__bedroom">
             <Slider {...settings}>
-                <div>
-                    <div className="slider__item">
-                        <div className="icon-bed">
-                            <BedIcon />
-                            <BedIcon />
-                        </div>
-                        <div className="title-bed">
-                            <h2>Phòng ngủ 1</h2>
-                            <p>2 giường đơn</p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div className="slider__item">
-                        <div className="icon-bed">
-                            <BedIcon />
-                            <BedIcon />
-                        </div>
-                        <div className="title-bed">
-                            <h2>Phòng ngủ 2</h2>
-                            <p>2 giường đơn</p>
+                {props?.listRoom?.map((room:any, index:number) => (
+                    <div key={index}>
+                        <div className="slider__item">
+                            <div className="icon-bed">
+                                <BedIcon />
+                                <BedIcon />
+                            </div>
+                            <div className="title-bed">
+                                <h2>{room?.roomName}</h2>
+                                <p>{room?.nameOfBed}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div>
-                    <div className="slider__item">
-                        <div className="icon-bed">
-                            <BedIcon />
-                            <BedIcon />
-                        </div>
-                        <div className="title-bed">
-                            <h2>Phòng ngủ 3</h2>
-                            <p>2 giường đơn</p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div className="slider__item">
-                        <div className="icon-bed">
-                            <BedIcon />
-                            <BedIcon />
-                        </div>
-                        <div className="title-bed">
-                            <h2>Phòng ngủ 4</h2>
-                            <p>2 giường đơn</p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div className="slider__item">
-                        <div className="icon-bed">
-                            <BedIcon />
-                            <BedIcon />
-                        </div>
-                        <div className="title-bed">
-                            <h2>Phòng ngủ 5</h2>
-                            <p>2 giường đơn</p>
-                        </div>
-                    </div>
-                </div>
+                ))}
             </Slider>
         </div>
     );
