@@ -4,6 +4,11 @@
 }
 
 .room-item {
+
+    .slick-list {
+        height: 215px;
+    }
+
     .slick-next {
         border-radius: 100%;
         left: 90%;
@@ -19,6 +24,11 @@
     .slick-dots {
         margin-top: -55px;
         position: relative;
+    }
+
+    .image-home {
+        width: 100%;
+        height: 215px;
     }
 
     img {

@@ -14,6 +14,7 @@ import SkeletonRoomItem from '../Skeleton/SkeletonRoomItem';
 
 import { useNavigate } from 'react-router-dom';
 import IconLove from './IconLove';
+import formatPrice from '../../utils/formatPrice';
 
 export default function RoomPopular() {
     const settings = {
@@ -55,7 +56,7 @@ export default function RoomPopular() {
                                 {room.imagesOfHome.length !== 0 &&
                                     room?.imagesOfHome?.map((image: any) => (
                                         <div key={image?.id}>
-                                            <img src={image.path} alt="room_hot" />
+                                            <img src={image.path} alt="room_hot" className='image-home'/>
                                         </div>
                                     ))}
                             </Slider>
@@ -90,7 +91,7 @@ export default function RoomPopular() {
                                     <p>{mapProvince(room?.provinceCode)}</p>
                                 </div>
                                 <div className="price__room">
-                                    <p>Giá: 700.000 VND / Đêm</p>
+                                    <p>{`Giá: ${formatPrice(room?.costPerNightDefault)} / Đêm`}</p>
                                     <p>{`Lượt xem: ${room?.view}`}</p>
                                 </div>
                             </div>

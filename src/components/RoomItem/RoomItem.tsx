@@ -34,7 +34,7 @@ const RoomItem = (props: any) => {
                 <Slider {...settings}>
                     {props?.infoRoom?.imagesOfHome?.map((image: any, index: number) => (
                         <div key={index}>
-                            <img src={image?.path} alt="room_hot" />
+                            <img src={image?.path} alt="room_hot" className='image-home' />
                         </div>
                     ))}
                 </Slider>
@@ -70,7 +70,7 @@ const RoomItem = (props: any) => {
                     </div>
                     <div className="price__room">
                         <p>{`Giá: ${formatPrice(props?.infoRoom?.costPerNightDefault)} / Đêm`}</p>
-                        <p>Đánh giá: 4.5</p>
+                        <p>{`Lượt xem: ${props?.infoRoom?.view}`}</p>
                     </div>
                 </div>
             </div>

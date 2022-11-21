@@ -9,7 +9,7 @@ export default function SkeletonRoomItem() {
             {Array.map((data: any, index: number) => (
                 <div className="col l-3 m-6 c-12" key={index}>
                     <Box>
-                        <Skeleton variant="rectangular" width={'100%'} height={230} />
+                        <Skeleton variant="rectangular" width={'100%'} height={220} />
                         <Skeleton width="100%" sx={{height: '30px', marginTop: '2px'}}/>
                         <Skeleton width="80%" sx={{height: '30px'}}/>
                         <Skeleton width="60%" sx={{height: '25px'}}/>

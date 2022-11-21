@@ -1,5 +1,4 @@
 import ListImageInSetting from '../../ListImage/ListImageInSetting';
-
 import './ImageSetting.scss';
 
 const ImageSetting = (props:any) => {
