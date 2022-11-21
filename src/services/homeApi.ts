@@ -21,7 +21,7 @@ const homeApi = {
         return axiosClient.put(url, data);
     },
     getRoomFavorite(): Promise<any>  {
-        const url = `api/v1/public/homes/page?number=0&size=8`;
+        const url = `api/v1/public/homes/page?sort=VIEW&number=0&size=8`;
         return axiosClient.get(url);
     },
     
