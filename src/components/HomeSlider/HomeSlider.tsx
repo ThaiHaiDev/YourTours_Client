@@ -1,0 +1,82 @@
+import React from 'react';
+import Slider from 'react-slick';
+
+// Import css files
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
+import './HomeSlider.scss';
+import SearchHome from '../SearchHome/SearchHome';
+
+import SearchData from '../../mockdata/SearchData.json';
+
+export default function HomeSlider() {
+    var settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        initialSlide: 0,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true,
+                },
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    initialSlide: 2,
+                },
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                },
+            },
+        ],
+    };
+    return (
+        <div className="slider__home">
+            <Slider {...settings}>
+                <div>
+                    <img
+                        src="https://res.klook.com/image/upload/fl_lossy.progressive,q_90/c_fill,,w_2560,/v1650872737/banner/ozdxi0pcsdxhlo5ogkjv.webp"
+                        alt="home"
+                        className="slider__home-item"
+                    />
+                </div>
+                <div>
+                    <img
+                        src="https://res.klook.com/image/upload/fl_lossy.progressive,q_90/c_fill,,w_2560,/v1650872771/banner/bkxv5zzqmccyoupu8vx1.webp"
+                        alt="home"
+                        className="slider__home-item"
+                    />
+                </div>
+                <div>
+                    <img
+                        src="https://res.klook.com/image/upload/fl_lossy.progressive,q_90/c_fill,,w_2560,/v1650872737/banner/ozdxi0pcsdxhlo5ogkjv.webp"
+                        alt="home"
+                        className="slider__home-item"
+                    />
+                </div>
+            </Slider>
+            <div className="content-search">
+                <h1 className="title-home">THẾ GIỚI TRỌN NIỀM VUI</h1>
+                <p>Từ chuyến phượt "ngẫu hứng" đến những cuộc phiêu lưu, khám phá công thức niềm vui của riêng bạn</p>
+                <SearchHome placeholder="Thành phố, khách sạn, điểm đến" data={SearchData} />
+            </div>
+        </div>
+    );
+}

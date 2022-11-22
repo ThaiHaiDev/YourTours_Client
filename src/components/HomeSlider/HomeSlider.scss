@@ -1,0 +1,34 @@
+.slider__home {
+    position: relative;
+    margin: 2px 0;
+    width: 100wh;
+
+    .slider__home-item {
+        width: 100%;
+    }
+
+    .slick-next {
+        position: absolute;
+        right: 0;
+        opacity: 0;
+    }
+
+    .content-search {
+        position: absolute;
+        top: 30%;
+        left: 10%;
+        font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Droid Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+
+        .title-home {
+            font-size: 55px;
+            color: white;
+            font-weight: 500;
+        }
+
+        p {
+            color: white;
+            font-size: 20px;
+            margin: 0;
+        }
+    }
+}
