@@ -3,6 +3,8 @@ import './SearchHome.scss';
 import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from '@mui/icons-material/Search';
 import { Link } from 'react-router-dom';
+import provinceApi from '../../services/provinceApi';
+import formatPrice from '../../utils/formatPrice';
 
 function SearchHome({ placeholder, data } : any) {
     const [filteredData, setFilteredData] = useState<any>([]);
@@ -23,15 +25,17 @@ function SearchHome({ placeholder, data } : any) {
     const handleFilter = (event : any) => {
         const searchWord = event.target.value;
         setWordEntered(searchWord);
-        const newFilter = data.filter((value : any) => {
-            return value.title.toLowerCase().includes(searchWord.toLowerCase());
-        });
+        const text = searchWord.replace(' ', "%20");
+        provinceApi.searchByProvince(text).then((dataResponse) => {
+            setFilteredData(dataResponse.data.content);
+        })
+        // const newFilter = data.filter((value : any) => {
+        //     return value.title.toLowerCase().includes(searchWord.toLowerCase());
+        // });
 
         if (searchWord === '') {
             setFilteredData([]);
-        } else {
-            setFilteredData(newFilter);
-        }
+        } 
     };
 
     const clearInput = () => {
@@ -54,14 +58,14 @@ function SearchHome({ placeholder, data } : any) {
             </div>
             {filteredData.length !== 0 && (
                 <div className="dataResult" ref={refOne}>
-                    {filteredData.slice(0, 15)?.map((value:any, key:any) => {
+                    {filteredData.slice(0, 15)?.map((value:any, index:number) => {
                         return (
-                            <Link className="dataItem" to={value.link} target="_blank">
+                            <Link className="dataItem" to={value.link} target="_blank" key={index}>
                                 <div className='image-item-search'>
-                                    <img src='https://a0.muscache.com/im/pictures/miso/Hosting-29172819/original/8dae018e-ee08-4956-ab90-4a451e96e424.jpeg?im_w=720' alt='' />
+                                    <img src={value?.thumbnail} alt='' />
                                 </div>
-                                <p>{value.title} </p>
-                                <p className='price-item-search'>Từ 450.000 đ</p>
+                                <p>{value?.name} </p>
+                                <p className='price-item-search'>{`Từ ${formatPrice(value?.costPerNightDefault)}`}</p>
                             </Link>
                         );
                     })}
