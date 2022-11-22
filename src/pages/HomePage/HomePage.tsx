@@ -11,8 +11,8 @@ const HomePage = () => {
         <div>
             <Navbar />
             <HomeSlider />
-            <Popular />
             <SimpleSlider />
+            <Popular />
             <Policy />
             <RoomPopular />
             <Footer />

@@ -29,14 +29,14 @@ const Popular = () => {
             <div className="package-menu">
                 <div className="package-menu__head">
                     <p>Khám phá Việt Nam</p>
-                    <h3 className="package-menu__heading">
+                    {/* <h3 className="package-menu__heading">
                         {' '}
                         <img
                             src="https://raw.githubusercontent.com/ThaiHaiDev/ThaiHaiDev/566f3f60394bbabf5b103a5694618e9424a79ea0/vietnamlg.gif"
                             alt=""
                         />{' '}
                         <span className="green-underline">Điểm đến hot nhất do Yourtours đề xuất</span>
-                    </h3>
+                    </h3> */}
                 </div>
                 <div className="row">
                     {loading ? (
@@ -60,27 +60,9 @@ const Popular = () => {
 
                                         <Link to="#" className="mobile-package__link"></Link>
                                         <div className="package-cover hide-on-mobile-tablet">
-                                            <h4 className="package-cover-head">packages</h4>
-                                            <ul className="package-list">
-                                                <li className="package-item">
-                                                    <Link to="#" className="package-link">
-                                                        berlin
-                                                    </Link>
-                                                </li>
-                                                <li className="package-item">
-                                                    <Link to="#" className="package-link">
-                                                        amsterdam
-                                                    </Link>
-                                                </li>
-                                                <li className="package-item">
-                                                    <Link to="#" className="package-link">
-                                                        tuscany
-                                                    </Link>
-                                                </li>
-                                            </ul>
                                             <div className="package-btn">
                                                 <Link to="#" className="package-btn-link">
-                                                    view destination
+                                                    Xem chi tiết
                                                 </Link>
                                             </div>
                                         </div>

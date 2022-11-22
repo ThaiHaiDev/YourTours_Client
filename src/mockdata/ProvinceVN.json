@@ -222,7 +222,7 @@
         "codename": "tinh_ninh_binh",
         "phone_code": 229,
         "districts": [],
-        "thumbnail": "ninhbinh"
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/ninhbinh.jpg"
     },
     {
         "name": "Tỉnh Thanh Hóa",
