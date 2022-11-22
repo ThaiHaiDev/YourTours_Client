@@ -75,7 +75,7 @@ export default function HomeSlider() {
             <div className="content-search">
                 <h1 className="title-home">THẾ GIỚI TRỌN NIỀM VUI</h1>
                 <p>Từ chuyến phượt "ngẫu hứng" đến những cuộc phiêu lưu, khám phá công thức niềm vui của riêng bạn</p>
-                <SearchHome placeholder="Thành phố, khách sạn, điểm đến" data={SearchData} />
+                <SearchHome placeholder="Nơi bạn muốn đến" data={SearchData} />
             </div>
         </div>
     );
