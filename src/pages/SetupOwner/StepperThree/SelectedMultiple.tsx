@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import Select from 'react-select';
 import amenityCategoryApi from '../../../services/amenityCategoryApi';
 
@@ -33,16 +33,14 @@ const customStyles = {
 };
 
 export default function SelectedMultiple(props: any) {
-    const [selectedOption, setSelectedOption] = useState<any | []>();
-    console.log(selectedOption);
+    const [selectedOption, setSelectedOption] = useState<any | []>([]);
+    const [selectedOption2, setSelectedOption2] = useState<any | []>([]);
+    const [selectedOption3, setSelectedOption3] = useState<any | []>([]);
+
 
     const A1: any = useMemo(() => [], []);
     const A2: any = useMemo(() => [], []);
     const A3: any = useMemo(() => [], []);
-
-    useEffect(() => {
-        props?.setDataStep3(selectedOption);
-    }, [selectedOption, props]);
 
     return (
         <div className="App">
@@ -50,15 +48,24 @@ export default function SelectedMultiple(props: any) {
                 amenityCategoryApi.getAmenityInCategories(listCate.id).then((data) => {
                     if (index === 0) {
                         data?.data.content?.map((convi: any) => {
-                            return A1.push({ value: convi.id, label: convi.name });
+                            if (!A1.some((person: any) => person.value === convi.id)) {
+                                A1.push({ value: convi.id, label: convi.name });
+                            }
+                            return A1;
                         });
                     } else if (index === 1) {
                         data?.data.content?.map((convi: any) => {
-                            return A2.push({ value: convi.id, label: convi.name });
+                            if (!A2.some((person: any) => person.value === convi.id)) {
+                                A2.push({ value: convi.id, label: convi.name });
+                            }
+                            return A2;
                         });
                     } else if (index === 2) {
                         data?.data.content?.map((convi: any) => {
-                            return A3.push({ value: convi.id, label: convi.name });
+                            if (!A3.some((person: any) => person.value === convi.id)) {
+                                A3.push({ value: convi.id, label: convi.name });
+                            }
+                            return A3;
                         });
                     }
                 });
@@ -68,7 +75,12 @@ export default function SelectedMultiple(props: any) {
                         {index === 0 && (
                             <Select
                                 defaultValue={selectedOption}
-                                onChange={setSelectedOption}
+                                onChange={(event) => {
+                                    setSelectedOption(event);
+                                    if (props?.setDataStep3) {
+                                        props?.setDataStep3([...event, ...selectedOption2, ...selectedOption3]);
+                                    }
+                                }}
                                 options={A1}
                                 isMulti={true}
                                 styles={customStyles}
@@ -76,8 +88,13 @@ export default function SelectedMultiple(props: any) {
                         )}
                         {index === 1 && (
                             <Select
-                                defaultValue={selectedOption}
-                                onChange={setSelectedOption}
+                                defaultValue={selectedOption2}
+                                onChange={(event) => {
+                                    setSelectedOption2(event);
+                                    if (props?.setDataStep3) {
+                                        props?.setDataStep3([...event, ...selectedOption, ...selectedOption3]);
+                                    }
+                                }}
                                 options={A2}
                                 isMulti={true}
                                 styles={customStyles}
@@ -85,8 +102,13 @@ export default function SelectedMultiple(props: any) {
                         )}
                         {index === 2 && (
                             <Select
-                                defaultValue={selectedOption}
-                                onChange={setSelectedOption}
+                                defaultValue={selectedOption3}
+                                onChange={(event) => {
+                                    setSelectedOption3(event);
+                                    if (props?.setDataStep3) {
+                                        props?.setDataStep3([...event, ...selectedOption, ...selectedOption2]);
+                                    }
+                                }}
                                 options={A3}
                                 isMulti={true}
                                 styles={customStyles}

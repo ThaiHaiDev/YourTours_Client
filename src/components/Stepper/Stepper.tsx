@@ -105,6 +105,10 @@ export default function StepperComponent() {
         });
     };
 
+    const handleSetDataStep3 = (value : any) => {
+        setDataStep3(value);
+    }
+
     const handleUpload = async () => {
         setLoad(true);
         for (var i = 0; i < dataStep4.length; i++) {
@@ -168,7 +172,7 @@ export default function StepperComponent() {
                         } else if (activeStep === 1) {
                             return <StepperTwo setDataStep2={setDataStep2} setCountGuest={setCountGuest} />;
                         } else if (activeStep === 2) {
-                            return <StepperThree setDataStep3={setDataStep3} />;
+                            return <StepperThree setDataStep3={handleSetDataStep3} />;
                         } else if (activeStep === 3) {
                             return <StepperFour setDataStep4={setDataStep4} />;
                         } else if (activeStep === 4) {

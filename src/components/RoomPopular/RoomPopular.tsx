@@ -88,7 +88,7 @@ export default function RoomPopular() {
                                 </div>
                                 <div className="locate__room">
                                     <FmdGoodIcon className="icon_locate" />
-                                    <p>{mapProvince(room?.provinceCode)}</p>
+                                    <p>{mapProvince(room?.provinceCode ? room?.provinceCode : undefined)}</p>
                                 </div>
                                 <div className="price__room">
                                     <p>{`Giá: ${formatPrice(room?.costPerNightDefault)} / Đêm`}</p>

@@ -39,14 +39,14 @@ const RoomDetail = () => {
         });
     }, [params?.idHome]);
 
-    const handleChangeDayBooking = (value : any) => {
+    const handleChangeDayBooking = (value: any) => {
         const dateFrom = format(value[0].startDate, 'yyyy-MM-dd');
         const dateTo = format(value[0].endDate, 'yyyy-MM-dd');
         pricesOfHomeApi.showPriceByRangeDay(params?.idHome, dateFrom, dateTo).then((dataResponse) => {
             setPriceDay(dataResponse.data.totalCost);
             setDetailPrice(dataResponse.data.detail);
-        })
-    }
+        });
+    };
 
     return (
         <div className="detail-room">
@@ -86,7 +86,7 @@ const RoomDetail = () => {
                                     <div className="locate__room">
                                         <FmdGoodIcon className="icon_locate" />
                                         <p>{`${dataDetailHome?.addressDetail}, ${mapProvince(
-                                            dataDetailHome?.provinceCode,
+                                            dataDetailHome?.provinceCode ? dataDetailHome?.provinceCode : undefined,
                                         )}`}</p>
                                     </div>
                                 </div>
@@ -128,7 +128,7 @@ const RoomDetail = () => {
                                 <DateRangeDetail size="horizontal" setDataDay={handleChangeDayBooking} />
 
                                 <hr className="line" />
-                                <h1>Đánh giá</h1>
+                                <h1 style={{ marginTop: '25px' }}>Đánh giá</h1>
                             </div>
                         </div>
 
@@ -140,7 +140,7 @@ const RoomDetail = () => {
                                         <p>Nhận phòng</p>
                                         <p>Trả phòng</p>
                                     </div>
-                                    <DateGo size="vertical" setDataDay={handleChangeDayBooking}/>
+                                    <DateGo size="vertical" setDataDay={handleChangeDayBooking} />
                                 </div>
                                 <div className="count__guest">
                                     <p>Số khách</p>
@@ -153,7 +153,7 @@ const RoomDetail = () => {
 
                                 <div className="price-total">
                                     <div className="title-price">
-                                        <PopoverPrice detailPrice={detailPrice}/>
+                                        <PopoverPrice detailPrice={detailPrice} />
                                     </div>
                                     <div className="real-price">
                                         <p>{priceDay !== '' ? formatPrice(priceDay) : ''}</p>

@@ -26,7 +26,7 @@ const IntroSettingOwnerPage = () => {
                 </div>
                 <div className="col l-6">
                     <div className="text-thanks">
-                        <h1>Trở thành chủ nhà sau 6 bước đơn giản</h1>
+                        <h1>Trở thành chủ nhà sau 5 bước đơn giản</h1>
                         <p>
                             Hãy tham gia cùng chúng tôi. Chúng tôi sẽ trợ giúp bạn qua từng bước của quy trình
                         </p>
