@@ -34,11 +34,11 @@ const RoomItem = (props: any) => {
                 <Slider {...settings}>
                     {props?.infoRoom?.imagesOfHome?.map((image: any, index: number) => (
                         <div key={index}>
-                            <img src={image?.path} alt="room_hot" className='image-home' />
+                            <img src={image?.path} alt="room_hot" className="image-home" />
                         </div>
                     ))}
                 </Slider>
-                <IconLove idHome={props?.infoRoom?.id} isFavorite={props?.infoRoom?.isFavorite}/>
+                <IconLove idHome={props?.infoRoom?.id} isFavorite={props?.infoRoom?.isFavorite} />
                 <div className="info__room" onClick={() => handleLinkToDetail(props?.infoRoom?.id)}>
                     <h2>{props?.infoRoom?.name}</h2>
                     <div className="obility__room">
@@ -66,7 +66,7 @@ const RoomItem = (props: any) => {
                     </div>
                     <div className="locate__room">
                         <FmdGoodIcon className="icon_locate" />
-                        <p>{mapProvince(props?.infoRoom?.provinceCode)}</p>
+                        <p>{mapProvince(props?.infoRoom?.provinceCode ? props?.infoRoom?.provinceCode : undefined)}</p>
                     </div>
                     <div className="price__room">
                         <p>{`Giá: ${formatPrice(props?.infoRoom?.costPerNightDefault)} / Đêm`}</p>
