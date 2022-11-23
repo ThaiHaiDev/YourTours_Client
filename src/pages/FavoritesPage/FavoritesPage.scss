@@ -34,14 +34,9 @@
         }
 
         .row {
-            // background: red;
             margin-left: 40px;
             margin-right: 40px;
             height: 30px;
-
-            .col {
-                // background: blue;
-            }
         }
 
         .card-item__favorite {
@@ -51,6 +46,7 @@
             cursor: pointer;
             border-radius: 5px;
             position: relative;
+            margin-bottom: 30px;
 
             .content__favorite {
                 img {

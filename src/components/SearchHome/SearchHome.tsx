@@ -5,6 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Link } from 'react-router-dom';
 import provinceApi from '../../services/provinceApi';
 import formatPrice from '../../utils/formatPrice';
+import removeVietnameseTones from '../../utils/convertStringVietNamese';
 
 function SearchHome({ placeholder, data } : any) {
     const [filteredData, setFilteredData] = useState<any>([]);
@@ -25,14 +26,17 @@ function SearchHome({ placeholder, data } : any) {
     const handleFilter = (event : any) => {
         const searchWord = event.target.value;
         setWordEntered(searchWord);
-        const text = searchWord.replace(' ', "%20");
+
+        const convertStringToEnglish = removeVietnameseTones(searchWord);
+        const text = convertStringToEnglish.replace(' ', "%20");
         provinceApi.searchByProvince(text).then((dataResponse) => {
             setFilteredData(dataResponse.data.content);
         })
+
         // const newFilter = data.filter((value : any) => {
         //     return value.title.toLowerCase().includes(searchWord.toLowerCase());
         // });
-
+        
         if (searchWord === '') {
             setFilteredData([]);
         } 

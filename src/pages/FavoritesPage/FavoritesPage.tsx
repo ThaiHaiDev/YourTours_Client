@@ -5,15 +5,22 @@ import './FavoritesPage.scss';
 import favoriteApi from '../../services/favoriteApi';
 import formatPrice from '../../utils/formatPrice';
 import IconLoveLike from '../../components/IconLoveLike/IconLoveLike';
+import { useNavigate } from 'react-router-dom';
 
 const FavoritesPage = () => {
     const [listDataFavorites, setListDataFavorites] = useState<any>([]);
+
+    const navigate = useNavigate();
     
     useEffect(() => {
         favoriteApi.getAllFavoritesRoom().then((dataResponse: any) => {
             setListDataFavorites(dataResponse.data.content);
         });
     }, []);
+
+    const handleLinkToDetail = (idRoom: string) => {
+        navigate(`/detail/${idRoom}`);
+    };
 
 
     return (
@@ -35,7 +42,7 @@ const FavoritesPage = () => {
                         {listDataFavorites?.map((room: any, index: number) => (
                             <div className="col l-4" key={index}>
                                 <div className="card-item__favorite">
-                                    <div className="content__favorite">
+                                    <div className="content__favorite" onClick={() => handleLinkToDetail(room?.id)}>
                                         <img src={room?.thumbnail} alt="" />
                                         <p className="name__favorite">Resort Hội An</p>
                                         <p className="price__favorite">{`Giá chỉ ${formatPrice(
