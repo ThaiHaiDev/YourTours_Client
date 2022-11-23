@@ -1,12 +1,13 @@
 .step-five {
-    margin-top: 20px;
+    margin-top: -45px;
     position: absolute;
     width: 100%;
 
     .l-6:nth-child(1) {
         position: relative;
-        height: 90vh;
+        height: 100vh;
         background: red;
+        z-index: -1;
 
         h1 {
             text-align: center;

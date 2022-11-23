@@ -149,7 +149,7 @@ export default function StepperComponent() {
                         stepProps.completed = false;
                     }
                     return (
-                        <Step key={label} {...stepProps} sx={{ fontSize: '30px' }}>
+                        <Step key={label} {...stepProps} sx={{ fontSize: '30px', paddingLeft: '30px', paddingRight: '30px' }}>
                             <StepLabel {...labelProps}>{label}</StepLabel>
                         </Step>
                     );

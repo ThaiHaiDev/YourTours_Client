@@ -1,8 +1,11 @@
 .step-main {
-    width: 90%;
+    width: 99%;
     margin-top: 20px !important;
-    margin: auto;
     position: relative;
+
+    .row {
+        margin: 0;
+    }
 
     svg {
         width: 25px;
