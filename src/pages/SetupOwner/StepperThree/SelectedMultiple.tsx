@@ -8,6 +8,8 @@ const customStyles = {
         width: '100%',
         display: 'flex',
         flexWrap: 'wrap',
+        height: 'auto',
+        maxHeight: '250px'
     }),
 
     menuPortal: (provided: any, state: any) => ({

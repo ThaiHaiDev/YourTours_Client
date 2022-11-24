@@ -16,6 +16,8 @@ const CountRoomDetailSetting = () => {
     const [listRoomOfHome, setListRoomOfHome] = useState<any>([]);
     const [listCategoryRoom, setListCategoryRoom] = useState<any>([]);
 
+    console.log(listRoomOfHome)
+
     const params = useParams();
 
     const { enqueueSnackbar } = useSnackbar();
@@ -49,8 +51,10 @@ const CountRoomDetailSetting = () => {
         roomCategoryApi
             .saveCountRoomOfHome(newCount)
             .then((data: any) => {
+                setListRoomOfHome(data.data)
                 enqueueSnackbar('Lưu thành công', { variant: 'success' });
             })
+
             .catch((error: AxiosError<any>) => {
                 enqueueSnackbar(error.response?.data.message, { variant: 'error' });
             });

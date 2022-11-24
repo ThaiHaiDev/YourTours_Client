@@ -114,7 +114,6 @@ export default function StepperComponent() {
                     setActiveStep((prevActiveStep) => prevActiveStep + 1);
                 }
             }
-            setActiveStep((prevActiveStep) => prevActiveStep + 1);
         } else if (activeStep === 4) {
             dispatch(setupOwnerSlice.actions.addInfoOfHomeRoom(dataStep5));
             setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -151,7 +150,10 @@ export default function StepperComponent() {
         homeDetailApi
             .createHomeDetailByHost(setupRoomHost)
             .then((dataResponse: any) => {
-                enqueueSnackbar('Đăng kí thành công', { variant: 'success' });
+                enqueueSnackbar('Đăng kí thành công', {
+                    anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
+                    variant: 'success',
+                });
                 dispatch(setupOwnerSlice.actions.addimagesOfHomeRoom(dataResponse.data.thumbnail));
                 navigate('/congratulation');
             })
