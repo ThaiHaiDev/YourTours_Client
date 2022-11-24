@@ -20,19 +20,9 @@
     .l-6:nth-child(2) {
         position: relative;
         height: 90vh;
+        display: grid;
+        justify-items: center; /* Căn giữa chiều ngang */
+        align-content: center; /* Căn giữa chiều dọc */
 
-        .react-select__option {
-            background: red;
-        }
-        // .selected-locate {
-        //     position: absolute;
-        //     width: 100%;
-        //     top: 45%;
-        //     left: 25%;
-
-        //     li {
-        //         font-size: 20px !important;
-        //     }
-        // }
     }
 }

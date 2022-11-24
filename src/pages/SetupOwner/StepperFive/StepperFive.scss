@@ -19,14 +19,30 @@
 
     .l-6:nth-child(2) {
         position: relative;
-        height: 80vh;
+        height: 90vh;
+        display: grid;
+        justify-items: center; /* Căn giữa chiều ngang */
+        align-content: center; /* Căn giữa chiều dọc */
 
-        .selected-locate {
-            position: absolute;
+        .title-desc-step5 {
+            font-size: 14px;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        .input-step5 {
             width: 100%;
-            top: 45%;
-            left: 25%;
+            padding: 10px 20px 10px 10px;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
 
+        .text-step5 {
+            width: 100%;
+            padding: 10px 20px 10px 10px;
+            font-size: 14px;
+            height: 80px;
+            margin-bottom: 10px;
         }
     }
 }

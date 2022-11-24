@@ -27,7 +27,7 @@ import { RoomOfHomeCreateRequest } from '../../share/models/roomHome';
 import { ConvenientOptionShow } from '../../share/models/convenient';
 import { ImageHomeDetailRequest } from '../../share/models/imageList';
 
-const steps = ['Setup vị trí', 'Setup phòng', 'Setup tiện ích', 'Setup ảnh', 'Mô tả phòng', 'Chi tiết phòng'];
+const steps = ['Setup vị trí', 'Setup phòng', 'Setup tiện ích', 'Setup ảnh', 'Chi tiết phòng'];
 
 export default function StepperComponent() {
     const [activeStep, setActiveStep] = React.useState(0);
@@ -35,23 +35,30 @@ export default function StepperComponent() {
 
     const dispatch = useDispatch();
 
-    const setupRoomHost : any = useSelector((state: RootState) => state.settingowner.detailRoom);
+    const setupRoomHost: any = useSelector((state: RootState) => state.settingowner.detailRoom);
 
     const { enqueueSnackbar } = useSnackbar();
 
     const [load, setLoad] = React.useState<boolean>(false);
 
     const [dataStep1, setDataStep1] = React.useState<string>('');
+    const [addressDetail, setAddressDetail] = React.useState<string>('');
+
     const setDataStep2: RoomOfHomeCreateRequest[] = [];
     const [countGuest, setCountGuest] = React.useState<number>(0);
+
     const [dataStep3, setDataStep3] = React.useState<ConvenientOptionShow[]>([]);
+
     const [dataStep4, setDataStep4] = React.useState<File[]>([]);
+
     const setDataStep4URL: ImageHomeDetailRequest[] = [];
+
+    const [dataStep5, setDataStep5] = React.useState<any>('');
 
     const navigate = useNavigate();
 
-    const isStepOptional = (step: number) => {
-        return step === 1;
+    const handleSetAddressDetail = (value: string) => {
+        setAddressDetail(value);
     };
 
     const isStepSkipped = (step: number) => {
@@ -66,7 +73,16 @@ export default function StepperComponent() {
         }
 
         if (activeStep === 0) {
-            dispatch(setupOwnerSlice.actions.addProvinceIdRoom(dataStep1));
+            if (addressDetail !== '' && dataStep1 !== '') {
+                dispatch(setupOwnerSlice.actions.addProvinceIdRoom(dataStep1));
+                dispatch(setupOwnerSlice.actions.addAddressDetailRoom(addressDetail));
+                setActiveStep((prevActiveStep) => prevActiveStep + 1);
+            } else {
+                enqueueSnackbar('Bạn không thể để trống địa chỉ', {
+                    anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
+                    variant: 'warning',
+                });
+            }
         } else if (activeStep === 1) {
             if (setDataStep2.length > 0) {
                 dispatch(setupOwnerSlice.actions.addroomsOfHomeRoom(setDataStep2));
@@ -74,15 +90,36 @@ export default function StepperComponent() {
             if (countGuest !== 0) {
                 dispatch(setupOwnerSlice.actions.addNumberOfGuestsRoom(countGuest));
             }
+            setActiveStep((prevActiveStep) => prevActiveStep + 1);
         } else if (activeStep === 2) {
             const dataIdList: any = [];
             for (var i = 0; i < dataStep3.length; i++) {
                 dataIdList.push({ amenityId: dataStep3[i].value });
             }
             dispatch(setupOwnerSlice.actions.addamenitiesOfHomeRoom(dataIdList));
-        } 
+            setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        } else if (activeStep === 3) {
+            if (dataStep4.length < 5) {
+                enqueueSnackbar('Vui lòng chọn đủ 5 hình', {
+                    anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
+                    variant: 'warning',
+                });
+            } else {
+                if (setDataStep4URL.length < 5) {
+                    enqueueSnackbar('Vui lòng nhấn upload ảnh lên trước khi tiếp tục', {
+                        anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
+                        variant: 'warning',
+                    });
+                } else {
+                    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+                }
+            }
+            setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        } else if (activeStep === 4) {
+            dispatch(setupOwnerSlice.actions.addInfoOfHomeRoom(dataStep5));
+            setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        }
 
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
         setSkipped(newSkipped);
     };
 
@@ -90,24 +127,13 @@ export default function StepperComponent() {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
-    const handleSkip = () => {
-        if (!isStepOptional(activeStep)) {
-            // You probably want to guard against something like this,
-            // it should never occur unless someone's actively trying to break something.
-            throw new Error("You can't skip a step that isn't optional.");
-        }
-
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-        setSkipped((prevSkipped) => {
-            const newSkipped = new Set(prevSkipped.values());
-            newSkipped.add(activeStep);
-            return newSkipped;
-        });
+    const handleSetDataStep3 = (value: any) => {
+        setDataStep3(value);
     };
 
-    const handleSetDataStep3 = (value : any) => {
-        setDataStep3(value);
-    }
+    const handleSetDataStep5 = (value: any) => {
+        setDataStep5(value);
+    };
 
     const handleUpload = async () => {
         setLoad(true);
@@ -127,7 +153,7 @@ export default function StepperComponent() {
             .then((dataResponse: any) => {
                 enqueueSnackbar('Đăng kí thành công', { variant: 'success' });
                 dispatch(setupOwnerSlice.actions.addimagesOfHomeRoom(dataResponse.data.thumbnail));
-                navigate('/congratulation')
+                navigate('/congratulation');
             })
             .catch((error: AxiosError<any>) => {
                 enqueueSnackbar(error.response?.data.message, { variant: 'error' });
@@ -142,14 +168,16 @@ export default function StepperComponent() {
                     const labelProps: {
                         optional?: React.ReactNode;
                     } = {};
-                    // if (isStepOptional(index)) {
-                    //     labelProps.optional = <Typography variant="caption">Optional</Typography>;
-                    // }
+
                     if (isStepSkipped(index)) {
                         stepProps.completed = false;
                     }
                     return (
-                        <Step key={label} {...stepProps} sx={{ fontSize: '30px', paddingLeft: '30px', paddingRight: '30px' }}>
+                        <Step
+                            key={label}
+                            {...stepProps}
+                            sx={{ fontSize: '30px', paddingLeft: '30px', paddingRight: '30px' }}
+                        >
                             <StepLabel {...labelProps}>{label}</StepLabel>
                         </Step>
                     );
@@ -168,7 +196,12 @@ export default function StepperComponent() {
                     {/* Content */}
                     {(() => {
                         if (activeStep === 0) {
-                            return <StepperOne setDataStep1={setDataStep1} />;
+                            return (
+                                <StepperOne
+                                    setDataStep1={setDataStep1}
+                                    handleSetAddressDetail={handleSetAddressDetail}
+                                />
+                            );
                         } else if (activeStep === 1) {
                             return <StepperTwo setDataStep2={setDataStep2} setCountGuest={setCountGuest} />;
                         } else if (activeStep === 2) {
@@ -176,12 +209,12 @@ export default function StepperComponent() {
                         } else if (activeStep === 3) {
                             return <StepperFour setDataStep4={setDataStep4} />;
                         } else if (activeStep === 4) {
-                            return <StepperFive />;
+                            return <StepperFive handleSetDataStep5={handleSetDataStep5} />;
                         } else if (activeStep === 5) {
                             return <StepperSix />;
                         }
                     })()}
-                    <Box sx={{ display: 'flex', pt: 2, position: 'absolute', right: '0', bottom: '-90vh' }}>
+                    <Box sx={{ display: 'flex', pt: 2, position: 'absolute', right: '50px', bottom: '-90vh' }}>
                         <Button color="inherit" disabled={activeStep === 0} onClick={handleBack} sx={{ mr: 1 }}>
                             Back
                         </Button>

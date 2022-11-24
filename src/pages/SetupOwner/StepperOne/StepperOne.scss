@@ -31,8 +31,9 @@
         align-content: center; /* Căn giữa chiều dọc */
 
         .selected-locate {
-            width: 600px;
-            margin-left: 150px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
 
             li {
                 font-size: 20px !important;
@@ -57,6 +58,20 @@
                     padding-top: 20px;
                 }
             }
+        }
+
+        .input-address-step1 {
+            width: 50%;
+            padding: 10px 20px 10px 10px;
+            font-size: 14px;
+        }
+
+        .span-address-step1 {
+            text-align: left;
+            width: 345px;
+            color: rgba(0, 0, 0, 0.6);
+            font-family: "Roboto","Helvetica","Arial",sans-serif;
+            margin-top: 6px;
         }
     }
 }

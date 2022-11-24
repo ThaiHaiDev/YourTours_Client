@@ -1,13 +1,44 @@
+import { ChangeEvent, useState } from 'react';
 import './StepperFive.scss';
 
-import { SubmitHandler, useForm } from 'react-hook-form';
+const StepperFive = (props : any) => {
+    const [nameRoom, setNameRoom] = useState<string>('');
+    const [descRoom, setDescRoom] = useState<string>('');
+    const [priceRoom, setPriceRoom] = useState<string>('');
 
-const StepperFive = () => {
-    const { register, reset, handleSubmit } = useForm<any>();
-
-    const onSubmit: SubmitHandler<any> = (data: any) => {
-        console.log(data);
+    const handleChangeNameRoom = (event: ChangeEvent<HTMLInputElement>) => {
+        setNameRoom(event.currentTarget?.value)
+        if (props.handleSetDataStep5) {
+            props.handleSetDataStep5({
+                name: event.currentTarget?.value,
+                description: descRoom,
+                costPerNightDefault: priceRoom
+            })
+        }
     };
+
+    const handleChangeDescRoom = (event: ChangeEvent<HTMLTextAreaElement>) => {
+        setDescRoom(event.currentTarget?.value)
+        if (props.handleSetDataStep5) {
+            props.handleSetDataStep5({
+                name: nameRoom,
+                description: event.currentTarget?.value,
+                costPerNightDefault: priceRoom
+            })
+        }
+    };
+
+    const handleChangePriceRoom = (event: ChangeEvent<HTMLInputElement>) => {
+        setPriceRoom(event.currentTarget?.value)
+        if (props.handleSetDataStep5) {
+            props.handleSetDataStep5({
+                name: nameRoom,
+                description: descRoom,
+                costPerNightDefault: event.currentTarget?.value
+            })
+        }
+    };
+
     return (
         <div className="step-five">
             <div className="row">
@@ -15,34 +46,20 @@ const StepperFive = () => {
                     <h1>Hãy đặt tên và mô tả cho chỗ ở của bạn</h1>
                 </div>
                 <div className="col l-6 m-6">
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <p>
+                    <form>
+                        <p className="title-desc-step5">
                             Tiêu đề nhà/phòng cho thuê cần làm nổi bật những điều tạo nên nét đặc biệt cho chỗ ở của
                             bạn.
                         </p>
-                        <input
-                            type="text"
-                            placeholder="Tên căn nhà"
-                            {...register('name', {
-                                required: 'Email được yêu cầu',
-                            })}
-                        />
+                        <input type="text" placeholder="Tên căn nhà" className="input-step5" onChange={handleChangeNameRoom}/>
 
-                        <input
-                            type="text"
-                            placeholder="Wifi"
-                            {...register('wifi')}
-                        />
+                        <p className="title-desc-step5">
+                            Tạo phần mô tả để chia sẻ những điều tạo nên nét đặc biệt cho chỗ ở của bạn.
+                        </p>
+                        <textarea className="text-step5" onChange={handleChangeDescRoom}/>
 
-                        <input
-                            type="text"
-                            placeholder="Mật khẩu wifi"
-                            {...register('passWifi')}
-                        />
-                        <p>Số sao đánh giá phòng của bạn.</p>
-                        <button type="submit" className="customs-btn">
-                            Đăng kí
-                        </button>
+                        <p className="title-desc-step5">Bây giờ, hãy đặt mức giá mà bạn muốn.</p>
+                        <input type="number" placeholder="Mật khẩu wifi" className="input-step5" onChange={handleChangePriceRoom}/>
                     </form>
                 </div>
             </div>

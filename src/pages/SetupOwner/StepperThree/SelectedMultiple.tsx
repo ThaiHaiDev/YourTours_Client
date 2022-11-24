@@ -43,7 +43,7 @@ export default function SelectedMultiple(props: any) {
     const A3: any = useMemo(() => [], []);
 
     return (
-        <div className="App">
+        <div className="selected-multiple-step3" style={{width: '100%', padding: '0 40px', marginTop: '-60px'}}>
             {props.dataList?.map((listCate: any, index: number) => {
                 amenityCategoryApi.getAmenityInCategories(listCate.id).then((data) => {
                     if (index === 0) {
@@ -71,7 +71,7 @@ export default function SelectedMultiple(props: any) {
                 });
                 return (
                     <div key={listCate.id}>
-                        <p>{listCate.name}</p>
+                        <p style={{ fontSize: '16px' }}>{listCate.name}</p>
                         {index === 0 && (
                             <Select
                                 defaultValue={selectedOption}

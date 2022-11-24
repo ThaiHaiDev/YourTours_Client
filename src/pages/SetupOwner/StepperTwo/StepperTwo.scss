@@ -20,11 +20,12 @@
     .l-6:nth-child(2) {
         position: relative;
         height: 90vh;
+        display: grid;
+        justify-items: center; /* Căn giữa chiều ngang */
+        align-content: center; /* Căn giữa chiều dọc */
 
         .info-count__room {
-            position: absolute;
             width: 100%;
-            top: 30%;
             
             li {
                 font-size: 20px !important;
@@ -34,13 +35,12 @@
                 display: flex;
                 justify-content: space-between;
                 margin-left: 100px;
-                margin-right: 50px;
+                margin-right: 100px;
                 margin-bottom: 10px;
 
                 p {
                     font-weight: bold;
                     font-size: 1.5rem;
-                   
                 }
             }
         }

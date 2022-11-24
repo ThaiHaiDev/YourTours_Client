@@ -5,11 +5,12 @@ const setupOwnerSlice = createSlice({
     initialState: {
         detailRoom: {
             provinceCode: '',
-            name: 'Test Room',
+            name: 'Room Demo',
             description: '',
             wifi: '',
             passWifi: '',
-            costPerNightDefault: '12345',
+            addressDetail: '',
+            costPerNightDefault: '0',
             numberOfGuests: 0,
             imagesOfHome: [],
             roomsOfHome: [],
@@ -19,6 +20,9 @@ const setupOwnerSlice = createSlice({
     reducers: {
         addProvinceIdRoom(state, action) {
             state.detailRoom.provinceCode = action.payload;
+        },
+        addAddressDetailRoom(state, action) {
+            state.detailRoom.addressDetail = action.payload;
         },
         addNumberOfGuestsRoom(state, action) {
             state.detailRoom.numberOfGuests = action.payload;
@@ -31,6 +35,11 @@ const setupOwnerSlice = createSlice({
         },
         addimagesOfHomeRoom(state, action) {
             state.detailRoom.imagesOfHome = action.payload;
+        },
+        addInfoOfHomeRoom(state, action) {
+            state.detailRoom.name = action.payload.name;
+            state.detailRoom.description = action.payload.description;
+            state.detailRoom.costPerNightDefault = action.payload.costPerNightDefault;
         },
     },
 });
