@@ -5,28 +5,13 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 
-import { useSnackbar } from 'notistack';
-import { AxiosError } from 'axios';
-
 import './DialogCountRoom.scss';
-import roomCategoryApi from '../../services/roomCategoryApi';
-import { useParams } from 'react-router-dom';
 import CountNumberRoom from '../CountNumber/CountNumberRoom';
 
-export default function DialogCountRoom() {
+export default function DialogCountRoom(props : any) {
     const [open, setOpen] = React.useState(false);
-    const [listCategoryRoom, setListCategoryRoom] = React.useState<any>([]);
+    
     const [dataSetRoomCount, setDataSetRoomCount] = React.useState<any>([]);
-
-    const params = useParams();
-
-    const { enqueueSnackbar } = useSnackbar();
-
-    React.useEffect(() => {
-        roomCategoryApi.getAllRoomCategory(params?.idHome).then((dataResponse) => {
-            setListCategoryRoom(dataResponse.data.content);
-        });
-    }, [params.idHome]);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -50,18 +35,10 @@ export default function DialogCountRoom() {
     };
 
     const handleSave = () => {
-        const newCount = {
-            homeId: params?.idHome,
-            listCreate: dataSetRoomCount.filter((data: any) => { return data.number !== 0}),
-        };
-        roomCategoryApi
-            .saveCountRoomOfHome(newCount)
-            .then((data: any) => {
-                enqueueSnackbar('Lưu thành công', { variant: 'success' });
-            })
-            .catch((error: AxiosError<any>) => {
-                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
-            });
+        if (props.handleSaveAddRoom) {
+            props.handleSaveAddRoom(dataSetRoomCount)
+            setOpen(false);
+        }
     };
 
     return (
@@ -86,7 +63,7 @@ export default function DialogCountRoom() {
                         </p>
                     </DialogTitle>
                     <DialogContent sx={{ fontWeight: 'bold' }}>
-                        {listCategoryRoom?.map((categoryRoom: any, index: number) => (
+                        {props?.listCategoryRoom?.map((categoryRoom: any, index: number) => (
                             <div key={index}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                     <p style={{ fontSize: '15px' }}>{`${categoryRoom?.name}: ${categoryRoom?.numberOfHomes}`}</p>

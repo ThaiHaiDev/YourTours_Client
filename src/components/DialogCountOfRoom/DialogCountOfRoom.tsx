@@ -54,6 +54,7 @@ export default function DialogCountOfRoom(props: any) {
             .saveCountBedOfHome(newCount)
             .then((data: any) => {
                 enqueueSnackbar('Lưu thành công', { variant: 'success' });
+                setOpen(false);
             })
             .catch((error: AxiosError<any>) => {
                 enqueueSnackbar(error.response?.data.message, { variant: 'error' });
