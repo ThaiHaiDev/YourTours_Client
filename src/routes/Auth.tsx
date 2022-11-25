@@ -1,7 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import Signin from '../pages/AuthPage/Signin/Signin';
 import Signup from '../pages/AuthPage/Signup/Signup';
-import ConfirmOwner from '../pages/ConfirmOwner/ConfirmOwner';
 import CongratulationPage from '../pages/CongratulationPage/Congratulation';
 import HomePage from '../pages/HomePage/HomePage';
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
@@ -33,7 +32,6 @@ const Auth = () => {
             <Route path="/signin" element={<Signin />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/forgotpassword" element={<ForgotPass />} />
-            <Route path="/confirm" element={<ConfirmOwner />} />
             <Route path="/congratulation" element={<CongratulationPage />} />
             <Route path="/intro-host" element={<IntroSettingOwnerPage />} />
             <Route path="/list-room" element={<ListRoomPage />} />

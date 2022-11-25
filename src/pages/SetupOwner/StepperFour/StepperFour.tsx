@@ -17,6 +17,11 @@ const StepperFour = (props : StepperFourData) => {
         <div className="step-four">
             <div className="row">
                 <div className="col l-6 m-6">
+                    <img
+                        src="https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/Gif_Pro/3625504_Mesa-de-trabajo-1.png"
+                        alt=""
+                        className="image-step4"
+                    />
                     <h1>Tiếp theo, hãy thêm một số ảnh chụp chỗ ở của bạn</h1>
                 </div>
                 <div className="col l-6 m-6">

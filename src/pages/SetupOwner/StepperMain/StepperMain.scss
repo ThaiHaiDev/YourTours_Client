@@ -20,22 +20,21 @@
         font-size: 1.2rem;
     }
 
-    .css-a1sg1c-MuiButtonBase-root-MuiButton-root {
+    .MuiButtonBase-root {
         font-size: 1.4rem;
-        color: black !important;
+        color: white !important;
         text-transform: none;
         text-decoration: underline;
         padding-left: 0;
         text-align: start;
-        margin-left: -10px;
 
     }
 
-    .css-a1sg1c-MuiButtonBase-root-MuiButton-root:hover {
+    .MuiButtonBase-root:hover {
         background: var(--white-color);
     }
 
-    .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+    .MuiButtonBase-root {
         background: var(--btn-blue);
         font-size: 1.4rem;
         color: var(--white-color);
@@ -43,7 +42,7 @@
         padding: 5px 40px;
     }
 
-    .css-1e6y48t-MuiButtonBase-root-MuiButton-root:hover {
+    .MuiButtonBase-root:hover {
         background: var(--btn-blue-hover);
     }
 }

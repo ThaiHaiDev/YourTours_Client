@@ -4,14 +4,12 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 
 import StepperOne from '../../pages/SetupOwner/StepperOne/StepperOne';
 import StepperTwo from '../../pages/SetupOwner/StepperTwo/StepperTwo';
 import StepperThree from '../../pages/SetupOwner/StepperThree/StepperThree';
 import StepperFour from '../../pages/SetupOwner/StepperFour/StepperFour';
 import StepperFive from '../../pages/SetupOwner/StepperFive/StepperFive';
-import StepperSix from '../../pages/SetupOwner/StepperSix/StepperSix';
 import { useNavigate } from 'react-router-dom';
 import imageRoomApi from '../../services/imageRoomApi';
 
@@ -26,6 +24,7 @@ import { AxiosError } from 'axios';
 import { RoomOfHomeCreateRequest } from '../../share/models/roomHome';
 import { ConvenientOptionShow } from '../../share/models/convenient';
 import { ImageHomeDetailRequest } from '../../share/models/imageList';
+import ConfirmOwner from '../../pages/ConfirmOwner/ConfirmOwner';
 
 const steps = ['Setup vị trí', 'Setup phòng', 'Setup tiện ích', 'Setup ảnh', 'Chi tiết phòng'];
 
@@ -115,8 +114,20 @@ export default function StepperComponent() {
                 }
             }
         } else if (activeStep === 4) {
-            dispatch(setupOwnerSlice.actions.addInfoOfHomeRoom(dataStep5));
-            setActiveStep((prevActiveStep) => prevActiveStep + 1);
+            if (
+                dataStep5 !== '' &&
+                dataStep5?.name !== '' &&
+                dataStep5?.description !== '' &&
+                dataStep5?.costPerNightDefault !== ''
+            ) {
+                dispatch(setupOwnerSlice.actions.addInfoOfHomeRoom(dataStep5));
+                setActiveStep((prevActiveStep) => prevActiveStep + 1);
+            } else {
+                enqueueSnackbar('Vui lòng điền đầy đủ thông tin', {
+                    anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
+                    variant: 'warning',
+                });
+            }
         }
 
         setSkipped(newSkipped);
@@ -158,7 +169,10 @@ export default function StepperComponent() {
                 navigate('/congratulation');
             })
             .catch((error: AxiosError<any>) => {
-                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+                enqueueSnackbar(error.response?.data.message, {
+                    anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
+                    variant: 'error',
+                });
             });
     };
 
@@ -187,8 +201,8 @@ export default function StepperComponent() {
             </Stepper>
             {activeStep === steps.length ? (
                 <React.Fragment>
-                    <Typography sx={{ mt: 2, mb: 1 }}>All steps completed - you&apos;re finished</Typography>
-                    <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+                    <ConfirmOwner />
+                    <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2, marginRight: '40px' }}>
                         <Box sx={{ flex: '1 1 auto' }} />
                         <Button onClick={handlePostRoom}>Đăng lên</Button>
                     </Box>
@@ -212,8 +226,6 @@ export default function StepperComponent() {
                             return <StepperFour setDataStep4={setDataStep4} />;
                         } else if (activeStep === 4) {
                             return <StepperFive handleSetDataStep5={handleSetDataStep5} />;
-                        } else if (activeStep === 5) {
-                            return <StepperSix />;
                         }
                     })()}
                     <Box sx={{ display: 'flex', pt: 2, position: 'absolute', right: '50px', bottom: '-90vh' }}>

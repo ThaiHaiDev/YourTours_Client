@@ -6,13 +6,20 @@
     .l-6:nth-child(1) {
         position: relative;
         height: 100vh;
-        background: red;
+        background: #bbdefb;
         z-index: -1;
+        display: grid;
+        justify-items: center; /* Căn giữa chiều ngang */
+
+        .image-step2 {
+            width: 90%;
+            margin-top: 18%;
+        }
          
         h1 {
             text-align: center; 
             position: absolute;
-            top: 45%;
+            top: 66%;
             width: 100%;
         }
     }

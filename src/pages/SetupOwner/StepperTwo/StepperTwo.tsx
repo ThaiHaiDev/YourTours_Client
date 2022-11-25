@@ -6,8 +6,8 @@ import { RoomOfHomeCreateRequest } from '../../../share/models/roomHome';
 import './StepperTwo.scss';
 
 interface StepperTwoData {
-    setDataStep2?: RoomOfHomeCreateRequest[],
-    setCountGuest?: (value:number) => void
+    setDataStep2?: RoomOfHomeCreateRequest[];
+    setCountGuest?: (value: number) => void;
 }
 
 const StepperTwo = (props: StepperTwoData) => {
@@ -22,6 +22,11 @@ const StepperTwo = (props: StepperTwoData) => {
         <div className="step-two">
             <div className="row">
                 <div className="col l-6 m-6">
+                    <img
+                        src="https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/Gif_Pro/tao-nhieu-moi-cau-thu-hut-khach-hang-tiem-nang.png"
+                        alt=""
+                        className="image-step2"
+                    />
                     <h1>Bạn muốn chào đón bao nhiêu khách?</h1>
                 </div>
                 <div className="col l-6 m-6">
