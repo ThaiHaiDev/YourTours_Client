@@ -51,6 +51,7 @@ export default function StepperComponent() {
     const [dataStep4, setDataStep4] = React.useState<File[]>([]);
 
     const setDataStep4URL: ImageHomeDetailRequest[] = [];
+    const [checkImage, setCheckImage] = React.useState<boolean>(false);
 
     const [dataStep5, setDataStep5] = React.useState<any>('');
 
@@ -104,7 +105,7 @@ export default function StepperComponent() {
                     variant: 'warning',
                 });
             } else {
-                if (setDataStep4URL.length < 5) {
+                if (!checkImage) {
                     enqueueSnackbar('Vui lòng nhấn upload ảnh lên trước khi tiếp tục', {
                         anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
                         variant: 'warning',
@@ -152,6 +153,9 @@ export default function StepperComponent() {
             await formData.append('file', dataStep4[i]);
             const dataUrlImage = await imageRoomApi.uploadImage(formData);
             await setDataStep4URL.push({ path: dataUrlImage.data.previewUrl });
+        }
+        if (setDataStep4URL.length >= 5) {
+            setCheckImage(true);
         }
         dispatch(setupOwnerSlice.actions.addimagesOfHomeRoom(setDataStep4URL));
         setLoad(false);
