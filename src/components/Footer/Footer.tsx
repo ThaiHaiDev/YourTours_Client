@@ -14,7 +14,6 @@ const Footer = () => {
                     <label htmlFor="footer__contact-submit" className="footer__contact-submit-btn">
                         Đăng ký
                     </label>
-                    <input type="submit" value="" hidden className="footer-input" />
                 </form>
             </div>
             <div className="footer__inner">

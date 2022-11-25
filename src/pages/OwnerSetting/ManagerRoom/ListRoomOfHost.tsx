@@ -7,9 +7,12 @@ import { useEffect, useState } from 'react';
 import homeDetailApi from '../../../services/homeDetailApi';
 import mapProvince from '../../../utils/mapProvince';
 
+import format from 'date-fns/format';
+
 
 const ListRoomOfHost = () => {
-    const [dataListhome, setDataListHome] = useState<any>([])
+    const [dataListhome, setDataListHome] = useState<any>([]);
+    
     useEffect(() => {
         homeDetailApi.getListHomeOfHost().then((dataResponse:any) => {
             setDataListHome(dataResponse.data.content)
@@ -27,9 +30,11 @@ const ListRoomOfHost = () => {
             giuong: dataListhome[i].numberOfBed,
             badroom:  dataListhome[i].roomsImportant[2] ? dataListhome[i].roomsImportant[2].number : 0,
             location: dataListhome[i].provinceCode ? mapProvince(dataListhome[i].provinceCode) : '',
-            editrecent: dataListhome[i].lastModifiedDate.toString()
+            editrecent: format(new Date(dataListhome[i].lastModifiedDate.toString()), 'hh:mm MM/dd/yyyy')
         })
     }
+
+    console.log(rows)
 
     return (
         <div className="listroom__host">
@@ -86,8 +91,8 @@ function DataTable(props:any) {
     }
 
     return (
-        <div style={{ height: 350, width: '100%' }}>
-            <DataGrid rows={props.rows} columns={columns} pageSize={5} rowsPerPageOptions={[5]} checkboxSelection disableSelectionOnClick={true} sx={{fontSize: '17px'}} onCellClick={onCellClick}/>
+        <div style={{ height: 400, width: '100%', marginBottom: '50px' }}>
+            <DataGrid rows={props.rows} columns={columns} pageSize={5} rowsPerPageOptions={[5]} checkboxSelection disableSelectionOnClick={true} sx={{fontSize: '17px', overflowX: 'hidden'}} onCellClick={onCellClick}/>
         </div>
     );
 }

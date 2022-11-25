@@ -28,7 +28,13 @@
                 font-size: 3rem;
                 color: black;
                 padding: 0;
+                width: auto;
+                line-height: 1;
             }
+        }
+
+        .footer__contact-form {
+            display: flex;
         }
 
         .footer__contact__input {
@@ -40,6 +46,7 @@
             border-radius: 100px;
             outline: none;
             border: 1px solid;
+            // margin-bottom: 10px;
         }
 
         .footer__contact-submit-btn {
@@ -84,6 +91,7 @@
 
         .footer__list {
             padding-left: 0;
+            float: right;
 
             .footer__list-heading {
                 font-size: 1.8rem;
