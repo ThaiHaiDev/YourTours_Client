@@ -21,6 +21,7 @@ import CalendarRoomSetting from '../pages/OwnerSetting/CalendarRoomSetting/Calen
 import ListRoomPage from '../pages/ListRoomPage/ListRoomPage';
 import FavoritesPage from '../pages/FavoritesPage/FavoritesPage';
 import InfoUserPage from '../pages/InfoUserPage/InfoUserPage';
+import BookingPage from '../pages/BookingPage/BookingPage';
 
 const Auth = () => {
     const user = useSelector((state: RootState) => state.user)
@@ -37,6 +38,7 @@ const Auth = () => {
             <Route path="/list-room" element={<ListRoomPage />} />
             <Route path="/wishlists" element={<FavoritesPage />} />
             <Route path="/account" element={<InfoUserPage />} />
+            <Route path="/booking" element={<BookingPage />} />
             <Route path="/test" element={<Test />} />
             <Route path="/host" element={<OwnerSetting />} />
             <Route path="/host/setting" element={<ListRoomOfHost />} />

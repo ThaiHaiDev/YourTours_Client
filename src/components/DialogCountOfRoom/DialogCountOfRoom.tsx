@@ -97,7 +97,7 @@ export default function DialogCountOfRoom(props: any) {
                 </div>
 
                 <DialogActions>
-                    <Button onClick={handleClose} color="error" sx={{ fontSize: '14px' }}>
+                    <Button onClick={handleClose} color="error" sx={{ fontSize: '14px', textTransform: 'none' }}>
                         Close
                     </Button>
                     <Button onClick={handleSave} autoFocus sx={{ fontSize: '14px', textTransform: 'none' }}>

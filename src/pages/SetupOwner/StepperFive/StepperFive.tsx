@@ -71,7 +71,7 @@ const StepperFive = (props: any) => {
                         <p className="title-desc-step5">Bây giờ, hãy đặt mức giá mà bạn muốn.</p>
                         <input
                             type="number"
-                            placeholder="Mật khẩu wifi"
+                            placeholder="Đơn vị VND"
                             className="input-step5"
                             onChange={handleChangePriceRoom}
                         />
