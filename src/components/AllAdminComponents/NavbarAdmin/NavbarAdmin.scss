@@ -1,4 +1,4 @@
-.topnav {
+.topnav-admin {
     padding: 0px 30px 10px 30px;
     display: flex;
     align-items: center;
@@ -21,7 +21,7 @@
     height: 100%;
     width: 300px;
     padding: 10px 60px 10px 20px;
-    font-size: 1rem;
+    font-size: 14px;
     border-radius: var(--border-radius);
     color: var(--txt-color);
     background-color: var(--main-bg);
@@ -34,7 +34,7 @@
 }
 
 .topnav__search > i {
-    font-size: 1.5rem;
+    font-size: 14px;
     position: absolute;
     right: 20px;
 }
