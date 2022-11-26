@@ -24,7 +24,7 @@
 
             .name-info {
                 width: 100%;
-                
+
                 h1 {
                     letter-spacing: 1;
                     text-align: center;
@@ -67,10 +67,32 @@
                 font-size: 16px;
                 width: 100%;
                 margin: 0;
+                margin-bottom: 8px;
             }
 
             .input-info__user {
                 width: 100%;
+                font-size: 14px;
+                padding: 8px 20px 8px 10px;
+                border-radius: 3px;
+                border: 1px solid var(--text-color);
+                margin-bottom: 15px;
+            }
+
+            .input-checkbox {
+                display: flex;
+                align-items: center;
+                padding: 8px 0;
+
+                label {
+                    font-size: 15px;
+                    margin-right: 20px;
+                }
+            }
+
+            .btn-save-info {
+                margin-left: 12px;
+                padding: 4px 20px;
             }
         }
     }

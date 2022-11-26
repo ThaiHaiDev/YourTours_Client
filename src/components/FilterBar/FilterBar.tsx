@@ -20,6 +20,7 @@ const FilterBar = (props: any) => {
     };
 
     const [listDataFilterNavbar, setListDataFilterNavbar] = useState<any>([]);
+    const [indexActive, setIndexActive] = useState<number>(0);
 
     useEffect(() => {
         filterApi.getAllFilterNavbar().then((dataResponse: any) => {
@@ -32,7 +33,7 @@ const FilterBar = (props: any) => {
             <Slider {...settings}>
                 {listDataFilterNavbar?.map((filter: any, index: number) => (
                     <div key={index}>
-                        <div className={`slider__item-filter ${index === 0 && 'active'}`}>
+                        <div className={`slider__item-filter ${index === indexActive && 'active'}`} onClick={() => setIndexActive(index)}>
                             <div className="icon-filter">
                                 <img src={filter?.icon} alt="icon-filter" />
                             </div>
@@ -43,7 +44,7 @@ const FilterBar = (props: any) => {
                     </div>
                 ))}
             </Slider>
-            <DialogFilter filterData={props.filterData}/>
+            <DialogFilter filterData={props.filterData} />
         </div>
     );
 };

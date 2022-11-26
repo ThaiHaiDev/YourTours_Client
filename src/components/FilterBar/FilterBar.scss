@@ -8,7 +8,7 @@
     display: flex;
     position: fixed;
     background: white;
-    z-index: 98;
+    z-index: 97;
     
     .slick-slider {
         width: 90%;
@@ -20,6 +20,7 @@
         justify-content: center;
         margin-left: 5px;
         margin-right: 5px;
+        cursor: pointer;
 
         .icon-filter {
             display: grid;

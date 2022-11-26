@@ -22,8 +22,12 @@ export default function DialogFilter(props: any) {
     const [filter, setFilter] = useState<string>('');
 
     useEffect(() => {
-        setFilter(`${valuePriceRange}${numberOfBed}${numberOfBedRoom}${numberOfBathRoom}${filterAmenities}`)
-    }, [filterAmenities, valuePriceRange, numberOfBed, numberOfBedRoom, numberOfBathRoom])
+        if (valuePriceRange.slice(0, 9) === 'priceFrom') {
+            setFilter(`${valuePriceRange}${numberOfBed}${numberOfBedRoom}${numberOfBathRoom}${filterAmenities}`);
+        } else {
+            setFilter(`${numberOfBed}${numberOfBedRoom}${numberOfBathRoom}${filterAmenities}`);
+        }
+    }, [filterAmenities, valuePriceRange, numberOfBed, numberOfBedRoom, numberOfBathRoom]);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -50,7 +54,8 @@ export default function DialogFilter(props: any) {
     const handleChangePriceRange = (value: number[]) => {
         setValuePriceRange(`priceFrom=${value[0]}&priceTo=${value[1]}&`);
     };
-    console.log(filter)
+
+    console.log(filter);
 
     const handleChangeFilterAmenities = (value: string) => {
         setFilterAmenities(`amenities=${value}&`);
@@ -59,21 +64,21 @@ export default function DialogFilter(props: any) {
         if (value !== 0) {
             setNumberOfBed(`numberOfBed=${value}&`);
         } else {
-            setNumberOfBed('')
+            setNumberOfBed('');
         }
     };
     const handleChangeNumberOfBedRoom = (value: number) => {
         if (value !== 0) {
-            setNumberOfBedRoom(`numberOfBedRoom=${value}&`)
+            setNumberOfBedRoom(`numberOfBedRoom=${value}&`);
         } else {
-            setNumberOfBedRoom('')
+            setNumberOfBedRoom('');
         }
     };
     const handleChangeNumberOfBathRoom = (value: number) => {
         if (value !== 0) {
-            setNumberOfBathRoom(`numberOfBathRoom=${value}&`)
+            setNumberOfBathRoom(`numberOfBathRoom=${value}&`);
         } else {
-            setNumberOfBathRoom('')
+            setNumberOfBathRoom('');
         }
     };
 
@@ -108,7 +113,7 @@ export default function DialogFilter(props: any) {
                     </DialogContent>
 
                     <DialogContent sx={{ fontSize: '16px', fontWeight: 'bold' }}>
-                        Loại nơi ở
+                        Tiện ích
                         <div style={{ marginTop: '30px' }}>
                             <CheckBox setFilterAmenities={handleChangeFilterAmenities} />
                         </div>
@@ -118,15 +123,13 @@ export default function DialogFilter(props: any) {
                     <DialogContent sx={{ fontSize: '16px', fontWeight: 'bold' }}>
                         Phòng và phòng ngủ
                         <div style={{ marginTop: '30px' }}>
-                            <CountRoomFilter name='Phòng ngủ' handleChangeNumberOfBed={handleChangeNumberOfBed} />
-                            <CountRoomFilter name='Gường'handleChangeNumberOfBedRoom={handleChangeNumberOfBedRoom} />
-                            <CountRoomFilter name='Phòng tắm' handleChangeNumberOfBathRoom={handleChangeNumberOfBathRoom} />
+                            <CountRoomFilter name="Phòng ngủ" handleChangeNumberOfBed={handleChangeNumberOfBed} />
+                            <CountRoomFilter name="Gường" handleChangeNumberOfBedRoom={handleChangeNumberOfBedRoom} />
+                            <CountRoomFilter
+                                name="Phòng tắm"
+                                handleChangeNumberOfBathRoom={handleChangeNumberOfBathRoom}
+                            />
                         </div>
-                        <hr />
-                    </DialogContent>
-
-                    <DialogContent sx={{ fontSize: '16px', fontWeight: 'bold', paddingBottom: '50px' }}>
-                        Tiện ích
                         <hr />
                     </DialogContent>
                 </div>
