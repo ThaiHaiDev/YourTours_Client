@@ -18,7 +18,7 @@ export default function SelectedLocate(props:any) {
     return (
         <div className='selected-locate'>
             <FormControl sx={{ m: 1, minWidth: 120, width: '50%' }}>
-                <InputLabel id="demo-simple-select-helper-label" style={{zIndex: '80', background: 'white', paddingRight: '5px'}}>Province</InputLabel>
+                <InputLabel id="demo-simple-select-helper-label" style={{zIndex: '80', background: 'white', paddingRight: '5px'}}>Tỉnh thành</InputLabel>
                 <Select
                     labelId="demo-simple-select-helper-label"
                     id="demo-simple-select-helper"

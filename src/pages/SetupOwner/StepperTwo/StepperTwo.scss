@@ -11,17 +11,22 @@
         display: grid;
         justify-items: center; /* Căn giữa chiều ngang */
 
-        .image-step2 {
-            width: 90%;
-            margin-top: 18%;
-        }
-         
-        h1 {
-            text-align: center; 
+        .require-step2 {
             position: absolute;
-            top: 66%;
-            width: 100%;
+            margin-top: 18%;
+
+            .image-step2 {
+                width: 100%;
+                padding: 0 50px;
+            }
+             
+            h1 {
+                text-align: center; 
+                width: 100%;
+            }
         }
+
+       
     }
 
     .l-6:nth-child(2) {
