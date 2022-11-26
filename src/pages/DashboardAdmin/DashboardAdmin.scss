@@ -1,0 +1,15 @@
+.dashboard__admin {
+    .page-header {
+        margin-bottom: 20px;
+        text-transform: capitalize;
+        font-size: 18px;
+    }
+
+    .card-admin-chart {
+        padding: 15px;
+        background-color: var(--main-bg);
+        box-shadow: var(--box-shadow);
+        border-radius: var(--border-radius);
+        height: 100%;
+    }
+}

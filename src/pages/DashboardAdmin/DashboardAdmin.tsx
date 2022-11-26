@@ -11,6 +11,10 @@ import Table from '../../components/AllAdminComponents/Table/Table';
 import Badge from '../../components/AllAdminComponents/Badge/Badge';
 
 import statusCards from '../../mockdata/status-card-data.json';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
+
+import './DashboardAdmin.scss';
 
 const chartOptions = {
     options: {
@@ -111,12 +115,12 @@ const latestOrders = {
     ],
 };
 
-const orderStatus = {
-    shipping: 'primary',
-    pending: 'warning',
-    paid: 'success',
-    refund: 'danger',
-};
+// const orderStatus = {
+//     shipping: 'primary',
+//     pending: 'warning',
+//     paid: 'success',
+//     refund: 'danger',
+// };
 
 const renderOrderHead = (item: any, index: any) => <th key={index}>{item}</th>;
 
@@ -133,11 +137,13 @@ const renderOrderBody = (item: any, index: any) => (
 );
 
 const DashboardAdmin = () => {
+    const themeReducer = useSelector((state: RootState) => state.global);
+    
     return (
-        <div>
+        <div className='dashboard__admin'>
             <h2 className="page-header">Dashboard</h2>
             <div className="row">
-                <div className="col l-6">
+                <div className="col l-5">
                     <div className="row">
                         {statusCards.map((item, index) => (
                             <div className="col l-6" key={index}>
@@ -147,18 +153,18 @@ const DashboardAdmin = () => {
                     </div>
                 </div>
 
-                <div className="col l-6">
-                    <div className="card-admin full-height">
+                <div className="col l-7" style={{ paddingBottom: '30px' }}>
+                    <div className="card-admin-chart">
                         {/* chart */}
                         <Chart
-                            // options={themeReducer === 'theme-mode-dark' ? {
-                            //     ...chartOptions.options,
-                            //     theme: { mode: 'dark'}
-                            // } : {
-                            //     ...chartOptions.options,
-                            //     theme: { mode: 'light'}
-                            // }}
-                            options={chartOptions.options}
+                            options={themeReducer.mode === 'theme-mode-dark' ? {
+                                ...chartOptions.options,
+                                theme: { mode: 'dark'}
+                            } : {
+                                ...chartOptions.options,
+                                theme: { mode: 'light'}
+                            }}
+                            // options={chartOptions.options}
                             series={chartOptions.series}
                             type="line"
                             height="100%"

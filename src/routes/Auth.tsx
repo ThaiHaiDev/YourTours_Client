@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import ForgotPass from '../pages/AuthPage/ForgotPass/ForgotPass';
 import IntroSettingOwnerPage from '../pages/IntroSettingOwnerPage/IntroSettingOwnerPage';
-import Test from '../pages/Test/Test';
+import Test from '../pages/LayoutAdmin/LayoutAdmin';
 import ManagerRoom from '../pages/OwnerSetting/ManagerRoom/ManagerRoom';
 import CountRoomDetailSetting from '../pages/OwnerSetting/CountRoomDetailSetting/CountRoomDetailSetting';
 import ListRoomOfHost from '../pages/OwnerSetting/ManagerRoom/ListRoomOfHost';

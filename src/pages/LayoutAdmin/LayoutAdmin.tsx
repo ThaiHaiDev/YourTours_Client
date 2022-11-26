@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import './Test.scss';
+import './LayoutAdmin.scss';
 import RoutesAdmin from '../../routes/RouterAdmin';
 import Sidebar from '../../components/AllAdminComponents/Sidebar/Sidebar';
 import globalSlice from '../../redux/globalSlice';
