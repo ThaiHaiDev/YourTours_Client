@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import { DateRangePicker } from 'react-date-range';
 
 import format from 'date-fns/format';
-import { addDays } from 'date-fns';
 
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
@@ -13,8 +12,8 @@ const DateBooking = (props: any) => {
     // date state
     const [range, setRange] = useState<any>([
         {
-            startDate: new Date(),
-            endDate: addDays(new Date(), 0),
+            startDate: new Date(props.dateStart),
+            endDate: new Date(props.dateEnd),
             key: 'selection',
         },
     ]);

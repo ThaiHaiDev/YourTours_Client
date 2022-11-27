@@ -55,8 +55,6 @@ export default function DialogFilter(props: any) {
         setValuePriceRange(`priceFrom=${value[0]}&priceTo=${value[1]}&`);
     };
 
-    console.log(filter);
-
     const handleChangeFilterAmenities = (value: string) => {
         setFilterAmenities(`amenities=${value}&`);
     };
@@ -81,8 +79,6 @@ export default function DialogFilter(props: any) {
             setNumberOfBathRoom('');
         }
     };
-
-    // console.log(valuePriceRange)
 
     return (
         <div className="dialog-filter">
@@ -122,7 +118,7 @@ export default function DialogFilter(props: any) {
 
                     <DialogContent sx={{ fontSize: '16px', fontWeight: 'bold' }}>
                         Phòng và phòng ngủ
-                        <div style={{ marginTop: '30px' }}>
+                        <div style={{ marginTop: '30px', marginBottom: '50px' }}>
                             <CountRoomFilter name="Phòng ngủ" handleChangeNumberOfBed={handleChangeNumberOfBed} />
                             <CountRoomFilter name="Gường" handleChangeNumberOfBedRoom={handleChangeNumberOfBedRoom} />
                             <CountRoomFilter

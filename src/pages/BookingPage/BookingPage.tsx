@@ -1,10 +1,51 @@
-import { NavLink } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { NavLink, useNavigate } from 'react-router-dom';
 import DateBooking from '../../components/DateBooking/DateBooking';
 import DialogCountCustomer from '../../components/DialogCountCustomer/DialogCountCustomer';
+import { RootState } from '../../redux/store';
+import bookingApi from '../../services/bookingApi';
+
+import { AxiosError } from 'axios';
+import { useSnackbar } from 'notistack';
+
+import FmdGoodIcon from '@mui/icons-material/FmdGood';
 
 import './BookingPage.scss';
+import homeDetailApi from '../../services/homeDetailApi';
+import mapProvince from '../../utils/mapProvince';
 
 const BookingPage = () => {
+    const infoBooking = useSelector((state: RootState) => state.booking);
+
+    const [dataDetailHomeBooking, setDataDetalHomeBooking] = useState<any>([]);
+
+    const { enqueueSnackbar } = useSnackbar();
+
+    // const navigate = useNavigate();
+    // useEffect(() => {
+    //     if (!infoBooking.checkBooking) {
+    //         navigate('/');
+    //     }
+    // }, [infoBooking, navigate]);
+
+    useEffect(() => {
+        homeDetailApi.getDetailHome('4ddd658a-8324-456a-9375-507519608073').then((dataResponse) => {
+            setDataDetalHomeBooking(dataResponse.data);
+        });
+    }, [infoBooking.homeId]);
+
+    const handleBookingRoom = () => {
+        bookingApi
+            .bookingRoom(infoBooking)
+            .then((dataResponse) => {
+                enqueueSnackbar('Đặt phòng thành công', { variant: 'success' });
+            })
+            .catch((error: AxiosError<any>) => {
+                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+            });
+    };
+
     return (
         <div className="booking__page">
             <div className="nav">
@@ -21,7 +62,11 @@ const BookingPage = () => {
                 <div className="row">
                     <div className="col l-8" style={{ height: '100vh', paddingRight: '50px' }}>
                         <h2>Chuyến đi của bạn</h2>
-                        <DateBooking size="horizontal" />
+                        <DateBooking
+                            size="horizontal"
+                            dateStart={infoBooking.dateStart}
+                            dateEnd={infoBooking.dateEnd}
+                        />
                         <hr className="line" />
 
                         <div className="count-customer">
@@ -36,12 +81,36 @@ const BookingPage = () => {
                         <div className="card-booking__room">
                             <div className="header-room__booking">
                                 <div className="image-room__booking">
-                                    <img
-                                        src="https://a0.muscache.com/im/pictures/miso/Hosting-29172819/original/8dae018e-ee08-4956-ab90-4a451e96e424.jpeg?im_w=720"
-                                        alt=""
-                                    />
+                                    <img src={dataDetailHomeBooking?.thumbnail} alt="" />
+                                </div>
+                                <div className="desc-room__booking">
+                                    <p className="desc-all">Toàn bộ ngôi nhà</p>
+                                    <p className="name-room-booking">{dataDetailHomeBooking?.name}</p>
+                                    <div className="locate-room-booking">
+                                        <FmdGoodIcon className="icon-locate-booking" />
+                                        <p>{`${
+                                            dataDetailHomeBooking?.addressDetail !== null
+                                                ? dataDetailHomeBooking?.addressDetail
+                                                : ''
+                                        } ${dataDetailHomeBooking?.addressDetail !== null ? ',' : ''} ${mapProvince(
+                                            dataDetailHomeBooking?.provinceCode
+                                                ? dataDetailHomeBooking?.provinceCode
+                                                : undefined,
+                                        )}`}</p>
+                                    </div>
+                                    <p className="name-host-room">{`Chủ nhà ${dataDetailHomeBooking?.ownerName}`}</p>
                                 </div>
                             </div>
+                            <hr className="line-card" />
+                            <div className="policy-booking">Đặt phòng của bạn được bảo vệ bởi Yourtours.</div>
+                            <hr className="line-card" />
+                            <div className="card-surcharge">
+                                <p>Phụ phí bao gồm</p>
+                                {dataDetailHomeBooking?.surcharges?.map((sur: any, index: number) => (
+                                    <li>{sur?.surchargeCategoryName}</li>
+                                ))}
+                            </div>
+                            <button onClick={handleBookingRoom}>Đặt phòng</button>
                         </div>
                     </div>
                 </div>

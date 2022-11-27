@@ -51,7 +51,7 @@ const ListRoomPage = () => {
     return (
         <div className="list-room__page">
             <NavbarFix />
-            <FilterBar filterData={filterData} />
+            <FilterBar filterData={filterData} queryParams={queryParams} />
             <div>
                 <InfiniteScroll
                     dataLength={state.items.length}

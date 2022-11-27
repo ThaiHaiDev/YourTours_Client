@@ -5,7 +5,7 @@ import './RoomDetail.scss';
 
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import StarIcon from '@mui/icons-material/Star';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import Convenient from '../../components/Convenient/Convenient';
 import DateGo from '../../components/DateGo/DateGo';
 import Dropdown from '../../components/Dropdown/Dropdown';
@@ -19,17 +19,26 @@ import mapProvince from '../../utils/mapProvince';
 import SkeletonRoomDetail from '../../components/Skeleton/SkeletonRoomDetail';
 
 import format from 'date-fns/format';
+import moment from 'moment';
+
 import pricesOfHomeApi from '../../services/pricesOfHomeApi';
 import formatPrice from '../../utils/formatPrice';
 import PopoverPrice from '../../components/PopoverPrice/PopoverPrice';
+import bookingSlice from '../BookingPage/bookingSlice';
+import { useDispatch } from 'react-redux';
 
 const RoomDetail = () => {
     const [dataDetailHome, setDataDetalHome] = useState<any>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [priceDay, setPriceDay] = useState<any>('');
     const [detailPrice, setDetailPrice] = useState<any>([]);
+    const [dateBook, setDateBook] = useState<string[]>([moment().format('YYYY-MM-DD'), moment().format('YYYY-MM-DD')]);
 
     const params = useParams();
+    
+    const dispatch = useDispatch();
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         setLoading(true);
@@ -39,14 +48,27 @@ const RoomDetail = () => {
         });
     }, [params?.idHome]);
 
+    console.log(dataDetailHome)
+
     const handleChangeDayBooking = (value: any) => {
         const dateFrom = format(value[0].startDate, 'yyyy-MM-dd');
         const dateTo = format(value[0].endDate, 'yyyy-MM-dd');
+        setDateBook([dateFrom, dateTo])
         pricesOfHomeApi.showPriceByRangeDay(params?.idHome, dateFrom, dateTo).then((dataResponse) => {
             setPriceDay(dataResponse.data.totalCost);
             setDetailPrice(dataResponse.data.detail);
         });
     };
+
+    const handleBooking = async () => {
+        const dataBooking = {
+            dateStart: dateBook[0],
+            dateEnd: dateBook[1],
+            homeId: params?.idHome
+        }
+        await dispatch(bookingSlice.actions.addInfoBooking(dataBooking));
+        navigate('/booking');
+    }
 
     return (
         <div className="detail-room">
@@ -128,6 +150,12 @@ const RoomDetail = () => {
                                 <DateRangeDetail size="horizontal" setDataDay={handleChangeDayBooking} />
 
                                 <hr className="line" />
+                                <h1 style={{ marginTop: '25px' }}>Phụ phí căn nhà</h1>
+                                {dataDetailHome?.surcharges?.map((sur:any, index:number) => (
+                                    <p key={index}>{`${sur?.surchargeCategoryName} - ${formatPrice(sur?.cost)}`}</p>
+                                ))}
+
+                                <hr className="line" />
                                 <h1 style={{ marginTop: '25px' }}>Đánh giá</h1>
                             </div>
                         </div>
@@ -140,7 +168,7 @@ const RoomDetail = () => {
                                         <p>Nhận phòng</p>
                                         <p>Trả phòng</p>
                                     </div>
-                                    <DateGo size="vertical" setDataDay={handleChangeDayBooking} />
+                                    <DateGo size="vertical" setDataDay={handleChangeDayBooking} setDateBook={setDateBook}/>
                                 </div>
                                 <div className="count__guest">
                                     <p>Số khách</p>
@@ -156,8 +184,12 @@ const RoomDetail = () => {
                                         <PopoverPrice detailPrice={detailPrice} />
                                     </div>
                                     <div className="real-price">
-                                        <p>{priceDay !== '' ? formatPrice(priceDay) : ''}</p>
+                                        <p>{priceDay !== '' ? formatPrice(priceDay) : formatPrice(dataDetailHome?.costPerNightDefault)}</p>
                                     </div>
+                                </div>
+
+                                <div className='btn-booking'>
+                                    <button className='btn-booking-room' onClick={handleBooking}>Đặt phòng</button>
                                 </div>
                             </div>
                         </div>

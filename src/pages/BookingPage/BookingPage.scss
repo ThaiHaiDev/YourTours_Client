@@ -52,24 +52,105 @@
         .card-booking__room {
             position: fixed;
             border-radius: 10px;
-            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-            height: 200px;
+            box-shadow: rgba(0, 0, 0, 0.20) 0px 5px 15px;
+            height: 400px;
             background: white;
             width: 395px;
 
             .header-room__booking {
+                position: relative;
                 padding: 10px;
+                display: flex;
+                font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Droid Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+
                 .image-room__booking {
-                    width: 100px;
-                    height: 100px;
+                    width: 120px;
+                    height: 120px;
+                    max-width: 120px;
+                    max-height: 120px;
+                    min-height: 120px;
+                    min-width: 120px;
     
                     img {
                         width: 100%;
                         height: 100%;
+                        border-radius: 5px;
                     }
+                }
+
+                .desc-room__booking {
+                    margin: 5px 5px;
+                    padding-left: 5px;
+
+                    .desc-all {
+                        color: #717171;
+                        font-size: 13px;
+                        margin: 0;
+                        margin-bottom: 5px;
+                    }
+
+                    .name-room-booking {
+                        font-size: 15px;
+                        font-weight: 650;
+                        letter-spacing: 0.6px;
+                        margin: 0;
+                        margin-bottom: 5px;
+                    }
+                }
+
+                .locate-room-booking {
+                    display: flex;
+
+                    .icon-locate-booking {
+                        color: blue;
+                        font-size: 16px;
+                    }
+
+                    p {
+                        margin: 0;
+                        font-size: 12px;
+                        padding-left: 4px;
+                    }
+                }
+
+                .name-host-room {
+                    position: absolute;
+                    font-size: 14px;
+                    bottom: 0;
+                    right: 15px;
                 }
             }
 
+            .policy-booking {
+                padding: 10px 20px;
+                font-size: 14px;
+                margin-bottom: 5px;
+            }
+
+            .card-surcharge {
+                width: auto;
+                height: auto;
+                margin: 0 20px;
+                background: rgb(233, 248, 241);
+                padding-bottom: 8px;
+
+                p {
+                    margin: 0;
+                    padding: 10px;
+                    font-size: 13px;
+                    font-weight: 600;
+                }
+
+                li {
+                    padding-left: 15px;
+                    margin-bottom: 4px;
+                    font-size: 12px;
+                }
+            }
+
+            .line-card {
+                margin: 0px 15px 5px 15px;
+            }
            
         }
     }

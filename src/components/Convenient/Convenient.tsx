@@ -4,8 +4,6 @@ const Convenient = (props: any) => {
     const cutDataLeft = props?.listConvenient?.slice(0, 4);
     const cutDataRight = props?.listConvenient?.slice(4, 8);
 
-    console.log(cutDataLeft)
-
     return (
         <div className="convenient-room">
             <h1>Nơi này có những gì cho bạn</h1>
