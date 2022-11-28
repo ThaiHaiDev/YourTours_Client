@@ -7,9 +7,11 @@ import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 
 import './DateBooking.scss';
+import pricesOfHomeApi from '../../services/pricesOfHomeApi';
+import { useDispatch } from 'react-redux';
+import bookingSlice from '../../pages/BookingPage/bookingSlice';
 
 const DateBooking = (props: any) => {
-    // date state
     const [range, setRange] = useState<any>([
         {
             startDate: new Date(props.dateStart),
@@ -18,14 +20,12 @@ const DateBooking = (props: any) => {
         },
     ]);
 
-    // open close
     const [open, setOpen] = useState(false);
-
-    // get the target element to toggle
     const refOne = useRef<HTMLInputElement | null>(null);
 
+    const dispatch = useDispatch();
+
     useEffect(() => {
-        // event listeners
         document.addEventListener('keydown', hideOnEscape, true);
         document.addEventListener('click', hideOnClickOutside, true);
     }, []);
@@ -33,20 +33,27 @@ const DateBooking = (props: any) => {
     // console.log('start',format(range[0].startDate, 'MM/dd/yyyy'));
     // console.log('end',format(range[0].endDate, 'MM/dd/yyyy'));
 
-    // hide dropdown on ESC press
     const hideOnEscape = (e: any) => {
         if (e.key === 'Escape') {
             setOpen(false);
         }
     };
 
-    // Hide dropdown on outside click
     const hideOnClickOutside = (e: any) => {
-        // console.log(refOne.current)
-        // console.log(e.target)
         if (refOne.current && !refOne.current.contains(e.target)) {
             setOpen(false);
         }
+    };
+
+    const handleChangeDayBooking = async (value: any) => {
+        const dateFrom = format(value[0].startDate, 'yyyy-MM-dd');
+        const dateTo = format(value[0].endDate, 'yyyy-MM-dd'); 
+        dispatch(bookingSlice.actions.addDay({dateFrom, dateTo}));
+        pricesOfHomeApi.showPriceByRangeDay(props?.idHome, dateFrom, dateTo).then((dataResponse) => {
+            if (props.handleChangePriceDay) {
+                props.handleChangePriceDay(dataResponse.data.totalCost);
+            }
+        });
     };
 
     return (
@@ -67,7 +74,10 @@ const DateBooking = (props: any) => {
             <div ref={refOne}>
                 {open && (
                     <DateRangePicker
-                        onChange={(item) => setRange([item.selection])}
+                        onChange={(item) => {
+                            setRange([item.selection])
+                            handleChangeDayBooking([item.selection])
+                        }}
                         editableDateInputs={true}
                         moveRangeOnFirstSelection={false}
                         ranges={range}

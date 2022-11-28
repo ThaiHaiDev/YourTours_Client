@@ -48,8 +48,6 @@ const RoomDetail = () => {
         });
     }, [params?.idHome]);
 
-    console.log(dataDetailHome)
-
     const handleChangeDayBooking = (value: any) => {
         const dateFrom = format(value[0].startDate, 'yyyy-MM-dd');
         const dateTo = format(value[0].endDate, 'yyyy-MM-dd');
@@ -64,7 +62,8 @@ const RoomDetail = () => {
         const dataBooking = {
             dateStart: dateBook[0],
             dateEnd: dateBook[1],
-            homeId: params?.idHome
+            homeId: params?.idHome,
+            priceDay: priceDay
         }
         await dispatch(bookingSlice.actions.addInfoBooking(dataBooking));
         navigate('/booking');

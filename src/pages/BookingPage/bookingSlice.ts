@@ -17,14 +17,23 @@ const bookingSlice = createSlice({
             },
         ],
         checkBooking: false,
+        priceDay: ''
     },
     reducers: {
         addInfoBooking(state, action) {
             state.dateStart = action.payload.dateStart;
             state.dateEnd = action.payload.dateEnd;
             state.homeId = action.payload.homeId;
+            state.priceDay = action.payload.priceDay;
             state.checkBooking = true;
         },
+        addPriceDay(state, action) {
+            state.priceDay = action.payload.priceDay;
+        },
+        addDay(state, action) {
+            state.dateStart = action.payload.dateFrom;
+            state.dateEnd = action.payload.dateTo;
+        }
     },
 });
 
