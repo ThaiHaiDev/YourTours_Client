@@ -30,26 +30,51 @@ export default function TittleSetting(props: any) {
         setExpanded(false);
     };
 
+    console.log(props.infoRoom.refundPolicy)
     React.useEffect(() => {
         setValue('name', props?.infoRoom?.name);
         setValue('description', props.infoRoom.desc);
         setValue('guide', props.infoRoom.guide);
-        setValue('refundPolicy', 'BEFORE_ONE_DAY');
+        if (props.infoRoom.refundPolicy === 'BEFORE_ONE_DAY') {
+            setValue('refundPolicy', 'Trước 1 ngày');
+        } else if (props.infoRoom.refundPolicy === 'NO_REFUND') {
+            setValue('refundPolicy', 'Không hoàn tiền');
+        } else if (props.infoRoom.refundPolicy === 'BEFORE_SEVEN_DAYS') {
+            setValue('refundPolicy', 'Trước 7 ngày');
+        }
     }, [props.infoRoom.name, props.infoRoom.desc, props.infoRoom.guide, props.infoRoom.refundPolicy, setValue]);
 
     const onSubmit: SubmitHandler<any> = (data: any) => {
-        const newData = {
-            data,
-            id: params.idHome,
-        };
-        homeApi
-            .updateTitleHome(newData)
-            .then((dataResponse: any) => {
-                enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
-            })
-            .catch((error: AxiosError<any>) => {
-                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
-            });
+        if (data.refundPolicy === 'Trước 1 ngày' || data.refundPolicy === 'Không hoàn tiền' || data.refundPolicy === 'Trước 7 ngày') {
+            var tempRefund : string = '';
+            if (data.refundPolicy === 'Trước 1 ngày') {
+                tempRefund = 'BEFORE_ONE_DAY';
+            } else if (data.refundPolicy === 'Không hoàn tiền') {
+                tempRefund = 'NO_REFUND';
+            } else if (data.refundPolicy === 'Trước 7 ngày') {
+                tempRefund = 'BEFORE_SEVEN_DAYS';
+            }
+            const newData = {
+                data: {
+                    name: data.name,
+                    description: data.description,
+                    guide: data.guide,
+                    refundPolicy: tempRefund,
+                },
+                id: params.idHome,
+            };
+            homeApi
+                .updateTitleHome(newData)
+                .then((dataResponse: any) => {
+                    enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
+                })
+                .catch((error: AxiosError<any>) => {
+                    enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+                });
+        } else {
+            enqueueSnackbar('Vui lòng điền đúng format của chính sách hoàn tiền', { variant: 'warning' });
+        }
+       
     };
 
     return (
@@ -139,8 +164,8 @@ export default function TittleSetting(props: any) {
                     </AccordionSummary>
                     <AccordionDetails>
                         <div className="content-input">
-                            <h4>Tiêu đề nhà/phòng cho thuê</h4>
-                            <p>Tiêu đề nhà/phòng cho thuê của bạn cần nổi bật được những điểm đặc biệt của chỗ ở.</p>
+                            <h4>Chính sách hoàn tiền cho căn nhà của bạn</h4>
+                            <p>Vui lòng điền theo mẫu: Không hoàn tiền, Trước 1 ngày, Trước 7 ngày</p>
                             <input className="input-info" {...register('refundPolicy')} />
                         </div>
                         <div className="btn">

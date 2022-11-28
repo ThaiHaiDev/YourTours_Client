@@ -13,11 +13,12 @@ const bookingSlice = createSlice({
         guests: [
             {
                 guestCategory: 'ADULTS',
-                number: 2,
+                number: 1,
             },
         ],
         checkBooking: false,
-        priceDay: ''
+        priceDay: '',
+        titleGuests: ''
     },
     reducers: {
         addInfoBooking(state, action) {
@@ -25,7 +26,9 @@ const bookingSlice = createSlice({
             state.dateEnd = action.payload.dateEnd;
             state.homeId = action.payload.homeId;
             state.priceDay = action.payload.priceDay;
+            state.guests = action.payload.guests;
             state.checkBooking = true;
+            state.titleGuests = action.payload.titleGuests;
         },
         addPriceDay(state, action) {
             state.priceDay = action.payload.priceDay;

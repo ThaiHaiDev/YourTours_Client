@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import DateBooking from '../../components/DateBooking/DateBooking';
-import DialogCountCustomer from '../../components/DialogCountCustomer/DialogCountCustomer';
 import { RootState } from '../../redux/store';
 import bookingApi from '../../services/bookingApi';
 
@@ -80,9 +79,8 @@ const BookingPage = () => {
                         <div className="count-customer">
                             <div>
                                 <p className="customer-count__title">Khách</p>
-                                <p className="count">1 khách</p>
+                                <p className="count">{infoBooking?.titleGuests}</p>
                             </div>
-                            <DialogCountCustomer />
                         </div>
                     </div>
                     <div className="col l-4">

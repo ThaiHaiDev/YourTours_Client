@@ -219,6 +219,17 @@
             .title-price {
                 display: flex;
                 align-items: center;
+
+                .name-surcharge {
+                    margin: 5px 0;
+                }
+            }
+
+            .real-price {
+                .cost-surcharge {
+                    margin: 5px 0;
+                    font-weight: 550;
+                }
             }
 
             p {

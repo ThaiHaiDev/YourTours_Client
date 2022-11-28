@@ -33,9 +33,12 @@ const RoomDetail = () => {
     const [priceDay, setPriceDay] = useState<any>('');
     const [detailPrice, setDetailPrice] = useState<any>([]);
     const [dateBook, setDateBook] = useState<string[]>([moment().format('YYYY-MM-DD'), moment().format('YYYY-MM-DD')]);
+    const [guests, setGuests] = useState<any>([]);
+    const [titleGuests, setTitleGuests] = useState<any>('1 Người lớn, 0 Trẻ em, 0 Trẻ sơ sinh');
+    const [priceTotal, setPriceTotal] = useState<string>('');
 
     const params = useParams();
-    
+
     const dispatch = useDispatch();
 
     const navigate = useNavigate();
@@ -44,17 +47,23 @@ const RoomDetail = () => {
         setLoading(true);
         homeDetailApi.getDetailHome(params?.idHome).then((dataResponse) => {
             setDataDetalHome(dataResponse.data);
+            setPriceTotal('123')
             setLoading(false);
         });
     }, [params?.idHome]);
 
+    const handleChangeGuests = (value: any) => {
+        setGuests(value);
+    };
+
     const handleChangeDayBooking = (value: any) => {
         const dateFrom = format(value[0].startDate, 'yyyy-MM-dd');
         const dateTo = format(value[0].endDate, 'yyyy-MM-dd');
-        setDateBook([dateFrom, dateTo])
+        setDateBook([dateFrom, dateTo]);
         pricesOfHomeApi.showPriceByRangeDay(params?.idHome, dateFrom, dateTo).then((dataResponse) => {
             setPriceDay(dataResponse.data.totalCost);
             setDetailPrice(dataResponse.data.detail);
+            setPriceTotal(dataResponse.data.totalCostWithSurcharge)
         });
     };
 
@@ -63,11 +72,13 @@ const RoomDetail = () => {
             dateStart: dateBook[0],
             dateEnd: dateBook[1],
             homeId: params?.idHome,
-            priceDay: priceDay
-        }
+            priceDay: priceDay === '' ? dataDetailHome?.costPerNightDefault : priceDay,
+            guests: guests,
+            titleGuests: titleGuests,
+        };
         await dispatch(bookingSlice.actions.addInfoBooking(dataBooking));
         navigate('/booking');
-    }
+    };
 
     return (
         <div className="detail-room">
@@ -149,12 +160,6 @@ const RoomDetail = () => {
                                 <DateRangeDetail size="horizontal" setDataDay={handleChangeDayBooking} />
 
                                 <hr className="line" />
-                                <h1 style={{ marginTop: '25px' }}>Phụ phí căn nhà</h1>
-                                {dataDetailHome?.surcharges?.map((sur:any, index:number) => (
-                                    <p key={index}>{`${sur?.surchargeCategoryName} - ${formatPrice(sur?.cost)}`}</p>
-                                ))}
-
-                                <hr className="line" />
                                 <h1 style={{ marginTop: '25px' }}>Đánh giá</h1>
                             </div>
                         </div>
@@ -167,11 +172,15 @@ const RoomDetail = () => {
                                         <p>Nhận phòng</p>
                                         <p>Trả phòng</p>
                                     </div>
-                                    <DateGo size="vertical" setDataDay={handleChangeDayBooking} setDateBook={setDateBook}/>
+                                    <DateGo
+                                        size="vertical"
+                                        setDataDay={handleChangeDayBooking}
+                                        setDateBook={setDateBook}
+                                    />
                                 </div>
                                 <div className="count__guest">
                                     <p>Số khách</p>
-                                    <Dropdown />
+                                    <Dropdown handleChangeGuests={handleChangeGuests} setTitleGuests={setTitleGuests} />
                                 </div>
 
                                 <div className="line">
@@ -183,12 +192,42 @@ const RoomDetail = () => {
                                         <PopoverPrice detailPrice={detailPrice} />
                                     </div>
                                     <div className="real-price">
-                                        <p>{priceDay !== '' ? formatPrice(priceDay) : formatPrice(dataDetailHome?.costPerNightDefault)}</p>
+                                        <p style={{ fontWeight: '550' }}>
+                                            {priceDay !== ''
+                                                ? formatPrice(priceDay)
+                                                : formatPrice(dataDetailHome?.costPerNightDefault)}
+                                        </p>
                                     </div>
                                 </div>
 
-                                <div className='btn-booking'>
-                                    <button className='btn-booking-room' onClick={handleBooking}>Đặt phòng</button>
+                                {dataDetailHome?.surcharges?.map((sur: any, index: number) => (
+                                    <div className="price-total" key={index}>
+                                        <div className="title-price">
+                                            <p className="name-surcharge">{`${sur?.surchargeCategoryName}`}</p>
+                                        </div>
+                                        <div className="real-price">
+                                            <p className="cost-surcharge">{formatPrice(sur?.cost)}</p>
+                                        </div>
+                                    </div>
+                                ))}
+
+                                <div className="line" style={{ marginTop: '10px'}}>
+                                    <hr />
+                                </div>
+
+                                <div className="price-total">
+                                        <div className="title-price">
+                                            <p className="name-surcharge">Tổng tiền cần thanh toán</p>
+                                        </div>
+                                        <div className="real-price">
+                                            <p className="cost-surcharge">{formatPrice(priceTotal === '' ? '0' : priceTotal)}</p>
+                                        </div>
+                                    </div>
+
+                                <div className="btn-booking">
+                                    <button className="btn-booking-room" onClick={handleBooking}>
+                                        Đặt phòng
+                                    </button>
                                 </div>
                             </div>
                         </div>
