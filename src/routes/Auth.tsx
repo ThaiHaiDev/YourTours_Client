@@ -22,6 +22,7 @@ import ListRoomPage from '../pages/ListRoomPage/ListRoomPage';
 import FavoritesPage from '../pages/FavoritesPage/FavoritesPage';
 import InfoUserPage from '../pages/InfoUserPage/InfoUserPage';
 import BookingPage from '../pages/BookingPage/BookingPage';
+import TransactionHistoryOwner from '../pages/OwnerSetting/TransactionHistoryOwner/TransactionHistoryOwner';
 
 const Auth = () => {
     const user = useSelector((state: RootState) => state.user)
@@ -46,6 +47,7 @@ const Auth = () => {
             <Route path="/host/setting/convenient/:idHome" element={<ConvenientOwnerSetting />} />
             <Route path="/host/setting/countroomdetail/:idHome" element={<CountRoomDetailSetting />} />
             <Route path="/host/setting/calendar" element={<CalendarRoomSetting />} />
+            <Route path="/host/setting/transactionhistory" element={<TransactionHistoryOwner />} />
             
             <Route path='*' element={<NotFoundPage />} />
         </Routes>

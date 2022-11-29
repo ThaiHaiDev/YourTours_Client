@@ -34,8 +34,6 @@ const ListRoomOfHost = () => {
         })
     }
 
-    console.log(rows)
-
     return (
         <div className="listroom__host">
             <NavbarOwner />

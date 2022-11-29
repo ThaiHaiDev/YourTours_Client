@@ -29,8 +29,6 @@ const ManagerRoom = () => {
         refundPolicy: dataHomeDetail?.refundPolicy
     }
 
-    console.log(infoRoom)
-
     const detailPriceRoom = {
         costPerNightDefault: dataHomeDetail?.costPerNightDefault,
         discounts: dataHomeDetail?.discounts ? dataHomeDetail?.discounts : [],

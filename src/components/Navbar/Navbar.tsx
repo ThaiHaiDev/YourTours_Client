@@ -37,14 +37,13 @@ const Navbar = () => {
                     </div>
                 </NavLink>
                 <div className="navbar-right menu">
-                    <NavLink to="/">Home</NavLink>
-                    <NavLink to="/detail">Detail</NavLink>
+                    <NavLink to="/">Trang chủ</NavLink>
                     <NavLink to="#" onClick={() => setIsActive(!isActive)}>
                         Book
                     </NavLink>
-                    <NavLink to="/intro-host">Owner</NavLink>
-                    <NavLink to="/list-room">Room</NavLink>
-                    <NavLink to="/contacts">Contacts</NavLink>
+                    <NavLink to="/intro-host">Trở thành chủ nhà</NavLink>
+                    <NavLink to="/list-room">Danh sách phòng</NavLink>
+                    <NavLink to="/contacts">Lịch sử đặt phòng</NavLink>
                 </div>
 
                 <div className="navbar-right">

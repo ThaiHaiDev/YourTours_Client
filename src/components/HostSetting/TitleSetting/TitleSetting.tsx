@@ -17,6 +17,7 @@ export default function TittleSetting(props: any) {
     const [expanded, setExpanded] = React.useState<string | false>(false);
 
     const { handleSubmit, register, setValue, formState: { isSubmitting }, } = useForm();
+    const [refundTitle, setRefundTitle] = React.useState<string>('');
 
     const params = useParams();
 
@@ -37,10 +38,13 @@ export default function TittleSetting(props: any) {
         setValue('guide', props.infoRoom.guide);
         if (props.infoRoom.refundPolicy === 'BEFORE_ONE_DAY') {
             setValue('refundPolicy', 'Trước 1 ngày');
+            setRefundTitle('Trước 1 ngày');
         } else if (props.infoRoom.refundPolicy === 'NO_REFUND') {
             setValue('refundPolicy', 'Không hoàn tiền');
+            setRefundTitle('Không hoàn tiền');
         } else if (props.infoRoom.refundPolicy === 'BEFORE_SEVEN_DAYS') {
             setValue('refundPolicy', 'Trước 7 ngày');
+            setRefundTitle('Trước 7 ngày');
         }
     }, [props.infoRoom.name, props.infoRoom.desc, props.infoRoom.guide, props.infoRoom.refundPolicy, setValue]);
 
@@ -160,7 +164,7 @@ export default function TittleSetting(props: any) {
                         id="panel4bh-header"
                     >
                         <p style={{ width: '33%', flexShrink: 0 }}>Chính sách hoàn tiền</p>
-                        <p style={{ color: 'text.secondary' }}>{props.infoRoom.refundPolicy}</p>
+                        <p style={{ color: 'text.secondary' }}>{refundTitle}</p>
                     </AccordionSummary>
                     <AccordionDetails>
                         <div className="content-input">

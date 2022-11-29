@@ -26,7 +26,9 @@ const bookingSlice = createSlice({
             state.dateEnd = action.payload.dateEnd;
             state.homeId = action.payload.homeId;
             state.priceDay = action.payload.priceDay;
-            state.guests = action.payload.guests;
+            if (action.payload.guests.length !== 0) {
+                state.guests = action.payload.guests;
+            }
             state.checkBooking = true;
             state.titleGuests = action.payload.titleGuests;
         },

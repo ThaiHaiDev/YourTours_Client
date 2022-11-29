@@ -27,7 +27,11 @@ const FilterBar = (props: any) => {
         filterApi.getAllFilterNavbar().then((dataResponse: any) => {
             setListDataFilterNavbar(dataResponse.data.content);
             const index = dataResponse.data.content.find((fi:any) => { return fi.id === props.queryParams.slice(10, props.queryParams.length - 1)})
-            setIndexActive(dataResponse.data.content.indexOf(index))
+            if (dataResponse.data.content.indexOf(index) < 0) {
+                setIndexActive(0)
+            } else {
+                setIndexActive(dataResponse.data.content.indexOf(index))
+            }
         });
         
     }, [props.queryParams]);

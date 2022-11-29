@@ -28,6 +28,12 @@
                 font-size: 16px;
                 text-transform: none;
             }
+
+            .listdata_summary {
+                .MuiDataGrid-virtualScroller {
+                    overflow-x: hidden;
+                }
+            }
         }
     }
 }

@@ -4,8 +4,9 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import userSlice from '../../pages/AuthPage/userSlice';
+import { RootState } from '../../redux/store';
 
 function DropdownUser() {
     return (
@@ -44,6 +45,7 @@ function NavItem(props : any) {
 
 function DropdownMenu() {
     const dropdownRef = useRef<any>(null);
+    const user = useSelector((state: RootState) => state.user);
 
     const dispatch = useDispatch();
 
@@ -55,7 +57,7 @@ function DropdownMenu() {
         <div className="dropdown" style={{ height: '100px' }} ref={dropdownRef}>
             <Link to='/account' className='dropdown__link'>Tài khoản</Link>
             <Link to='/wishlists' className='dropdown__link'>Danh sách yêu thích</Link>
-            <Link to='/host' className='dropdown__link'>Quản lý nhà cho thuê</Link>
+            {user.current.isOwner && (<Link to='/host' className='dropdown__link'>Quản lý nhà cho thuê</Link>)}
             <Link to='#' onClick={handleLogout} className='dropdown__link'>Đăng xuất</Link>
         </div>
     );

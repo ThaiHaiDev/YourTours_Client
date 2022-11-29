@@ -5,9 +5,28 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import ListDataNull from '../../../components/ListDataNull/ListDataNull';
+import TableDataHostSummary from './TableDataHostSummary';
+import summaryHomeApi from '../../../services/summaryHostApi';
 
 export default function TabComponent() {
     const [value, setValue] = React.useState('1');
+    const [dataWaiting, setDataWaiting] = React.useState([]);
+    const [dataCheckIn, setDataCheckIn] = React.useState([]);
+    const [dataCheckOut, setDataCheckOut] = React.useState([]);
+
+    React.useEffect(() => {
+        summaryHomeApi.getWaiting().then((dataResponse) => {
+            setDataWaiting(dataResponse.data.content);
+        });
+
+        summaryHomeApi.getCheckIn().then((dataResponse) => {
+            setDataCheckIn(dataResponse.data.content);
+        });
+
+        summaryHomeApi.getCheckOut().then((dataResponse) => {
+            setDataCheckOut(dataResponse.data.content);
+        });
+    }, []);
 
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
         setValue(newValue);
@@ -18,16 +37,20 @@ export default function TabComponent() {
             <TabContext value={value}>
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                     <TabList onChange={handleChange} aria-label="lab API tabs example">
-                        <Tab label="Sắp trả phòng" value="1" />
+                        <Tab label="Sắp nhận phòng" value="1" />
                         <Tab label="Hiện đang đón tiếp" value="2" />
                         <Tab label="Thống kê" value="3" />
                     </TabList>
                 </Box>
                 <TabPanel value="1">
-                    <ListDataNull />
+                    {dataWaiting.length !== 0 ? <TableDataHostSummary data={dataWaiting} /> : <ListDataNull />}
                 </TabPanel>
-                <TabPanel value="2">Item Two</TabPanel>
-                <TabPanel value="3">Item Three</TabPanel>
+                <TabPanel value="2">
+                    {dataCheckIn.length !== 0 ? <TableDataHostSummary data={dataCheckIn} /> : <ListDataNull />}
+                </TabPanel>
+                <TabPanel value="3">
+                    {dataCheckOut.length !== 0 ? <TableDataHostSummary data={dataCheckOut} /> : <ListDataNull />}
+                </TabPanel>
             </TabContext>
         </Box>
     );

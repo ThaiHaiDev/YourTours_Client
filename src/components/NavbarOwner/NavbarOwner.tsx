@@ -20,7 +20,7 @@ const NavbarOwner = () => {
                 <NavLink to="/bookroom">Đặt phòng</NavLink>
                 <NavLink to="/host/setting/calendar">Lịch</NavLink>
                 <NavLink to="/intro-host">Tạo mục chủ nhà</NavLink>
-                <NavLink to="/history">Lịch sử giao dịch</NavLink>
+                <NavLink to="/host/setting/transactionhistory">Lịch sử giao dịch</NavLink>
             </div>
             <div className="navbar-right">
                 <DropdownUser />
