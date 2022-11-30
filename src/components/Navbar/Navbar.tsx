@@ -43,7 +43,7 @@ const Navbar = () => {
                     </NavLink>
                     <NavLink to="/intro-host">Trở thành chủ nhà</NavLink>
                     <NavLink to="/list-room">Danh sách phòng</NavLink>
-                    <NavLink to="/contacts">Lịch sử đặt phòng</NavLink>
+                    <NavLink to="/historybooking">Lịch sử đặt phòng</NavLink>
                 </div>
 
                 <div className="navbar-right">

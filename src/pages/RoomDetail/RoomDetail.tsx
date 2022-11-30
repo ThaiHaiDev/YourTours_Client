@@ -47,7 +47,7 @@ const RoomDetail = () => {
         setLoading(true);
         homeDetailApi.getDetailHome(params?.idHome).then((dataResponse) => {
             setDataDetalHome(dataResponse.data);
-            setPriceTotal('123')
+            setPriceTotal(dataResponse.data.totalCostBooking)
             setLoading(false);
         });
     }, [params?.idHome]);

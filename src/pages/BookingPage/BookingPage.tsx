@@ -114,7 +114,7 @@ const BookingPage = () => {
                             <div className="card-surcharge">
                                 <p>Phụ phí bao gồm</p>
                                 {dataDetailHomeBooking?.surcharges?.map((sur: any, index: number) => (
-                                    <li>{sur?.surchargeCategoryName}</li>
+                                    <li key={index}>{sur?.surchargeCategoryName}</li>
                                 ))}
                             </div>
 
