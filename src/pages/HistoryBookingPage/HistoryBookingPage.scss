@@ -111,6 +111,11 @@
                     border: none;
                     padding: 8px 35px;
                 }
+
+                button:hover {
+                    background: #ff5252;
+                    color: white;
+                }
             }
         }
     }

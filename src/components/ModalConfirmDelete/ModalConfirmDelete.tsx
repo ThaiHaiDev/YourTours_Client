@@ -4,6 +4,10 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
+import bookingApi from '../../services/bookingApi';
+
+import { AxiosError } from 'axios';
+import { useSnackbar } from 'notistack';
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -17,10 +21,26 @@ const style = {
     p: 4,
 };
 
-export default function ModalConfirmDelete() {
+export default function ModalConfirmDelete(props: any) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const { enqueueSnackbar } = useSnackbar();
+
+    const handleCancelBooking = () => {
+        const dataCancel = {
+            bookingId: props.idRemove,
+        };
+        bookingApi
+            .cancelBooking(dataCancel)
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((error: AxiosError<any>) => {
+                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+            });
+    };
 
     return (
         <div>
@@ -38,12 +58,15 @@ export default function ModalConfirmDelete() {
             >
                 <Fade in={open}>
                     <Box sx={style}>
-                        <Typography id="transition-modal-title" variant="h6" component="h2">
-                            Text in a modal
+                        <Typography id="transition-modal-title" variant="h4" component="h2">
+                            Bạn có chắc rằng muốn xóa hay không ?
                         </Typography>
-                        <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-                            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                        </Typography>
+                        <div style={{ display: 'flex', justifyContent: 'right', marginTop: '10px' }}>
+                            <button style={{ marginRight: '5px' }} onClick={handleClose}>
+                                Không
+                            </button>
+                            <button onClick={handleCancelBooking}>Có</button>
+                        </div>
                     </Box>
                 </Fade>
             </Modal>

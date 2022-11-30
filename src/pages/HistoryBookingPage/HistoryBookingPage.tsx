@@ -65,7 +65,7 @@ const HistoryBookingPage = () => {
                                 </div>
                             </div>
                             <div className="btn__booking">
-                                <ModalConfirmDelete />
+                                <ModalConfirmDelete idRemove={history.id} />
                             </div>
                         </div>
                     ))}
