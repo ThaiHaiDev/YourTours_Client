@@ -2,32 +2,32 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
 // import './TableHistoryOwner.scss';
 import { useEffect, useState } from 'react';
-import homeDetailApi from '../../../services/homeDetailApi';
-import mapProvince from '../../../utils/mapProvince';
 
-import format from 'date-fns/format';
+import bookingApi from '../../../services/bookingApi';
+import formatPrice from '../../../utils/formatPrice';
 
 const TableHistoryOwner = () => {
-    const [dataListhome, setDataListHome] = useState<any>([]);
+    const [dataListHistory, setDataListHistory] = useState<any>([]);
 
     useEffect(() => {
-        homeDetailApi.getListHomeOfHost().then((dataResponse: any) => {
-            setDataListHome(dataResponse.data.content);
+        bookingApi.getHistoryOfHost().then((dataResponse: any) => {
+            setDataListHistory(dataResponse.data.content);
         });
     }, []);
 
+    console.log(dataListHistory);
+
     const rows = [];
-    for (var i = 0; i < dataListhome.length; i++) {
+    for (var i = 0; i < dataListHistory.length; i++) {
         rows.push({
             id: i,
-            idHistory: dataListhome[i].id,
-            name: dataListhome[i]?.name ? dataListhome[i].name : '',
-            status: dataListhome[i].status,
-            bedroom: dataListhome[i].roomsImportant[0] ? dataListhome[i].roomsImportant[0].number : '0',
-            giuong: dataListhome[i].numberOfBed,
-            badroom: dataListhome[i].roomsImportant[2] ? dataListhome[i].roomsImportant[2].number : 0,
-            location: dataListhome[i].provinceCode ? mapProvince(dataListhome[i].provinceCode) : '',
-            editrecent: format(new Date(dataListhome[i].lastModifiedDate.toString()), 'hh:mm MM/dd/yyyy'),
+            idHistory: dataListHistory[i].id,
+            nameCustomer: dataListHistory[i]?.customerName ? dataListHistory[i].customerName : '',
+            totalCost: dataListHistory[i]?.totalCost ? formatPrice(dataListHistory[i].totalCost) : '',
+            dateStart: dataListHistory[i]?.dateStart ? dataListHistory[i].dateStart : '',
+            dateEnd: dataListHistory[i]?.dateStart ? dataListHistory[i].dateStart : '',
+            guests: dataListHistory[i]?.numberOfGuests ? dataListHistory[i].numberOfGuests : '0',
+            nameHome: dataListHistory[i].homeName ? dataListHistory[i].homeName : '',
         });
     }
 
@@ -39,28 +39,26 @@ const TableHistoryOwner = () => {
 };
 
 const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', width: 70 },
+    { field: 'id', headerName: 'ID', width: 50 },
     { field: 'idHistory', headerName: 'ID', width: 70, hide: true },
-    { field: 'name', headerName: 'Tên khách hàng', width: 400 },
-    { field: 'status', headerName: 'Tổng thanh toán', width: 130 },
+    { field: 'nameCustomer', headerName: 'Tên khách hàng', width: 250 },
+    { field: 'totalCost', headerName: 'Tổng thanh toán', width: 160 },
     {
-        field: 'bedroom',
+        field: 'dateStart',
         headerName: 'Ngày đặt phòng',
-        width: 140,
+        width: 160,
     },
     {
-        field: 'giuong',
+        field: 'dateEnd',
         headerName: 'Ngày trả phòng',
-        width: 125,
+        width: 160,
     },
     {
-        field: 'badroom',
-        headerName: 'Số lượng khách',
-        type: 'number',
+        field: 'guests',
+        headerName: 'Lượng khách',
         width: 140,
     },
-    { field: 'location', headerName: 'Phương thức thanh toán', width: 180 },
-    { field: 'editrecent', headerName: 'Sửa đổi gần nhất', width: 180 },
+    { field: 'nameHome', headerName: 'Tên nhà thuê', width: 180 },
 ];
 
 function DataTable(props: any) {

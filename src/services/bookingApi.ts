@@ -13,6 +13,10 @@ const bookingApi = {
         const url = 'api/v1/app/booking/cancel';
         return axiosClient.put(url, data);
     },
+    getHistoryOfHost(): Promise<any> {
+        const url = 'api/v1/cms/booking/page?number=0&size=20';
+        return axiosClient.get(url);
+    },
 };
 
 export default bookingApi;

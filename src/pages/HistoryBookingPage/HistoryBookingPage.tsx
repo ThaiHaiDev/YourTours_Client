@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import bookingApi from '../../services/bookingApi';
 import ModalConfirmDelete from '../../components/ModalConfirmDelete/ModalConfirmDelete';
 import formatPrice from '../../utils/formatPrice';
+import mapProvince from '../../utils/mapProvince';
 
 const HistoryBookingPage = () => {
     const [dataHistory, setDataHistory] = useState<any>([]);
@@ -14,7 +15,6 @@ const HistoryBookingPage = () => {
     useEffect(() => {
         bookingApi.getHistoryOfUser().then((dataResponse) => {
             setDataHistory(dataResponse.data.content);
-            console.log(dataResponse.data.content);
         });
     }, []);
 
@@ -27,28 +27,20 @@ const HistoryBookingPage = () => {
                     {dataHistory?.map((history: any, index: number) => (
                         <div className="item__booking" key={index}>
                             <div className="img-item__booking">
-                                <img
-                                    src="https://a0.muscache.com/im/pictures/a390fa99-8237-49d5-8546-f2bb8a248f3f.jpg?im_w=720"
-                                    alt="img-booking"
-                                />
+                                <img src={history?.thumbnail} alt="img-booking" />
                             </div>
                             <div className="info-history__booking">
                                 <p className="name-history__booking">{history?.homeName}</p>
-                                <p className="name-host-history__booking">(Chủ nhà Hai test)</p>
+                                <p className="name-host-history__booking">{`(Chủ nhà ${history?.owner})`}</p>
                                 <div className="locate-hictory__booking">
                                     <FmdGoodIcon className="icon-locate-booking" />
-                                    {/* <p>{`${
-                                          dataDetailHomeBooking?.addressDetail !== null
-                                              ? dataDetailHomeBooking?.addressDetail
-                                              : ''
-                                      } ${dataDetailHomeBooking?.addressDetail !== null ? ',' : ''} ${mapProvince(
-                                          dataDetailHomeBooking?.provinceCode
-                                              ? dataDetailHomeBooking?.provinceCode
-                                              : undefined,
-                                      )}`}</p> */}
-                                    <p>Hội an</p>
+                                    <p>{`${history?.homeAddressDetail !== null ? history?.homeAddressDetail : ''} ${
+                                        history?.homeAddressDetail !== null ? ',' : ''
+                                    } ${mapProvince(
+                                        history?.homeProvinceCode ? history?.homeProvinceCode : undefined,
+                                    )}`}</p>
                                 </div>
-                                <p className="guests-history___booking">Tổng lượng khách: 12</p>
+                                <p className="guests-history___booking">{`Tổng lượng khách: ${history?.numberOfGuests}`}</p>
                                 <div className="date-history__booking">
                                     <p>Ngày đặt phòng: 2022-12-12</p>
                                     <p>Ngày trả phòng: 2022-12-12</p>
@@ -57,11 +49,15 @@ const HistoryBookingPage = () => {
                             <div className="price-history__booking">
                                 <div className="price-day__booking">
                                     <p>Giá theo đêm:</p>
-                                    <p style={{ paddingLeft: '5px', fontWeight: '600' }}>{formatPrice(history?.cost)}</p>
+                                    <p style={{ paddingLeft: '5px', fontWeight: '600' }}>
+                                        {formatPrice(history?.cost)}
+                                    </p>
                                 </div>
                                 <div className="price-total__booking">
                                     <p>Tổng tiền thanh toán:</p>
-                                    <p style={{ paddingLeft: '5px', fontWeight: '700', color: 'red' }}>{formatPrice(history?.totalCost)}</p>
+                                    <p style={{ paddingLeft: '5px', fontWeight: '700', color: 'red' }}>
+                                        {formatPrice(history?.totalCost)}
+                                    </p>
                                 </div>
                             </div>
                             <div className="btn__booking">
