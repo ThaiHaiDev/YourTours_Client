@@ -18,7 +18,8 @@ const bookingSlice = createSlice({
         ],
         checkBooking: false,
         priceDay: '',
-        titleGuests: ''
+        titleGuests: '',
+        priceTotal: ''
     },
     reducers: {
         addInfoBooking(state, action) {
@@ -31,6 +32,7 @@ const bookingSlice = createSlice({
             }
             state.checkBooking = true;
             state.titleGuests = action.payload.titleGuests;
+            state.priceTotal = action.payload.priceTotal;
         },
         addPriceDay(state, action) {
             state.priceDay = action.payload.priceDay;
@@ -38,6 +40,9 @@ const bookingSlice = createSlice({
         addDay(state, action) {
             state.dateStart = action.payload.dateFrom;
             state.dateEnd = action.payload.dateTo;
+        }, 
+        addPriceTotal(state, action) {
+            state.priceTotal = action.payload.priceTotal;
         }
     },
 });

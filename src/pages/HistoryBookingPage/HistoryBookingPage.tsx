@@ -42,8 +42,8 @@ const HistoryBookingPage = () => {
                                 </div>
                                 <p className="guests-history___booking">{`Tổng lượng khách: ${history?.numberOfGuests}`}</p>
                                 <div className="date-history__booking">
-                                    <p>Ngày đặt phòng: 2022-12-12</p>
-                                    <p>Ngày trả phòng: 2022-12-12</p>
+                                    <p>{`Ngày đặt phòng: ${history?.dateStart}`}</p>
+                                    <p>{`Ngày trả phòng: ${history?.dateEnd}`}</p>
                                 </div>
                             </div>
                             <div className="price-history__booking">
@@ -61,7 +61,7 @@ const HistoryBookingPage = () => {
                                 </div>
                             </div>
                             <div className="btn__booking">
-                                <ModalConfirmDelete idRemove={history.id} />
+                                {history?.status === 'CANCELED' ? <p>Đã hủy</p> : <ModalConfirmDelete idRemove={history.id} />}
                             </div>
                         </div>
                     ))}

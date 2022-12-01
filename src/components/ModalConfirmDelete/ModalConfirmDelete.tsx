@@ -35,7 +35,7 @@ export default function ModalConfirmDelete(props: any) {
         bookingApi
             .cancelBooking(dataCancel)
             .then((data) => {
-                console.log(data);
+                enqueueSnackbar('Hủy thành công', { variant: 'success' });
             })
             .catch((error: AxiosError<any>) => {
                 enqueueSnackbar(error.response?.data.message, { variant: 'error' });

@@ -75,6 +75,7 @@ const RoomDetail = () => {
             priceDay: priceDay === '' ? dataDetailHome?.costPerNightDefault : priceDay,
             guests: guests,
             titleGuests: titleGuests,
+            priceTotal: priceTotal
         };
         await dispatch(bookingSlice.actions.addInfoBooking(dataBooking));
         navigate('/booking');

@@ -2,10 +2,16 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
 // import './TableDataHostSummary.scss';
 import { useState } from 'react';
+import summaryHomeApi from '../../../services/summaryHostApi';
 import formatPrice from '../../../utils/formatPrice';
+
+import { AxiosError } from 'axios';
+import { useSnackbar } from 'notistack';
 
 const TableDataHostSummary = (props: any) => {
     const [listSelected, setListSelected] = useState<any>([]);
+
+    const { enqueueSnackbar } = useSnackbar();
 
     console.log(props.data);
 
@@ -13,13 +19,13 @@ const TableDataHostSummary = (props: any) => {
     for (var i = 0; i < props.data.length; i++) {
         rows.push({
             id: i,
-            // idroom: dataListhome[i].id,
+            idroom: props.data[i].id,
             name: props.data[i]?.homeName ? props.data[i].homeName : '',
             nameCustomer: props.data[i]?.customerName ? props.data[i].customerName : '',
             dateStart: props.data[i]?.dateStart ? props.data[i].dateStart : '',
             dateEnd: props.data[i]?.dateEnd ? props.data[i].dateEnd : '',
             guests: props.data[i]?.guests ? props.data[i].guests : '1',
-            price: props.data[i]?.totalCost ? formatPrice(props.data[i].totalCost)  : '1 đ',
+            price: props.data[i]?.totalCost ? formatPrice(props.data[i].totalCost) : '1 đ',
         });
     }
 
@@ -27,9 +33,23 @@ const TableDataHostSummary = (props: any) => {
         setListSelected(value);
     };
 
+    const handleCheck = () => {
+        const dataCheckIn = {
+            bookingId: listSelected[0].idroom,
+        };
+        summaryHomeApi
+            .setCheckIn(dataCheckIn)
+            .then((dataResponse) => {
+                enqueueSnackbar('Check in thành công', { variant: 'success' });
+            })
+            .catch((error: AxiosError<any>) => {
+                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+            });
+    };
+
     return (
         <div className="listdata_summary">
-            <DataTable rows={rows} listSelected={handleSelectedChange} />
+            <DataTable rows={rows} listSelected={handleSelectedChange} handleCheck={handleCheck} />
         </div>
     );
 };
@@ -60,6 +80,7 @@ const columns: GridColDef[] = [
 function DataTable(props: any) {
     return (
         <div style={{ height: 400, width: '100%', marginBottom: '50px' }}>
+            <button onClick={props.handleCheck}>Check in</button>
             <DataGrid
                 rows={props.rows}
                 columns={columns}

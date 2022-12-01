@@ -22,6 +22,7 @@ const BookingPage = () => {
     const [priceDay, setPriceDay] = useState<string>('');
 
     const { enqueueSnackbar } = useSnackbar();
+    console.log(dataDetailHomeBooking)
 
     const navigate = useNavigate();
     useEffect(() => {
@@ -125,7 +126,7 @@ const BookingPage = () => {
                                 </div>
                                 <div className='price-total-booking'>
                                     <p style={{ color: '#757575' }}>Tổng tiền thanh toán</p>
-                                    <p style={{ fontWeight: '550' }}>{formatPrice(dataDetailHomeBooking?.costPerNightDefault)}</p>
+                                    <p style={{ fontWeight: '550' }}>{formatPrice(infoBooking?.priceTotal)}</p>
                                 </div>
                             </div>
                             <button onClick={handleBookingRoom} className='btn-booking'>Đặt phòng</button>

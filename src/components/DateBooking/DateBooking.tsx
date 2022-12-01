@@ -52,6 +52,7 @@ const DateBooking = (props: any) => {
         pricesOfHomeApi.showPriceByRangeDay(props?.idHome, dateFrom, dateTo).then((dataResponse) => {
             if (props.handleChangePriceDay) {
                 props.handleChangePriceDay(dataResponse.data.totalCost);
+                dispatch(bookingSlice.actions.addPriceTotal({priceTotal: dataResponse.data.totalCostWithSurcharge}));
             }
         });
     };
