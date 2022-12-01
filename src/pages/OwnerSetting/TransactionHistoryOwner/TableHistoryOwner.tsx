@@ -28,6 +28,7 @@ const TableHistoryOwner = () => {
             dateEnd: dataListHistory[i]?.dateStart ? dataListHistory[i].dateStart : '',
             guests: dataListHistory[i]?.numberOfGuests ? dataListHistory[i].numberOfGuests : '0',
             nameHome: dataListHistory[i].homeName ? dataListHistory[i].homeName : '',
+            status: dataListHistory[i].status ? dataListHistory[i].status : '',
         });
     }
 
@@ -41,7 +42,7 @@ const TableHistoryOwner = () => {
 const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 50 },
     { field: 'idHistory', headerName: 'ID', width: 70, hide: true },
-    { field: 'nameCustomer', headerName: 'Tên khách hàng', width: 250 },
+    { field: 'nameCustomer', headerName: 'Tên khách hàng', width: 200 },
     { field: 'totalCost', headerName: 'Tổng thanh toán', width: 160 },
     {
         field: 'dateStart',
@@ -59,6 +60,7 @@ const columns: GridColDef[] = [
         width: 140,
     },
     { field: 'nameHome', headerName: 'Tên nhà thuê', width: 180 },
+    { field: 'status', headerName: 'Tình trạng', width: 100 },
 ];
 
 function DataTable(props: any) {

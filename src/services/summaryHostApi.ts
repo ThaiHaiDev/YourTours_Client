@@ -17,6 +17,10 @@ const summaryHomeApi = {
         const url = 'api/v1/cms/booking/check-in';
         return axiosClient.put(url, data);
     },
+    setCheckOut(data : any): Promise<any> {
+        const url = 'api/v1/cms/booking/check-out';
+        return axiosClient.put(url, data);
+    },
 };
 
 export default summaryHomeApi;

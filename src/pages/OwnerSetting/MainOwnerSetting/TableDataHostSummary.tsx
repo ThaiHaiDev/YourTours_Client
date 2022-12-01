@@ -13,8 +13,6 @@ const TableDataHostSummary = (props: any) => {
 
     const { enqueueSnackbar } = useSnackbar();
 
-    console.log(props.data);
-
     const rows = [];
     for (var i = 0; i < props.data.length; i++) {
         rows.push({
@@ -37,19 +35,30 @@ const TableDataHostSummary = (props: any) => {
         const dataCheckIn = {
             bookingId: listSelected[0].idroom,
         };
-        summaryHomeApi
-            .setCheckIn(dataCheckIn)
-            .then((dataResponse) => {
-                enqueueSnackbar('Check in thành công', { variant: 'success' });
-            })
-            .catch((error: AxiosError<any>) => {
-                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
-            });
+        if (props.idTab === '0') {
+            summaryHomeApi
+                .setCheckIn(dataCheckIn)
+                .then((dataResponse) => {
+                    enqueueSnackbar('Check in thành công', { variant: 'success' });
+                })
+                .catch((error: AxiosError<any>) => {
+                    enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+                });
+        } else if (props.idTab === '1') {
+            summaryHomeApi
+                .setCheckOut(dataCheckIn)
+                .then((dataResponse) => {
+                    enqueueSnackbar('Check out thành công', { variant: 'success' });
+                })
+                .catch((error: AxiosError<any>) => {
+                    enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+                });
+        }
     };
 
     return (
         <div className="listdata_summary">
-            <DataTable rows={rows} listSelected={handleSelectedChange} handleCheck={handleCheck} />
+            <DataTable rows={rows} listSelected={handleSelectedChange} handleCheck={handleCheck} idTab={props.idTab} />
         </div>
     );
 };
@@ -79,8 +88,19 @@ const columns: GridColDef[] = [
 
 function DataTable(props: any) {
     return (
-        <div style={{ height: 400, width: '100%', marginBottom: '50px' }}>
-            <button onClick={props.handleCheck}>Check in</button>
+        <div style={{ height: 400, width: '100%', marginBottom: '30px' }}>
+            <div style={{ display: 'flex', justifyContent: 'right' }}>
+                {props?.idTab === '0' ? (
+                    <button onClick={props.handleCheck} className="btn-check-status">
+                        Check in
+                    </button>
+                ) : (
+                    <button onClick={props.handleCheck} className="btn-check-status">
+                        Check out
+                    </button>
+                )}
+            </div>
+
             <DataGrid
                 rows={props.rows}
                 columns={columns}

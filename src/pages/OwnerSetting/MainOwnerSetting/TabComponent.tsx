@@ -43,10 +43,10 @@ export default function TabComponent() {
                     </TabList>
                 </Box>
                 <TabPanel value="1">
-                    {dataWaiting.length !== 0 ? <TableDataHostSummary data={dataWaiting} /> : <ListDataNull />}
+                    {dataWaiting.length !== 0 ? <TableDataHostSummary data={dataWaiting} idTab='0' /> : <ListDataNull />}
                 </TabPanel>
                 <TabPanel value="2">
-                    {dataCheckIn.length !== 0 ? <TableDataHostSummary data={dataCheckIn} /> : <ListDataNull />}
+                    {dataCheckIn.length !== 0 ? <TableDataHostSummary data={dataCheckIn} idTab='1' /> : <ListDataNull />}
                 </TabPanel>
                 <TabPanel value="3">
                     {dataCheckOut.length !== 0 ? <TableDataHostSummary data={dataCheckOut} /> : <ListDataNull />}

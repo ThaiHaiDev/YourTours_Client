@@ -6,6 +6,8 @@ import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 import bookingApi from '../../services/bookingApi';
 
+import './ModalConfirmDelete.scss';
+
 import { AxiosError } from 'axios';
 import { useSnackbar } from 'notistack';
 
@@ -19,6 +21,7 @@ const style = {
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
+    paddingBottom: '25px'
 };
 
 export default function ModalConfirmDelete(props: any) {
@@ -62,10 +65,10 @@ export default function ModalConfirmDelete(props: any) {
                             Bạn có chắc rằng muốn xóa hay không ?
                         </Typography>
                         <div style={{ display: 'flex', justifyContent: 'right', marginTop: '10px' }}>
-                            <button style={{ marginRight: '5px' }} onClick={handleClose}>
+                            <button onClick={handleClose} className='no-btn'>
                                 Không
                             </button>
-                            <button onClick={handleCancelBooking}>Có</button>
+                            <button onClick={handleCancelBooking} className='yes-btn'>Có</button>
                         </div>
                     </Box>
                 </Fade>
