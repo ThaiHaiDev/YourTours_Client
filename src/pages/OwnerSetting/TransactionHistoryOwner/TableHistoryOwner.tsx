@@ -57,10 +57,10 @@ const columns: GridColDef[] = [
     {
         field: 'guests',
         headerName: 'Lượng khách',
-        width: 140,
+        width: 120,
     },
     { field: 'nameHome', headerName: 'Tên nhà thuê', width: 180 },
-    { field: 'status', headerName: 'Tình trạng', width: 100 },
+    { field: 'status', headerName: 'Tình trạng', width: 120 },
 ];
 
 function DataTable(props: any) {

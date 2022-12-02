@@ -7,12 +7,12 @@ import TabPanel from '@mui/lab/TabPanel';
 import ListDataNull from '../../../components/ListDataNull/ListDataNull';
 import TableDataHostSummary from './TableDataHostSummary';
 import summaryHomeApi from '../../../services/summaryHostApi';
+import StatisShow from './StatisShow/StatisShow';
 
 export default function TabComponent() {
     const [value, setValue] = React.useState('1');
     const [dataWaiting, setDataWaiting] = React.useState([]);
     const [dataCheckIn, setDataCheckIn] = React.useState([]);
-    const [dataCheckOut, setDataCheckOut] = React.useState([]);
 
     React.useEffect(() => {
         summaryHomeApi.getWaiting().then((dataResponse) => {
@@ -21,10 +21,6 @@ export default function TabComponent() {
 
         summaryHomeApi.getCheckIn().then((dataResponse) => {
             setDataCheckIn(dataResponse.data.content);
-        });
-
-        summaryHomeApi.getCheckOut().then((dataResponse) => {
-            setDataCheckOut(dataResponse.data.content);
         });
     }, []);
 
@@ -49,7 +45,7 @@ export default function TabComponent() {
                     {dataCheckIn.length !== 0 ? <TableDataHostSummary data={dataCheckIn} idTab='1' /> : <ListDataNull />}
                 </TabPanel>
                 <TabPanel value="3">
-                    {dataCheckOut.length !== 0 ? <TableDataHostSummary data={dataCheckOut} /> : <ListDataNull />}
+                    <StatisShow />
                 </TabPanel>
             </TabContext>
         </Box>

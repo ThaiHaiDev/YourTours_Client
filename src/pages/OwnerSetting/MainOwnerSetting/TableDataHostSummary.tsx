@@ -32,27 +32,31 @@ const TableDataHostSummary = (props: any) => {
     };
 
     const handleCheck = () => {
-        const dataCheckIn = {
-            bookingId: listSelected[0].idroom,
-        };
-        if (props.idTab === '0') {
-            summaryHomeApi
-                .setCheckIn(dataCheckIn)
-                .then((dataResponse) => {
-                    enqueueSnackbar('Check in thành công', { variant: 'success' });
-                })
-                .catch((error: AxiosError<any>) => {
-                    enqueueSnackbar(error.response?.data.message, { variant: 'error' });
-                });
-        } else if (props.idTab === '1') {
-            summaryHomeApi
-                .setCheckOut(dataCheckIn)
-                .then((dataResponse) => {
-                    enqueueSnackbar('Check out thành công', { variant: 'success' });
-                })
-                .catch((error: AxiosError<any>) => {
-                    enqueueSnackbar(error.response?.data.message, { variant: 'error' });
-                });
+        if (listSelected.length > 1) {
+            enqueueSnackbar('Vui lòng chọn từng nhà để thao tác', { variant: 'warning' });
+        } else {
+            const dataCheckIn = {
+                bookingId: listSelected[0].idroom,
+            };
+            if (props.idTab === '0') {
+                summaryHomeApi
+                    .setCheckIn(dataCheckIn)
+                    .then((dataResponse) => {
+                        enqueueSnackbar('Check in thành công', { variant: 'success' });
+                    })
+                    .catch((error: AxiosError<any>) => {
+                        enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+                    });
+            } else if (props.idTab === '1') {
+                summaryHomeApi
+                    .setCheckOut(dataCheckIn)
+                    .then((dataResponse) => {
+                        enqueueSnackbar('Check out thành công', { variant: 'success' });
+                    })
+                    .catch((error: AxiosError<any>) => {
+                        enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+                    });
+            }
         }
     };
 
