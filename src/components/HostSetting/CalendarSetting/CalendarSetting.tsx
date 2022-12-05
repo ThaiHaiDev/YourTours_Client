@@ -52,7 +52,7 @@ export default function CalendarSetting() {
                 reset();
             })
             .catch((error: AxiosError<any>) => {
-                enqueueSnackbar(error.response?.data?.data.homeId, { variant: 'error' });
+                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
             });
     };
 

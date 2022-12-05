@@ -66,7 +66,7 @@ const SidebarData = {
     Setting: [
         {
             "id": 8,
-            "display_name": "settings",
+            "display_name": "Cài đặt",
             "route": "/admin/settings",
             "icon": "bx bx-cog"
         }
@@ -143,16 +143,3 @@ const SidebarData = {
 }
 
 export default SidebarData
-
-// {
-//     "id": 4,
-//     "display_name": "Analytics",
-//     "route": "/analytics",
-//     "icon": "bx bx-bar-chart-alt"
-// },
-// {
-//     "id": 7,
-//     "display_name": "inventory",
-//     "route": "/inventory",
-//     "icon": "bx bx-store-alt"
-// },

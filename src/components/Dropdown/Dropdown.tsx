@@ -122,7 +122,7 @@ const Dropdown = (props: any) => {
                         ></input>
                     </div>
                     <div className="dropdown-item">
-                        Phòng
+                        Trẻ sơ sinh
                         <input
                             type="number"
                             id="quantity"

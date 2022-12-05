@@ -36,6 +36,8 @@ const RoomDetail = () => {
     const [guests, setGuests] = useState<any>([]);
     const [titleGuests, setTitleGuests] = useState<any>('1 Người lớn, 0 Trẻ em, 0 Trẻ sơ sinh');
     const [priceTotal, setPriceTotal] = useState<string>('');
+    const [discount, setDiscount] = useState<number>(0);
+    const [priceNoDiscount, setPriceNoDiscount] = useState<any>('');
 
     const params = useParams();
 
@@ -47,7 +49,7 @@ const RoomDetail = () => {
         setLoading(true);
         homeDetailApi.getDetailHome(params?.idHome).then((dataResponse) => {
             setDataDetalHome(dataResponse.data);
-            setPriceTotal(dataResponse.data.totalCostBooking)
+            setPriceTotal(dataResponse.data.totalCostBooking);
             setLoading(false);
         });
     }, [params?.idHome]);
@@ -63,7 +65,9 @@ const RoomDetail = () => {
         pricesOfHomeApi.showPriceByRangeDay(params?.idHome, dateFrom, dateTo).then((dataResponse) => {
             setPriceDay(dataResponse.data.totalCost);
             setDetailPrice(dataResponse.data.detail);
-            setPriceTotal(dataResponse.data.totalCostWithSurcharge)
+            setPriceTotal(dataResponse.data.totalCostWithSurcharge);
+            setDiscount(dataResponse.data.percent !== null ? dataResponse.data.percent : 0);
+            setPriceNoDiscount(dataResponse.data.totalCostWithNoDiscount);
         });
     };
 
@@ -75,7 +79,7 @@ const RoomDetail = () => {
             priceDay: priceDay === '' ? dataDetailHome?.costPerNightDefault : priceDay,
             guests: guests,
             titleGuests: titleGuests,
-            priceTotal: priceTotal
+            priceTotal: priceTotal,
         };
         await dispatch(bookingSlice.actions.addInfoBooking(dataBooking));
         navigate('/booking');
@@ -118,7 +122,9 @@ const RoomDetail = () => {
                                     </div>
                                     <div className="locate__room">
                                         <FmdGoodIcon className="icon_locate" />
-                                        <p>{`${dataDetailHome?.addressDetail}, ${mapProvince(
+                                        <p>{`${
+                                            dataDetailHome?.addressDetail !== null ? dataDetailHome?.addressDetail : ''
+                                        } ${dataDetailHome?.addressDetail !== null ? ',' : ''} ${mapProvince(
                                             dataDetailHome?.provinceCode ? dataDetailHome?.provinceCode : undefined,
                                         )}`}</p>
                                     </div>
@@ -140,7 +146,7 @@ const RoomDetail = () => {
                         <div className="col l-8 m-7 c-12">
                             <div className="title-room">
                                 <h1>Toàn bộ biệt thự. Chủ nhà {dataDetailHome?.ownerName}</h1>
-                                <p className="count-detail">4 khách . 2 phòng ngủ . 2 giường . 2 phòng tắm</p>
+                                <p className="count-detail">{dataDetailHome?.descriptionHomeDetail}</p>
                                 <hr className="line" />
                                 <Convenient listConvenient={dataDetailHome?.amenitiesView} />
                                 <DialogConvenient listConvenient={dataDetailHome?.amenitiesView} />
@@ -212,18 +218,42 @@ const RoomDetail = () => {
                                     </div>
                                 ))}
 
-                                <div className="line" style={{ marginTop: '10px'}}>
+                                <div className="line" style={{ marginTop: '10px' }}>
                                     <hr />
                                 </div>
 
-                                <div className="price-total">
+                                {discount !== 0 && (
+                                    <div className="price-total">
                                         <div className="title-price">
-                                            <p className="name-surcharge">Tổng tiền cần thanh toán</p>
+                                            <p className="name-surcharge">Giảm giá</p>
                                         </div>
-                                        <div className="real-price">
-                                            <p className="cost-surcharge">{formatPrice(priceTotal === '' ? '0' : priceTotal)}</p>
+                                        <div className="real-price" style={{ display: 'flex' }}>
+                                            <p
+                                                className="cost-surcharge"
+                                                style={{
+                                                    textDecoration: 'line-through',
+                                                    marginRight: '10px',
+                                                    fontSize: '13px',
+                                                }}
+                                            >{`${formatPrice(priceNoDiscount)}`}</p>
+                                            <p
+                                                className="cost-surcharge"
+                                                style={{ fontSize: '14px' }}
+                                            >{`${discount}%`}</p>
                                         </div>
                                     </div>
+                                )}
+
+                                <div className="price-total">
+                                    <div className="title-price">
+                                        <p className="name-surcharge">Tổng tiền cần thanh toán</p>
+                                    </div>
+                                    <div className="real-price">
+                                        <p className="cost-surcharge">
+                                            {formatPrice(priceTotal === '' ? '0' : priceTotal)}
+                                        </p>
+                                    </div>
+                                </div>
 
                                 <div className="btn-booking">
                                     <button className="btn-booking-room" onClick={handleBooking}>

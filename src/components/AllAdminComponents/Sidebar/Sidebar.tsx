@@ -13,6 +13,7 @@ const logo = 'https://cdn6.agoda.net/images/kite-js/logo/agoda/color-default.svg
 const Sidebar = (props: any) => {
     const location = useLocation();
     const activeItem = SidebarData.All.findIndex((item) => item.route === location.pathname);
+    
     return (
         <div className="sidebar">
             <div className="sidebar__logo">

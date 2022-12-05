@@ -22,7 +22,6 @@ const BookingPage = () => {
     const [priceDay, setPriceDay] = useState<string>('');
 
     const { enqueueSnackbar } = useSnackbar();
-    console.log(dataDetailHomeBooking)
 
     const navigate = useNavigate();
     useEffect(() => {
