@@ -19,21 +19,21 @@ const Sidebar = (props: any) => {
                 <img src={logo} alt="company logo" />
             </div>
 
-            <p className="sub__header">Overview</p>
+            <p className="sub__header">Tổng quan</p>
             {SidebarData.Overview.map((item, index) => (
                 <Link to={item.route} key={item.id}>
                     <SidebarItem title={item.display_name} icon={item.icon} active={item.id === activeItem} />
                 </Link>
             ))}
 
-            <p className="sub__header">Manage</p>
+            <p className="sub__header">Quản lý</p>
             {SidebarData.Manage.map((item, index) => (
                 <Link to={item.route} key={item.id}>
                     <SidebarItem title={item.display_name} icon={item.icon} active={item.id === activeItem} />
                 </Link>
             ))}
 
-            <p className="sub__header">Setting</p>
+            <p className="sub__header">Cài đặt</p>
             {SidebarData.Setting.map((item, index) => (
                 <Link to={item.route} key={item.id}>
                     <SidebarItem title={item.display_name} icon={item.icon} active={item.id === activeItem} />

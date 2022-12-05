@@ -28,6 +28,7 @@ const StatisShow = () => {
     return (
         <div className="statis-show">
             <div className="choose-year">
+                <h2>Chọn năm thống kê:</h2>
                 <input
                     type="number"
                     min={2000}
@@ -40,6 +41,8 @@ const StatisShow = () => {
                     Thống kê
                 </button>
             </div>
+
+            <hr />  <br />
             <div className="row">
                 <div className="col l-6">
                     <div className="card-statis">
@@ -52,7 +55,7 @@ const StatisShow = () => {
                     </div>
                 </div>
             </div>
-            <br /> <br /> <br />
+            <br /> <br /> 
             <div className="row">
                 <div className="col l-4">
                     <h2 style={{ marginLeft: '20px' }}>Thông số đặt phòng của từng nhà</h2>

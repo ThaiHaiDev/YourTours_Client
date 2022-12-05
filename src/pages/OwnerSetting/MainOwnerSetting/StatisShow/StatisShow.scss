@@ -1,14 +1,35 @@
 .statis-show {
 
     .choose-year {
+        display: flex;
+        padding-left: 20px;
+        margin-bottom: 25px;
+        align-items: center;
+        justify-content: center;
+
+        h2 {
+            margin: 0;
+            margin-right: 10px;
+        }
+
         .input-year {
             padding: 8px 20px 8px 10px;
             width: 150px;
+            margin-right: 10px;
         }
 
-        .btn-statistic{
+        .btn-statistic {
             font-size: 14px !important;
-            padding: 4px 20px;
+            padding: 6px 25px !important;
+            border: none;
+            font-weight: 520;
+            background: #4caf50;
+            color: white;
+            cursor: pointer;
+        }
+
+        .btn-statistic:hover {
+            background: #43a047;
         }
     }
     
