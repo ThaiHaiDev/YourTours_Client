@@ -5,7 +5,7 @@ import { Pie } from 'react-chartjs-2';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const data = {
-    labels: ['Homestay Hai Du', 'R1 Villa DienBien/7BRs/Private Pool', 'Yellow', 'Green', 'Purple', 'Orange'],
+    labels: ['Homestay Hai Du', 'R1 Villa DienBien/7BRs/Private Pool'],
     datasets: [
         {
             label: 'Số lần được đặt',
@@ -31,6 +31,6 @@ export const data = {
     ],
 };
 
-export function PieChart() {
+export function PieChart(props : any) {
     return <Pie data={data} />;
 }

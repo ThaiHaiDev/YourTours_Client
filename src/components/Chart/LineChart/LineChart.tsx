@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import {
     Chart as ChartJS,
@@ -13,13 +12,26 @@ import {
 } from 'chart.js';
 ChartJS.register(Title, Tooltip, LineElement, Legend, CategoryScale, LinearScale, PointElement, Filler);
 
-function LineChart() {
-    const [data, setData] = useState({
+function LineChart(props: any) {
+    const data = {
         labels: ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'Oct', 'Nov', 'Dec'],
         datasets: [
             {
-                label: 'First Dataset',
-                data: [10, 20, 30, 42, 51, 82, 31, 59, 61, 73, 91, 58],
+                label: 'Doanh thu theo tháng',
+                data: props?.data !== undefined ? [
+                    props.data[0].amount,
+                    props.data[1].amount,
+                    props.data[2].amount,
+                    props.data[3].amount,
+                    props.data[4].amount,
+                    props.data[5].amount,
+                    props.data[6].amount,
+                    props.data[7].amount,
+                    props.data[8].amount,
+                    props.data[9].amount,
+                    props.data[10].amount,
+                    props.data[11].amount,
+                ] : [0, 0, 0, 0, 0, 0, 0, 0, 0 ,0 ,0 ,0],
                 backgroundColor: '#64b5f6',
                 borderColor: 'green',
                 tension: 0.4,
@@ -30,9 +42,9 @@ function LineChart() {
                 showLine: true,
             },
         ],
-    });
+    };
     return (
-        <div className="App" style={{ width: '800px', height: '800px' }}>
+        <div>
             <Line data={data}>Hello</Line>
         </div>
     );

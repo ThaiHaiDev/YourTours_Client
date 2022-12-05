@@ -1,4 +1,17 @@
 .statis-show {
+
+    .choose-year {
+        .input-year {
+            padding: 8px 20px 8px 10px;
+            width: 150px;
+        }
+
+        .btn-statistic{
+            font-size: 14px !important;
+            padding: 4px 20px;
+        }
+    }
+    
     .card-statis {
         width: auto;
         margin: 0 20px;
@@ -10,7 +23,7 @@
         align-items: center;
 
         h3 {
-
+            font-size: 15px;
         }
     }
 }
