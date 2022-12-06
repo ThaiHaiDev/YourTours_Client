@@ -38,9 +38,9 @@ const Navbar = () => {
                 </NavLink>
                 <div className="navbar-right menu">
                     <NavLink to="/">Trang chủ</NavLink>
-                    <NavLink to="#" onClick={() => setIsActive(!isActive)}>
+                    {/* <NavLink to="#" onClick={() => setIsActive(!isActive)}>
                         Book
-                    </NavLink>
+                    </NavLink> */}
                     <NavLink to="/intro-host">Trở thành chủ nhà</NavLink>
                     <NavLink to="/list-room">Danh sách phòng</NavLink>
                     <NavLink to="/historybooking">Lịch sử đặt phòng</NavLink>

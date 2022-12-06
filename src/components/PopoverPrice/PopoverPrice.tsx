@@ -37,17 +37,18 @@ export default function PopoverPrice(props: any) {
                     horizontal: 'right',
                 }}
             >
-                <h2 style={{ width: '300px', textAlign: 'center', paddingBottom: '10px' }}>Chi tiết giá cơ sở</h2>
+                <h2 style={{ width: '300px', textAlign: 'center', paddingBottom: '6px' }}>Chi tiết giá cơ sở</h2>
                 {props?.detailPrice.map((detail: any, index: number) => (
                     <div
                         className="item-price-detail"
-                        style={{ display: 'flex', justifyContent: 'space-between', padding: '0 18px', marginBottom: '3px', background: `${detail.especially && '#64b5f6'}` }}
+                        style={{ display: 'flex', margin: '0 8px', justifyContent: 'space-between', padding: '5px 15px', alignItems: 'center', background: `${detail.especially && '#64b5f6'}` }}
                         key={index}
                     >
-                        <p style={{ fontSize: '14px', margin: 0, marginBottom: '10px' }}>{detail?.day}</p>
-                        <p style={{ fontSize: '14px', margin: 0, marginBottom: '10px' }}>{formatPrice(detail?.cost)}</p>
+                        <p style={{ fontSize: '14px', margin: 0 }}>{detail?.day}</p>
+                        <p style={{ fontSize: '14px', margin: 0 }}>{formatPrice(detail?.cost)}</p>
                     </div>
                 ))}
+                <br />
             </Popover>
         </div>
     );

@@ -6,7 +6,7 @@
 	top: 0;
 	left: 0;
 	right: 0;
-	z-index: 1;
+	z-index: 99;
 	height: 66px;
 	display: flex;
 	border-bottom: 1px solid var(--text-color);
@@ -29,10 +29,6 @@
 		.logo-bg {
 			height: 30px;
 		}
-	}
-
-	.navbar-right {
-		
 	}
 
 	.navbar-right a:hover {
