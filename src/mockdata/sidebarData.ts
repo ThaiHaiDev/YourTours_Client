@@ -21,43 +21,43 @@ const SidebarData = {
             "icon": "bx bx-user-pin"
         },
         {
-            "id": 2,
+            "id": 3,
             "display_name": "Nhà",
             "route": "/admin/house",
             "icon": "bx bxs-building-house"
         },
         {
-            "id": 2,
+            "id": 4,
             "display_name": "Loại phòng",
             "route": "/admin/roomcategories",
             "icon": "bx bx-user-pin"
         },
         {
-            "id": 3,
+            "id": 5,
             "display_name": "Loại giường",
             "route": "/admin/bedcategories",
             "icon": "bx bx-bed"
         },
         {
-            "id": 4,
+            "id": 6,
             "display_name": "Tiện nghi",
             "route": "/admin/amenity",
             "icon": "bx bx-package"
         },
         {
-            "id": 5,
+            "id": 7,
             "display_name": "Loại tiện nghi",
             "route": "/admin/amenitycategories",
             "icon": "bx bxl-dropbox"
         },
         {
-            "id": 6,
+            "id": 8,
             "display_name": "Giảm giá nhà",
             "route": "/admin/discount",
             "icon": "bx bx-gift"
         },
         {
-            "id": 7,
+            "id": 9,
             "display_name": "Danh mục phụ phí",
             "route": "/admin/surcharge",
             "icon": "bx bx-card"
@@ -65,7 +65,7 @@ const SidebarData = {
     ],
     Setting: [
         {
-            "id": 8,
+            "id": 10,
             "display_name": "Cài đặt",
             "route": "/admin/settings",
             "icon": "bx bx-cog"
@@ -91,49 +91,49 @@ const SidebarData = {
             "icon": "bx bx-user-pin"
         },
         {
-            "id": 2,
+            "id": 3,
             "display_name": "Nhà",
             "route": "/admin/house",
             "icon": "bx bxs-building-house"
         },
         {
-            "id": 2,
+            "id": 4,
             "display_name": "Loại phòng",
             "route": "/admin/roomcategories",
             "icon": "bx bx-user-pin"
         },
         {
-            "id": 3,
+            "id": 5,
             "display_name": "Loại giường",
             "route": "/admin/bedcategories",
             "icon": "bx bx-bed"
         },
         {
-            "id": 4,
+            "id": 6,
             "display_name": "Tiện nghi",
             "route": "/admin/amenity",
             "icon": "bx bx-package"
         },
         {
-            "id": 5,
+            "id": 7,
             "display_name": "Loại tiện nghi",
             "route": "/admin/amenitycategories",
             "icon": "bx bxl-dropbox"
         },
         {
-            "id": 6,
+            "id": 8,
             "display_name": "Giảm giá nhà",
             "route": "/admin/discount",
             "icon": "bx bx-gift"
         },
         {
-            "id": 7,
+            "id": 9,
             "display_name": "Danh mục phụ phí",
             "route": "/admin/surcharge",
             "icon": "bx bx-card"
         },
         {
-            "id": 8,
+            "id": 10,
             "display_name": "Cài đặt",
             "route": "/admin/settings",
             "icon": "bx bx-cog"

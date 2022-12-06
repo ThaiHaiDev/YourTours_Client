@@ -1,5 +1,6 @@
 .table-wrapper {
     overflow-y: auto;
+    font-size: 14px;
 }
 
 table {
@@ -16,9 +17,12 @@ tr {
     text-align: left;
 }
 
-th,
-td {
+th {
     padding: 15px 10px;
+}
+
+td {
+    padding: 10px 10px;
 }
 
 tbody > tr:hover {

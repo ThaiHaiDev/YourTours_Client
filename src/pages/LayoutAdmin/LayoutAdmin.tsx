@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './LayoutAdmin.scss';
-import RoutesAdmin from '../../routes/RouterAdmin';
 import Sidebar from '../../components/AllAdminComponents/Sidebar/Sidebar';
 import globalSlice from '../../redux/globalSlice';
 import { RootState } from '../../redux/store';
 import NavbarAdmin from '../../components/AllAdminComponents/NavbarAdmin/NavbarAdmin';
 
 import './boxicons-2.0.7/css/boxicons.min.css';
+import RoutesAdmin from '../../routes/RouterAdmin';
 
 function LayoutAdmin() {
     const dispatch = useDispatch();

@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import ForgotPass from '../pages/AuthPage/ForgotPass/ForgotPass';
 import IntroSettingOwnerPage from '../pages/IntroSettingOwnerPage/IntroSettingOwnerPage';
-import Test from '../pages/LayoutAdmin/LayoutAdmin';
+import LayoutAdmin from '../pages/LayoutAdmin/LayoutAdmin';
 import ManagerRoom from '../pages/OwnerSetting/ManagerRoom/ManagerRoom';
 import CountRoomDetailSetting from '../pages/OwnerSetting/CountRoomDetailSetting/CountRoomDetailSetting';
 import ListRoomOfHost from '../pages/OwnerSetting/ManagerRoom/ListRoomOfHost';
@@ -42,7 +42,7 @@ const Auth = () => {
             <Route path="/account" element={<InfoUserPage />} />
             <Route path="/booking" element={<BookingPage />} />
             <Route path="/historybooking" element={<HistoryBookingPage />} />
-            <Route path="/test" element={<Test />} />
+            <Route path="/admin/*" element={<LayoutAdmin />} />
             <Route path="/host" element={<OwnerSetting />} />
             <Route path="/host/setting" element={<ListRoomOfHost />} />
             <Route path="/host/setting/:idHome" element={<ManagerRoom />} />
