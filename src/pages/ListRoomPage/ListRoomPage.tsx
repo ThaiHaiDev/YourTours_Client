@@ -23,29 +23,32 @@ const ListRoomPage = () => {
         return location.search.slice(1);
     }, [location.search]);
 
-    useEffect(() => {
-        setLoading(true);
-        filterApi.getAllRoomsWithFilter(queryParams !== '' ? queryParams : '').then((dataResponse: any) => {
-            setListDataRoom(dataResponse.data.content);
-            setLoading(false);
-        });
-    }, [queryParams]);
-
     const filterData = (listDataNew: any) => {
         setListDataRoom(listDataNew);
     };
 
     const [state, setState] = useState<any>({
-        items: Array.from({ length: 20 }),
+        items: Array.from({ length: 8 }),
     });
+
+    useEffect(() => {
+        setLoading(true);
+        filterApi.getAllRoomsWithFilter({queryParams: queryParams !== '' ? queryParams : '', pagi : state.items.length}).then((dataResponse: any) => {
+            setListDataRoom(dataResponse.data.content);
+            setLoading(false);
+        });
+    }, [queryParams, state.items.length]);
+    console.log(state.items.length, listDataRoom.length)
 
     const fetchMoreData = () => {
         // a fake async api call like which sends
         // 20 more records in 1.5 secs
         setTimeout(() => {
-            setState({
-                items: state.items.concat(Array.from({ length: 20 })),
-            });
+            if (listDataRoom.length >= state.items.length) {
+                setState({
+                    items: state.items.concat(Array.from({ length: 8 })),
+                });
+            }
         }, 1500);
     };
     return (

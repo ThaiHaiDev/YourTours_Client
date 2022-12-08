@@ -10,7 +10,7 @@ const filterApi = {
         return axiosClient.get(url);
     },
     getAllRoomsWithFilter(filter: any): Promise<any> {
-        const url = `api/v1/public/homes/page/filter?${filter}number=0&size=20`;
+        const url = `api/v1/public/homes/page/filter?${filter.queryParams}number=0&size=${filter.pagi}`;
         return axiosClient.get(url);
     },
 };

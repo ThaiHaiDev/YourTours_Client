@@ -9,11 +9,13 @@ const getAccessTokenFromLocalStorage = (): any => {
     return localStorage.getItem('access_token') || '{}';
 };
 
+console.log(getAccessTokenFromLocalStorage())
+
 const axiosClient = axios.create({
     baseURL: API_BASE_URL,
     headers: {
         Accept: 'application/json',
-        Authorization: `Bearer ${getAccessTokenFromLocalStorage()}`,
+        Authorization: `${getAccessTokenFromLocalStorage() !== '{}' && `Bearer`} ${getAccessTokenFromLocalStorage() !== '{}' ? getAccessTokenFromLocalStorage() : ''}`,
     },
 });
 
