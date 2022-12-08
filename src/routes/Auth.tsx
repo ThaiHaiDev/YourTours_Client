@@ -27,9 +27,10 @@ import HistoryBookingPage from '../pages/HistoryBookingPage/HistoryBookingPage';
 
 const Auth = () => {
     const user = useSelector((state: RootState) => state.user)
+    console.log(user.current.role)
     return (
         <Routes>
-            <Route path="/" element={user.current.role === 'USER' ? <HomePage /> : <RoomDetail />}  />
+            <Route path="/" element={<HomePage />}  />
             <Route path="/detail/:idHome" element={<RoomDetail />} />
             <Route path="/stepsetupowner" element={<StepperMain />} />
             <Route path="/signin" element={<Signin />} />

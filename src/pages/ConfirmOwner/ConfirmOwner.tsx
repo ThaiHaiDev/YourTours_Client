@@ -16,6 +16,7 @@ const ConfirmOwner = () => {
         return parseInt(pro.code) === parseInt(setupRoomHost.provinceCode);
     });
     const priceRoom = formatPrice(setupRoomHost.costPerNightDefault);
+    const linkImage = setupRoomHost?.imagesOfHome[0]['path']
 
     return (
         <div className="confirm-page">
@@ -78,7 +79,7 @@ const ConfirmOwner = () => {
                     >
                         <div className="card">
                             <div className="img-confirm">
-                                <img src={`${setupRoomHost?.imagesOfHome}`} alt="" />
+                                <img src={`${linkImage}`} alt="" />
                             </div>
                             <h2>{setupRoomHost.name}</h2>
                             <p>{`${provinceName[0]?.name}, Việt Nam`}</p>

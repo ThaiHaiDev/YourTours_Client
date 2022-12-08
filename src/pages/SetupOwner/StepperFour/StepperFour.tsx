@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import UploadFile from '../../../components/UploadFile/UploadFile';
 
 import './StepperFour.scss';
@@ -30,6 +31,7 @@ const StepperFour = (props: StepperFourData) => {
                     <div className="upload-file">
                         <UploadFile onFileChange={(files) => onFileChange(files)} />
                     </div>
+                    <Link to='/' className='btn-out'>Thoát</Link>
                 </div>
             </div>
         </div>

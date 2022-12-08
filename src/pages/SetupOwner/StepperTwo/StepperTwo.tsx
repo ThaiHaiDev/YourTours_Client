@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import CountNumber from '../../../components/CountNumber/CountNumber';
 import CountNumberGuest from '../../../components/CountNumber/CountNumberGuest';
 import roomCategoryApi from '../../../services/roomCategoryApi';
@@ -48,6 +49,7 @@ const StepperTwo = (props: StepperTwoData) => {
                             </div>
                         ))}
                     </div>
+                    <Link to='/' className='btn-out'>Thoát</Link>
                 </div>
             </div>
         </div>
