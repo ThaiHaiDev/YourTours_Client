@@ -64,7 +64,7 @@ function SearchHome({ placeholder, data } : any) {
                 <div className="dataResult" ref={refOne}>
                     {filteredData.slice(0, 15)?.map((value:any, index:number) => {
                         return (
-                            <Link className="dataItem" to={value.link} target="_blank" key={index}>
+                            <Link className="dataItem" to={`detail/${value.id}`} target="_blank" key={index}>
                                 <div className='image-item-search'>
                                     <img src={value?.thumbnail} alt='' />
                                 </div>

@@ -32,6 +32,15 @@
             text-align: center;
         }
 
+        input {
+            border: solid;
+            border-color: #eee;
+            padding: 10px 15px;
+            width: 100%;
+            margin-bottom: 5px;
+            font-size: 1.4rem;
+        }
+
         p {
             font-size: 14px;
             font-weight: 100;
@@ -154,12 +163,13 @@
             margin-left: 50px;
             margin-right: 50px;
 
-            p {
+            .link__forgot-password {
+                padding-top: 6px;
                 font-size: 1.3rem; 
-                cursor: pointer;
             }
 
-            p:hover {
+            .link__forgot-password:hover {
+                text-decoration: none;
                 color: var(--blue-link);
             }
 

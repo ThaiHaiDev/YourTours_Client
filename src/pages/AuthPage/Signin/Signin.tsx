@@ -26,11 +26,11 @@ const Signin = () => {
     const dispatch = useDispatch();
 
     const onSubmit: SubmitHandler<LoginRequest> = (data: LoginRequest) => {
-        setLoading(true)
+        setLoading(true);
         authApi
             .signIn(data)
             .then((userData) => {
-                setLoading(false)
+                setLoading(false);
                 dispatch(userSlice.actions.signin(userData.data));
                 enqueueSnackbar('Đăng nhập thành công', { variant: 'success' });
                 reset();
@@ -98,7 +98,7 @@ const Signin = () => {
                         </button>
                     </form>
                     <div className="forgot-password">
-                        <p>Quên mật khẩu</p>
+                        <Link to="/forgotpassword" className='link__forgot-password'>Quên mật khẩu</Link>
                         <Link to="/signup" className="link-create">
                             Tạo tài khoản ngay
                         </Link>

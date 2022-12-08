@@ -1,4 +1,4 @@
-.signin {
+.forgot {
 
     .container__sign-in {
         background-color: #fff;
@@ -136,13 +136,15 @@
             justify-content: space-between;
             margin-left: 50px;
             margin-right: 50px;
+            margin-bottom: 15px;
 
-            p {
+            .link__forgot-password {
+                padding-top: 6px;
                 font-size: 1.3rem; 
-                cursor: pointer;
             }
 
-            p:hover {
+            .link__forgot-password:hover {
+                text-decoration: none;
                 color: var(--blue-link);
             }
 

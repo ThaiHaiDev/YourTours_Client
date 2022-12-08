@@ -56,7 +56,7 @@ const ForgotPass = () => {
     return (
         <div>
             <Navbar />
-            <div className="signin">
+            <div className="forgot">
                 <div className="container__sign-in">
                     {!hidenNoti ? (
                         <form onSubmit={handleSubmit(onSubmit)}>
@@ -87,7 +87,9 @@ const ForgotPass = () => {
                         <OTPBoxForgotPass handleSubmitOTP={handleSubmitOTP} emailSend="test" />
                     )}
                     <div className="forgot-password">
-                        <p>Đăng nhập</p>
+                        <Link to="/signin" className="link__forgot-password">
+                            Đăng nhập ngay
+                        </Link>
                         <Link to="/signup" className="link-create">
                             Tạo tài khoản ngay
                         </Link>

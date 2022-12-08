@@ -35,7 +35,7 @@
     }
 
     .dropdown {
-        height: 570px !important;
+        height: auto !important;
         background-color: #fff;
         border-radius: 10px;
         box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -84,7 +84,6 @@
                 }
 
                 .customs-btn { 
-                    position: absolute;
                     background: #4f46e5;
                     padding: 10px 150px;
                     font-size: 1.6rem;
@@ -93,10 +92,39 @@
                     bottom: 60px;
                     border: none;
                     cursor: pointer;
+                    margin-bottom: 15px;
                 }
     
                 .customs-btn:hover {
                     background: #1e88e5;
+                }
+            }
+
+            .forgot-password {
+                display: flex;
+                justify-content: space-between;
+                margin-left: 50px;
+                margin-right: 50px;
+                margin-bottom: 15px;
+    
+                .link__forgot-password {
+                    padding-top: 6px;
+                    font-size: 1.3rem; 
+                }
+    
+                .link__forgot-password:hover {
+                    text-decoration: none;
+                    color: var(--blue-link);
+                }
+    
+                .link-create {
+                    padding-top: 6px;
+                    font-size: 1.3rem; 
+                }
+    
+                .link-create:hover {
+                    text-decoration: none;
+                    color: var(--blue-link);
                 }
             }
         }
@@ -124,7 +152,6 @@
 
 
         .policy {
-            position: absolute;
             bottom: 15px;
             
             p {
@@ -133,6 +160,7 @@
                 text-align: center;
                 margin-left: 50px;
                 margin-right: 50px;
+                margin-bottom: 10px;
 
                 .link-policy {
                     color: #1877f2;

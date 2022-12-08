@@ -198,14 +198,22 @@ function DropdownMenu() {
                             </label>
 
                             <br />
+                            <p style={{ fontStyle: 'italic', marginLeft: '5px', fontSize: '1.2rem', marginTop: '3px' }}>
+                                Thông tin của bạn hoàn toàn được bảo mật.
+                            </p>
                             <button type="submit" className="customs-btn">
                                 Đăng kí
                             </button>
                         </form>
+                        <div className="forgot-password">
+                            <Link to="/forgotpassword" className="link__forgot-password">
+                                Quên mật khẩu
+                            </Link>
+                            <Link to="/signin" className="link-create">
+                                Đăng nhập ngay
+                            </Link>
+                        </div>
                     </div>
-                    <p style={{ fontStyle: 'italic', marginLeft: '5px', fontSize: '1.2rem', marginTop: '3px' }}>
-                        Thông tin của bạn hoàn toàn được bảo mật.
-                    </p>
                 </div>
             </CSSTransition>
 
