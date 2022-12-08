@@ -3,7 +3,7 @@ import './Policy.scss';
 const Policy = () => {
     return (
         <div className="policy-card">
-            <h1>Vì sao bạn nên chọn Klook</h1>
+            <h1>Vì sao bạn nên chọn Yourtours</h1>
             <div className="row">
                 <div className="col l-3">
                     <img src='https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/icon_policy/1.jpg' alt='icon-policy'/>

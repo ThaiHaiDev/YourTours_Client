@@ -12,8 +12,8 @@ const Table = (props: any) => {
     let range: any= [] 
 
     if (props.limit !== undefined) {
-        let page = Math.floor(props.bodyData.length / Number(props.limit))
-        pages = props.bodyData.length % Number(props.limit) === 0 ? page : page + 1
+        let page = Math.floor(props?.bodyData?.length / Number(props.limit))
+        pages = props?.bodyData?.length % Number(props.limit) === 0 ? page : page + 1
         for(let i=0;i<pages;++i) {
             range.push(i)
         }
@@ -49,7 +49,7 @@ const Table = (props: any) => {
                         props.bodyData && props.renderBody ? (
                             <tbody>
                                 {
-                                    dataShow.map((item:any, index:any) => props.renderBody(item, index))
+                                    dataShow?.map((item:any, index:any) => props.renderBody(item, index))
                                 }
                             </tbody>
                         ) : null

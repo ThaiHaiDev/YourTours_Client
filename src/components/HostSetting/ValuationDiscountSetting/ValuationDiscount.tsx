@@ -138,7 +138,7 @@ export default function ValuationDiscountSetting(props: any) {
 
     return (
         <div style={{ fontSize: '15px', paddingRight: '50px', paddingBottom: '50px' }} className="ValuationDiscount">
-            <h3>Định giá và tình trạng phòng</h3>
+            <h3>Định giá và phụ phí</h3>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <h4>Định giá</h4>
                 <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>

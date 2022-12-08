@@ -74,7 +74,7 @@ const ManagerRoom = () => {
         {
             id: '#section6',
             to: 'section6',
-            info: 'Định giá và tình trạng phòng',
+            info: 'Định giá và phụ phí',
             comp: <ValuationDiscountSetting detailPriceRoom={detailPriceRoom} />,
         },
     ];
