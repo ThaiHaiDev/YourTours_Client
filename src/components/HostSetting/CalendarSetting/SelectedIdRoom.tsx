@@ -20,16 +20,17 @@ export default function SelectedIdRoom(props:any) {
     return (
         <div style={{marginLeft: '20px', width: '500px'}}>
             <FormControl variant="standard" sx={{ m: 1, minWidth: 120, width: '400px' }}>
-                <InputLabel id="demo-simple-select-standard-label">Room</InputLabel>
+                <InputLabel id="demo-simple-select-standard-label" sx={{fontSize: '14px', marginBottom: '10px'}}>Vui lòng chọn nhà</InputLabel>
                 <Select
                     labelId="demo-simple-select-standard-label"
                     id="demo-simple-select-standard"
                     value={idRoom}
                     onChange={handleChange}
-                    label="Room"
+                    label="Room" 
+                    style={{marginBottom: '10px'}}
                 >
                     {props.dataListhome?.map((room:any) => (
-                        <MenuItem value={room.id} key={room.id}>{room.name}</MenuItem>
+                        <MenuItem value={room.id} key={room.id} sx={{fontSize: '14px' }}>{room.name}</MenuItem>
                     ))}
                 </Select>
             </FormControl>
