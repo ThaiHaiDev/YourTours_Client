@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './UserAdmin.scss';
+import './TypeBedAdmin.scss';
 import Table from '../../components/AllAdminComponents/Table/Table';
 
 const customerTableHead = [
@@ -16,9 +16,8 @@ const customerTableHead = [
 
 const renderHead = (item:any, index:number) => <th key={index}>{item}</th>
 
-const UserAdmin = (props: any) => {
+const TypeBedAdmin = (props: any) => {
     const [onAddUser, setOnAddUser] = useState<Boolean>(false)
-    const [userUpdate, setUserUpdate] = useState(null);
 
     const renderBody = (item:any, index:any) => (
         <tr key={index}>
@@ -30,7 +29,7 @@ const UserAdmin = (props: any) => {
             <td>{item.isOwner ? 'false' : 'true'}</td>
             <td>{item.isAdmin}</td>
             <td onClick={() => handleDeleteUser(item.id)} ><img src="https://img.icons8.com/plasticine/100/000000/filled-trash.png" alt='icon__delete' className='icon__btn'/></td>
-            <td onClick={() => handleUpdateUser(item)} ><img src="https://img.icons8.com/color/48/000000/edit--v1.png" alt='icon__update' className='icon__btn'/></td>
+            <td><img src="https://img.icons8.com/color/48/000000/edit--v1.png" alt='icon__update' className='icon__btn'/></td>
         </tr>
     )
 
@@ -38,22 +37,11 @@ const UserAdmin = (props: any) => {
         
     }
 
-    const handleUpdateUser = async(user: any) => {
-        await setUserUpdate(user)
-        setOnModal(true)
-    }
-
-    const [onModal, setOnModal] = useState(false)
-
-    const handleSetModal = () => {
-        setOnModal(false)
-    }
-
     return (
-        <div className='user__admin'>
+        <div className='typebed__admin'>
             <div className='header__customer'>
                 <h2 className="page-header">
-                    Người dùng
+                    Nhà cho thuê
                 </h2>
                 <button className='btn__add-customer__admin' onClick={() => setOnAddUser(!onAddUser)}>
                     <p className='icon__admin'>{onAddUser ? '' : '+'}</p>
@@ -80,4 +68,4 @@ const UserAdmin = (props: any) => {
     )
 }
 
-export default UserAdmin
+export default TypeBedAdmin
