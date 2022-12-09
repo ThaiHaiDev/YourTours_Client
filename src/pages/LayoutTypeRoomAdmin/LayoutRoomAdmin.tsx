@@ -1,19 +1,21 @@
 import { useState, useEffect } from "react";
-import userApi from "../../services/userApi";
-import UserAdmin from "./RoomAdmin";
+import roomCategoryApi from "../../services/roomCategoryApi";
+import TypeRoomAdmin from "./RoomAdmin";
 
 const LayoutTypeRoomAdmin = () => {
-    const [listUser, setListUser] = useState<any>([]);
+    const [listTypeRoom, setListTypeRoom] = useState<any>([]);
 
     useEffect(() => {
-        userApi.getAllUser().then((dataResponse) => {
-            setListUser(dataResponse.data.content)
+        roomCategoryApi.getAllRoomCategory().then((dataResponse) => {
+            setListTypeRoom(dataResponse.data.content)
         })
     }, [])
+
+    console.log(listTypeRoom)
     
     return (
         <div>
-            {listUser.length !== 0 && <UserAdmin data={listUser} />}
+            {listTypeRoom.length !== 0 && <TypeRoomAdmin data={listTypeRoom} />}
         </div>
     )
 }

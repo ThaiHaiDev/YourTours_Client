@@ -27,7 +27,7 @@ import HistoryBookingPage from '../pages/HistoryBookingPage/HistoryBookingPage';
 
 const Auth = () => {
     const user = useSelector((state: RootState) => state.user)
-    console.log(user.current.role)
+
     return (
         <Routes>
             <Route path="/" element={<HomePage />}  />

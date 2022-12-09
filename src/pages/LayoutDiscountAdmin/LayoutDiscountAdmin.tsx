@@ -1,19 +1,20 @@
 import { useState, useEffect } from "react";
-import userApi from "../../services/userApi";
-import UserAdmin from "./DiscountAdmin";
+import discountApi from "../../services/discountApi";
+import DiscountAdmin from "./DiscountAdmin";
 
 const LayoutDiscountAdmin = () => {
-    const [listUser, setListUser] = useState<any>([]);
+    const [listDiscount, setListDiscount] = useState<any>([]);
 
     useEffect(() => {
-        userApi.getAllUser().then((dataResponse) => {
-            setListUser(dataResponse.data.content)
+        discountApi.getAllDiscount().then((dataResponse) => {
+            setListDiscount(dataResponse.data.content)
         })
     }, [])
+    console.log(listDiscount)
     
     return (
         <div>
-            {listUser.length !== 0 && <UserAdmin data={listUser} />}
+            {listDiscount.length !== 0 && <DiscountAdmin data={listDiscount} />}
         </div>
     )
 }

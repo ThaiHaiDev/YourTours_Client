@@ -1,19 +1,19 @@
 import { useState, useEffect } from "react";
-import userApi from "../../services/userApi";
-import UserAdmin from "./TypeAmenityAdmin";
+import amenityCategoryApi from "../../services/amenityCategoryApi";
+import TypeAmenityAdmin from "./TypeAmenityAdmin";
 
 const LayoutTypeAmenityAdmin = () => {
-    const [listUser, setListUser] = useState<any>([]);
+    const [listTypeAmenity, setListTypeAmenity] = useState<any>([]);
 
     useEffect(() => {
-        userApi.getAllUser().then((dataResponse) => {
-            setListUser(dataResponse.data.content)
+        amenityCategoryApi.getAmenityCategoriesAll().then((dataResponse) => {
+            setListTypeAmenity(dataResponse.data.content)
         })
     }, [])
     
     return (
         <div>
-            {listUser.length !== 0 && <UserAdmin data={listUser} />}
+            {listTypeAmenity.length !== 0 && <TypeAmenityAdmin data={listTypeAmenity} />}
         </div>
     )
 }

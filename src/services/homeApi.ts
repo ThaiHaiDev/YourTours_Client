@@ -24,7 +24,10 @@ const homeApi = {
         const url = `api/v1/public/homes/page?sort=VIEW&number=0&size=8`;
         return axiosClient.get(url);
     },
-    
+    getAllHome(): Promise<any>  {
+        const url = `api/v1/cms/homes/page?number=0&size=20`;
+        return axiosClient.get(url);
+    },
 };
 
 export default homeApi;

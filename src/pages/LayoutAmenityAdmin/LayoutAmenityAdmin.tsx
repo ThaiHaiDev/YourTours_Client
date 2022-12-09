@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import userApi from "../../services/userApi";
+import amenityApi from "../../services/amenityApi";
 import AmenityAdmin from "./AmenityAdmin";
 
 const LayoutAmenityAdmin = () => {
     const [listAmenity, setListAmenity] = useState<any>([]);
 
     useEffect(() => {
-        userApi.getAllUser().then((dataResponse) => {
+        amenityApi.getAllAmenity().then((dataResponse) => {
             setListAmenity(dataResponse.data.content)
         })
     }, [])

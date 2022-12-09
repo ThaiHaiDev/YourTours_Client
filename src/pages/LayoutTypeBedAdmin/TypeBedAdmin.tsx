@@ -4,12 +4,9 @@ import Table from '../../components/AllAdminComponents/Table/Table';
 
 const customerTableHead = [
     '',
-    'Tên đầy đủ',
-    'Email',
-    'Ngày sinh',
-    'Số điện thoại',
-    'Chủ nhà',
-    'Quyền',
+    'Tên giường',
+    'Mô tả',
+    'Trạng thái',
     '',
     ''
 ]
@@ -22,12 +19,9 @@ const TypeBedAdmin = (props: any) => {
     const renderBody = (item:any, index:any) => (
         <tr key={index}>
             <td>{index}</td>
-            <td>{item.fullName}</td>
-            <td>{item.email}</td>
-            <td>{item.dateOfBirth}</td>
-            <td>{item.phoneNumber}</td>
-            <td>{item.isOwner ? 'false' : 'true'}</td>
-            <td>{item.isAdmin}</td>
+            <td>{item.name}</td>
+            <td>{item.description}</td>
+            <td>{item.status}</td>
             <td onClick={() => handleDeleteUser(item.id)} ><img src="https://img.icons8.com/plasticine/100/000000/filled-trash.png" alt='icon__delete' className='icon__btn'/></td>
             <td><img src="https://img.icons8.com/color/48/000000/edit--v1.png" alt='icon__update' className='icon__btn'/></td>
         </tr>

@@ -1,19 +1,21 @@
 import { useState, useEffect } from "react";
-import userApi from "../../services/userApi";
-import UserAdmin from "./HomeAdmin";
+import homeApi from "../../services/homeApi";
+import HomeAdmin from "./HomeAdmin";
 
 const LayoutHomeAdmin = () => {
-    const [listUser, setListUser] = useState<any>([]);
+    const [listHome, setListHome] = useState<any>([]);
 
     useEffect(() => {
-        userApi.getAllUser().then((dataResponse) => {
-            setListUser(dataResponse.data.content)
+        homeApi.getAllHome().then((dataResponse) => {
+            setListHome(dataResponse.data.content)
         })
     }, [])
+
+    console.log(listHome)
     
     return (
         <div>
-            {listUser.length !== 0 && <UserAdmin data={listUser} />}
+            {listHome.length !== 0 && <HomeAdmin data={listHome} />}
         </div>
     )
 }

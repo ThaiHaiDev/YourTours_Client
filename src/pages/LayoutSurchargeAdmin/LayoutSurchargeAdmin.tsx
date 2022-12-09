@@ -1,19 +1,21 @@
 import { useState, useEffect } from "react";
-import userApi from "../../services/userApi";
-import UserAdmin from "./SurchargeAdmin";
+import surchargeApi from "../../services/surchargeApi";
+import SurchargeAdmin from "./SurchargeAdmin";
 
 const LayoutSurchargeAdmin = () => {
-    const [listUser, setListUser] = useState<any>([]);
+    const [listSurcharge, setListSurcharge] = useState<any>([]);
 
     useEffect(() => {
-        userApi.getAllUser().then((dataResponse) => {
-            setListUser(dataResponse.data.content)
+        surchargeApi.getAllSurcharge().then((dataResponse) => {
+            setListSurcharge(dataResponse.data.content)
         })
     }, [])
+
+    console.log(listSurcharge)
     
     return (
         <div>
-            {listUser.length !== 0 && <UserAdmin data={listUser} />}
+            {listSurcharge.length !== 0 && <SurchargeAdmin data={listSurcharge} />}
         </div>
     )
 }

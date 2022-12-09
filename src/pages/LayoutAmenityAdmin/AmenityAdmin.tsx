@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import './AmenityAdmin.scss';
 import Table from '../../components/AllAdminComponents/Table/Table';
+import AddForm from '../../components/AllAdminComponents/AddForm/AddForm';
 
 const customerTableHead = [
     '',
-    'Tên đầy đủ',
-    'Email',
-    'Ngày sinh',
-    'Số điện thoại',
-    'Chủ nhà',
-    'Quyền',
+    'Tên tiện ích',
+    'Mô tả',
+    'Icon',
+    'Tên loại tiện ích',
     '',
     ''
 ]
@@ -22,12 +21,10 @@ const AmenityAdmin = (props: any) => {
     const renderBody = (item:any, index:any) => (
         <tr key={index}>
             <td>{index}</td>
-            <td>{item.fullName}</td>
-            <td>{item.email}</td>
-            <td>{item.dateOfBirth}</td>
-            <td>{item.phoneNumber}</td>
-            <td>{item.isOwner ? 'false' : 'true'}</td>
-            <td>{item.isAdmin}</td>
+            <td>{item.name}</td>
+            <td>{item.description}</td>
+            <td>{item.icon}</td>
+            <td>{item.category?.name}</td>
             <td onClick={() => handleDeleteUser(item.id)} ><img src="https://img.icons8.com/plasticine/100/000000/filled-trash.png" alt='icon__delete' className='icon__btn'/></td>
             <td><img src="https://img.icons8.com/color/48/000000/edit--v1.png" alt='icon__update' className='icon__btn'/></td>
         </tr>
@@ -63,7 +60,7 @@ const AmenityAdmin = (props: any) => {
                         </div>
                     </div>
                 </div>
-            </div> : ''}
+            </div> : <AddForm />}
         </div>
     )
 }

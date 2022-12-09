@@ -26,7 +26,7 @@ const CountRoomDetailSetting = () => {
         roomOfHomeApi.getAllRoomOfHome(`${params.idHome}&`).then((dataRoom) => {
             setListRoomOfHome(dataRoom.data.content);
         });
-        roomCategoryApi.getAllRoomCategory(params?.idHome).then((dataResponse) => {
+        roomCategoryApi.getAllRoomCategoryOfHome(params?.idHome).then((dataResponse) => {
             setListCategoryRoom(dataResponse.data.content);
         });
     }, [params.idHome]);

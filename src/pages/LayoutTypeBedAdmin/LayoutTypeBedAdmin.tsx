@@ -1,19 +1,19 @@
 import { useState, useEffect } from "react";
-import userApi from "../../services/userApi";
-import UserAdmin from "./TypeBedAdmin";
+import bedApi from "../../services/bedApi";
+import TypeBedAdmin from "./TypeBedAdmin";
 
 const LayoutTypeBedAdmin = () => {
-    const [listUser, setListUser] = useState<any>([]);
+    const [listTypeBed, setListTypeBed] = useState<any>([]);
 
     useEffect(() => {
-        userApi.getAllUser().then((dataResponse) => {
-            setListUser(dataResponse.data.content)
+        bedApi.getAllTypeBed().then((dataResponse) => {
+            setListTypeBed(dataResponse.data.content)
         })
     }, [])
     
     return (
         <div>
-            {listUser.length !== 0 && <UserAdmin data={listUser} />}
+            {listTypeBed.length !== 0 && <TypeBedAdmin data={listTypeBed} />}
         </div>
     )
 }
