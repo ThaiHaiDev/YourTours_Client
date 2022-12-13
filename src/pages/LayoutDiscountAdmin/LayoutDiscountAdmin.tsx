@@ -10,11 +10,14 @@ const LayoutDiscountAdmin = () => {
             setListDiscount(dataResponse.data.content)
         })
     }, [])
-    console.log(listDiscount)
+    
+    const handleChangeData = (data : any) => {
+        setListDiscount(data)
+    }
     
     return (
         <div>
-            {listDiscount.length !== 0 && <DiscountAdmin data={listDiscount} />}
+            {listDiscount.length !== 0 && <DiscountAdmin data={listDiscount} setList={handleChangeData}/>}
         </div>
     )
 }

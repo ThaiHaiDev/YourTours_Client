@@ -5,10 +5,24 @@ const amenityCategoryApi = {
         const url = "api/v1/cms/amenity-categories/page?isDefault=true";
         return axiosClient.get(url);
     },
+
     getAmenityCategoriesAll(): Promise<any> {
         const url = "api/v1/cms/amenity-categories/page?number=0&size=20";
         return axiosClient.get(url);
     },
+    addAmenityCategories(data : any): Promise<any> {
+        const url = 'api/v1/cms/amenity-categories/create';
+        return axiosClient.post(url,data);
+    },
+    deleteAmenityCategories(idData : string | undefined): Promise<any> {
+        const url = `api/v1/cms/amenity-categories/${idData}/delete`;
+        return axiosClient.delete(url);
+    },
+    updateAmenityCategories(data : any): Promise<any> {
+        const url = 'api/v1/cms/amenity-categories/update';
+        return axiosClient.put(url, data);
+    },
+
     getAmenityCategoriesAllDetail(idHome: string | undefined): Promise<any> {
         const url = `api/v1/cms/amenity-categories/page/child?homeId=${idHome}`;
         return axiosClient.get(url);

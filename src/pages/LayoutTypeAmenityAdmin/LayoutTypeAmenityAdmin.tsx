@@ -10,10 +10,14 @@ const LayoutTypeAmenityAdmin = () => {
             setListTypeAmenity(dataResponse.data.content)
         })
     }, [])
+
+    const handleChangeData = (data : any) => {
+        setListTypeAmenity(data)
+    }
     
     return (
         <div>
-            {listTypeAmenity.length !== 0 && <TypeAmenityAdmin data={listTypeAmenity} />}
+            {listTypeAmenity.length !== 0 && <TypeAmenityAdmin data={listTypeAmenity} setList={handleChangeData}/>}
         </div>
     )
 }

@@ -11,11 +11,13 @@ const LayoutSurchargeAdmin = () => {
         })
     }, [])
 
-    console.log(listSurcharge)
+    const handleChangeData = (data : any) => {
+        setListSurcharge(data)
+    }
     
     return (
         <div>
-            {listSurcharge.length !== 0 && <SurchargeAdmin data={listSurcharge} />}
+            {listSurcharge.length !== 0 && <SurchargeAdmin data={listSurcharge} setList={handleChangeData}/>}
         </div>
     )
 }

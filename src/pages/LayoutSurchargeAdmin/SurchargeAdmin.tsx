@@ -2,62 +2,164 @@ import React, { useState } from 'react';
 import './SurchargeAdmin.scss';
 import Table from '../../components/AllAdminComponents/Table/Table';
 
-const customerTableHead = [
-    '',
-    'Tên phụ phí',
-    'Mô tả',
-    '',
-    ''
-]
+import { AxiosError } from 'axios';
+import { useSnackbar } from 'notistack';
 
-const renderHead = (item:any, index:number) => <th key={index}>{item}</th>
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+import DeleteIcon from '@mui/icons-material/Delete';
+import surchargeApi from '../../services/surchargeApi';
+import UpdateForm from '../../components/AllAdminComponents/UpdateForm/UpdateForm';
+import AddForm from '../../components/AllAdminComponents/AddForm/AddForm';
+
+const customerTableHead = ['', 'Tên phụ phí', 'Mô tả', '', ''];
+
+const fieldData = [
+    {
+        title: 'Tên phụ phí',
+        nameRegister: 'name',
+        nameRequire: 'Tên phụ phí được yêu cầu',
+        placeholder: 'Vd: abc...',
+    },
+    {
+        title: 'Mô tả phụ phí',
+        nameRegister: 'description',
+        nameRequire: 'Mô tả phụ phí được yêu cầu',
+        placeholder: 'Vd: abc...',
+    },
+];
+
+const renderHead = (item: any, index: number) => <th key={index}>{item}</th>;
 
 const SurchargeAdmin = (props: any) => {
-    const [onAddUser, setOnAddUser] = useState<Boolean>(false)
+    const [onAddUser, setOnAddUser] = useState<Boolean>(false);
 
-    const renderBody = (item:any, index:any) => (
+    const { enqueueSnackbar } = useSnackbar();
+
+    const renderBody = (item: any, index: any) => (
         <tr key={index}>
             <td>{index}</td>
             <td>{item.name}</td>
             <td>{item.description}</td>
-            <td onClick={() => handleDeleteUser(item.id)} ><img src="https://img.icons8.com/plasticine/100/000000/filled-trash.png" alt='icon__delete' className='icon__btn'/></td>
-            <td><img src="https://img.icons8.com/color/48/000000/edit--v1.png" alt='icon__update' className='icon__btn'/></td>
+            <td>
+                <Popup
+                    trigger={
+                        <DeleteIcon className="icon__btn" sx={{ color: 'red', cursor: 'pointer', fontSize: '18px' }} />
+                    }
+                    position="bottom center"
+                >
+                    <div>
+                        <p style={{ margin: '0', padding: '5px', fontSize: '14px' }}>
+                            Bạn chắc chắn muốn xóa dữ liệu này không?
+                        </p>
+                        <p
+                            style={{
+                                background: '#ef5350',
+                                margin: '0',
+                                width: 'auto',
+                                paddingLeft: '15px',
+                                paddingTop: '5px',
+                                paddingBottom: '5px',
+                                marginLeft: '75%',
+                                cursor: 'pointer',
+                                color: 'white',
+                            }}
+                            onClick={() => handleDelete(item.id)}
+                        >
+                            Yes
+                        </p>
+                    </div>
+                </Popup>
+            </td>
+            <td>
+                <UpdateForm fieldData={fieldData} data={item} updateData={handleUpdate} />
+            </td>
         </tr>
-    )
+    );
 
-    const handleDeleteUser = (idUser: string) => {
-        
-    }
+    const handleAddData = (data: any) => {
+        const dataAdd = {
+            ...data,
+        };
+        surchargeApi
+            .addSurcharge(dataAdd)
+            .then((dataResponse) => {
+                props.setList([...props.data, dataResponse.data]);
+                enqueueSnackbar('Thêm mới thành công', { variant: 'success' });
+            })
+            .catch((error: AxiosError<any>) => {
+                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+            });
+    };
+
+    const handleDelete = (idDelete: string | undefined) => {
+        surchargeApi
+            .deleteSurcharge(idDelete)
+            .then(() => {
+                const dataAfterDelete = props.data.filter((dataDelete: any) => {
+                    return dataDelete.id !== idDelete;
+                });
+                props.setList([...dataAfterDelete]);
+                enqueueSnackbar('Xóa thành công', { variant: 'success' });
+            })
+            .catch((error: AxiosError<any>) => {
+                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+            });
+    };
+
+    const Update = (id: string | undefined, data: any) => {
+        props.setList(
+            props.data?.map((item: any) => {
+                if (item.id === id) {
+                    item = data;
+                }
+                return item;
+            }),
+        );
+    };
+
+    const handleUpdate = (data: any) => {
+        surchargeApi
+            .updateSurcharge(data)
+            .then((dataResponse) => {
+                Update(data.id, dataResponse.data);
+                enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
+            })
+            .catch((error: AxiosError<any>) => {
+                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+            });
+    };
 
     return (
-        <div className='home__admin'>
-            <div className='header__customer'>
-                <h2 className="page-header">
-                    Nhà cho thuê
-                </h2>
-                <button className='btn__add-customer__admin' onClick={() => setOnAddUser(!onAddUser)}>
-                    <p className='icon__admin'>{onAddUser ? '' : '+'}</p>
-                    <p className='text__admin'>{onAddUser ? 'List user' : 'Add user'}</p>
+        <div className="home__admin">
+            <div className="header__customer">
+                <h2 className="page-header">Phụ phí</h2>
+                <button className="btn__add-customer__admin" onClick={() => setOnAddUser(!onAddUser)}>
+                    <p className="text__admin">{onAddUser ? 'Danh sách phụ phí' : 'Thêm mới'}</p>
                 </button>
             </div>
-            {/* {userUpdate && <Modal open={onModal} onClick={handleSetModal} dataUpdate={userUpdate} />} */}
-            {!onAddUser ? <div className="row">
-                <div className="col l-12">
-                    <div className="card-admin">
-                        <div className="card__body">
-                            <Table
-                                limit='10'
-                                headData={customerTableHead}
-                                renderHead={(item:any, index:any) => renderHead(item, index)}
-                                bodyData={props?.data}
-                                renderBody={(item:any, index:any) => renderBody(item, index)}
-                            />
+
+            {!onAddUser ? (
+                <div className="row">
+                    <div className="col l-12">
+                        <div className="card-admin">
+                            <div className="card__body">
+                                <Table
+                                    limit="10"
+                                    headData={customerTableHead}
+                                    renderHead={(item: any, index: any) => renderHead(item, index)}
+                                    bodyData={props?.data}
+                                    renderBody={(item: any, index: any) => renderBody(item, index)}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div> : ''}
+            ) : (
+                <AddForm fieldData={fieldData} addDataNew={handleAddData} />
+            )}
         </div>
-    )
-}
+    );
+};
 
-export default SurchargeAdmin
+export default SurchargeAdmin;

@@ -31,6 +31,9 @@ export default function UpdateForm(props: any) {
         for (var i = 0; i < props.fieldData.length; i++) {
             setValue(props.fieldData[i].nameRegister, props.data[props.fieldData[i].nameRegister]);
         }
+        if (props.data?.category?.id !== undefined) {
+            setValue('categoryId', props.data.category.id);
+        }
     }, [setValue, props.data, props.fieldData]);
 
     const onSubmit: SubmitHandler<any> = async (data: any) => {
