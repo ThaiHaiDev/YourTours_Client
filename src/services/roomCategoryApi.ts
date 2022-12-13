@@ -16,6 +16,10 @@ const roomCategoryApi = {
         const url = `api/v1/cms/room-categories/${idData}/delete`;
         return axiosClient.delete(url);
     },
+    updateRoomCategory(data : any): Promise<any> {
+        const url = 'api/v1/cms/room-categories/update';
+        return axiosClient.put(url, data);
+    },
     getAllRoomCategoryOfHome(idHome : string | undefined): Promise<any> {
         const url = `api/v1/cms/room-categories/page/host?homeId=${idHome}&number=0&size=20`;
         return axiosClient.get(url);

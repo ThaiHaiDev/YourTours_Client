@@ -1,7 +1,7 @@
-.add-form {
+.dialog__update {
     background: white;
     width: 100%;
-    height: 500px;
+    height: auto;
 
     .key-col {
         padding: 0 20px;
@@ -11,7 +11,7 @@
             font-size: 14px;
         }
 
-        .add-form__input {
+        .update-form__input {
             border: 1px solid black;
             width: 100%;
             padding: 5px 20px 5px 15px;
@@ -21,15 +21,5 @@
         .message_error {
             color: red;
         }
-    }
-    .btn-save_newdata {
-        margin: 15px;
-        padding: 5px 20px;
-        background: #1e88e5;
-        color: white;
-        font-weight: 550;
-    }
-    .btn-save_newdata:hover {
-        background: #1976d2; 
     }
 }

@@ -15,7 +15,6 @@ const AddForm = (props: any) => {
             props.addDataNew(data)
             reset()
         }
-       
     };
 
     return (
@@ -24,6 +23,7 @@ const AddForm = (props: any) => {
                 <div className="row">
                     {props?.fieldData?.map((item: any, index: number) => (
                         <div className="col l-6 key-col" key={index}>
+                            <h2 className='title-field'>{item.title}</h2>
                             <input
                                 type="text"
                                 className="add-form__input"
@@ -40,7 +40,7 @@ const AddForm = (props: any) => {
                         </div>
                     ))}
                 </div>
-                <button type="submit">Thêm mới</button>
+                <button type="submit" className='btn-save_newdata'>Thêm mới</button>
             </form>
         </div>
     );

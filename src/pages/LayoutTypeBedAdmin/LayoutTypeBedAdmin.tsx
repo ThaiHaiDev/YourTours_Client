@@ -11,9 +11,13 @@ const LayoutTypeBedAdmin = () => {
         })
     }, [])
     
+    const handleChangeData = (data : any) => {
+        setListTypeBed(data)
+    }
+    
     return (
         <div>
-            {listTypeBed.length !== 0 && <TypeBedAdmin data={listTypeBed} />}
+            {listTypeBed.length !== 0 && <TypeBedAdmin data={listTypeBed} setList={handleChangeData}/>}
         </div>
     )
 }

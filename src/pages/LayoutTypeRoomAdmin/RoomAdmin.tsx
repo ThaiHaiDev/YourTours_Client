@@ -5,20 +5,40 @@ import AddForm from '../../components/AllAdminComponents/AddForm/AddForm';
 
 import { AxiosError } from 'axios';
 import { useSnackbar } from 'notistack';
-import roomCategoryApi from '../../services/roomCategoryApi';
 
-const customerTableHead = ['', 'Tên phòng', 'Mô tả', 'Trạng thái', 'Config số lượng giường', '', ''];
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+import DeleteIcon from '@mui/icons-material/Delete';
+
+import roomCategoryApi from '../../services/roomCategoryApi';
+import UpdateForm from '../../components/AllAdminComponents/UpdateForm/UpdateForm';
+
+const customerTableHead = ['', 'Tên phòng', 'Mô tả', 'Config giường', 'Quan trọng', '', ''];
 
 const fieldData = [
     {
+        title: 'Tên loại phòng',
         nameRegister: 'name',
         nameRequire: 'Tên loại phòng được yêu cầu',
-        placeholder: 'Tên loại phòng',
+        placeholder: 'Vd: abc...',
     },
     {
+        title: 'Mô tả loại phòng',
         nameRegister: 'description',
         nameRequire: 'Mô tả loại phòng được yêu cầu',
-        placeholder: 'Mô tả loại phòng',
+        placeholder: 'Vd: abc...',
+    },
+    {
+        title: 'Config giường',
+        nameRegister: 'configBed',
+        nameRequire: 'Config giường được yêu cầu dạng true / false',
+        placeholder: 'Vd: true hoặc false',
+    },
+    {
+        title: 'Quan trọng',
+        nameRegister: 'important',
+        nameRequire: 'Quan trọng được yêu cầu dạng true / false',
+        placeholder: 'Vd: true hoặc false',
     },
 ];
 
@@ -31,8 +51,6 @@ const RoomAdmin = (props: any) => {
 
     const handleAddData = (data: any) => {
         const dataAdd = {
-            configBed: false,
-            important: false,
             ...data,
         };
         roomCategoryApi
@@ -46,7 +64,7 @@ const RoomAdmin = (props: any) => {
             });
     };
 
-    const handleDeleteUser = (idDelete: string | undefined) => {
+    const handleDelete = (idDelete: string | undefined) => {
         roomCategoryApi
             .deleteRoomCategory(idDelete)
             .then(() => {
@@ -61,26 +79,68 @@ const RoomAdmin = (props: any) => {
             });
     };
 
+    const Update = (id: string | undefined, data: any) => {
+        props.setListTypeRoom(
+            props.data?.map((item: any) => {
+                if (item.id === id) {
+                    item = data;
+                }
+                return item;
+            }),
+        );
+    };
+
+    const handleUpdate = (data: any) => {
+        roomCategoryApi
+            .updateRoomCategory(data)
+            .then((dataResponse) => {
+                Update(data.id, dataResponse.data);
+                enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
+            })
+            .catch((error: AxiosError<any>) => {
+                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+            });
+    };
+
     const renderBody = (item: any, index: any) => (
         <tr key={index}>
             <td>{index}</td>
             <td>{item.name}</td>
             <td>{item.description}</td>
-            <td>{item.status}</td>
-            <td>{item.important ? 'True' : 'False'}</td>
-            <td onClick={() => handleDeleteUser(item.id)}>
-                <img
-                    src="https://img.icons8.com/plasticine/100/000000/filled-trash.png"
-                    alt="icon__delete"
-                    className="icon__btn"
-                />
+            <td>{item.configBed ? 'true' : 'false'}</td>
+            <td>{item.important ? 'true' : 'false'}</td>
+            <td>
+                <Popup
+                    trigger={
+                        <DeleteIcon className="icon__btn" sx={{ color: 'red', cursor: 'pointer', fontSize: '18px' }} />
+                    }
+                    position="bottom center"
+                >
+                    <div>
+                        <p style={{ margin: '0', padding: '5px', fontSize: '14px' }}>
+                            Bạn chắc chắn muốn xóa dữ liệu này không?
+                        </p>
+                        <p
+                            style={{
+                                background: '#ef5350',
+                                margin: '0',
+                                width: 'auto',
+                                paddingLeft: '15px',
+                                paddingTop: '5px',
+                                paddingBottom: '5px',
+                                marginLeft: '75%',
+                                cursor: 'pointer',
+                                color: 'white',
+                            }}
+                            onClick={() => handleDelete(item.id)}
+                        >
+                            Yes
+                        </p>
+                    </div>
+                </Popup>
             </td>
             <td>
-                <img
-                    src="https://img.icons8.com/color/48/000000/edit--v1.png"
-                    alt="icon__update"
-                    className="icon__btn"
-                />
+                <UpdateForm fieldData={fieldData} data={item} updateData={handleUpdate} />
             </td>
         </tr>
     );
@@ -93,7 +153,7 @@ const RoomAdmin = (props: any) => {
                     <p className="text__admin">{onAddUser ? 'Danh sách loại phòng' : 'Thêm mới'}</p>
                 </button>
             </div>
-            {/* {userUpdate && <Modal open={onModal} onClick={handleSetModal} dataUpdate={userUpdate} />} */}
+
             {!onAddUser ? (
                 <div className="row">
                     <div className="col l-12">
