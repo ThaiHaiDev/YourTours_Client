@@ -8,6 +8,14 @@ const roomCategoryApi = {
         const url = "api/v1/cms/room-categories/page?important=true";
         return axiosClient.get(url);
     },
+    addRoomCategory(data : any): Promise<any> {
+        const url = "api/v1/cms/room-categories/create";
+        return axiosClient.post(url, data);
+    },
+    deleteRoomCategory(idData : string | undefined): Promise<any> {
+        const url = `api/v1/cms/room-categories/${idData}/delete`;
+        return axiosClient.delete(url);
+    },
     getAllRoomCategoryOfHome(idHome : string | undefined): Promise<any> {
         const url = `api/v1/cms/room-categories/page/host?homeId=${idHome}&number=0&size=20`;
         return axiosClient.get(url);

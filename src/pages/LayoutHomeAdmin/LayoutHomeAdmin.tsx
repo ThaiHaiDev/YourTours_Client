@@ -10,8 +10,6 @@ const LayoutHomeAdmin = () => {
             setListHome(dataResponse.data.content)
         })
     }, [])
-
-    console.log(listHome)
     
     return (
         <div>

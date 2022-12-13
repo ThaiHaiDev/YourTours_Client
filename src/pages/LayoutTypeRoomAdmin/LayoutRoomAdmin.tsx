@@ -11,11 +11,13 @@ const LayoutTypeRoomAdmin = () => {
         })
     }, [])
 
-    console.log(listTypeRoom)
+    const handleChangeData = (data : any) => {
+        setListTypeRoom(data)
+    }
     
     return (
         <div>
-            {listTypeRoom.length !== 0 && <TypeRoomAdmin data={listTypeRoom} />}
+            {listTypeRoom.length !== 0 && <TypeRoomAdmin data={listTypeRoom} setListTypeRoom={handleChangeData}/>}
         </div>
     )
 }

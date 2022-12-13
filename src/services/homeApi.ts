@@ -25,7 +25,7 @@ const homeApi = {
         return axiosClient.get(url);
     },
     getAllHome(): Promise<any>  {
-        const url = `api/v1/cms/homes/page?number=0&size=20`;
+        const url = `api/v1/cms/homes/admin/pages?number=0&size=20`;
         return axiosClient.get(url);
     },
 };

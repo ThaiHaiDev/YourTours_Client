@@ -1,18 +1,53 @@
 import React, { useState } from 'react';
 import './HomeAdmin.scss';
 import Table from '../../components/AllAdminComponents/Table/Table';
+import mapProvince from '../../utils/mapProvince';
+import formatPrice from '../../utils/formatPrice';
+import AddForm from '../../components/AllAdminComponents/AddForm/AddForm';
 
 const customerTableHead = [
     '',
-    'Tên đầy đủ',
-    'Email',
-    'Ngày sinh',
-    'Số điện thoại',
-    'Chủ nhà',
-    'Quyền',
+    'Tên nhà',
+    'Mô tả',
+    'Địa chỉ',
+    'Tỉnh thành',
+    'Giá theo đêm',
+    'Chính sách hoàn tiền',
     '',
-    ''
 ]
+
+const fieldData = [
+    {
+        nameRegister: 'name',
+        nameRequire: 'Tên nhà được yêu cầu',
+        placeholder: 'Name',
+    },
+    {
+        nameRegister: 'description',
+        nameRequire: 'Mô tả được yêu cầu',
+        placeholder: 'Description',
+    },
+    {
+        nameRegister: 'addressDetail',
+        nameRequire: 'Địa chỉ được yêu cầu',
+        placeholder: 'Địa chỉ',
+    },
+    {
+        nameRegister: 'provinceCode',
+        nameRequire: 'Mã tỉnh thành được yêu cầu',
+        placeholder: 'Mã tĩnh thành',
+    },
+    {
+        nameRegister: 'costPerNightDefault',
+        nameRequire: 'Giá nhà theo đêm được yêu cầu',
+        placeholder: 'Giá nhà theo đêm',
+    },
+    {
+        nameRegister: 'refundPolicy',
+        nameRequire: 'Chính sách hoàn tiền được yêu cầu',
+        placeholder: 'Chính sách hoàn tiền',
+    },
+];
 
 const renderHead = (item:any, index:number) => <th key={index}>{item}</th>
 
@@ -22,14 +57,13 @@ const HomeAdmin = (props: any) => {
     const renderBody = (item:any, index:any) => (
         <tr key={index}>
             <td>{index}</td>
-            <td>{item.fullName}</td>
-            <td>{item.email}</td>
-            <td>{item.dateOfBirth}</td>
-            <td>{item.phoneNumber}</td>
-            <td>{item.isOwner ? 'false' : 'true'}</td>
-            <td>{item.isAdmin}</td>
+            <td>{item.name}</td>
+            <td>{item.description}</td>
+            <td>{item.addressDetail}</td>
+            <td>{mapProvince(item.provinceCode)}</td>
+            <td>{formatPrice(item.costPerNightDefault)}</td>
+            <td>{item.refundPolicy}</td>
             <td onClick={() => handleDeleteUser(item.id)} ><img src="https://img.icons8.com/plasticine/100/000000/filled-trash.png" alt='icon__delete' className='icon__btn'/></td>
-            <td><img src="https://img.icons8.com/color/48/000000/edit--v1.png" alt='icon__update' className='icon__btn'/></td>
         </tr>
     )
 
@@ -44,8 +78,7 @@ const HomeAdmin = (props: any) => {
                     Nhà cho thuê
                 </h2>
                 <button className='btn__add-customer__admin' onClick={() => setOnAddUser(!onAddUser)}>
-                    <p className='icon__admin'>{onAddUser ? '' : '+'}</p>
-                    <p className='text__admin'>{onAddUser ? 'List user' : 'Add user'}</p>
+                    <p className='text__admin'>{onAddUser ? 'Danh sách nhà' : 'Thêm mới'}</p>
                 </button>
             </div>
             {/* {userUpdate && <Modal open={onModal} onClick={handleSetModal} dataUpdate={userUpdate} />} */}
@@ -63,7 +96,7 @@ const HomeAdmin = (props: any) => {
                         </div>
                     </div>
                 </div>
-            </div> : ''}
+            </div> : <AddForm fieldData={fieldData}/>}
         </div>
     )
 }
