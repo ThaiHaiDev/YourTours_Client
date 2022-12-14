@@ -14,6 +14,8 @@ import './BookingPage.scss';
 import homeDetailApi from '../../services/homeDetailApi';
 import mapProvince from '../../utils/mapProvince';
 import formatPrice from '../../utils/formatPrice';
+import Paypal from '../../components/Paypal/Paypal';
+import convertDola from '../../utils/convertDola';
 
 const BookingPage = () => {
     const infoBooking = useSelector((state: RootState) => state.booking);
@@ -47,9 +49,9 @@ const BookingPage = () => {
             });
     };
 
-    const handleChangePriceDay = (value : string) => {
+    const handleChangePriceDay = (value: string) => {
         setPriceDay(value);
-    } 
+    };
 
     return (
         <div className="booking__page">
@@ -81,6 +83,17 @@ const BookingPage = () => {
                                 <p className="customer-count__title">Khách</p>
                                 <p className="count">{infoBooking?.titleGuests}</p>
                             </div>
+                        </div>
+
+                        <hr className="line" />
+                        <div className="count-customer">
+                            <div>
+                                <p className="customer-count__title">Thanh toán online (Bạn có thể sử dụng phương thức thanh toán này hoặc thanh toán trực tiếp khi nhận phòng)</p>
+                                <p className="count">{`Số tiền bạn cần thanh toán online: ${convertDola(infoBooking?.priceTotal)} $`}</p>
+                            </div>
+                        </div>
+                        <div className="payment__paypal">
+                            <Paypal pricePayment={convertDola(infoBooking?.priceTotal)}/>
                         </div>
                     </div>
                     <div className="col l-4">
@@ -119,16 +132,20 @@ const BookingPage = () => {
                             </div>
 
                             <div className="price-booking">
-                                <div className='price-room-booking'>
+                                <div className="price-room-booking">
                                     <p style={{ color: '#757575' }}>Giá phòng</p>
-                                    <p style={{ fontWeight: '550' }}>{formatPrice(priceDay !== '' ? priceDay : infoBooking?.priceDay)}</p>
+                                    <p style={{ fontWeight: '550' }}>
+                                        {formatPrice(priceDay !== '' ? priceDay : infoBooking?.priceDay)}
+                                    </p>
                                 </div>
-                                <div className='price-total-booking'>
+                                <div className="price-total-booking">
                                     <p style={{ color: '#757575' }}>Tổng tiền thanh toán</p>
                                     <p style={{ fontWeight: '550' }}>{formatPrice(infoBooking?.priceTotal)}</p>
                                 </div>
                             </div>
-                            <button onClick={handleBookingRoom} className='btn-booking'>Đặt phòng</button>
+                            <button onClick={handleBookingRoom} className="btn-booking">
+                                Đặt phòng
+                            </button>
                         </div>
                     </div>
                 </div>

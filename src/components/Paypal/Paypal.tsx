@@ -1,7 +1,7 @@
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 const PAYPAL_CLIENT_ID: any = process.env.REACT_APP_PAYPAL_CLIENT_ID;
 
-function Paypal() {
+function Paypal(props : any) {
     return (
         <div className="paypal">
             <PayPalScriptProvider
@@ -15,7 +15,7 @@ function Paypal() {
                             purchase_units: [
                                 {
                                     amount: {
-                                        value: '13.99',
+                                        value: props?.pricePayment,
                                     },
                                 },
                             ],
