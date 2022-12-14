@@ -24,6 +24,7 @@ import InfoUserPage from '../pages/InfoUserPage/InfoUserPage';
 import BookingPage from '../pages/BookingPage/BookingPage';
 import TransactionHistoryOwner from '../pages/OwnerSetting/TransactionHistoryOwner/TransactionHistoryOwner';
 import HistoryBookingPage from '../pages/HistoryBookingPage/HistoryBookingPage';
+import Test from '../pages/Test/Test';
 
 const Auth = () => {
     const user = useSelector((state: RootState) => state.user)
@@ -43,6 +44,9 @@ const Auth = () => {
             <Route path="/account" element={<InfoUserPage />} />
             <Route path="/booking" element={<BookingPage />} />
             <Route path="/historybooking" element={<HistoryBookingPage />} />
+
+            <Route path="/test" element={<Test />} />
+
             <Route path="/admin/*" element={user.current.role === 'ADMIN' && <LayoutAdmin />} />
             <Route path="/host" element={<OwnerSetting />} />
             <Route path="/host/setting" element={<ListRoomOfHost />} />

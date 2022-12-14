@@ -1,7 +1,5 @@
 import axios from 'axios';
 import process from 'process';
-// import jwt_decode from 'jwt-decode';
-// import { getCookie } from 'cookies-next';
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 

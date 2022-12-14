@@ -22,13 +22,13 @@ const chartOptions = {
             id: 'basic-bar',
         },
         xaxis: {
-            categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
+            categories: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
         },
     },
     series: [
         {
             name: 'series-1',
-            data: [30, 40, 45, 50, 49, 60, 70, 91],
+            data: [30, 40, 45, 50, 49, 60, 70, 91, 60, 70, 91, 10],
         },
     ],
 };
@@ -176,7 +176,7 @@ const DashboardAdmin = () => {
                 <div className="col l-4">
                     <div className="card-admin">
                         <div className="card__header">
-                            <h3>top customers</h3>
+                            <h3>Khách hàng thân thiết</h3>
                         </div>
                         <div className="card__body">
                             <Table
@@ -194,7 +194,7 @@ const DashboardAdmin = () => {
                 <div className="col l-8">
                     <div className="card-admin">
                         <div className="card__header">
-                            <h3>latest orders</h3>
+                            <h3>Chủ nhà cho thuê tốt nhất</h3>
                         </div>
                         <div className="card__body">
                             <Table
