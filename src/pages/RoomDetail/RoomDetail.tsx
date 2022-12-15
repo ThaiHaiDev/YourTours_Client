@@ -54,6 +54,10 @@ const RoomDetail = () => {
         });
     }, [params?.idHome]);
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     const handleChangeGuests = (value: any) => {
         setGuests(value);
     };

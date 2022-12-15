@@ -37,7 +37,7 @@ const Navbar = () => {
                     </div>
                 </NavLink>
                 <div className="navbar-right menu">
-                    <NavLink to="/">Trang chủ</NavLink>
+                    <NavLink to="/" end={true}>Trang chủ</NavLink>
                     {/* <NavLink to="#" onClick={() => setIsActive(!isActive)}>
                         Book
                     </NavLink> */}
