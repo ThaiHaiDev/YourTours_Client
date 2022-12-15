@@ -48,7 +48,9 @@ const OTPBoxActiveAccount = (props: OTPBoxActiveAccountData) => {
         const newOtp = {
             otp: O1 + O2 + O3 + O4 + O5,
         };
-        console.log(newOtp);
+        if (props.handleSubmitOTP) {
+            props.handleSubmitOTP(newOtp)
+        }
     };
     return (
         <div className="otp-box-active__account">
