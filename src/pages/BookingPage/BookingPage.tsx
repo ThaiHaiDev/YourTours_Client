@@ -56,7 +56,7 @@ const BookingPage = () => {
     return (
         <div className="booking__page">
             <div className="nav">
-                <NavLink to="#" className="logo">
+                <NavLink to="/" className="logo">
                     <img
                         src="https://cdn6.agoda.net/images/kite-js/logo/agoda/color-default.svg"
                         alt="company logo"
@@ -88,12 +88,12 @@ const BookingPage = () => {
                         <hr className="line" />
                         <div className="count-customer">
                             <div>
-                                <p className="customer-count__title">Thanh toán online (Bạn có thể sử dụng phương thức thanh toán này hoặc thanh toán trực tiếp khi nhận phòng)</p>
+                                <p className="customer-count__title">Thanh toán online (Bạn vui lòng thanh toán trước để đặt phòng)</p>
                                 <p className="count">{`Số tiền bạn cần thanh toán online: ${convertDola(infoBooking?.priceTotal)} $`}</p>
                             </div>
                         </div>
                         <div className="payment__paypal">
-                            <Paypal pricePayment={convertDola(infoBooking?.priceTotal)}/>
+                            <Paypal pricePayment={convertDola(infoBooking?.priceTotal)} booking={handleBookingRoom}/>
                         </div>
                     </div>
                     <div className="col l-4">
