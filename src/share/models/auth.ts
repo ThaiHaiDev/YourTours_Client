@@ -90,3 +90,7 @@ export interface OTPForgotPasswordRequest {
     newPassword: string,
     confirmPassword: string
 }
+
+export interface OTPActiveAccountRequest {
+    otp: string
+}

@@ -41,7 +41,7 @@ const Auth = () => {
             <Route path="/intro-host" element={<IntroSettingOwnerPage />} />
             <Route path="/list-room" element={<ListRoomPage />} />
             <Route path="/wishlists" element={<FavoritesPage />} />
-            <Route path="/account" element={<InfoUserPage />} />
+            <Route path="/account/*" element={<InfoUserPage />} />
             <Route path="/booking" element={<BookingPage />} />
             <Route path="/historybooking" element={<HistoryBookingPage />} />
 

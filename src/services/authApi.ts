@@ -29,6 +29,10 @@ const authApi = {
         const url = `${API_BASE_URL}api/v1/auth/otp/reset-password`;
         return axios.post(url, data);
     },
+    activeAccount(): Promise<AxiosResponse> {
+        const url = `${API_BASE_URL}api/v1/auth/otp/reset-password`;
+        return axios.post(url);
+    },
 };
 
 export default authApi;

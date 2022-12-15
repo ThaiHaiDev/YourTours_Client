@@ -1,0 +1,65 @@
+.otp-box-active__account {
+    .container {
+        display: flex;
+        flex-flow: column;
+        height: 100%;
+        align-items: space-around;
+        justify-content: center;
+    }
+
+    .userInput {
+        display: flex;
+        justify-content: center;
+
+        .input-otp {
+            margin: 10px;
+            height: 35px;
+            width: 65px;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            font-family: arimo;
+            font-size: 1.2rem;
+            background: #eef2f3;
+        }
+    }
+
+    .forgot__form-input {
+        border: solid;
+        border-color: #eee;
+        padding: 10px 15px;
+        width: 100%;
+        margin-bottom: 5px;
+        font-size: 1.4rem;
+    }
+
+    h1 {
+        text-align: center;
+        font-family: arimo;
+        color: black;
+    }
+
+    p {
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-bottom: 5px !important;
+    }
+
+    .customs-btn { 
+        background: #4f46e5;
+        padding: 10px 150px;
+        font-size: 1.6rem;
+        color: white;
+        margin-top: 20px;
+        border: none;
+    }
+
+    .customs-btn:hover {
+        background: #1e88e5;
+    }
+    .message_error {
+        color: blue !important;
+        margin-top: 0 !important;
+        padding-left: 0 !important;
+    }
+}
