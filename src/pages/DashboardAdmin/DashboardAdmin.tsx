@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -8,144 +8,124 @@ import StatusCard from '../../components/AllAdminComponents/Statuscard/Statuscar
 
 import Table from '../../components/AllAdminComponents/Table/Table';
 
-import Badge from '../../components/AllAdminComponents/Badge/Badge';
-
-import statusCards from '../../mockdata/status-card-data.json';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 
 import './DashboardAdmin.scss';
-
-const chartOptions = {
-    options: {
-        chart: {
-            id: 'basic-bar',
-        },
-        xaxis: {
-            categories: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-        },
-    },
-    series: [
-        {
-            name: 'series-1',
-            data: [30, 40, 45, 50, 49, 60, 70, 91, 60, 70, 91, 10],
-        },
-    ],
-};
+import statisticApi from '../../services/statisticApi';
 
 const topCustomers = {
-    head: ['user', 'total orders', 'total spending'],
-    body: [
-        {
-            username: 'john doe',
-            order: '490',
-            price: '$15,870',
-        },
-        {
-            username: 'frank iva',
-            order: '250',
-            price: '$12,251',
-        },
-        {
-            username: 'anthony baker',
-            order: '120',
-            price: '$10,840',
-        },
-        {
-            username: 'frank iva',
-            order: '110',
-            price: '$9,251',
-        },
-        {
-            username: 'anthony baker',
-            order: '80',
-            price: '$8,840',
-        },
-    ],
+    head: ['Tên khách hàng', 'Tổng lượt đặt', 'Tổng chi tiêu'],
 };
 
 const renderCusomerHead = (item: any, index: any) => <th key={index}>{item}</th>;
 
 const renderCusomerBody = (item: any, index: any) => (
     <tr key={index}>
-        <td>{item.username}</td>
-        <td>{item.order}</td>
-        <td>{item.price}</td>
+        <td>{item.fullName}</td>
+        <td>{item.numberOfBooking}</td>
+        <td>{item.totalCost}</td>
     </tr>
 );
 
 const latestOrders = {
-    header: ['order id', 'user', 'total price', 'date', 'status'],
-    body: [
-        {
-            id: '#OD1711',
-            user: 'john doe',
-            date: '17 Jun 2021',
-            price: '$900',
-            status: 'shipping',
-        },
-        {
-            id: '#OD1712',
-            user: 'frank iva',
-            date: '1 Jun 2021',
-            price: '$400',
-            status: 'paid',
-        },
-        {
-            id: '#OD1713',
-            user: 'anthony baker',
-            date: '27 Jun 2021',
-            price: '$200',
-            status: 'pending',
-        },
-        {
-            id: '#OD1712',
-            user: 'frank iva',
-            date: '1 Jun 2021',
-            price: '$400',
-            status: 'paid',
-        },
-        {
-            id: '#OD1713',
-            user: 'anthony baker',
-            date: '27 Jun 2021',
-            price: '$200',
-            status: 'refund',
-        },
-    ],
+    header: ['Tên chủ nhà', 'Số nhà cho thuê', 'Số lượng khách đặt phòng', 'Doanh thu'],
 };
-
-// const orderStatus = {
-//     shipping: 'primary',
-//     pending: 'warning',
-//     paid: 'success',
-//     refund: 'danger',
-// };
 
 const renderOrderHead = (item: any, index: any) => <th key={index}>{item}</th>;
 
 const renderOrderBody = (item: any, index: any) => (
     <tr key={index}>
-        <td>{item.id}</td>
-        <td>{item.user}</td>
-        <td>{item.price}</td>
-        <td>{item.date}</td>
-        <td>
-            <Badge type="primary" content={item.status} />
-        </td>
+        <td>{item.fullName}</td>
+        <td>{item.numberOfHomes}</td>
+        <td>{item.numberOfBooking}</td>
+        <td>{item.totalCost}</td>
     </tr>
 );
 
 const DashboardAdmin = () => {
     const themeReducer = useSelector((state: RootState) => state.global);
-    
+
+    const [numberStatis, setNumberStatis] = useState<any>([]);
+    const [dataChart, setDataChart] = useState<any>([]);
+    const [dataGuests, setDataGuests] = useState<any>([]);
+    const [dataOwners, setDataOwners] = useState<any>([]);
+
+    useEffect(() => {
+        statisticApi.getStatisticOfAdmin().then((dataResponse) => {
+            const dataStatistic = [
+                {
+                    icon: 'bx bx-user',
+                    count: dataResponse.data.totalNumberOfGuests,
+                    title: 'Tổng số khách hàng',
+                },
+                {
+                    icon: 'bx bx-cart',
+                    count: dataResponse.data.totalNumberOfBooking,
+                    title: 'Tổng lượt đặt phòng',
+                },
+                {
+                    icon: 'bx bx-dollar-circle',
+                    count: dataResponse.data.totalNumberOfRevenue,
+                    title: 'Tổng doanh thu',
+                },
+                {
+                    icon: 'bx bx-home-circle',
+                    count: dataResponse.data.totalNumberOfOwner,
+                    title: 'Tổng số chủ nhà',
+                },
+            ];
+            setNumberStatis(dataStatistic);
+            setDataChart(dataResponse.data.revenueStatistics);
+        });
+
+        statisticApi.getStatisticOfAdminForGuest().then((dataResponse) => {
+            setDataGuests(dataResponse.data.content);
+        });
+
+        statisticApi.getStatisticOfAdminForOwner().then((dataResponse) => {
+            setDataOwners(dataResponse.data.content);
+            console.log(dataResponse.data.content);
+        });
+    }, []);
+
+    const chartOptions = {
+        options: {
+            chart: {
+                id: 'basic-bar',
+            },
+            xaxis: {
+                categories: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+            },
+        },
+        series: [
+            {
+                name: 'Doanh thu',
+                data: [
+                    dataChart[0]?.amount,
+                    dataChart[1]?.amount,
+                    dataChart[2]?.amount,
+                    dataChart[3]?.amount,
+                    dataChart[4]?.amount,
+                    dataChart[5]?.amount,
+                    dataChart[6]?.amount,
+                    dataChart[7]?.amount,
+                    dataChart[8]?.amount,
+                    dataChart[9]?.amount,
+                    dataChart[10]?.amount,
+                    dataChart[11]?.amount,
+                ],
+            },
+        ],
+    };
+
     return (
-        <div className='dashboard__admin'>
+        <div className="dashboard__admin">
             <h2 className="page-header">Dashboard</h2>
             <div className="row">
                 <div className="col l-5">
                     <div className="row">
-                        {statusCards.map((item, index) => (
+                        {numberStatis?.map((item: any, index: number) => (
                             <div className="col l-6" key={index}>
                                 <StatusCard icon={item.icon} count={item.count} title={item.title} />
                             </div>
@@ -157,18 +137,22 @@ const DashboardAdmin = () => {
                     <div className="card-admin-chart">
                         {/* chart */}
                         <Chart
-                            options={themeReducer.mode === 'theme-mode-dark' ? {
-                                ...chartOptions.options,
-                                theme: { mode: 'dark'}
-                            } : {
-                                ...chartOptions.options,
-                                theme: { mode: 'light'}
-                            }}
+                            options={
+                                themeReducer.mode === 'theme-mode-dark'
+                                    ? {
+                                          ...chartOptions.options,
+                                          theme: { mode: 'dark' },
+                                      }
+                                    : {
+                                          ...chartOptions.options,
+                                          theme: { mode: 'light' },
+                                      }
+                            }
                             // options={chartOptions.options}
                             series={chartOptions.series}
                             type="line"
                             height="100%"
-                            width='100%'
+                            width="100%"
                         />
                     </div>
                 </div>
@@ -182,7 +166,7 @@ const DashboardAdmin = () => {
                             <Table
                                 headData={topCustomers.head}
                                 renderHead={(item: any, index: any) => renderCusomerHead(item, index)}
-                                bodyData={topCustomers.body}
+                                bodyData={dataGuests}
                                 renderBody={(item: any, index: any) => renderCusomerBody(item, index)}
                             />
                         </div>
@@ -200,7 +184,7 @@ const DashboardAdmin = () => {
                             <Table
                                 headData={latestOrders.header}
                                 renderHead={(item: any, index: any) => renderOrderHead(item, index)}
-                                bodyData={latestOrders.body}
+                                bodyData={dataOwners}
                                 renderBody={(item: any, index: any) => renderOrderBody(item, index)}
                             />
                         </div>
