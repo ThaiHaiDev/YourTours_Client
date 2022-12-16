@@ -13,14 +13,20 @@ import { RootState } from '../../redux/store';
 
 import './DashboardAdmin.scss';
 import statisticApi from '../../services/statisticApi';
+import {
+    guestsStatisData,
+    numberStatisData,
+    ownersStatisData,
+    revenueStatisticsResponse,
+} from '../../share/models/statisticAdmin';
 
 const topCustomers = {
     head: ['Tên khách hàng', 'Tổng lượt đặt', 'Tổng chi tiêu'],
 };
 
-const renderCusomerHead = (item: any, index: any) => <th key={index}>{item}</th>;
+const renderCusomerHead = (item: string, index: number) => <th key={index}>{item}</th>;
 
-const renderCusomerBody = (item: any, index: any) => (
+const renderCusomerBody = (item: guestsStatisData, index: number) => (
     <tr key={index}>
         <td>{item.fullName}</td>
         <td>{item.numberOfBooking}</td>
@@ -32,9 +38,9 @@ const latestOrders = {
     header: ['Tên chủ nhà', 'Số nhà cho thuê', 'Số lượng khách đặt phòng', 'Doanh thu'],
 };
 
-const renderOrderHead = (item: any, index: any) => <th key={index}>{item}</th>;
+const renderOrderHead = (item: string, index: number) => <th key={index}>{item}</th>;
 
-const renderOrderBody = (item: any, index: any) => (
+const renderOrderBody = (item: ownersStatisData, index: number) => (
     <tr key={index}>
         <td>{item.fullName}</td>
         <td>{item.numberOfHomes}</td>
@@ -46,10 +52,10 @@ const renderOrderBody = (item: any, index: any) => (
 const DashboardAdmin = () => {
     const themeReducer = useSelector((state: RootState) => state.global);
 
-    const [numberStatis, setNumberStatis] = useState<any>([]);
-    const [dataChart, setDataChart] = useState<any>([]);
-    const [dataGuests, setDataGuests] = useState<any>([]);
-    const [dataOwners, setDataOwners] = useState<any>([]);
+    const [numberStatis, setNumberStatis] = useState<numberStatisData[]>([]);
+    const [dataChart, setdataChart] = useState<revenueStatisticsResponse[]>([]);
+    const [dataGuests, setDataGuests] = useState<guestsStatisData[]>([]);
+    const [dataOwners, setDataOwners] = useState<ownersStatisData[]>([]);
 
     useEffect(() => {
         statisticApi.getStatisticOfAdmin().then((dataResponse) => {
@@ -76,7 +82,7 @@ const DashboardAdmin = () => {
                 },
             ];
             setNumberStatis(dataStatistic);
-            setDataChart(dataResponse.data.revenueStatistics);
+            setdataChart(dataResponse.data.revenueStatistics);
         });
 
         statisticApi.getStatisticOfAdminForGuest().then((dataResponse) => {
@@ -85,7 +91,6 @@ const DashboardAdmin = () => {
 
         statisticApi.getStatisticOfAdminForOwner().then((dataResponse) => {
             setDataOwners(dataResponse.data.content);
-            console.log(dataResponse.data.content);
         });
     }, []);
 
@@ -102,18 +107,18 @@ const DashboardAdmin = () => {
             {
                 name: 'Doanh thu',
                 data: [
-                    dataChart[0]?.amount,
-                    dataChart[1]?.amount,
-                    dataChart[2]?.amount,
-                    dataChart[3]?.amount,
-                    dataChart[4]?.amount,
-                    dataChart[5]?.amount,
-                    dataChart[6]?.amount,
-                    dataChart[7]?.amount,
-                    dataChart[8]?.amount,
-                    dataChart[9]?.amount,
-                    dataChart[10]?.amount,
-                    dataChart[11]?.amount,
+                    dataChart.length !== 0 ? dataChart[0]?.amount : 0,
+                    dataChart.length !== 0 ? dataChart[1]?.amount : 0,
+                    dataChart.length !== 0 ? dataChart[2]?.amount : 0,
+                    dataChart.length !== 0 ? dataChart[3]?.amount : 0,
+                    dataChart.length !== 0 ? dataChart[4]?.amount : 0,
+                    dataChart.length !== 0 ? dataChart[5]?.amount : 0,
+                    dataChart.length !== 0 ? dataChart[6]?.amount : 0,
+                    dataChart.length !== 0 ? dataChart[7]?.amount : 0,
+                    dataChart.length !== 0 ? dataChart[8]?.amount : 0,
+                    dataChart.length !== 0 ? dataChart[9]?.amount : 0,
+                    dataChart.length !== 0 ? dataChart[10]?.amount : 0,
+                    dataChart.length !== 0 ? dataChart[11]?.amount : 0,
                 ],
             },
         ],
@@ -125,7 +130,7 @@ const DashboardAdmin = () => {
             <div className="row">
                 <div className="col l-5">
                     <div className="row">
-                        {numberStatis?.map((item: any, index: number) => (
+                        {numberStatis?.map((item: numberStatisData, index: number) => (
                             <div className="col l-6" key={index}>
                                 <StatusCard icon={item.icon} count={item.count} title={item.title} />
                             </div>
@@ -165,9 +170,9 @@ const DashboardAdmin = () => {
                         <div className="card__body">
                             <Table
                                 headData={topCustomers.head}
-                                renderHead={(item: any, index: any) => renderCusomerHead(item, index)}
+                                renderHead={(item: string, index: number) => renderCusomerHead(item, index)}
                                 bodyData={dataGuests}
-                                renderBody={(item: any, index: any) => renderCusomerBody(item, index)}
+                                renderBody={(item: guestsStatisData, index: number) => renderCusomerBody(item, index)}
                             />
                         </div>
                         <div className="card__footer">
@@ -183,9 +188,9 @@ const DashboardAdmin = () => {
                         <div className="card__body">
                             <Table
                                 headData={latestOrders.header}
-                                renderHead={(item: any, index: any) => renderOrderHead(item, index)}
+                                renderHead={(item: string, index: number) => renderOrderHead(item, index)}
                                 bodyData={dataOwners}
-                                renderBody={(item: any, index: any) => renderOrderBody(item, index)}
+                                renderBody={(item: ownersStatisData, index: number) => renderOrderBody(item, index)}
                             />
                         </div>
                         <div className="card__footer">
