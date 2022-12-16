@@ -16,12 +16,15 @@ import mapProvince from '../../utils/mapProvince';
 import formatPrice from '../../utils/formatPrice';
 import Paypal from '../../components/Paypal/Paypal';
 import convertDola from '../../utils/convertDola';
+import CheckBoxPayment from '../../components/CheckBoxPayment/CheckBoxPayment';
 
 const BookingPage = () => {
     const infoBooking = useSelector((state: RootState) => state.booking);
 
     const [dataDetailHomeBooking, setDataDetalHomeBooking] = useState<any>([]);
     const [priceDay, setPriceDay] = useState<string>('');
+
+    const [priceAfterChoosePayment, setPriceAfterChoosePayment] = useState<any>(infoBooking?.priceTotal);
 
     const { enqueueSnackbar } = useSnackbar();
 
@@ -39,8 +42,12 @@ const BookingPage = () => {
     }, [infoBooking.homeId]);
 
     const handleBookingRoom = () => {
+        const dataBooking = {
+            ...infoBooking,
+            moneyPayed : priceAfterChoosePayment
+        }
         bookingApi
-            .bookingRoom(infoBooking)
+            .bookingRoom(dataBooking)
             .then((dataResponse) => {
                 enqueueSnackbar('Đặt phòng thành công', { variant: 'success' });
             })
@@ -89,11 +96,12 @@ const BookingPage = () => {
                         <div className="count-customer">
                             <div>
                                 <p className="customer-count__title">Thanh toán online (Bạn vui lòng thanh toán trước để đặt phòng)</p>
-                                <p className="count">{`Số tiền bạn cần thanh toán online: ${convertDola(infoBooking?.priceTotal)} $`}</p>
+                                <p className="count">{`Số tiền bạn cần thanh toán online: ${convertDola(priceAfterChoosePayment)} $`}</p>
                             </div>
                         </div>
+                        <CheckBoxPayment setPriceAfterChoosePayment={setPriceAfterChoosePayment} price={infoBooking?.priceTotal}/>
                         <div className="payment__paypal">
-                            <Paypal pricePayment={convertDola(infoBooking?.priceTotal)} booking={handleBookingRoom}/>
+                            <Paypal pricePayment={convertDola(priceAfterChoosePayment)} booking={handleBookingRoom}/>
                         </div>
                     </div>
                     <div className="col l-4">

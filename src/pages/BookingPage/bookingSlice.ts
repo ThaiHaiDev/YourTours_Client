@@ -43,6 +43,9 @@ const bookingSlice = createSlice({
         }, 
         addPriceTotal(state, action) {
             state.priceTotal = action.payload.priceTotal;
+        }, 
+        addPaymentMethod(state, action) {
+            state.paymentMethod = action.payload.paymentMethod
         }
     },
 });
