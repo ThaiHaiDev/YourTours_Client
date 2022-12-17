@@ -52,7 +52,6 @@ const Navbar = () => {
                     ) : (
                         <>
                             <NavLink to="/signin">Đăng nhập</NavLink>
-                            <NavLink to="/signup">Đăng ký</NavLink>
                         </>
                     )}
                 </div>

@@ -3,9 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Chart from 'react-apexcharts';
-
 import StatusCard from '../../components/AllAdminComponents/Statuscard/Statuscard';
-
 import Table from '../../components/AllAdminComponents/Table/Table';
 
 import { useSelector } from 'react-redux';
