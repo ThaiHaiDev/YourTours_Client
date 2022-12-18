@@ -16,7 +16,7 @@ const NavbarOwner = () => {
             </NavLink>
             <div className="navbar-right menu">
                 <NavLink to="/host" end={true}>Hôm nay</NavLink>
-                <NavLink to="/host/setting">Nhà / Phòng cho thuê</NavLink>
+                <NavLink to="/host/setting" end={true}>Nhà / Phòng cho thuê</NavLink>
                 <NavLink to="/bookroom">Đặt phòng</NavLink>
                 <NavLink to="/host/setting/calendar">Lịch</NavLink>
                 <NavLink to="/intro-host">Tạo mục chủ nhà</NavLink>

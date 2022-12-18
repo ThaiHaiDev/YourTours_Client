@@ -157,7 +157,7 @@ export default function StepperComponent() {
         if (setDataStep4URL.length >= 5) {
             setCheckImage(true);
         }
-        dispatch(setupOwnerSlice.actions.addimagesOfHomeRoom(setDataStep4URL));
+        await dispatch(setupOwnerSlice.actions.addimagesOfHomeRoom(setDataStep4URL));
         setLoad(false);
     };
 
