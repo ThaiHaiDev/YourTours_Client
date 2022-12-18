@@ -35,17 +35,21 @@ const FilterBar = (props: any) => {
         });
         
     }, [props.queryParams]);
+    console.log(listDataFilterNavbar)
 
     const navigate = useNavigate();
 
     const handleFilter = (idActive : number, idFilter: string) => {
         setIndexActive(idActive)
         if (idFilter === null) {
-            filterApi.getAllRoomsWithFilter(``).then((dataResponse) => {
+            filterApi.getAllRoomsWithFilter({queryParams : ``, pagi : props?.pagi}).then((dataResponse) => {
                 props.filterData(dataResponse.data.content)
             })
+            navigate({
+                search: ``,
+            });
         } else {
-            filterApi.getAllRoomsWithFilter(`amenityId=${idFilter}&`).then((dataResponse) => {
+            filterApi.getAllRoomsWithFilter({queryParams : `amenityId=${idFilter}&`, pagi : props?.pagi}).then((dataResponse) => {
                 props.filterData(dataResponse.data.content)
             })
             navigate({
@@ -70,7 +74,7 @@ const FilterBar = (props: any) => {
                     </div>
                 ))}
             </Slider>
-            <DialogFilter filterData={props.filterData} />
+            <DialogFilter filterData={props.filterData} pagi={props?.pagi}/>
         </div>
     );
 };

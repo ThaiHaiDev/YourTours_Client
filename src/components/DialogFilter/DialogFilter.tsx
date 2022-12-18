@@ -40,7 +40,7 @@ export default function DialogFilter(props: any) {
     const navigate = useNavigate();
 
     const handleFilter = () => {
-        filterApi.getAllRoomsWithFilter(filter).then((dataResponse: any) => {
+        filterApi.getAllRoomsWithFilter({queryParams: filter, pagi: props?.pagi}).then((dataResponse: any) => {
             if (props.filterData) {
                 props.filterData(dataResponse.data.content);
             }

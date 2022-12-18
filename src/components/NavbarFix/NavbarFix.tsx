@@ -42,7 +42,7 @@ const NavbarFix = () => {
                         Book
                     </NavLink> */}
                     <NavLink to="/intro-host">Trở thành chủ nhà</NavLink>
-                    <NavLink to="/list-room">Danh sách phòng</NavLink>
+                    <NavLink to="/list-room">Danh sách nhà</NavLink>
                     <NavLink to="/historybooking">Lịch sử đặt phòng</NavLink>
                 </div>
 

@@ -53,8 +53,6 @@ function DropdownMenu() {
         dispatch(userSlice.actions.logout());
     }
 
-    console.log(user.current)
-
     return (
         <div className="dropdown" style={{ height: '100px' }} ref={dropdownRef}>
             <Link to='/account' className='dropdown__link'>Tài khoản</Link>

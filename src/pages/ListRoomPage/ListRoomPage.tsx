@@ -38,7 +38,7 @@ const ListRoomPage = () => {
             setLoading(false);
         });
     }, [queryParams, state.items.length]);
-    console.log(state.items.length, listDataRoom.length)
+    // console.log(state.items.length, listDataRoom.length)
 
     const fetchMoreData = () => {
         // a fake async api call like which sends
@@ -55,7 +55,7 @@ const ListRoomPage = () => {
         <div className="list-room__page">
             <div style={{ position: 'fixed', zIndex: '99'}}>
                 <NavbarFix />
-                <FilterBar filterData={filterData} queryParams={queryParams} />
+                <FilterBar filterData={filterData} queryParams={queryParams} pagi={state.items.length}/>
             </div>
             <div>
                 <InfiniteScroll
