@@ -6,6 +6,9 @@ import { useForm, ValidationRule, SubmitHandler } from 'react-hook-form';
 import regexCons from '../../constants/regexCons';
 import { OTPForgotPasswordRequest } from '../../share/models/auth';
 
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+
 interface OTPBoxForgotData {
     handleSubmitOTP: (otp: OTPForgotPasswordRequest) => void;
     emailSend: string;
@@ -30,6 +33,8 @@ const OTPBoxForgotPass = (props: OTPBoxForgotData) => {
         formState: { errors },
     } = useForm<any>();
 
+    const [show, setShow] = useState<boolean>(false);
+
     const regexPassword: ValidationRule<RegExp> = regexCons.email;
 
     const clickEvent = (last: string) => {
@@ -39,6 +44,10 @@ const OTPBoxForgotPass = (props: OTPBoxForgotData) => {
     useEffect(() => {
         document.getElementById('ist')?.focus();
     }, []);
+
+    const handleShowPass = () => {
+        setShow(!show);
+    };
 
     const nameChangeHandler1 = (event: ChangeEvent<HTMLInputElement>) => {
         setO1(event.currentTarget?.value);
@@ -127,7 +136,7 @@ const OTPBoxForgotPass = (props: OTPBoxForgotData) => {
                         <label className="label-forgot">Mật khẩu</label>
                         <input
                             className="forgot__form-input"
-                            type="password"
+                            type={!show ? 'password' : 'text'}
                             {...register('password', {
                                 required: 'Mật khẩu được yêu cầu',
                                 pattern: {
@@ -145,6 +154,11 @@ const OTPBoxForgotPass = (props: OTPBoxForgotData) => {
                                 },
                             })}
                         />
+                        {show ? (
+                            <VisibilityOffIcon className="icon-eye" onClick={handleShowPass} />
+                        ) : (
+                            <VisibilityIcon className="icon-eye" onClick={handleShowPass} />
+                        )}
                         {errors.password && (
                             <p className="message_error">{`${errors.password && errors.password?.message}`}</p>
                         )}

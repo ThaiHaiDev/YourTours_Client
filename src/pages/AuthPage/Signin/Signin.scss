@@ -157,6 +157,14 @@
             color: red;
         }
 
+        .icon-eye {
+            cursor: pointer;
+            position: absolute;
+            font-size: 20px;
+            right: 70px;
+            margin-top: 10px;
+        }
+
         .forgot-password {
             display: flex;
             justify-content: space-between;

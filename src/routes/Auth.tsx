@@ -27,16 +27,23 @@ import HistoryBookingPage from '../pages/HistoryBookingPage/HistoryBookingPage';
 import Test from '../pages/Test/Test';
 
 const Auth = () => {
-    const user = useSelector((state: RootState) => state.user)
+    const user = useSelector((state: RootState) => state.user);
 
     return (
         <Routes>
-            <Route path="/" element={<HomePage />}  />
+            <Route path="/" element={<HomePage />} />
             <Route path="/detail/:idHome" element={<RoomDetail />} />
             <Route path="/stepsetupowner" element={<StepperMain />} />
-            <Route path="/signin" element={<Signin />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/forgotpassword" element={<ForgotPass />} />
+            {user.current.id === undefined ? (
+                <>
+                    <Route path="/signin" element={<Signin />} />
+                    <Route path="/signup" element={<Signup />} />
+                    <Route path="/forgotpassword" element={<ForgotPass />} />
+                </>
+            ) : (
+                ''
+            )}
+
             <Route path="/congratulation" element={<CongratulationPage />} />
             <Route path="/intro-host" element={<IntroSettingOwnerPage />} />
             <Route path="/list-room" element={<ListRoomPage />} />
@@ -55,8 +62,8 @@ const Auth = () => {
             <Route path="/host/setting/countroomdetail/:idHome" element={<CountRoomDetailSetting />} />
             <Route path="/host/setting/calendar" element={<CalendarRoomSetting />} />
             <Route path="/host/setting/transactionhistory" element={<TransactionHistoryOwner />} />
-            
-            <Route path='*' element={<NotFoundPage />} />
+
+            <Route path="*" element={<NotFoundPage />} />
         </Routes>
     );
 };

@@ -3,6 +3,9 @@ import './Signin.scss';
 import { AxiosError } from 'axios';
 import { useSnackbar } from 'notistack';
 
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+
 import Navbar from '../../../components/Navbar/Navbar';
 import { Link } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
@@ -23,8 +26,13 @@ const Signin = () => {
 
     const { enqueueSnackbar } = useSnackbar();
     const [loading, setLoading] = useState<boolean>(false);
+    const [show, setShow] = useState<boolean>(false);
 
     const dispatch = useDispatch();
+
+    const handleShowPass = () => {
+        setShow(!show);
+    };
 
     const onSubmit: SubmitHandler<LoginRequest> = (data: LoginRequest) => {
         setLoading(true);
@@ -82,7 +90,7 @@ const Signin = () => {
                         <label>
                             <input
                                 className="signup__form-input"
-                                type="password"
+                                type={!show ? 'password' : 'text'}
                                 placeholder="Enter password"
                                 {...register('password', {
                                     required: 'Mật khẩu được yêu cầu',
@@ -92,6 +100,12 @@ const Signin = () => {
                                     },
                                 })}
                             />
+                            {show ? (
+                                <VisibilityOffIcon className="icon-eye" onClick={handleShowPass} />
+                            ) : (
+                                <VisibilityIcon className="icon-eye" onClick={handleShowPass} />
+                            )}
+
                             {errors.password && <span className="message_error">{`${errors.password?.message}`}</span>}
                         </label>
                         <button type="submit" disabled={isSubmitting}>
@@ -99,7 +113,9 @@ const Signin = () => {
                         </button>
                     </form>
                     <div className="forgot-password">
-                        <Link to="/forgotpassword" className='link__forgot-password'>Quên mật khẩu</Link>
+                        <Link to="/forgotpassword" className="link__forgot-password">
+                            Quên mật khẩu
+                        </Link>
                         <Link to="/signup" className="link-create">
                             Tạo tài khoản ngay
                         </Link>

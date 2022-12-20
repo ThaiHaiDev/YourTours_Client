@@ -5,8 +5,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../../../components/Navbar/Navbar';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useSnackbar } from 'notistack';
+
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 import { useForm, ValidationRule, SubmitHandler } from 'react-hook-form';
 import OTPBox from '../../../components/OTPBox/OTPBox';
@@ -41,6 +44,8 @@ function DropdownMenu() {
     const [emailSend, setEmailSend] = useState<string>('');
     const dropdownRef = useRef<any>(null);
 
+    const [show, setShow] = useState<boolean>(false);
+
     const regexPassword: ValidationRule<RegExp> = regexCons.email;
 
     const {
@@ -65,6 +70,10 @@ function DropdownMenu() {
         const height = el.offsetHeight;
         setMenuHeight(height);
     }
+
+    const handleShowPass = () => {
+        setShow(!show);
+    };
 
     const onSubmit: SubmitHandler<FormRegisterData> = (data: FormRegisterData) => {
         setEmailSend(data.email);
@@ -154,7 +163,7 @@ function DropdownMenu() {
                                 <label className="label-email">Mật khẩu</label>
                                 <input
                                     className="signup__form-input"
-                                    type="password"
+                                    type={!show ? 'password' : 'text'}
                                     {...register('password', {
                                         required: 'Mật khẩu được yêu cầu',
                                         pattern: {
@@ -172,6 +181,11 @@ function DropdownMenu() {
                                         },
                                     })}
                                 />
+                                {show ? (
+                                    <VisibilityOffIcon className="icon-eye" onClick={handleShowPass} />
+                                ) : (
+                                    <VisibilityIcon className="icon-eye" onClick={handleShowPass} />
+                                )}
                                 {errors.password && (
                                     <p className="message_error">{`${errors.password && errors.password?.message}`}</p>
                                 )}
@@ -180,7 +194,7 @@ function DropdownMenu() {
                             <label>
                                 <label className="label-email">Xác nhận mật khẩu</label>
                                 <input
-                                    type="password"
+                                    type={!show ? 'password' : 'text'}
                                     {...register('password_confirmation', {
                                         required: 'Mật khẩu được yêu cầu',
                                         validate: (val: string | undefined) => {
@@ -190,6 +204,11 @@ function DropdownMenu() {
                                         },
                                     })}
                                 />
+                                {show ? (
+                                    <VisibilityOffIcon className="icon-eye" onClick={handleShowPass} />
+                                ) : (
+                                    <VisibilityIcon className="icon-eye" onClick={handleShowPass} />
+                                )}
                                 {errors.password_confirmation && (
                                     <p className="message_error">{`${
                                         errors.password_confirmation && errors.password_confirmation?.message
