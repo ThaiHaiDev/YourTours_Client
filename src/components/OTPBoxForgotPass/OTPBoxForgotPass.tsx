@@ -124,7 +124,7 @@ const OTPBoxForgotPass = (props: OTPBoxForgotData) => {
                         />
                     </div>
                     <label>
-                        <label className="label-email">Mật khẩu</label>
+                        <label className="label-forgot">Mật khẩu</label>
                         <input
                             className="forgot__form-input"
                             type="password"
@@ -151,7 +151,7 @@ const OTPBoxForgotPass = (props: OTPBoxForgotData) => {
                     </label>
 
                     <label>
-                        <label className="label-email">Xác nhận mật khẩu</label>
+                        <label className="label-forgot">Xác nhận mật khẩu</label>
                         <input
                             className="forgot__form-input"
                             type="password"

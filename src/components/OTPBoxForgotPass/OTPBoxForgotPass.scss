@@ -46,13 +46,14 @@
     }
 
     .customs-btn { 
-
         background: #4f46e5;
         padding: 10px 150px;
         font-size: 1.6rem;
         color: white;
-        margin-left: 18%;
+        margin-left: auto;
+        margin-right: auto;
         margin-top: 20px;
+        margin-bottom: 20px;
         border: none;
     }
 
@@ -60,8 +61,14 @@
         background: #1e88e5;
     }
     .message_error {
-        color: blue !important;
+        color: red !important;
         margin-top: 0 !important;
         padding-left: 0 !important;
+        font-size: 11px !important;
+    }
+
+    .label-forgot {
+        margin-left: 5px;
+        font-size: 14px;
     }
 }

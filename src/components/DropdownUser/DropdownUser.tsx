@@ -3,7 +3,7 @@ import './DropdownUser.scss';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import userSlice from '../../pages/AuthPage/userSlice';
 import { RootState } from '../../redux/store';
@@ -49,8 +49,11 @@ function DropdownMenu() {
 
     const dispatch = useDispatch();
 
-    const handleLogout = () => {
-        dispatch(userSlice.actions.logout());
+    const navigate = useNavigate();
+
+    const handleLogout = async () => {
+        await dispatch(userSlice.actions.logout());
+        navigate('/');
     }
 
     return (
