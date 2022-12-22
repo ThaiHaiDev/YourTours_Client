@@ -39,6 +39,8 @@ const RoomDetail = () => {
     const [discount, setDiscount] = useState<number>(0);
     const [priceNoDiscount, setPriceNoDiscount] = useState<any>('');
 
+    console.log(dataDetailHome);
+
     const params = useParams();
 
     const dispatch = useDispatch();
@@ -55,8 +57,8 @@ const RoomDetail = () => {
     }, [params?.idHome]);
 
     useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [])
+        window.scrollTo(0, 0);
+    }, []);
 
     const handleChangeGuests = (value: any) => {
         setGuests(value);
@@ -225,6 +227,30 @@ const RoomDetail = () => {
                                 <div className="line" style={{ marginTop: '10px' }}>
                                     <hr />
                                 </div>
+
+                                {dataDetailHome?.discounts && dataDetailHome?.discounts.length > 0 && (
+                                    <>
+                                        <div className="discount-campain">
+                                            <div className="discount-campain__title">
+                                                <h2 className="title">Chương trình giảm giá</h2>
+                                                <img src="https://img.icons8.com/emoji/30/null/fire.png" alt="" />
+                                            </div>
+                                            {dataDetailHome?.discounts?.map((discount: any, index: number) => (
+                                                <div
+                                                    key={index}
+                                                    style={{ display: 'flex', justifyContent: 'space-between' }}
+                                                >
+                                                    <p>{discount.category.name}</p>
+                                                    <p>{`${discount.config.percent}%`}</p>
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                        <div className="line" style={{ marginTop: '10px' }}>
+                                            <hr />
+                                        </div>
+                                    </>
+                                )}
 
                                 {discount !== 0 && (
                                     <div className="price-total">

@@ -237,6 +237,25 @@
             }
         }
 
+        .discount-campain {
+            margin-left: 25px;
+            margin-right: 25px;
+
+            .discount-campain__title {
+                display: flex;
+                align-items: center;
+
+                .title {
+                    margin: 0;
+                    color: red;
+                }
+            }
+
+            p {
+                font-size: 15px;
+            }
+        }
+
         .btn-booking {
             width: 100%;
             display: flex;

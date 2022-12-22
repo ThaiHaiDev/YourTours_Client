@@ -43,7 +43,6 @@ const Auth = () => {
             ) : (
                 ''
             )}
-
             <Route path="/congratulation" element={<CongratulationPage />} />
             <Route path="/intro-host" element={<IntroSettingOwnerPage />} />
             <Route path="/list-room" element={<ListRoomPage />} />
