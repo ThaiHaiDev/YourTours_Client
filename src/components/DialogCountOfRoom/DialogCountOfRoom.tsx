@@ -33,6 +33,17 @@ export default function DialogCountOfRoom(props: any) {
         setOpen(false);
     };
 
+     const Update = (id: string | undefined, data: any) => {
+        props.setListRoomOfHome(
+            props.listRoomOfHome?.map((item: any) => {
+                if (item.id === id) {
+                    item.descriptionOfBed = data;
+                }
+                return item;
+            }),
+        );
+    };
+
     const handleSetDataBedCount = (value: any) => {
         if (!dataSetBedCount.some((check: any) => check.categoryId === value.categoryId)) {
             setDataSetBedCount([...dataSetBedCount, { ...value, roomOfHomeId: props?.roomOfHomeId }]);
@@ -48,13 +59,14 @@ export default function DialogCountOfRoom(props: any) {
 
     const handleSave = () => {
         const newCount = {
-            listBedOfHomeDetail: dataSetBedCount.filter((data:any) => { return data.amount !== 0}),
+            listBedOfHomeDetail: dataSetBedCount
         };
         roomOfHomeApi
             .saveCountBedOfHome(newCount)
             .then((data: any) => {
                 enqueueSnackbar('Lưu thành công', { variant: 'success' });
                 setOpen(false);
+                Update(props.roomOfHomeId, data.data.bedDescription);
             })
             .catch((error: AxiosError<any>) => {
                 enqueueSnackbar(error.response?.data.message, { variant: 'error' });

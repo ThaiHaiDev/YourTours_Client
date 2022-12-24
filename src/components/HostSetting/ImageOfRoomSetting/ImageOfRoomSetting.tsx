@@ -44,7 +44,7 @@ const ImageOfRoomSetting = (props : any) => {
                                     <h4>Bố trí chỗ ngủ</h4>
                                     <p>{room?.descriptionOfBed}</p>
                                 </div>
-                                <DialogCountOfRoom roomOfHomeId={room?.id} />
+                                <DialogCountOfRoom roomOfHomeId={room?.id} listRoomOfHome={props?.listRoomOfHome} setListRoomOfHome={props?.setListRoomOfHome}/>
                             </div>
                         )}
 

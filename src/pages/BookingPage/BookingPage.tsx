@@ -151,9 +151,9 @@ const BookingPage = () => {
                                     <p style={{ fontWeight: '550' }}>{formatPrice(infoBooking?.priceTotal)}</p>
                                 </div>
                             </div>
-                            <button onClick={handleBookingRoom} className="btn-booking">
+                            {/* <button onClick={handleBookingRoom} className="btn-booking">
                                 Đặt phòng
-                            </button>
+                            </button> */}
                         </div>
                     </div>
                 </div>

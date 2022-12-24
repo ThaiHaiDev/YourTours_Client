@@ -16,8 +16,6 @@ const CountRoomDetailSetting = () => {
     const [listRoomOfHome, setListRoomOfHome] = useState<any>([]);
     const [listCategoryRoom, setListCategoryRoom] = useState<any>([]);
 
-    console.log(listRoomOfHome)
-
     const params = useParams();
 
     const { enqueueSnackbar } = useSnackbar();
@@ -70,7 +68,7 @@ const CountRoomDetailSetting = () => {
                     <p>Phòng ngủ · Phòng tắm đầy đủ · Bồn tắm nước nóng · Ngoại thất</p>
                     <DialogCountRoom listCategoryRoom={listCategoryRoom} handleSaveAddRoom={handleSaveAddRoom}/>
                 </div>
-                <ImageOfRoomSetting listRoomOfHome={listRoomOfHome} handleRemoveRoom={handleRemoveRoom}/>
+                <ImageOfRoomSetting listRoomOfHome={listRoomOfHome} handleRemoveRoom={handleRemoveRoom} setListRoomOfHome={setListRoomOfHome}/>
             </div>
         </div>
     );

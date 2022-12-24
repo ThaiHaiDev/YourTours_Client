@@ -10,7 +10,11 @@ import ActiveAccount from './ActiveAccount/ActiveAccount';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import LocalActivityIcon from '@mui/icons-material/LocalActivity';
 
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
+
 const InfoUserPage = () => {
+    const user = useSelector((state: RootState) => state.user);
     return (
         <div className="info-user__page">
             <Navbar />
@@ -25,7 +29,7 @@ const InfoUserPage = () => {
                                 />
                             </div>
                             <div className="name-info">
-                                <h1>Hai Nguyen</h1>
+                                <h1>{user.current?.fullName}</h1>
                                 <Link to="/account" className="edit-info_-link">
                                     Chỉnh sửa
                                 </Link>

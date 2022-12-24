@@ -39,8 +39,6 @@ const RoomDetail = () => {
     const [discount, setDiscount] = useState<number>(0);
     const [priceNoDiscount, setPriceNoDiscount] = useState<any>('');
 
-    console.log(dataDetailHome);
-
     const params = useParams();
 
     const dispatch = useDispatch();

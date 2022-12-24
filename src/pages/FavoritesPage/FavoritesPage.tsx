@@ -44,7 +44,7 @@ const FavoritesPage = () => {
                                 <div className="card-item__favorite">
                                     <div className="content__favorite" onClick={() => handleLinkToDetail(room?.id)}>
                                         <img src={room?.thumbnail} alt="" />
-                                        <p className="name__favorite">Resort Hội An</p>
+                                        <p className="name__favorite">{room?.name}</p>
                                         <p className="price__favorite">{`Giá chỉ ${formatPrice(
                                             room?.costPerNightDefault,
                                         )}`}</p>
