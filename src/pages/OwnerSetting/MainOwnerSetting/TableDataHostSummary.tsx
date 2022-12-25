@@ -24,6 +24,7 @@ const TableDataHostSummary = (props: any) => {
             dateEnd: props.data[i]?.dateEnd ? props.data[i].dateEnd : '',
             guests: props.data[i]?.guests ? props.data[i].guests : '1',
             price: props.data[i]?.totalCost ? formatPrice(props.data[i].totalCost) : '1 đ',
+            priceBefore: props.data[i]?.moneyPayed ? formatPrice(props.data[i].moneyPayed) : '0 đ'
         });
     }
 
@@ -70,7 +71,7 @@ const TableDataHostSummary = (props: any) => {
 const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 70 },
     { field: 'idroom', headerName: 'ID', width: 70, hide: true },
-    { field: 'name', headerName: 'Nhà / phòng cho thuê', width: 300 },
+    { field: 'name', headerName: 'Nhà / phòng cho thuê', width: 260 },
     { field: 'nameCustomer', headerName: 'Tên khách hàng', width: 140 },
     {
         field: 'dateStart',
@@ -85,9 +86,10 @@ const columns: GridColDef[] = [
     {
         field: 'guests',
         headerName: 'Lượng khách',
-        width: 140,
+        width: 120,
     },
-    { field: 'price', headerName: 'Tổng tiền', width: 180 },
+    { field: 'price', headerName: 'Tổng tiền', width: 130 },
+    { field: 'priceBefore', headerName: 'Đã thanh toán', width: 140 },
 ];
 
 function DataTable(props: any) {

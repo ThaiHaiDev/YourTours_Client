@@ -30,7 +30,7 @@ const IntroSettingOwnerPage = () => {
                         <p>
                             Hãy tham gia cùng chúng tôi. Chúng tôi sẽ trợ giúp bạn qua từng bước của quy trình
                         </p>
-                        <h2>-- Curry</h2>
+                        <h2>-- Yourtours</h2>
                     </div>
                     <p className='btn-out' onClick={backHome}>Thoát</p>
                     <button type="submit" onClick={nextPage}>Tiếp tục</button>

@@ -51,7 +51,7 @@ const StatisShow = () => {
                 </div>
                 <div className="col l-6">
                     <div className="card-statis">
-                        <h3>{`Tổng số khách đã hoàn thành dịch vụ (không cancel): ${dataStatis?.totalNumberOfBookingFinish}`}</h3>
+                        <h3>{`Tổng số khách đã hoàn thành dịch vụ (không hủy): ${dataStatis?.totalNumberOfBookingFinish}`}</h3>
                     </div>
                 </div>
             </div>

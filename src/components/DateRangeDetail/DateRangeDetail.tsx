@@ -14,12 +14,13 @@ const DateRangeDetail = (props:any) => {
     const [range, setRange] = useState<any>([
         {
             startDate: new Date(),
-            endDate: addDays(new Date(), 7),
+            endDate: addDays(new Date(), 0),
             key: 'selection',
         },
     ]);
 
-    const resultDay = parseInt(format(range[0].endDate, 'dd')) - parseInt(format(range[0].startDate, 'dd')) + 1
+    // const resultDay = parseInt(format(range[0].endDate, 'dd')) - parseInt(format(range[0].startDate, 'dd')) + 1
+    const resultDay = 1
     // console.log('start',format(range[0].startDate, 'MM/dd/yyyy'));
     // console.log('end',format(range[0].endDate, 'MM/dd/yyyy'));
 

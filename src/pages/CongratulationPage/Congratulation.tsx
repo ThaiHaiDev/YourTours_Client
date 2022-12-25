@@ -31,7 +31,7 @@ const CongratulationPage = () => {
                             Chủ nhà là trung tâm trong mọi hoạt động của chúng tôi và chúng tôi rất mong bạn sẽ được
                             trải nghiệm sự kì diệu của việc đón tiếp khách.
                         </p>
-                        <h2>-- Curry</h2>
+                        <h2>-- Yourtours</h2>
                     </div>
                     <button type="submit" onClick={nextPage}>Tiếp tục</button>
                 </div>
