@@ -6,7 +6,7 @@ import LayoutHomeAdmin from '../pages/LayoutHomeAdmin/LayoutHomeAdmin';
 import LayoutSurchargeAdmin from '../pages/LayoutSurchargeAdmin/LayoutSurchargeAdmin';
 import LayoutTypeAmenityAdmin from '../pages/LayoutTypeAmenityAdmin/LayoutTypeAmenityAdmin';
 import LayoutTypeBedAdmin from '../pages/LayoutTypeBedAdmin/LayoutTypeBedAdmin';
-import LayoutTypeRoomAdmin from '../pages/LayoutTypeRoomAdmin/LayoutRoomAdmin';
+import LayoutTypeRoomAdmin from '../pages/LayoutTypeRoomAdmin/LayoutTypeRoomAdmin';
 import LayoutUserAdmin from '../pages/LayoutUserAdmin/LayoutUserAdmin';
 
 const RoutesAdmin = () => {

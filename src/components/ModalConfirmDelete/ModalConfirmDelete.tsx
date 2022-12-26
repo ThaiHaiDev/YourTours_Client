@@ -39,6 +39,7 @@ export default function ModalConfirmDelete(props: any) {
             .cancelBooking(dataCancel)
             .then((data) => {
                 enqueueSnackbar('Hủy thành công', { variant: 'success' });
+                setOpen(false);
             })
             .catch((error: AxiosError<any>) => {
                 enqueueSnackbar(error.response?.data.message, { variant: 'error' });
@@ -62,7 +63,7 @@ export default function ModalConfirmDelete(props: any) {
                 <Fade in={open}>
                     <Box sx={style}>
                         <Typography id="transition-modal-title" variant="h4" component="h2">
-                            Bạn có chắc rằng muốn xóa hay không ?
+                            Bạn có chắc rằng muốn hủy hay không ?
                         </Typography>
                         <div style={{ display: 'flex', justifyContent: 'right', marginTop: '10px' }}>
                             <button onClick={handleClose} className='no-btn'>

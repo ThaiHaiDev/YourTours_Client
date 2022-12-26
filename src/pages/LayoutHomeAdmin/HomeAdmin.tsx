@@ -4,6 +4,7 @@ import Table from '../../components/AllAdminComponents/Table/Table';
 import mapProvince from '../../utils/mapProvince';
 import formatPrice from '../../utils/formatPrice';
 import AddForm from '../../components/AllAdminComponents/AddForm/AddForm';
+import format3Dots from '../../utils/format3Dots';
 
 const customerTableHead = [
     '',
@@ -13,7 +14,6 @@ const customerTableHead = [
     'Tỉnh thành',
     'Giá theo đêm',
     'Chính sách hoàn tiền',
-    '',
 ]
 
 const fieldData = [
@@ -57,19 +57,14 @@ const HomeAdmin = (props: any) => {
     const renderBody = (item:any, index:any) => (
         <tr key={index}>
             <td>{index}</td>
-            <td>{item.name}</td>
-            <td>{item.description}</td>
+            <td>{format3Dots(item.name, 30)}</td>
+            <td>{format3Dots(item.description, 70)}</td>
             <td>{item.addressDetail}</td>
             <td>{mapProvince(item.provinceCode)}</td>
             <td>{formatPrice(item.costPerNightDefault)}</td>
-            <td>{item.refundPolicy}</td>
-            <td onClick={() => handleDeleteUser(item.id)} ><img src="https://img.icons8.com/plasticine/100/000000/filled-trash.png" alt='icon__delete' className='icon__btn'/></td>
+            <td>{format3Dots(item.refundPolicy, 10)}</td>
         </tr>
     )
-
-    const handleDeleteUser = (idUser: string) => {
-        
-    }
 
     return (
         <div className='home__admin'>
@@ -81,7 +76,7 @@ const HomeAdmin = (props: any) => {
                     <p className='text__admin'>{onAddUser ? 'Danh sách nhà' : 'Thêm mới'}</p>
                 </button>
             </div>
-            {/* {userUpdate && <Modal open={onModal} onClick={handleSetModal} dataUpdate={userUpdate} />} */}
+            
             {!onAddUser ? <div className="row">
                 <div className="col l-12">
                     <div className="card-admin">

@@ -11,18 +11,19 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import amenityCategoryApi from '../../services/amenityCategoryApi';
 import UpdateForm from '../../components/AllAdminComponents/UpdateForm/UpdateForm';
 import AddForm from '../../components/AllAdminComponents/AddForm/AddForm';
+import format3Dots from '../../utils/format3Dots';
 
-const customerTableHead = ['', 'Tên loại tiện ích', 'Mô tả', '', ''];
+const customerTableHead = ['', 'Tên loại tiện nghi', 'Mô tả', '', ''];
 
 const fieldData = [
     {
-        title: 'Tên loại tiện ích',
+        title: 'Tên loại tiện nghi',
         nameRegister: 'name',
-        nameRequire: 'Tên loại tiện ích',
+        nameRequire: 'Tên loại tiện nghi',
         placeholder: 'Vd: abc...',
     },
     {
-        title: 'Mô tả loại tiện ích',
+        title: 'Mô tả loại tiện nghi',
         nameRegister: 'description',
         nameRequire: 'Mô tả loại tiện ích được yêu cầu',
         placeholder: 'Vd: abc...',
@@ -39,8 +40,8 @@ const TypeAmenityAdmin = (props: any) => {
     const renderBody = (item: any, index: any) => (
         <tr key={index}>
             <td>{index}</td>
-            <td>{item.name}</td>
-            <td>{item.description}</td>
+            <td>{format3Dots(item.name, 30)}</td>
+            <td>{format3Dots(item.description, 80)}</td>
             <td>
                 <Popup
                     trigger={
@@ -133,13 +134,12 @@ const TypeAmenityAdmin = (props: any) => {
     return (
         <div className="typeamenity__admin">
             <div className="header__customer">
-                <h2 className="page-header">Loại tiện ích</h2>
+                <h2 className="page-header">Loại tiện nghi</h2>
                 <button className="btn__add-customer__admin" onClick={() => setOnAddUser(!onAddUser)}>
-                    <p className="icon__admin">{onAddUser ? '' : '+'}</p>
-                    <p className="text__admin">{onAddUser ? 'List user' : 'Add user'}</p>
+                    <p className="text__admin">{onAddUser ? 'Danh sách loại tiện nghi' : 'Thêm mới'}</p>
                 </button>
             </div>
-            {/* {userUpdate && <Modal open={onModal} onClick={handleSetModal} dataUpdate={userUpdate} />} */}
+
             {!onAddUser ? (
                 <div className="row">
                     <div className="col l-12">

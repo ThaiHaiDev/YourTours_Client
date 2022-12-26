@@ -11,6 +11,7 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import DeleteIcon from '@mui/icons-material/Delete';
 import UpdateForm from '../../components/AllAdminComponents/UpdateForm/UpdateForm';
+import format3Dots from '../../utils/format3Dots';
 
 const customerTableHead = ['', 'Tên tiện ích', 'Mô tả', 'Icon', 'Tên loại tiện ích', '', ''];
 
@@ -52,9 +53,9 @@ const AmenityAdmin = (props: any) => {
         <tr key={index}>
             <td>{index}</td>
             <td>{item.name}</td>
-            <td>{item.description}</td>
-            <td>{item.icon}</td>
-            <td>{item.category?.name}</td>
+            <td>{format3Dots(item.description, 30)}</td>
+            <td>{format3Dots(item.icon, 50)}</td>
+            <td>{format3Dots(item.category?.name, 15)}</td>
             <td>
                 <Popup
                     trigger={
@@ -147,10 +148,9 @@ const AmenityAdmin = (props: any) => {
     return (
         <div className="amenity__admin">
             <div className="header__customer">
-                <h2 className="page-header">Tiện ích</h2>
+                <h2 className="page-header">Tiện nghi</h2>
                 <button className="btn__add-customer__admin" onClick={() => setOnAddUser(!onAddUser)}>
-                    <p className="icon__admin">{onAddUser ? '' : '+'}</p>
-                    <p className="text__admin">{onAddUser ? 'List user' : 'Add user'}</p>
+                    <p className="text__admin">{onAddUser ? 'Danh sách tiện nghi' : 'Thêm mới'}</p>
                 </button>
             </div>
 

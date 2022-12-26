@@ -19,13 +19,13 @@ const fieldData = [
     {
         title: 'Tên loại giường',
         nameRegister: 'name',
-        nameRequire: 'Tên loại phòng được yêu cầu',
+        nameRequire: 'Tên loại giường được yêu cầu',
         placeholder: 'Vd: abc...',
     },
     {
         title: 'Mô tả loại phòng',
         nameRegister: 'description',
-        nameRequire: 'Mô tả loại phòng được yêu cầu',
+        nameRequire: 'Mô tả loại giường được yêu cầu',
         placeholder: 'Vd: abc...',
     },
 ];
@@ -134,7 +134,7 @@ const TypeBedAdmin = (props: any) => {
     return (
         <div className="typebed__admin">
             <div className="header__customer">
-                <h2 className="page-header">Nhà cho thuê</h2>
+                <h2 className="page-header">Loại giường</h2>
                 <button className="btn__add-customer__admin" onClick={() => setOnAdd(!onAdd)}>
                     <p className="text__admin">{onAdd ? 'Danh sách loại giường' : 'Thêm mới'}</p>
                 </button>

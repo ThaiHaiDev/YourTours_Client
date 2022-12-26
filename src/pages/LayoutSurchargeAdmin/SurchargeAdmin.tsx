@@ -11,6 +11,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import surchargeApi from '../../services/surchargeApi';
 import UpdateForm from '../../components/AllAdminComponents/UpdateForm/UpdateForm';
 import AddForm from '../../components/AllAdminComponents/AddForm/AddForm';
+import format3Dots from '../../utils/format3Dots';
 
 const customerTableHead = ['', 'Tên phụ phí', 'Mô tả', '', ''];
 
@@ -39,8 +40,8 @@ const SurchargeAdmin = (props: any) => {
     const renderBody = (item: any, index: any) => (
         <tr key={index}>
             <td>{index}</td>
-            <td>{item.name}</td>
-            <td>{item.description}</td>
+            <td>{format3Dots(item.name, 25)}</td>
+            <td>{format3Dots(item.description, 60)}</td>
             <td>
                 <Popup
                     trigger={

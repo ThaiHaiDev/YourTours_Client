@@ -155,13 +155,12 @@ const DiscountAdmin = (props: any) => {
     return (
         <div className="discount__admin">
             <div className="header__customer">
-                <h2 className="page-header">Nhà cho thuê</h2>
+                <h2 className="page-header">Chính sách giảm giá</h2>
                 <button className="btn__add-customer__admin" onClick={() => setOnAddUser(!onAddUser)}>
-                    <p className="icon__admin">{onAddUser ? '' : '+'}</p>
-                    <p className="text__admin">{onAddUser ? 'List user' : 'Add user'}</p>
+                    <p className="text__admin">{onAddUser ? 'Danh sách giảm giá' : 'Thêm mới'}</p>
                 </button>
             </div>
-            {/* {userUpdate && <Modal open={onModal} onClick={handleSetModal} dataUpdate={userUpdate} />} */}
+
             {!onAddUser ? (
                 <div className="row">
                     <div className="col l-12">

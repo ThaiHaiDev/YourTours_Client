@@ -12,6 +12,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 import roomCategoryApi from '../../services/roomCategoryApi';
 import UpdateForm from '../../components/AllAdminComponents/UpdateForm/UpdateForm';
+import format3Dots from '../../utils/format3Dots';
 
 const customerTableHead = ['', 'Tên phòng', 'Mô tả', 'Config giường', 'Quan trọng', '', ''];
 
@@ -106,7 +107,7 @@ const RoomAdmin = (props: any) => {
         <tr key={index}>
             <td>{index}</td>
             <td>{item.name}</td>
-            <td>{item.description}</td>
+            <td>{format3Dots(item.description, 50)}</td>
             <td>{item.configBed ? 'true' : 'false'}</td>
             <td>{item.important ? 'true' : 'false'}</td>
             <td>

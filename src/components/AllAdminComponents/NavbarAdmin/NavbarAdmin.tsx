@@ -11,11 +11,8 @@ import ThemeMenu from '../Thememenu/Thememenu'
 import notifications from '../../../mockdata//notification.json';
 
 import user_menu from '../../../mockdata/user_menus.json';
-
-const curr_user = {
-    display_name: 'Hai Nguyen',
-    image: 'https://avatars.githubusercontent.com/u/85157423?v=4'
-}
+import { useSelector } from 'react-redux'
+import { RootState } from '../../../redux/store'
 
 const renderNotificationItem = (item: any, index: any) => (
     <div className="notification-item" key={index}>
@@ -45,11 +42,12 @@ const renderUserMenu =(item:any, index:any) => (
 )
 
 const NavbarAdmin = () => {
-    // const searchContext = useContext(SearchContext);
+    const userLogin = useSelector((state: RootState) => state.user);
 
-    // const searchChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    //     searchContext?.setSearchText(event.currentTarget?.value);
-    // };
+    const curr_user = {
+        display_name: userLogin.current.fullName,
+        image: 'https://avatars.githubusercontent.com/u/85157423?v=4'
+    }
     
     return (
         <div className='topnav-admin'>
