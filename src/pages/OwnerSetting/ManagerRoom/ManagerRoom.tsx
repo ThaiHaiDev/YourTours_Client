@@ -17,6 +17,8 @@ const infoLink = {
     urlLink: '/host/setting',
 };
 
+const backUrl = '/host/setting';
+
 const item = ['', 'section1', 'section2', 'section3', 'section4', 'section5', 'section6'];
 
 const ManagerRoom = () => {
@@ -90,7 +92,7 @@ const ManagerRoom = () => {
     return (
         <div className="manager-room">
             <NavbarOwner />
-            <ScrollspyComponent children={children} item={item} infoLink={infoLink} />
+            <ScrollspyComponent children={children} item={item} infoLink={infoLink} backUrl={backUrl}/>
         </div>
     );
 };

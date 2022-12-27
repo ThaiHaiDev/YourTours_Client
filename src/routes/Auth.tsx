@@ -24,7 +24,8 @@ import InfoUserPage from '../pages/InfoUserPage/InfoUserPage';
 import BookingPage from '../pages/BookingPage/BookingPage';
 import TransactionHistoryOwner from '../pages/OwnerSetting/TransactionHistoryOwner/TransactionHistoryOwner';
 import HistoryBookingPage from '../pages/HistoryBookingPage/HistoryBookingPage';
-import Test from '../pages/Test/Test';
+import { Test } from '../pages/Test/Test';
+
 
 const Auth = () => {
     const user = useSelector((state: RootState) => state.user);

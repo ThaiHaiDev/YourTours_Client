@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Scrollspy from 'react-scrollspy';
 
 import './Scrollspy.scss';
@@ -6,9 +6,10 @@ import './Scrollspy.scss';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 const ScrollspyComponent = (props : any) => {
+    let navigate = useNavigate();
     return (
         <div className="scroll-spy">
-            {props.backUrl && <Link to={props.backUrl} style={{ fontSize: '16px', paddingTop: '-40px', paddingLeft: '150px', position: 'fixed', color: 'black'}}><ArrowBackIosIcon />Quay lại trang</Link>}
+            {props.backUrl && <p onClick={() => navigate(-1)} style={{ margin: 0, fontSize: '16px', paddingTop: '-30px', paddingLeft: '150px', position: 'fixed', color: 'black', cursor: 'pointer'}}><ArrowBackIosIcon />Quay lại trang</p>}
             <div>
                 <div>
                     {props.children?.map((child: any, index : number) => (
