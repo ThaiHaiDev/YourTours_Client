@@ -26,7 +26,7 @@ const EditInfo = () => {
     const onSubmit: SubmitHandler<any> = (data: any) => {
         const dataUpdate = {
             fullName: data.fullName,
-            email: data.fullNemailame, 
+            email: data.email, 
             phoneNumber: data.phoneNumber,
             dateOfBirth: data.dateOfBirth,
             address: data.address,
