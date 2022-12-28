@@ -23,7 +23,7 @@ export default function SimpleSlider() {
 
     var settings = {
         dots: true,
-        infinite: true,
+        infinite: false,
         speed: 500,
         slidesToShow: 3,
         slidesToScroll: 3,
@@ -41,7 +41,7 @@ export default function SimpleSlider() {
                 },
             },
             {
-                breakpoint: 600,
+                breakpoint: 800,
                 settings: {
                     slidesToShow: 2,
                     slidesToScroll: 2,

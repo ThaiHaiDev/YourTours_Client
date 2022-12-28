@@ -10,14 +10,22 @@
     .l-6:nth-child(1) {
         position: relative;
         height: 100vh;
-        background: red;
         padding: 0;
         margin: 0;
+
+        .background-left {
+            background-image: url('https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/Congratulation/%E2%80%94Pngtree%E2%80%94thank%20you%20text%20lettering_6425504.png');
+            background-repeat: no-repeat;
+            background-size: cover ;
+            transform: scale(0.8);
+            height: 100%;
+            margin: 20px;
+        }
 
         .sidebar__logo {
             position: absolute;
             left: 30px;
-            top: 20px;
+            // top: 20px;
             cursor: pointer;
 
             img {
