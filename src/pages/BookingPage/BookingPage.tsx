@@ -53,6 +53,7 @@ const BookingPage = () => {
             .bookingRoom(dataBooking)
             .then((dataResponse) => {
                 enqueueSnackbar('Đặt phòng thành công', { variant: 'success' });
+                navigate('/historybooking')
             })
             .catch((error: AxiosError<any>) => {
                 enqueueSnackbar(error.response?.data.message, { variant: 'error' });
