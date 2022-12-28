@@ -10,7 +10,6 @@ import Convenient from '../../components/Convenient/Convenient';
 import DateGo from '../../components/DateGo/DateGo';
 import Dropdown from '../../components/Dropdown/Dropdown';
 import DialogConvenient from '../../components/DialogConvenient/DialogConvenient';
-import DateRangeDetail from '../../components/DateRangeDetail/DateRangeDetail';
 import Footer from '../../components/Footer/Footer';
 import BedRoomSlider from '../../components/BedRoomSlider/BedRoomSlider';
 import { useEffect, useState } from 'react';
@@ -26,6 +25,7 @@ import formatPrice from '../../utils/formatPrice';
 import PopoverPrice from '../../components/PopoverPrice/PopoverPrice';
 import bookingSlice from '../BookingPage/bookingSlice';
 import { useDispatch } from 'react-redux';
+import DateIsBooking from '../../components/DateIsBooking/DateIsBooking';
 
 const RoomDetail = () => {
     const [dataDetailHome, setDataDetalHome] = useState<any>([]);
@@ -168,7 +168,8 @@ const RoomDetail = () => {
                                 </div>
 
                                 <hr className="line" />
-                                <DateRangeDetail size="horizontal" setDataDay={handleChangeDayBooking} />
+                                {/* <DateRangeDetail size="horizontal" setDataDay={handleChangeDayBooking} /> */}
+                                <DateIsBooking dateIsBooked={dataDetailHome?.dateIsBooked}/>
 
                                 <hr className="line" />
                                 <h1 style={{ marginTop: '25px' }}>Đánh giá</h1>

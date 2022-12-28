@@ -3,27 +3,25 @@ import Calendar from 'react-calendar';
 import moment from 'moment';
 
 import 'react-calendar/dist/Calendar.css';
-import './Test.scss';
+import './DateIsBooking.scss';
 
-export default function Test() {
+export default function DateIsBooking(props : any) {
     const [value, onChange] = useState(new Date());
-    const mark = ['27-12-2022', '28-12-2022', '29-12-2022'];
 
     return (
-        <div>
+        <div className='data-isbooking'>
+            <h1 style={{ marginBottom: '20px' }}>Những ngày đã được đặt</h1>
             <Calendar
                 onChange={onChange}
                 value={value}
                 tileClassName={({ date, view }) => {
-                    if (mark.find((x:any) => x === moment(date).format('DD-MM-YYYY'))) {
+                    if (props?.dateIsBooked?.find((x: any) => x === moment(date).format('DD-MM-YYYY'))) {
                         return 'highlight';
                     }
-                    return ''
+                    return '';
                 }}
                 // tileDisabled={({ date }) => date.getDay() === 0}
-                minDate={
-                    new Date()
-                  }
+                minDate={new Date()}
             />
         </div>
     );
