@@ -4,7 +4,7 @@ const userSlice = createSlice({
     name: 'user',
     initialState: {
         current:  JSON.parse(localStorage.getItem('user') || '{}'),
-        // settings: {}
+        settings: false
     },
     reducers: {
         signup(state, action) {
@@ -18,8 +18,13 @@ const userSlice = createSlice({
             localStorage.removeItem('user')
             localStorage.removeItem('access_token')
             state.current = {}
+        },
+        editInfo(state, action) {
+            localStorage.setItem('user', JSON.stringify(action.payload.data))
+        },
+        updateHost(state) {
+            state.settings = true
         }
-
     },
     // extraReducers: (builder) => {
 

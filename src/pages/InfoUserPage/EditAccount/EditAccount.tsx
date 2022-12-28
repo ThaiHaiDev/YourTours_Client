@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
 
 import { AxiosError } from 'axios';
 import { useSnackbar } from 'notistack';
 import userApi from '../../../services/userApi';
+import userSlice from '../../AuthPage/userSlice';
 
 const EditInfo = () => {
     const user = useSelector((state: RootState) => state.user);
@@ -13,6 +14,8 @@ const EditInfo = () => {
     const { handleSubmit, register, setValue } = useForm();
 
     const { enqueueSnackbar } = useSnackbar();
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
         setValue('fullName', user?.current.fullName);
@@ -35,6 +38,7 @@ const EditInfo = () => {
         userApi
             .updateInfoUser(dataUpdate)
             .then((dataResponse: any) => {
+                dispatch(userSlice.actions.editInfo({data : dataResponse.data}))
                 enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
             })
             .catch((error: AxiosError<any>) => {

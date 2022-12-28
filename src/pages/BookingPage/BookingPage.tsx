@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import DateBooking from '../../components/DateBooking/DateBooking';
 import { RootState } from '../../redux/store';
@@ -17,6 +17,7 @@ import formatPrice from '../../utils/formatPrice';
 import Paypal from '../../components/Paypal/Paypal';
 import convertDola from '../../utils/convertDola';
 import CheckBoxPayment from '../../components/CheckBoxPayment/CheckBoxPayment';
+import userSlice from '../AuthPage/userSlice';
 
 const BookingPage = () => {
     const infoBooking = useSelector((state: RootState) => state.booking);
@@ -28,6 +29,8 @@ const BookingPage = () => {
     const [priceAfterChoosePayment, setPriceAfterChoosePayment] = useState<any>(infoBooking?.priceTotal);
 
     const { enqueueSnackbar } = useSnackbar();
+
+    const dispatch = useDispatch();
 
     const navigate = useNavigate();
     useEffect(() => {
@@ -52,6 +55,7 @@ const BookingPage = () => {
         bookingApi
             .bookingRoom(dataBooking)
             .then((dataResponse) => {
+                dispatch(userSlice.actions.updateHost())
                 enqueueSnackbar('Đặt phòng thành công', { variant: 'success' });
                 navigate('/historybooking')
             })
