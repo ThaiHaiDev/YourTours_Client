@@ -11,6 +11,7 @@ import StepperMain from '../pages/SetupOwner/StepperMain/StepperMain';
 
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
+
 import ForgotPass from '../pages/AuthPage/ForgotPass/ForgotPass';
 import IntroSettingOwnerPage from '../pages/IntroSettingOwnerPage/IntroSettingOwnerPage';
 import LayoutAdmin from '../pages/LayoutAdmin/LayoutAdmin';
@@ -41,7 +42,11 @@ const Auth = () => {
                     <Route path="/forgotpassword" element={<ForgotPass />} />
                 </>
             ) : (
-                ''
+                <>
+                    <Route path="/signin" element={<HomePage />} />
+                    <Route path="/signup" element={<HomePage />} />
+                    <Route path="/forgotpassword" element={<HomePage />} />
+                </>
             )}
             <Route path="/congratulation" element={<CongratulationPage />} />
             <Route path="/intro-host" element={<IntroSettingOwnerPage />} />

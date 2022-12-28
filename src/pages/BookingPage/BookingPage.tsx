@@ -20,6 +20,7 @@ import CheckBoxPayment from '../../components/CheckBoxPayment/CheckBoxPayment';
 
 const BookingPage = () => {
     const infoBooking = useSelector((state: RootState) => state.booking);
+    const userLogin = useSelector((state: RootState) => state.user);
 
     const [dataDetailHomeBooking, setDataDetalHomeBooking] = useState<any>([]);
     const [priceDay, setPriceDay] = useState<string>('');
@@ -32,8 +33,10 @@ const BookingPage = () => {
     useEffect(() => {
         if (!infoBooking.checkBooking) {
             navigate('/');
+        } else if (userLogin.current.id === undefined) {
+            enqueueSnackbar('Để đặt thuê nhà, bạn cần đăng nhập!', { variant: 'warning' });
         }
-    }, [infoBooking, navigate]);
+    }, [infoBooking, navigate, userLogin, enqueueSnackbar]);
 
     useEffect(() => {
         homeDetailApi.getDetailHome(infoBooking.homeId).then((dataResponse) => {
@@ -58,6 +61,7 @@ const BookingPage = () => {
 
     const handleChangePriceDay = (value: string) => {
         setPriceDay(value);
+        setPriceAfterChoosePayment(value);
     };
 
     return (

@@ -20,14 +20,19 @@ import SkeletonRoomDetail from '../../components/Skeleton/SkeletonRoomDetail';
 import format from 'date-fns/format';
 import moment from 'moment';
 
+import { useSnackbar } from 'notistack';
+
 import pricesOfHomeApi from '../../services/pricesOfHomeApi';
 import formatPrice from '../../utils/formatPrice';
 import PopoverPrice from '../../components/PopoverPrice/PopoverPrice';
 import bookingSlice from '../BookingPage/bookingSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import DateIsBooking from '../../components/DateIsBooking/DateIsBooking';
+import { RootState } from '../../redux/store';
 
 const RoomDetail = () => {
+    const userLogin = useSelector((state: RootState) => state.user);
+    
     const [dataDetailHome, setDataDetalHome] = useState<any>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [priceDay, setPriceDay] = useState<any>('');
@@ -44,6 +49,8 @@ const RoomDetail = () => {
     const dispatch = useDispatch();
 
     const navigate = useNavigate();
+
+    const { enqueueSnackbar } = useSnackbar();
 
     useEffect(() => {
         setLoading(true);
@@ -76,17 +83,22 @@ const RoomDetail = () => {
     };
 
     const handleBooking = async () => {
-        const dataBooking = {
-            dateStart: dateBook[0],
-            dateEnd: dateBook[1],
-            homeId: params?.idHome,
-            priceDay: priceDay === '' ? dataDetailHome?.costPerNightDefault : priceDay,
-            guests: guests,
-            titleGuests: titleGuests,
-            priceTotal: priceTotal,
-        };
-        await dispatch(bookingSlice.actions.addInfoBooking(dataBooking));
-        navigate('/booking');
+        if (userLogin.current.id === undefined) {
+            enqueueSnackbar('Để đặt thuê nhà, bạn cần đăng nhập!', { variant: 'warning' });
+        } else {
+            const dataBooking = {
+                dateStart: dateBook[0],
+                dateEnd: dateBook[1],
+                homeId: params?.idHome,
+                priceDay: priceDay === '' ? dataDetailHome?.costPerNightDefault : priceDay,
+                guests: guests,
+                titleGuests: titleGuests,
+                priceTotal: priceTotal,
+            };
+            await dispatch(bookingSlice.actions.addInfoBooking(dataBooking));
+            navigate('/booking');
+        }
+        
     };
 
     return (
