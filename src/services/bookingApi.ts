@@ -17,6 +17,10 @@ const bookingApi = {
         const url = 'api/v1/cms/booking/page?number=0&size=20';
         return axiosClient.get(url);
     },
+    checkBooking(data : any): Promise<any> {
+        const url = 'api/v1/app/booking/check';
+        return axiosClient.post(url, data);
+    },
 };
 
 export default bookingApi;

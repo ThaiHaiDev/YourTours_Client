@@ -29,10 +29,12 @@ import bookingSlice from '../BookingPage/bookingSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import DateIsBooking from '../../components/DateIsBooking/DateIsBooking';
 import { RootState } from '../../redux/store';
+import bookingApi from '../../services/bookingApi';
+import { AxiosError } from 'axios';
 
 const RoomDetail = () => {
     const userLogin = useSelector((state: RootState) => state.user);
-    
+
     const [dataDetailHome, setDataDetalHome] = useState<any>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [priceDay, setPriceDay] = useState<any>('');
@@ -86,6 +88,11 @@ const RoomDetail = () => {
         if (userLogin.current.id === undefined) {
             enqueueSnackbar('Để đặt thuê nhà, bạn cần đăng nhập!', { variant: 'warning' });
         } else {
+            const dataCheck = {
+                dateStart: dateBook[0],
+                dateEnd: dateBook[1],
+                homeId: params?.idHome,
+            };
             const dataBooking = {
                 dateStart: dateBook[0],
                 dateEnd: dateBook[1],
@@ -95,10 +102,16 @@ const RoomDetail = () => {
                 titleGuests: titleGuests,
                 priceTotal: priceTotal,
             };
-            await dispatch(bookingSlice.actions.addInfoBooking(dataBooking));
-            navigate('/booking');
+            bookingApi
+                .checkBooking(dataCheck)
+                .then(() => {
+                    dispatch(bookingSlice.actions.addInfoBooking(dataBooking));
+                    navigate('/booking');
+                })
+                .catch((error: AxiosError<any>) => {
+                    enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+                });
         }
-        
     };
 
     return (
@@ -181,7 +194,7 @@ const RoomDetail = () => {
 
                                 <hr className="line" />
                                 {/* <DateRangeDetail size="horizontal" setDataDay={handleChangeDayBooking} /> */}
-                                <DateIsBooking dateIsBooked={dataDetailHome?.dateIsBooked}/>
+                                <DateIsBooking dateIsBooked={dataDetailHome?.dateIsBooked} />
 
                                 <hr className="line" />
                                 <h1 style={{ marginTop: '25px' }}>Đánh giá</h1>
