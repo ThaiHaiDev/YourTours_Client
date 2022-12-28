@@ -1,7 +1,11 @@
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { RootState } from '../../redux/store';
 import './IntroSettingOwnerPage.scss';
 
 const IntroSettingOwnerPage = () => {
+    const userLogin = useSelector((state: RootState) => state.user);
     const navigate = useNavigate();
 
     const backHome = () => {
@@ -11,6 +15,12 @@ const IntroSettingOwnerPage = () => {
     const nextPage = () => {
         navigate('/stepsetupowner')
     }
+
+    useEffect(() => {
+        if (userLogin.current.id === undefined) {
+            navigate('/signin')
+        }
+    }, [userLogin, navigate])
 
     return (
         <div className="introsettingowner-page">
