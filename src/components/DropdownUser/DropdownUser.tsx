@@ -61,7 +61,7 @@ function DropdownMenu() {
             <Link to='/account' className='dropdown__link'>Tài khoản</Link>
             {user.current.role === 'ADMIN' && (<Link to='/admin' className='dropdown__link'>Trang chủ quản lý</Link>)}
             <Link to='/wishlists' className='dropdown__link'>Danh sách yêu thích</Link>
-            {user.current.isOwner && (<Link to='/host' className='dropdown__link'>Quản lý nhà cho thuê</Link>)}
+            {user.current.isOwner || user.settings ? (<Link to='/host' className='dropdown__link'>Quản lý nhà cho thuê</Link>) : ''}
             <Link to='#' onClick={handleLogout} className='dropdown__link'>Đăng xuất</Link>
         </div>
     );
