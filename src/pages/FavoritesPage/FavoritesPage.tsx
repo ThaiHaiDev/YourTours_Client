@@ -15,12 +15,14 @@ AOS.init();
 
 const FavoritesPage = () => {
     const [listDataFavorites, setListDataFavorites] = useState<any>([]);
+    const [loading, setLoading] = useState<boolean>(true);
 
     const navigate = useNavigate();
 
     useEffect(() => {
         favoriteApi.getAllFavoritesRoom().then((dataResponse: any) => {
             setListDataFavorites(dataResponse.data.content);
+            setLoading(false);
         });
     }, []);
 
@@ -31,7 +33,7 @@ const FavoritesPage = () => {
     return (
         <div className="favorites__page">
             <Navbar />
-            {listDataFavorites.length === 0 ? (
+            {loading ? (
                 <div className="no__favorites">
                     <h1>Yêu thích</h1>
                     <h2>Tạo danh sách Yêu thích đầu tiên</h2>

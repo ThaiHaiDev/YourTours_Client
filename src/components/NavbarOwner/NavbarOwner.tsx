@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import DropdownUser from '../DropdownUser/DropdownUser';
+import DropdownHost from '../DropdownHost/DropdownHost';
 import './NavbarOwner.scss';
 
 const NavbarOwner = () => {
@@ -23,7 +23,7 @@ const NavbarOwner = () => {
                 <NavLink to="/host/setting/transactionhistory">Lịch sử giao dịch</NavLink>
             </div>
             <div className="navbar-right">
-                <DropdownUser />
+                <DropdownHost />
             </div>
         </div>
     );
