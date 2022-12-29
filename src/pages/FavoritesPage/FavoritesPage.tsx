@@ -7,11 +7,17 @@ import formatPrice from '../../utils/formatPrice';
 import IconLoveLike from '../../components/IconLoveLike/IconLoveLike';
 import { useNavigate } from 'react-router-dom';
 
+import LinearProgress from '@mui/material/LinearProgress';
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
+
 const FavoritesPage = () => {
     const [listDataFavorites, setListDataFavorites] = useState<any>([]);
 
     const navigate = useNavigate();
-    
+
     useEffect(() => {
         favoriteApi.getAllFavoritesRoom().then((dataResponse: any) => {
             setListDataFavorites(dataResponse.data.content);
@@ -21,7 +27,6 @@ const FavoritesPage = () => {
     const handleLinkToDetail = (idRoom: string) => {
         navigate(`/detail/${idRoom}`);
     };
-
 
     return (
         <div className="favorites__page">
@@ -34,26 +39,36 @@ const FavoritesPage = () => {
                         Trong quá trình tìm kiếm, hãy nhấn vào biểu tượng hình trái tim để lưu các chỗ ở yêu thích hoặc
                         những điều nên trải nghiệm vào danh sách Yêu thích.
                     </p>
+                    <LinearProgress />
                 </div>
             ) : (
                 <div className="yes__favorites">
                     <h1>Yêu thích</h1>
-                    <div className="row">
-                        {listDataFavorites?.map((room: any, index: number) => (
-                            <div className="col l-4" key={index}>
-                                <div className="card-item__favorite">
-                                    <div className="content__favorite" onClick={() => handleLinkToDetail(room?.id)}>
-                                        <img src={room?.thumbnail} alt="" />
-                                        <p className="name__favorite">{room?.name}</p>
-                                        <p className="price__favorite">{`Giá chỉ ${formatPrice(
-                                            room?.costPerNightDefault,
-                                        )}`}</p>
-                                        <p className="book-now">Đặt ngay hôm nay</p>
+                    <div
+                        data-aos="fade-up"
+                        data-aos-duration="1200"
+                        data-aos-easing="ease-in-out"
+                        data-aos-mirror="true"
+                        data-aos-once="false"
+                        data-aos-anchor-placement="top-center"
+                    >
+                        <div className="row">
+                            {listDataFavorites?.map((room: any, index: number) => (
+                                <div className="col l-4" key={index}>
+                                    <div className="card-item__favorite">
+                                        <div className="content__favorite" onClick={() => handleLinkToDetail(room?.id)}>
+                                            <img src={room?.thumbnail} alt="" />
+                                            <p className="name__favorite">{room?.name}</p>
+                                            <p className="price__favorite">{`Giá chỉ ${formatPrice(
+                                                room?.costPerNightDefault,
+                                            )}`}</p>
+                                            <p className="book-now">Đặt ngay hôm nay</p>
+                                        </div>
+                                        <IconLoveLike idHome={room?.id} />
                                     </div>
-                                    <IconLoveLike idHome={room?.id} />
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
                 </div>
             )}
