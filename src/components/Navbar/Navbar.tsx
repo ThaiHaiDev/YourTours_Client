@@ -44,7 +44,6 @@ const Navbar = () => {
                     <NavLink to="/intro-host">Trở thành chủ nhà</NavLink>
                     <NavLink to="/list-room">Danh sách nhà</NavLink>
                     {user.current?.id !== undefined && <NavLink to="/historybooking">Lịch sử đặt phòng</NavLink>}
-                    
                 </div>
 
                 <div className="navbar-right">

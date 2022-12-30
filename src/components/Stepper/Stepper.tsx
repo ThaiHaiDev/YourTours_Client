@@ -25,6 +25,7 @@ import { RoomOfHomeCreateRequest } from '../../share/models/roomHome';
 import { ConvenientOptionShow } from '../../share/models/convenient';
 import { ImageHomeDetailRequest } from '../../share/models/imageList';
 import ConfirmOwner from '../../pages/ConfirmOwner/ConfirmOwner';
+import userSlice from '../../pages/AuthPage/userSlice';
 
 const steps = ['Setup vị trí', 'Setup phòng', 'Setup tiện ích', 'Setup ảnh', 'Chi tiết phòng'];
 
@@ -170,6 +171,7 @@ export default function StepperComponent() {
                     variant: 'success',
                 });
                 dispatch(setupOwnerSlice.actions.addimagesOfHomeRoom(dataResponse.data.thumbnail));
+                dispatch(userSlice.actions.updateHost());
                 navigate('/congratulation');
             })
             .catch((error: AxiosError<any>) => {
