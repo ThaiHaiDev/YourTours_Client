@@ -3,6 +3,7 @@ import './Convenient.scss';
 const Convenient = (props: any) => {
     const cutDataLeft = props?.listConvenient?.slice(0, 4);
     const cutDataRight = props?.listConvenient?.slice(4, 8);
+    console.log(cutDataLeft)
 
     return (
         <div className="convenient-room">
@@ -12,7 +13,7 @@ const Convenient = (props: any) => {
                     {cutDataLeft?.map((convi: any, index: number) => (
                         <div className="convenient-item" key={index}>
                             <img src={convi?.icon} alt='icon-convenient' className="icon-convenient"/>
-                            <p>{convi?.name}</p>
+                            <p style={{textDecorationLine: `${convi.isConfig ? 'line-through' : 'none'}`}}>{convi?.name}</p>
                         </div>
                     ))}
                 </div>
@@ -20,7 +21,7 @@ const Convenient = (props: any) => {
                     {cutDataRight?.map((convi: any, index: number) => (
                         <div className="convenient-item" key={index}>
                             <img src={convi?.icon} alt='icon-convenient' className="icon-convenient"/>
-                            <p>{convi?.name}</p>
+                            <p style={{textDecorationLine: `${convi.isConfig ? 'line-through' : 'none'}`}}>{convi?.name}</p>
                         </div>
                     ))}
                 </div>

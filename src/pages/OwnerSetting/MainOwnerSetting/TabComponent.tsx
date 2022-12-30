@@ -39,7 +39,7 @@ export default function TabComponent() {
                     </TabList>
                 </Box>
                 <TabPanel value="1">
-                    {dataWaiting.length !== 0 ? <TableDataHostSummary data={dataWaiting} idTab='0' /> : <ListDataNull />}
+                    {dataWaiting.length !== 0 ? <TableDataHostSummary data={dataWaiting} idTab='0' setDataCheckIn={setDataCheckIn} /> : <ListDataNull />}
                 </TabPanel>
                 <TabPanel value="2">
                     {dataCheckIn.length !== 0 ? <TableDataHostSummary data={dataCheckIn} idTab='1' /> : <ListDataNull />}

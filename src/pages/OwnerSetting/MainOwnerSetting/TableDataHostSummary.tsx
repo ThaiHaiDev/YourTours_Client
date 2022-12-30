@@ -44,6 +44,9 @@ const TableDataHostSummary = (props: any) => {
                     .setCheckIn(dataCheckIn)
                     .then((dataResponse) => {
                         enqueueSnackbar('Check in thành công', { variant: 'success' });
+                        if (props?.setDataCheckIn) {
+                            props?.setDataCheckIn(dataCheckIn)
+                        }
                     })
                     .catch((error: AxiosError<any>) => {
                         enqueueSnackbar(error.response?.data.message, { variant: 'error' });
