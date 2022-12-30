@@ -40,11 +40,11 @@ export default function DialogConvenient(props: any) {
                         {'Nơi này có những gì cho bạn'}
                     </DialogTitle>
                     {props?.listConvenient?.map((convi: any, index: number) => (
-                        <DialogContent sx={{ fontSize: '16px', fontWeight: 'bold' }} key={index}>
+                        <DialogContent sx={{ fontSize: '16px', fontWeight: 'bold', textDecorationLine: `${!convi.isConfig ? 'line-through' : 'none'}` }} key={index}>
                             {convi?.name}
                             <DialogContentText
                                 id="alert-dialog-description"
-                                sx={{ fontSize: '14px', marginTop: '20px' }}
+                                sx={{ fontSize: '14px', marginTop: '20px', textDecorationLine: `${!convi.isConfig ? 'line-through' : 'none'}` }}
                             >
                                 {convi?.description}
                             </DialogContentText>

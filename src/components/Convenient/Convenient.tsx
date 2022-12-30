@@ -13,7 +13,7 @@ const Convenient = (props: any) => {
                     {cutDataLeft?.map((convi: any, index: number) => (
                         <div className="convenient-item" key={index}>
                             <img src={convi?.icon} alt='icon-convenient' className="icon-convenient"/>
-                            <p style={{textDecorationLine: `${convi.isConfig ? 'line-through' : 'none'}`}}>{convi?.name}</p>
+                            <p style={{textDecorationLine: `${!convi.isConfig ? 'line-through' : 'none'}`}}>{convi?.name}</p>
                         </div>
                     ))}
                 </div>
@@ -21,7 +21,7 @@ const Convenient = (props: any) => {
                     {cutDataRight?.map((convi: any, index: number) => (
                         <div className="convenient-item" key={index}>
                             <img src={convi?.icon} alt='icon-convenient' className="icon-convenient"/>
-                            <p style={{textDecorationLine: `${convi.isConfig ? 'line-through' : 'none'}`}}>{convi?.name}</p>
+                            <p style={{textDecorationLine: `${!convi.isConfig ? 'line-through' : 'none'}`}}>{convi?.name}</p>
                         </div>
                     ))}
                 </div>
