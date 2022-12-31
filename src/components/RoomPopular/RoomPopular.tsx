@@ -45,7 +45,7 @@ export default function RoomPopular() {
 
     return (
         <div className="room__popular">
-            <h1>Nhà nổi bậc được xem nhiều nhất</h1>
+            <h1>Nhà nổi bật được xem nhiều nhất</h1>
             <div className="row">
                 {loading ? (
                     <SkeletonRoomItem />
