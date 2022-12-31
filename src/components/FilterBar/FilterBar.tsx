@@ -35,7 +35,6 @@ const FilterBar = (props: any) => {
         });
         
     }, [props.queryParams]);
-    console.log(listDataFilterNavbar)
 
     const navigate = useNavigate();
 

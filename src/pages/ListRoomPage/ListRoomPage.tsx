@@ -29,6 +29,7 @@ const ListRoomPage = () => {
 
     const [state, setState] = useState<any>({
         items: Array.from({ length: 8 }),
+        hasMore: true
     });
 
     useEffect(() => {
@@ -44,7 +45,7 @@ const ListRoomPage = () => {
         // a fake async api call like which sends
         // 20 more records in 1.5 secs
         setTimeout(() => {
-            if (listDataRoom.length >= state.items.length) {
+            if ((state.items.length - listDataRoom.length ) <= 8) {
                 setState({
                     items: state.items.concat(Array.from({ length: 8 })),
                 });
@@ -62,7 +63,7 @@ const ListRoomPage = () => {
                     dataLength={state.items.length}
                     next={fetchMoreData}
                     hasMore={true}
-                    loader={<h4>Loading...</h4>}
+                    loader={false}
                     scrollableTarget="scrollableDiv"
                     style={{ paddingTop: '160px', zIndex: '-1', margin: '0 100px' }}
                 >

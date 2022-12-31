@@ -13,6 +13,7 @@ import LinearProgress from '@mui/material/LinearProgress';
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import PopoverRefundPolicy from '../../components/PopoverRefundPolicy/PopoverRefundPolicy';
 AOS.init();
 
 const HistoryBookingPage = () => {
@@ -87,11 +88,16 @@ const HistoryBookingPage = () => {
                                         </div>
                                     </div>
                                     <div className="btn__booking">
-                                        {history?.status !== 'WAITING' ? (
-                                            <p>{status}</p>
-                                        ) : (
-                                            <ModalConfirmDelete idRemove={history.id} />
-                                        )}
+                                        <div>
+                                            <PopoverRefundPolicy dataShow={history?.refundPolicy}/>
+                                        </div>
+                                        <div style={{display: 'flex', justifyContent: 'left', width: '130px'}}>
+                                            {history?.status !== 'WAITING' ? (
+                                                <p style={{margin: 0}}>{status}</p>
+                                            ) : (
+                                                <ModalConfirmDelete idRemove={history.id} />
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
                             );
