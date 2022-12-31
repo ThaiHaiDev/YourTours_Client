@@ -74,7 +74,7 @@ export default function CalendarSetting() {
     const handleChangeMonth = (newValue: any) => {
         setDate(newValue);
         setDateFormat(`${newValue.$D} tháng ${parseInt(newValue.$M) + 1} năm ${newValue.$y}`);
-        setMonth(`${parseInt(newValue.$M) + 1}`);
+        setMonth(parseInt(newValue.$D) < 10 ? `0${parseInt(newValue.$M) + 1}` : `${parseInt(newValue.$M) + 1}`);
         setDay(parseInt(newValue.$D) < 10 ? `0${newValue.$D}` : `${newValue.$D}`);
         setYear(`${newValue.$y}`);
         setPriceDay(listPriceDay[parseInt(newValue.$D) - 1]?.price);
