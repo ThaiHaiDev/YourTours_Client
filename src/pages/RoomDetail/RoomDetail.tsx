@@ -92,6 +92,7 @@ const RoomDetail = () => {
                 dateStart: dateBook[0],
                 dateEnd: dateBook[1],
                 homeId: params?.idHome,
+                guests: guests,
             };
             const dataBooking = {
                 dateStart: dateBook[0],
