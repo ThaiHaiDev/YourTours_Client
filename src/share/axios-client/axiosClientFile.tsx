@@ -1,7 +1,7 @@
 import axios from 'axios';
 import process from 'process';
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL_DEVELOPER;
 
 const getAccessTokenFromLocalStorage = (): any => {
     return localStorage.getItem('access_token') || '{}';

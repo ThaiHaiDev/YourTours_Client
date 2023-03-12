@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
 import axiosClient from "../share/axios-client/axiosClient";
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL_DEVELOPER;
 
 const homeApi = {
     getRoomCategory(idHome: string | undefined): Promise<AxiosResponse> {
