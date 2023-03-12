@@ -1,8 +1,8 @@
 import axios, { AxiosResponse } from "axios";
-import process from 'process';
+// import process from 'process';
 import { ForgotPasswordRequest, LoginRequest, OTPForgotPasswordRequest, RegisterRequest, ReSendOTPRequest } from "../share/models/auth";
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL_DEVELOPER;
+const API_BASE_URL = 'https://yourtour.herokuapp.com/';
 
 const authApi = {
     signUp(data: RegisterRequest): Promise<AxiosResponse> {
