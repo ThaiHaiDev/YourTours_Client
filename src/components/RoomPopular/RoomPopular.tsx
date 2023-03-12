@@ -3,8 +3,6 @@ import Slider from 'react-slick';
 import './RoomPopular.scss';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
 
-import mapProvince from '../../utils/mapProvince';
-
 // Import css files
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -88,7 +86,7 @@ export default function RoomPopular() {
                                 </div>
                                 <div className="locate__room">
                                     <FmdGoodIcon className="icon_locate" />
-                                    <p>{mapProvince(room?.provinceCode ? room?.provinceCode : undefined)}</p>
+                                    <p>{room?.provinceName ? room?.provinceName : undefined}</p>
                                 </div>
                                 <div className="price__room">
                                     <p>{`Giá: ${formatPrice(room?.costPerNightDefault)} / Đêm`}</p>

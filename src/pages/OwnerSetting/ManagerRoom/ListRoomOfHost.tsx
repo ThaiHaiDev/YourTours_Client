@@ -5,7 +5,6 @@ import './ListRoomOfHost.scss'
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import homeDetailApi from '../../../services/homeDetailApi';
-import mapProvince from '../../../utils/mapProvince';
 
 import format from 'date-fns/format';
 
@@ -29,7 +28,7 @@ const ListRoomOfHost = () => {
             bedroom: dataListhome[i].roomsImportant[0] ? dataListhome[i].roomsImportant[0].number : '0',
             giuong: dataListhome[i].numberOfBed,
             badroom:  dataListhome[i].roomsImportant[2] ? dataListhome[i].roomsImportant[2].number : 0,
-            location: dataListhome[i].provinceCode ? mapProvince(dataListhome[i].provinceCode) : '',
+            location: dataListhome[i].provinceName ? dataListhome[i].provinceName : '',
             editrecent: format(new Date(dataListhome[i].lastModifiedDate.toString()), 'hh:mm MM/dd/yyyy')
         })
     }

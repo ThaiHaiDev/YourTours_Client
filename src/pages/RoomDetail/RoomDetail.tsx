@@ -14,7 +14,6 @@ import Footer from '../../components/Footer/Footer';
 import BedRoomSlider from '../../components/BedRoomSlider/BedRoomSlider';
 import { useEffect, useState } from 'react';
 import homeDetailApi from '../../services/homeDetailApi';
-import mapProvince from '../../utils/mapProvince';
 import SkeletonRoomDetail from '../../components/Skeleton/SkeletonRoomDetail';
 
 import format from 'date-fns/format';
@@ -154,9 +153,9 @@ const RoomDetail = () => {
                                         <FmdGoodIcon className="icon_locate" />
                                         <p>{`${
                                             dataDetailHome?.addressDetail !== null ? dataDetailHome?.addressDetail : ''
-                                        } ${dataDetailHome?.addressDetail !== null ? ',' : ''} ${mapProvince(
-                                            dataDetailHome?.provinceCode ? dataDetailHome?.provinceCode : undefined,
-                                        )}`}</p>
+                                        } ${dataDetailHome?.addressDetail !== null ? ',' : ''} ${
+                                            dataDetailHome?.provinceName ? dataDetailHome?.provinceName : ''
+                                        }`}</p>
                                     </div>
                                 </div>
                                 <div className="heading__right">

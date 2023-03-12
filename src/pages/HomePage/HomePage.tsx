@@ -25,7 +25,7 @@ const HomePage = () => {
                 data-aos-once="false"
                 data-aos-anchor-placement="top-center"
             >
-                {/* <Popular /> */}
+                <Popular />
             </div>
             <div
                 data-aos="fade-up"
@@ -50,7 +50,7 @@ const HomePage = () => {
                 data-aos-once="false"
                 data-aos-anchor-placement="top-center"
             >
-                {/* <RoomPopular /> */}
+                <RoomPopular />
             </div>
             <Footer />
         </div>

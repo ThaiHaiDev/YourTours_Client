@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import './Popular.scss';
 
-import Provice from '../../mockdata/ProvinceVN.json';
 import { useEffect, useState } from 'react';
 import provinceApi from '../../services/provinceApi';
 import SkeletonProvince from '../Skeleton/SkeletonProvince';
@@ -29,16 +28,13 @@ const Popular = () => {
                         <SkeletonProvince />
                     ) : (
                         listProvince?.map((province: any, index: number) => {
-                            const dataResult = Provice.find((d: any) => {
-                                return d.code === province.provinceCode;
-                            });
                             return (
                                 <div className="col l-3 m-6 c-12" key={index}>
                                     <div className="package">
                                         <div className="package-overlay">
-                                            <img src={dataResult?.thumbnail} alt="" className="package-thumbnail" />
+                                            <img src={province?.thumbnail} alt="" className="package-thumbnail" />
                                             <div className="package-info">
-                                                <h3 className="package-heading">{dataResult?.name}</h3>
+                                                <h3 className="package-heading">{province?.name}</h3>
                                                 <span className="package-desc">{`${province?.numberBooking} lượt đặt`}</span>
                                             </div>
                                         </div>
