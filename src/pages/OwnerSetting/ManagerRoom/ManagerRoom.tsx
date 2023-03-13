@@ -39,6 +39,7 @@ const ManagerRoom = () => {
 
     const locationRoom = {
         loca: dataHomeDetail?.provinceCode,
+        localName: dataHomeDetail?.provinceName,
         address: dataHomeDetail?.addressDetail
     }
 
