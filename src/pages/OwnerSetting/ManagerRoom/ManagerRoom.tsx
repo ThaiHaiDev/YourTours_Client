@@ -43,8 +43,6 @@ const ManagerRoom = () => {
         address: dataHomeDetail?.addressDetail,
     };
 
-    console.log(dataHomeDetail?.amenities);
-
     const children = [
         {
             id: '#section1',

@@ -5,14 +5,18 @@ import { useEffect, useState } from 'react';
 import provinceApi from '../../services/provinceApi';
 import SkeletonProvince from '../Skeleton/SkeletonProvince';
 
+import { BaseResponseBasePagingResponseProvincePopular, ProvincePopularModel } from '../../share/models/province';
+
 const Popular = () => {
-    const [listProvince, setListProvince] = useState<any>([]);
+    const [listProvince, setListProvince] = useState<ProvincePopularModel[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
         setLoading(true);
-        provinceApi.getProvincePopular().then((dataResponse: any) => {
-            setListProvince(dataResponse.data.content);
+        provinceApi.getProvincePopular().then((dataResponse: BaseResponseBasePagingResponseProvincePopular) => {
+            if (dataResponse?.data?.content) {
+                setListProvince(dataResponse.data.content);
+            }
             setLoading(false);
         });
     }, []);
@@ -27,7 +31,7 @@ const Popular = () => {
                     {loading ? (
                         <SkeletonProvince />
                     ) : (
-                        listProvince?.map((province: any, index: number) => {
+                        listProvince?.map((province: ProvincePopularModel, index: number) => {
                             return (
                                 <div className="col l-3 m-6 c-12" key={index}>
                                     <div className="package">
