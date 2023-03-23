@@ -12,6 +12,7 @@ import 'reactjs-popup/dist/index.css';
 import DeleteIcon from '@mui/icons-material/Delete';
 import UpdateForm from '../../components/AllAdminComponents/UpdateForm/UpdateForm';
 import format3Dots from '../../utils/format3Dots';
+import { RequestAmenity } from '../../share/models/amenities';
 
 const customerTableHead = ['', 'Tên tiện ích', 'Mô tả', 'Icon', 'Tên loại tiện ích', '', ''];
 
@@ -92,7 +93,7 @@ const AmenityAdmin = (props: any) => {
         </tr>
     );
 
-    const handleAddData = (data: any) => {
+    const handleAddData = (data: RequestAmenity) => {
         const dataAdd = {
             ...data,
         };
@@ -133,7 +134,7 @@ const AmenityAdmin = (props: any) => {
         );
     };
 
-    const handleUpdate = (data: any) => {
+    const handleUpdate = (data: RequestAmenity) => {
         amenityApi
             .updateAmenity(data)
             .then((dataResponse) => {
