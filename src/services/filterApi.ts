@@ -1,11 +1,12 @@
 import axiosClient from '../share/axios-client/axiosClient';
+import { BasePagingResponseHomeInfo, BaseResponseBasePagingResponseAmenityInfo } from '../share/models/filter.model';
 
 const filterApi = {
-    getAllFilterNavbar(): Promise<any> {
+    getAllFilterNavbar(): Promise<BaseResponseBasePagingResponseAmenityInfo> {
         const url = 'api/v1/public/amenities/page/set-filter?number=0&size=20';
         return axiosClient.get(url);
     },
-    getAllRoomsNew(): Promise<any> {
+    getAllRoomsNew(): Promise<BasePagingResponseHomeInfo> {
         const url = 'api/v1/public/homes/page?number=0&size=20';
         return axiosClient.get(url);
     },

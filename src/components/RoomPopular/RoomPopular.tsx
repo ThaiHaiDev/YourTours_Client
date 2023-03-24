@@ -30,7 +30,7 @@ export default function RoomPopular() {
     useEffect(() => {
         setLoading(true);
         homeApi.getRoomFavorite().then((dataResponse) => {
-            setListRoom(dataResponse.data.content);
+            setListRoom(dataResponse?.data?.content);
             setLoading(false);
         });
     }, []);
@@ -54,11 +54,11 @@ export default function RoomPopular() {
                                 {room.imagesOfHome.length !== 0 &&
                                     room?.imagesOfHome?.map((image: any) => (
                                         <div key={image?.id}>
-                                            <img src={image.path} alt="room_hot" className='image-home'/>
+                                            <img src={image.path} alt="room_hot" className="image-home" />
                                         </div>
                                     ))}
                             </Slider>
-                            <IconLove idHome={room?.id} isFavorite={room?.isFavorite}/>
+                            <IconLove idHome={room?.id} isFavorite={room?.isFavorite} />
                             <div className="info__room" onClick={() => handleLinkToDetail(room?.id)}>
                                 <h2>{room?.name}</h2>
                                 <div className="obility__room">
