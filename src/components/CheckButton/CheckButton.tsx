@@ -39,7 +39,7 @@ const CheckButton = (props: CheckButtonData) => {
 
     const handleCheckYes = () => {
         // Call api ở đây với /:id của tiện ích từ cha truyền xuống
-        
+
         if (checkStatus === true) {
             setCheckStatus(null);
             const dataRequest = {

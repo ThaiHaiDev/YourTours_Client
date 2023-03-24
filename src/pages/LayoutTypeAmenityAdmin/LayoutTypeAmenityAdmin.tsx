@@ -1,25 +1,28 @@
-import { useState, useEffect } from "react";
-import amenityCategoryApi from "../../services/amenityCategoryApi";
-import TypeAmenityAdmin from "./TypeAmenityAdmin";
+import { useState, useEffect } from 'react';
+import amenityCategoryApi from '../../services/amenityCategoryApi';
+import { AmenityCategoriesModel } from '../../share/models/amenityCategories';
+import TypeAmenityAdmin from './TypeAmenityAdmin';
 
 const LayoutTypeAmenityAdmin = () => {
-    const [listTypeAmenity, setListTypeAmenity] = useState<any>([]);
+    const [listTypeAmenity, setListTypeAmenity] = useState<AmenityCategoriesModel[]>([]);
 
     useEffect(() => {
         amenityCategoryApi.getAmenityCategoriesAll().then((dataResponse) => {
-            setListTypeAmenity(dataResponse.data.content)
-        })
-    }, [])
+            if (dataResponse?.data?.content) {
+                setListTypeAmenity(dataResponse?.data?.content);
+            }
+        });
+    }, []);
 
-    const handleChangeData = (data : any) => {
-        setListTypeAmenity(data)
-    }
-    
+    const handleChangeData = (data: AmenityCategoriesModel[]) => {
+        setListTypeAmenity(data);
+    };
+
     return (
         <div>
-            {listTypeAmenity.length !== 0 && <TypeAmenityAdmin data={listTypeAmenity} setList={handleChangeData}/>}
+            {listTypeAmenity.length !== 0 && <TypeAmenityAdmin data={listTypeAmenity} setList={handleChangeData} />}
         </div>
-    )
-}
+    );
+};
 
-export default LayoutTypeAmenityAdmin
+export default LayoutTypeAmenityAdmin;
