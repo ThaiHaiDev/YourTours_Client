@@ -7,7 +7,7 @@ import {
     FactoryUpdateRequestUUIDUpdateBaseProfileHomeModel,
 } from '../share/models/home';
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL_DEVELOPER;
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 const homeApi = {
     getRoomCategory(idHome: string | undefined): Promise<AxiosResponse> {

@@ -1,9 +1,9 @@
 import axios from 'axios';
-// import process from 'process';
+import process from 'process';
 // import jwt_decode from 'jwt-decode';
 // import { getCookie } from 'cookies-next';
 
-const API_BASE_URL = 'https://yourtour.herokuapp.com/';
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 const getAccessTokenFromLocalStorage = (): any => {
     return localStorage.getItem('access_token') || '{}';
@@ -13,7 +13,9 @@ const axiosClient = axios.create({
     baseURL: API_BASE_URL,
     headers: {
         Accept: 'application/json',
-        Authorization: `${getAccessTokenFromLocalStorage() !== '{}' && `Bearer`} ${getAccessTokenFromLocalStorage() !== '{}' ? getAccessTokenFromLocalStorage() : ''}`,
+        Authorization: `${getAccessTokenFromLocalStorage() !== '{}' && `Bearer`} ${
+            getAccessTokenFromLocalStorage() !== '{}' ? getAccessTokenFromLocalStorage() : ''
+        }`,
     },
 });
 
