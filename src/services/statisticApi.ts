@@ -1,7 +1,8 @@
-import axiosClient from "../share/axios-client/axiosClient";
+import axiosClient from '../share/axios-client/axiosClient';
+import { BaseResponseOwnerStatistic } from '../share/models/statisticAdmin';
 
 const statisticApi = {
-    getStatisticOfHost(year : string | undefined): Promise<any> {
+    getStatisticOfHost(year: string | undefined): Promise<BaseResponseOwnerStatistic> {
         const url = `api/v1/cms/statistic/owner${year}`;
         return axiosClient.get(url);
     },
@@ -17,7 +18,6 @@ const statisticApi = {
         const url = `api/v1/cms/statistic/admin/owners`;
         return axiosClient.get(url);
     },
-    
 };
 
 export default statisticApi;

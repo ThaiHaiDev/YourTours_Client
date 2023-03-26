@@ -80,11 +80,11 @@ const DashboardAdmin = () => {
                 },
             ];
             setNumberStatis(dataStatistic);
-            setdataChart(dataResponse.data.revenueStatistics);
+            setdataChart(dataResponse?.data?.revenueStatistics);
         });
 
         statisticApi.getStatisticOfAdminForGuest().then((dataResponse) => {
-            setDataGuests(dataResponse.data.content);
+            setDataGuests(dataResponse?.data?.content);
         });
 
         statisticApi.getStatisticOfAdminForOwner().then((dataResponse) => {

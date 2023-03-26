@@ -14,8 +14,8 @@ interface StepperTwoData {
 const StepperTwo = (props: StepperTwoData) => {
     const [data, setData] = useState<any>();
     useEffect(() => {
-        roomCategoryApi.getRoomCategory().then((data) => {
-            setData(data.data.content);
+        roomCategoryApi.getRoomCategory().then((dataResponse) => {
+            setData(dataResponse?.data?.content);
         });
     }, []);
 
@@ -49,7 +49,9 @@ const StepperTwo = (props: StepperTwoData) => {
                             </div>
                         ))}
                     </div>
-                    <Link to='/' className='btn-out'>Thoát</Link>
+                    <Link to="/" className="btn-out">
+                        Thoát
+                    </Link>
                 </div>
             </div>
         </div>

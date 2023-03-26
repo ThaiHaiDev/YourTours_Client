@@ -153,7 +153,7 @@ export default function StepperComponent() {
             const formData = new FormData();
             await formData.append('file', dataStep4[i]);
             const dataUrlImage = await imageRoomApi.uploadImage(formData);
-            await setDataStep4URL.push({ path: dataUrlImage.data.previewUrl });
+            await setDataStep4URL.push({ path: dataUrlImage?.data?.previewUrl });
         }
         if (setDataStep4URL.length >= 5) {
             setCheckImage(true);

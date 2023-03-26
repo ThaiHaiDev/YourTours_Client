@@ -21,7 +21,7 @@ export default function DialogCountOfRoom(props: any) {
 
     React.useEffect(() => {
         roomOfHomeApi.getAllBedOfRoom(`${props.roomOfHomeId}`).then((dataBed) => {
-            setListBedOfRoom(dataBed.data.content);
+            setListBedOfRoom(dataBed?.data?.content);
         });
     }, [props.roomOfHomeId]);
 
@@ -33,7 +33,7 @@ export default function DialogCountOfRoom(props: any) {
         setOpen(false);
     };
 
-     const Update = (id: string | undefined, data: any) => {
+    const Update = (id: string | undefined, data: any) => {
         props.setListRoomOfHome(
             props.listRoomOfHome?.map((item: any) => {
                 if (item.id === id) {
@@ -59,7 +59,7 @@ export default function DialogCountOfRoom(props: any) {
 
     const handleSave = () => {
         const newCount = {
-            listBedOfHomeDetail: dataSetBedCount
+            listBedOfHomeDetail: dataSetBedCount,
         };
         roomOfHomeApi
             .saveCountBedOfHome(newCount)
@@ -75,7 +75,7 @@ export default function DialogCountOfRoom(props: any) {
 
     return (
         <div className="dialog-count-of__room">
-            <p onClick={handleClickOpen} className="edit-count-bed" style={{color: 'black'}}>
+            <p onClick={handleClickOpen} className="edit-count-bed" style={{ color: 'black' }}>
                 Thêm
             </p>
             <Dialog

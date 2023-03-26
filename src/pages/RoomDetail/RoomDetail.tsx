@@ -41,7 +41,7 @@ const RoomDetail = () => {
     const [dateBook, setDateBook] = useState<string[]>([moment().format('YYYY-MM-DD'), moment().format('YYYY-MM-DD')]);
     const [guests, setGuests] = useState<any>([]);
     const [titleGuests, setTitleGuests] = useState<any>('1 Người lớn, 0 Trẻ em, 0 Trẻ sơ sinh');
-    const [priceTotal, setPriceTotal] = useState<string>('');
+    const [priceTotal, setPriceTotal] = useState<any>('');
     const [discount, setDiscount] = useState<number>(0);
     const [priceNoDiscount, setPriceNoDiscount] = useState<any>('');
 
@@ -75,11 +75,11 @@ const RoomDetail = () => {
         const dateTo = format(value[0].endDate, 'yyyy-MM-dd');
         setDateBook([dateFrom, dateTo]);
         pricesOfHomeApi.showPriceByRangeDay(params?.idHome, dateFrom, dateTo).then((dataResponse) => {
-            setPriceDay(dataResponse.data.totalCost);
-            setDetailPrice(dataResponse.data.detail);
-            setPriceTotal(dataResponse.data.totalCostWithSurcharge);
-            setDiscount(dataResponse.data.percent !== null ? dataResponse.data.percent : 0);
-            setPriceNoDiscount(dataResponse.data.totalCostWithNoDiscount);
+            setPriceDay(dataResponse?.data?.totalCost);
+            setDetailPrice(dataResponse?.data?.detail);
+            setPriceTotal(dataResponse?.data?.totalCostWithSurcharge);
+            setDiscount(dataResponse?.data?.percent !== null ? Number(dataResponse?.data?.percent) : 0);
+            setPriceNoDiscount(dataResponse?.data?.totalCostWithNoDiscount);
         });
     };
 
