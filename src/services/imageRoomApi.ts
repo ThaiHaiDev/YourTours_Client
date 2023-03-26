@@ -1,5 +1,5 @@
 import axiosClientFile from '../share/axios-client/axiosClientFile';
-import { BaseResponseUploadMediaResponse } from '../share/models/image.model';
+import { BaseResponseUploadMediaResponse } from '../share/models/image';
 
 const imageRoomApi = {
     uploadImage(data: any): Promise<BaseResponseUploadMediaResponse> {

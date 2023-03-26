@@ -5,7 +5,7 @@ import {
     BaseResponseDiscountHomeCategoryDetail,
     FactoryCreateRequestUUIDDiscountHomeCategoryDetail,
     FactoryUpdateRequestUUIDDiscountHomeCategoryDetail,
-} from '../share/models/discount.model';
+} from '../share/models/discount';
 
 const discountApi = {
     getAllDiscount(): Promise<BaseResponseBasePagingResponseDiscountHomeCategoryInfo> {

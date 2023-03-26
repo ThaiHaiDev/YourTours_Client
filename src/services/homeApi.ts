@@ -5,7 +5,7 @@ import {
     FactoryUpdateRequestUUIDUpdateAddressHomeModel,
     FactoryUpdateRequestUUIDUpdateBasePriceHomeModel,
     FactoryUpdateRequestUUIDUpdateBaseProfileHomeModel,
-} from '../share/models/home.model';
+} from '../share/models/home';
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL_DEVELOPER;
 

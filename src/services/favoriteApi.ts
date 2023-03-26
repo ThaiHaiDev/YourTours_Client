@@ -1,6 +1,6 @@
 import axiosClient from '../share/axios-client/axiosClient';
 import { BaseResponseSuccessResponse } from '../share/models/cms';
-import { BaseResponseBasePagingResponseHomeInfo, ItemFavoritesDetail } from '../share/models/favorite.model';
+import { BaseResponseBasePagingResponseHomeInfo, ItemFavoritesDetail } from '../share/models/favorite';
 
 const favoriteApi = {
     likeFavoriteRoom(data: ItemFavoritesDetail): Promise<BaseResponseSuccessResponse> {

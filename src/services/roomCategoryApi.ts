@@ -8,7 +8,7 @@ import {
     CreateListRoomOfHomeModel,
     FactoryCreateRequestUUIDRoomCategoryDetail,
     FactoryUpdateRequestUUIDRoomCategoryDetail,
-} from '../share/models/roomCategory.model';
+} from '../share/models/roomCategory';
 
 // const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 

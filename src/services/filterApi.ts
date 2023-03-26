@@ -1,5 +1,5 @@
 import axiosClient from '../share/axios-client/axiosClient';
-import { BasePagingResponseHomeInfo, BaseResponseBasePagingResponseAmenityInfo } from '../share/models/filter.model';
+import { BasePagingResponseHomeInfo, BaseResponseBasePagingResponseAmenityInfo } from '../share/models/filter';
 
 const filterApi = {
     getAllFilterNavbar(): Promise<BaseResponseBasePagingResponseAmenityInfo> {
