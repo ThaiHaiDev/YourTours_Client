@@ -1,27 +1,24 @@
-import { useState, useEffect } from "react";
-import amenityApi from "../../services/amenityApi";
-import AmenityAdmin from "./AmenityAdmin";
+import { useState, useEffect } from 'react';
+import amenityApi from '../../services/amenityApi';
+import { AmenityDetail } from '../../share/models/amenities';
+import AmenityAdmin from './AmenityAdmin';
 
 const LayoutAmenityAdmin = () => {
-    const [listAmenity, setListAmenity] = useState<any>([]);
+    const [listAmenity, setListAmenity] = useState<AmenityDetail[]>([]);
 
     useEffect(() => {
         amenityApi.getAllAmenity().then((dataResponse) => {
-            setListAmenity(dataResponse.data.content)
-        })
-    }, [])
+            if (dataResponse.data?.content) {
+                setListAmenity(dataResponse.data?.content);
+            }
+        });
+    }, []);
 
-    const handleChangeData = (data : any) => {
-        setListAmenity(data)
-    }
+    const handleChangeData = (data: any) => {
+        setListAmenity(data);
+    };
 
-    console.log(listAmenity)
-    
-    return (
-        <div>
-            {listAmenity.length !== 0 && <AmenityAdmin data={listAmenity} setList={handleChangeData}/>}
-        </div>
-    )
-}
+    return <div>{listAmenity.length !== 0 && <AmenityAdmin data={listAmenity} setList={handleChangeData} />}</div>;
+};
 
-export default LayoutAmenityAdmin
+export default LayoutAmenityAdmin;

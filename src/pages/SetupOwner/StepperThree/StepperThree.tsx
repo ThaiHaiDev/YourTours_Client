@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import amenityCategoryApi from '../../../services/amenityCategoryApi';
+import { AmenityCategoriesModel } from '../../../share/models/amenityCategories';
 import { ConvenientOptionShow } from '../../../share/models/convenient';
 import SelectedMultiple from './SelectedMultiple';
 import './StepperThree.scss';
@@ -10,11 +11,13 @@ interface StepperThreeData {
 }
 
 const StepperThree = (props: StepperThreeData) => {
-    const [data, setData] = useState<any>();
+    const [data, setData] = useState<AmenityCategoriesModel[]>();
 
     useEffect(() => {
-        amenityCategoryApi.getAmenityCategories().then((data) => {
-            setData(data.data.content);
+        amenityCategoryApi.getAmenityCategories().then((dataResponse) => {
+            if (dataResponse?.data?.content) {
+                setData(dataResponse.data.content);
+            }
         });
     }, []);
 
@@ -33,7 +36,9 @@ const StepperThree = (props: StepperThreeData) => {
                 </div>
                 <div className="col l-6 m-6">
                     <SelectedMultiple dataList={data} setDataStep3={props.setDataStep3} />
-                    <Link to='/' className='btn-out'>Thoát</Link>
+                    <Link to="/" className="btn-out">
+                        Thoát
+                    </Link>
                 </div>
             </div>
         </div>

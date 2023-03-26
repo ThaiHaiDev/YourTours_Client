@@ -9,7 +9,7 @@ const customStyles = {
         display: 'flex',
         flexWrap: 'wrap',
         height: 'auto',
-        maxHeight: '250px'
+        maxHeight: '250px',
     }),
 
     menuPortal: (provided: any, state: any) => ({
@@ -39,31 +39,30 @@ export default function SelectedMultiple(props: any) {
     const [selectedOption2, setSelectedOption2] = useState<any | []>([]);
     const [selectedOption3, setSelectedOption3] = useState<any | []>([]);
 
-
     const A1: any = useMemo(() => [], []);
     const A2: any = useMemo(() => [], []);
     const A3: any = useMemo(() => [], []);
 
     return (
-        <div className="selected-multiple-step3" style={{width: '100%', padding: '0 40px', marginTop: '-60px'}}>
+        <div className="selected-multiple-step3" style={{ width: '100%', padding: '0 40px', marginTop: '-60px' }}>
             {props.dataList?.map((listCate: any, index: number) => {
                 amenityCategoryApi.getAmenityInCategories(listCate.id).then((data) => {
                     if (index === 0) {
-                        data?.data.content?.map((convi: any) => {
+                        data?.data?.content?.map((convi: any) => {
                             if (!A1.some((person: any) => person.value === convi.id)) {
                                 A1.push({ value: convi.id, label: convi.name });
                             }
                             return A1;
                         });
                     } else if (index === 1) {
-                        data?.data.content?.map((convi: any) => {
+                        data?.data?.content?.map((convi: any) => {
                             if (!A2.some((person: any) => person.value === convi.id)) {
                                 A2.push({ value: convi.id, label: convi.name });
                             }
                             return A2;
                         });
                     } else if (index === 2) {
-                        data?.data.content?.map((convi: any) => {
+                        data?.data?.content?.map((convi: any) => {
                             if (!A3.some((person: any) => person.value === convi.id)) {
                                 A3.push({ value: convi.id, label: convi.name });
                             }

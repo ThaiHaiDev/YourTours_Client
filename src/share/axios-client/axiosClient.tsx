@@ -13,7 +13,9 @@ const axiosClient = axios.create({
     baseURL: API_BASE_URL,
     headers: {
         Accept: 'application/json',
-        Authorization: `${getAccessTokenFromLocalStorage() !== '{}' && `Bearer`} ${getAccessTokenFromLocalStorage() !== '{}' ? getAccessTokenFromLocalStorage() : ''}`,
+        Authorization: `${getAccessTokenFromLocalStorage() !== '{}' && `Bearer`} ${
+            getAccessTokenFromLocalStorage() !== '{}' ? getAccessTokenFromLocalStorage() : ''
+        }`,
     },
 });
 

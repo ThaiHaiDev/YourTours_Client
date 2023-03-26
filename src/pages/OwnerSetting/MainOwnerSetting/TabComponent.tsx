@@ -11,16 +11,16 @@ import StatisShow from './StatisShow/StatisShow';
 
 export default function TabComponent() {
     const [value, setValue] = React.useState('1');
-    const [dataWaiting, setDataWaiting] = React.useState([]);
-    const [dataCheckIn, setDataCheckIn] = React.useState([]);
+    const [dataWaiting, setDataWaiting] = React.useState<any>([]);
+    const [dataCheckIn, setDataCheckIn] = React.useState<any>([]);
 
     React.useEffect(() => {
         summaryHomeApi.getWaiting().then((dataResponse) => {
-            setDataWaiting(dataResponse.data.content);
+            setDataWaiting(dataResponse?.data?.content);
         });
 
         summaryHomeApi.getCheckIn().then((dataResponse) => {
-            setDataCheckIn(dataResponse.data.content);
+            setDataCheckIn(dataResponse?.data?.content);
         });
     }, []);
 
@@ -39,10 +39,18 @@ export default function TabComponent() {
                     </TabList>
                 </Box>
                 <TabPanel value="1">
-                    {dataWaiting.length !== 0 ? <TableDataHostSummary data={dataWaiting} idTab='0' setDataCheckIn={setDataCheckIn} /> : <ListDataNull />}
+                    {dataWaiting.length !== 0 ? (
+                        <TableDataHostSummary data={dataWaiting} idTab="0" setDataCheckIn={setDataCheckIn} />
+                    ) : (
+                        <ListDataNull />
+                    )}
                 </TabPanel>
                 <TabPanel value="2">
-                    {dataCheckIn.length !== 0 ? <TableDataHostSummary data={dataCheckIn} idTab='1' /> : <ListDataNull />}
+                    {dataCheckIn.length !== 0 ? (
+                        <TableDataHostSummary data={dataCheckIn} idTab="1" />
+                    ) : (
+                        <ListDataNull />
+                    )}
                 </TabPanel>
                 <TabPanel value="3">
                     <StatisShow />

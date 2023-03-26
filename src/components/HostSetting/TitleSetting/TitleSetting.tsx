@@ -16,7 +16,12 @@ import homeApi from '../../../services/homeApi';
 export default function TittleSetting(props: any) {
     const [expanded, setExpanded] = React.useState<string | false>(false);
 
-    const { handleSubmit, register, setValue, formState: { isSubmitting }, } = useForm();
+    const {
+        handleSubmit,
+        register,
+        setValue,
+        formState: { isSubmitting },
+    } = useForm();
     const [refundTitle, setRefundTitle] = React.useState<string>('');
 
     const params = useParams();
@@ -31,7 +36,7 @@ export default function TittleSetting(props: any) {
         setExpanded(false);
     };
 
-    console.log(props.infoRoom.refundPolicy)
+    console.log(props.infoRoom.refundPolicy);
     React.useEffect(() => {
         setValue('name', props?.infoRoom?.name);
         setValue('description', props.infoRoom.desc);
@@ -49,8 +54,12 @@ export default function TittleSetting(props: any) {
     }, [props.infoRoom.name, props.infoRoom.desc, props.infoRoom.guide, props.infoRoom.refundPolicy, setValue]);
 
     const onSubmit: SubmitHandler<any> = (data: any) => {
-        if (data.refundPolicy === 'Trước 1 ngày' || data.refundPolicy === 'Không hoàn tiền' || data.refundPolicy === 'Trước 7 ngày') {
-            var tempRefund : string = '';
+        if (
+            data.refundPolicy === 'Trước 1 ngày' ||
+            data.refundPolicy === 'Không hoàn tiền' ||
+            data.refundPolicy === 'Trước 7 ngày'
+        ) {
+            var tempRefund: string = '';
             if (data.refundPolicy === 'Trước 1 ngày') {
                 tempRefund = 'BEFORE_ONE_DAY';
             } else if (data.refundPolicy === 'Không hoàn tiền') {
@@ -78,7 +87,6 @@ export default function TittleSetting(props: any) {
         } else {
             enqueueSnackbar('Vui lòng điền đúng format của chính sách hoàn tiền', { variant: 'warning' });
         }
-       
     };
 
     return (
@@ -104,7 +112,9 @@ export default function TittleSetting(props: any) {
                             <p onClick={handleClose} className="btn-close">
                                 Hủy
                             </p>
-                            <button className="btn-save" disabled={isSubmitting}>Lưu</button>
+                            <button className="btn-save" disabled={isSubmitting}>
+                                Lưu
+                            </button>
                         </div>
                     </AccordionDetails>
                 </Accordion>

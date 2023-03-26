@@ -6,7 +6,6 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import SelectedLocate from '../../../pages/SetupOwner/StepperOne/SelectedLocate';
 
 import './LocationSetting.scss';
-import mapProvince from '../../../utils/mapProvince';
 
 import { AxiosError } from 'axios';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -36,10 +35,10 @@ export default function LocationSetting(props: any) {
 
     const [nameProvince, setNameProvince] = React.useState<string>('');
     React.useEffect(() => {
-        if (props?.locationRoom.loca) {
-            setNameProvince(mapProvince(props.locationRoom.loca));
+        if (props?.locationRoom.localName) {
+            setNameProvince(props.locationRoom.localName);
         }
-    }, [props.locationRoom.loca]);
+    }, [props.locationRoom.localName]);
 
     React.useEffect(() => {
         setValue('address', props?.locationRoom.address);
@@ -49,7 +48,7 @@ export default function LocationSetting(props: any) {
         const newData = {
             data: {
                 address: dataAddress.address,
-                provinceCode: parseInt(idProvince),
+                provinceCode: idProvince,
             },
             id: params.idHome, 
         };

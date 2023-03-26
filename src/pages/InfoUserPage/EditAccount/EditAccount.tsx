@@ -29,16 +29,16 @@ const EditInfo = () => {
     const onSubmit: SubmitHandler<any> = (data: any) => {
         const dataUpdate = {
             fullName: data.fullName,
-            email: data.email, 
+            email: data.email,
             phoneNumber: data.phoneNumber,
             dateOfBirth: data.dateOfBirth,
             address: data.address,
-            gender: data.male !== false ? 'MALE': 'FEMALE'
-        }
+            gender: data.male !== false ? 'MALE' : 'FEMALE',
+        };
         userApi
             .updateInfoUser(dataUpdate)
             .then((dataResponse: any) => {
-                dispatch(userSlice.actions.editInfo({data : dataResponse.data}))
+                dispatch(userSlice.actions.editInfo({ data: dataResponse.data }));
                 enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
             })
             .catch((error: AxiosError<any>) => {

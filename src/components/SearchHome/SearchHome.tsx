@@ -6,9 +6,10 @@ import { Link } from 'react-router-dom';
 import provinceApi from '../../services/provinceApi';
 import formatPrice from '../../utils/formatPrice';
 import removeVietnameseTones from '../../utils/convertStringVietNamese';
+import { HomeInfoSearch } from '../../share/models/homeSearch';
 
-function SearchHome({ placeholder, data } : any) {
-    const [filteredData, setFilteredData] = useState<any>([]);
+function SearchHome({ placeholder, data }: any) {
+    const [filteredData, setFilteredData] = useState<HomeInfoSearch[]>([]);
     const [wordEntered, setWordEntered] = useState('');
     const refOne = useRef<HTMLInputElement | null>(null);
 
@@ -16,30 +17,33 @@ function SearchHome({ placeholder, data } : any) {
         document.addEventListener('click', hideOnClickOutside, true);
     }, []);
 
-    const hideOnClickOutside = (e : any) => {
+    const hideOnClickOutside = (e: any) => {
         if (refOne.current && !refOne.current.contains(e.target)) {
-            setFilteredData([])
+            setFilteredData([]);
         }
-        setWordEntered('')
+        setWordEntered('');
     };
 
-    const handleFilter = (event : any) => {
+    const handleFilter = (event: any) => {
         const searchWord = event.target.value;
         setWordEntered(searchWord);
 
         const convertStringToEnglish = removeVietnameseTones(searchWord);
-        const text = convertStringToEnglish.replace(' ', "%20");
+        const text = convertStringToEnglish.replace(' ', '%20');
+
         provinceApi.searchByProvince(text).then((dataResponse) => {
-            setFilteredData(dataResponse.data.content);
-        })
+            if (dataResponse.data?.content) {
+                setFilteredData(dataResponse.data?.content);
+            }
+        });
 
         // const newFilter = data.filter((value : any) => {
         //     return value.title.toLowerCase().includes(searchWord.toLowerCase());
         // });
-        
+
         if (searchWord === '') {
             setFilteredData([]);
-        } 
+        }
     };
 
     const clearInput = () => {
@@ -54,7 +58,7 @@ function SearchHome({ placeholder, data } : any) {
                     <SearchIcon />
                 </div>
 
-                <input type="text" placeholder={placeholder} value={wordEntered} onChange={handleFilter}/>
+                <input type="text" placeholder={placeholder} value={wordEntered} onChange={handleFilter} />
 
                 <div className="searchIcon">
                     {filteredData.length === 0 ? '' : <CloseIcon id="clearBtn" onClick={clearInput} />}
@@ -62,14 +66,14 @@ function SearchHome({ placeholder, data } : any) {
             </div>
             {filteredData.length !== 0 && (
                 <div className="dataResult" ref={refOne}>
-                    {filteredData.slice(0, 15)?.map((value:any, index:number) => {
+                    {filteredData.slice(0, 15)?.map((value: any, index: number) => {
                         return (
                             <Link className="dataItem" to={`detail/${value.id}`} target="_blank" key={index}>
-                                <div className='image-item-search'>
-                                    <img src={value?.thumbnail} alt='' />
+                                <div className="image-item-search">
+                                    <img src={value?.thumbnail} alt="" />
                                 </div>
                                 <p>{value?.name} </p>
-                                <p className='price-item-search'>{`Từ ${formatPrice(value?.costPerNightDefault)}`}</p>
+                                <p className="price-item-search">{`Từ ${formatPrice(value?.costPerNightDefault)}`}</p>
                             </Link>
                         );
                     })}

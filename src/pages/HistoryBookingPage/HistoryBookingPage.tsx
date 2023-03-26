@@ -22,7 +22,7 @@ const HistoryBookingPage = () => {
 
     useEffect(() => {
         bookingApi.getHistoryOfUser().then((dataResponse) => {
-            setDataHistory(dataResponse.data.content);
+            setDataHistory(dataResponse?.data?.content);
             setLoading(false);
         });
     }, []);
@@ -89,11 +89,11 @@ const HistoryBookingPage = () => {
                                     </div>
                                     <div className="btn__booking">
                                         <div>
-                                            <PopoverRefundPolicy dataShow={history?.refundPolicy}/>
+                                            <PopoverRefundPolicy dataShow={history?.refundPolicy} />
                                         </div>
-                                        <div style={{display: 'flex', justifyContent: 'left', width: '130px'}}>
+                                        <div style={{ display: 'flex', justifyContent: 'left', width: '130px' }}>
                                             {history?.status !== 'WAITING' ? (
-                                                <p style={{margin: 0}}>{status}</p>
+                                                <p style={{ margin: 0 }}>{status}</p>
                                             ) : (
                                                 <ModalConfirmDelete idRemove={history.id} />
                                             )}

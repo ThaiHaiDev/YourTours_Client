@@ -14,7 +14,6 @@ import Footer from '../../components/Footer/Footer';
 import BedRoomSlider from '../../components/BedRoomSlider/BedRoomSlider';
 import { useEffect, useState } from 'react';
 import homeDetailApi from '../../services/homeDetailApi';
-import mapProvince from '../../utils/mapProvince';
 import SkeletonRoomDetail from '../../components/Skeleton/SkeletonRoomDetail';
 
 import format from 'date-fns/format';
@@ -42,7 +41,7 @@ const RoomDetail = () => {
     const [dateBook, setDateBook] = useState<string[]>([moment().format('YYYY-MM-DD'), moment().format('YYYY-MM-DD')]);
     const [guests, setGuests] = useState<any>([]);
     const [titleGuests, setTitleGuests] = useState<any>('1 Người lớn, 0 Trẻ em, 0 Trẻ sơ sinh');
-    const [priceTotal, setPriceTotal] = useState<string>('');
+    const [priceTotal, setPriceTotal] = useState<any>('');
     const [discount, setDiscount] = useState<number>(0);
     const [priceNoDiscount, setPriceNoDiscount] = useState<any>('');
 
@@ -76,11 +75,11 @@ const RoomDetail = () => {
         const dateTo = format(value[0].endDate, 'yyyy-MM-dd');
         setDateBook([dateFrom, dateTo]);
         pricesOfHomeApi.showPriceByRangeDay(params?.idHome, dateFrom, dateTo).then((dataResponse) => {
-            setPriceDay(dataResponse.data.totalCost);
-            setDetailPrice(dataResponse.data.detail);
-            setPriceTotal(dataResponse.data.totalCostWithSurcharge);
-            setDiscount(dataResponse.data.percent !== null ? dataResponse.data.percent : 0);
-            setPriceNoDiscount(dataResponse.data.totalCostWithNoDiscount);
+            setPriceDay(dataResponse?.data?.totalCost);
+            setDetailPrice(dataResponse?.data?.detail);
+            setPriceTotal(dataResponse?.data?.totalCostWithSurcharge);
+            setDiscount(dataResponse?.data?.percent !== null ? Number(dataResponse?.data?.percent) : 0);
+            setPriceNoDiscount(dataResponse?.data?.totalCostWithNoDiscount);
         });
     };
 
@@ -154,9 +153,9 @@ const RoomDetail = () => {
                                         <FmdGoodIcon className="icon_locate" />
                                         <p>{`${
                                             dataDetailHome?.addressDetail !== null ? dataDetailHome?.addressDetail : ''
-                                        } ${dataDetailHome?.addressDetail !== null ? ',' : ''} ${mapProvince(
-                                            dataDetailHome?.provinceCode ? dataDetailHome?.provinceCode : undefined,
-                                        )}`}</p>
+                                        } ${dataDetailHome?.addressDetail !== null ? ',' : ''} ${
+                                            dataDetailHome?.provinceName ? dataDetailHome?.provinceName : ''
+                                        }`}</p>
                                     </div>
                                 </div>
                                 <div className="heading__right">

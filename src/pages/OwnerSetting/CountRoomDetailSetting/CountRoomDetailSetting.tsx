@@ -26,10 +26,10 @@ const CountRoomDetailSetting = () => {
 
     useEffect(() => {
         roomOfHomeApi.getAllRoomOfHome(`${params.idHome}&`).then((dataRoom) => {
-            setListRoomOfHome(dataRoom.data.content);
+            setListRoomOfHome(dataRoom?.data?.content);
         });
         roomCategoryApi.getAllRoomCategoryOfHome(params?.idHome).then((dataResponse) => {
-            setListCategoryRoom(dataResponse.data.content);
+            setListCategoryRoom(dataResponse?.data?.content);
         });
     }, [params.idHome]);
 
@@ -38,7 +38,11 @@ const CountRoomDetailSetting = () => {
             .deleteRoomOfHome(idRoom)
             .then(() => {
                 enqueueSnackbar('Xóa thành công', { variant: 'success' });
-                setListRoomOfHome(listRoomOfHome.filter(((room:any) => {return room.id !== idRoom})))
+                setListRoomOfHome(
+                    listRoomOfHome.filter((room: any) => {
+                        return room.id !== idRoom;
+                    }),
+                );
             })
             .catch((error: AxiosError<any>) => {
                 enqueueSnackbar(error.response?.data.message, { variant: 'error' });
@@ -48,12 +52,14 @@ const CountRoomDetailSetting = () => {
     const handleSaveAddRoom = (dataSetRoomCount: any) => {
         const newCount = {
             homeId: params?.idHome,
-            listCreate: dataSetRoomCount.filter((data: any) => { return data.number !== 0}),
+            listCreate: dataSetRoomCount.filter((data: any) => {
+                return data.number !== 0;
+            }),
         };
         roomCategoryApi
             .saveCountRoomOfHome(newCount)
             .then((data: any) => {
-                setListRoomOfHome(data.data)
+                setListRoomOfHome(data.data);
                 enqueueSnackbar('Lưu thành công', { variant: 'success' });
             })
 
@@ -66,14 +72,27 @@ const CountRoomDetailSetting = () => {
         <div className="count-roomdetal__setting">
             <NavbarOwner />
             <div className="content-count__roomdetail__setting">
-                <p onClick={() => navigate(-1)} style={{ margin: 0, fontSize: '16px', paddingTop: '-30px', color: 'black', cursor: 'pointer'}}><ArrowBackIosIcon />Quay lại trang</p>
+                <p
+                    onClick={() => navigate(-1)}
+                    style={{ margin: 0, fontSize: '16px', paddingTop: '-30px', color: 'black', cursor: 'pointer' }}
+                >
+                    <ArrowBackIosIcon />
+                    Quay lại trang
+                </p>
                 <h1>Phòng và không gian</h1>
-                <p>Thêm hoặc chỉnh sửa khu vực mà khách có thể sử dụng và đánh dấu không gian họ sẽ dùng chung với người khác</p>
+                <p>
+                    Thêm hoặc chỉnh sửa khu vực mà khách có thể sử dụng và đánh dấu không gian họ sẽ dùng chung với
+                    người khác
+                </p>
                 <div className="card-roomdetail__count">
                     <p>Phòng ngủ · Phòng tắm đầy đủ · Bồn tắm nước nóng · Ngoại thất</p>
-                    <DialogCountRoom listCategoryRoom={listCategoryRoom} handleSaveAddRoom={handleSaveAddRoom}/>
+                    <DialogCountRoom listCategoryRoom={listCategoryRoom} handleSaveAddRoom={handleSaveAddRoom} />
                 </div>
-                <ImageOfRoomSetting listRoomOfHome={listRoomOfHome} handleRemoveRoom={handleRemoveRoom} setListRoomOfHome={setListRoomOfHome}/>
+                <ImageOfRoomSetting
+                    listRoomOfHome={listRoomOfHome}
+                    handleRemoveRoom={handleRemoveRoom}
+                    setListRoomOfHome={setListRoomOfHome}
+                />
             </div>
         </div>
     );
