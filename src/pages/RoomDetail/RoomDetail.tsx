@@ -30,6 +30,7 @@ import DateIsBooking from '../../components/DateIsBooking/DateIsBooking';
 import { RootState } from '../../redux/store';
 import bookingApi from '../../services/bookingApi';
 import { AxiosError } from 'axios';
+import CommentRating from '../../components/Comment/Comment';
 
 const RoomDetail = () => {
     const userLogin = useSelector((state: RootState) => state.user);
@@ -197,7 +198,10 @@ const RoomDetail = () => {
                                 <DateIsBooking dateIsBooked={dataDetailHome?.dateIsBooked} />
 
                                 <hr className="line" />
-                                <h1 style={{ marginTop: '25px' }}>Đánh giá</h1>
+                                <h1 style={{ marginTop: '25px', marginBottom: '20px' }}>Đánh giá</h1>
+                                <div style={{ marginTop: '10px' }}>
+                                    <CommentRating />
+                                </div>
                             </div>
                         </div>
 

@@ -5,12 +5,12 @@ import moment from 'moment';
 import 'react-calendar/dist/Calendar.css';
 import './DateIsBooking.scss';
 
-export default function DateIsBooking(props : any) {
+export default function DateIsBooking(props: any) {
     const [value, onChange] = useState(new Date());
 
     return (
-        <div className='data-isbooking'>
-            <h1 style={{ marginBottom: '20px' }}>Những ngày đã được đặt</h1>
+        <div className="data-isbooking">
+            <h1 style={{ marginBottom: '20px', marginTop: '20px' }}>Những ngày đã được đặt</h1>
             <Calendar
                 onChange={onChange}
                 value={value}
