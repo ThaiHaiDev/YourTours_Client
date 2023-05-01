@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react';
 import bookingApi from '../../services/bookingApi';
 import ModalConfirmDelete from '../../components/ModalConfirmDelete/ModalConfirmDelete';
 import formatPrice from '../../utils/formatPrice';
-import mapProvince from '../../utils/mapProvince';
 
 import LinearProgress from '@mui/material/LinearProgress';
 
@@ -62,10 +61,14 @@ const HistoryBookingPage = () => {
                                         <div className="locate-hictory__booking">
                                             <FmdGoodIcon className="icon-locate-booking" />
                                             <p>{`${
-                                                history?.homeAddressDetail !== null ? history?.homeAddressDetail : ''
-                                            } ${history?.homeAddressDetail !== null ? ',' : ''} ${mapProvince(
-                                                history?.homeProvinceCode ? history?.homeProvinceCode : undefined,
-                                            )}`}</p>
+                                                history?.homeAddressDetail?.addressDetail !== null
+                                                    ? history?.homeAddressDetail?.addressDetail
+                                                    : ''
+                                            } ${history?.homeAddressDetail?.addressDetail !== null ? ',' : ''} ${
+                                                history?.homeAddressDetail?.provinceName
+                                                    ? history?.homeAddressDetail?.provinceName
+                                                    : ''
+                                            }`}</p>
                                         </div>
                                         <p className="guests-history___booking">{`Tổng lượng khách: ${history?.numberOfGuests}`}</p>
                                         <div className="date-history__booking">

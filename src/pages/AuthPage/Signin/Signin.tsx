@@ -1,20 +1,21 @@
-import './Signin.scss';
+import { useState } from 'react';
 
 import { AxiosError } from 'axios';
 import { useSnackbar } from 'notistack';
 
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+
+import { Link } from 'react-router-dom';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 import Navbar from '../../../components/Navbar/Navbar';
-import { Link } from 'react-router-dom';
-import { useForm, SubmitHandler } from 'react-hook-form';
 import authApi from '../../../services/authApi';
 import { LoginErrorResponse, LoginRequest } from '../../../share/models/auth';
-import { useDispatch } from 'react-redux';
 import userSlice from '../userSlice';
 
-import { useState } from 'react';
+import './Signin.scss';
 
 const Signin = () => {
     const {
@@ -53,7 +54,10 @@ const Signin = () => {
     return (
         <div>
             <Navbar />
-            <div className="signin">
+            <div className="signin start-background">
+                <div className="stars"></div>
+                <div className="stars2"></div>
+                <div className="stars3"></div>
                 <div className="container__sign-in">
                     <form onSubmit={handleSubmit(onSubmit)}>
                         {loading ? '' : ''}
