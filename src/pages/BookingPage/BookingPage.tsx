@@ -1,22 +1,23 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useNavigate } from 'react-router-dom';
-import DateBooking from '../../components/DateBooking/DateBooking';
-import { RootState } from '../../redux/store';
-import bookingApi from '../../services/bookingApi';
-
 import { AxiosError } from 'axios';
 import { useSnackbar } from 'notistack';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink, useNavigate } from 'react-router-dom';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
 
-import './BookingPage.scss';
-import homeDetailApi from '../../services/homeDetailApi';
-import formatPrice from '../../utils/formatPrice';
-import Paypal from '../../components/Paypal/Paypal';
-import convertDola from '../../utils/convertDola';
 import CheckBoxPayment from '../../components/CheckBoxPayment/CheckBoxPayment';
+import DateBooking from '../../components/DateBooking/DateBooking';
+
+import FormEvaluate from '../../components/FormEvaluate/FormEvaluate';
+
+import Paypal from '../../components/Paypal/Paypal';
+import { RootState } from '../../redux/store';
+import bookingApi from '../../services/bookingApi';
+import homeDetailApi from '../../services/homeDetailApi';
+import convertDola from '../../utils/convertDola';
+import formatPrice from '../../utils/formatPrice';
 import userSlice from '../AuthPage/userSlice';
+import './BookingPage.scss';
 
 const BookingPage = () => {
     const infoBooking = useSelector((state: RootState) => state.booking);
@@ -24,6 +25,7 @@ const BookingPage = () => {
 
     const [dataDetailHomeBooking, setDataDetalHomeBooking] = useState<any>([]);
     const [priceDay, setPriceDay] = useState<string>('');
+    const [idBooking, setIdBooking] = useState<string | undefined>('');
 
     const [priceAfterChoosePayment, setPriceAfterChoosePayment] = useState<any>(infoBooking?.priceTotal);
 
@@ -56,7 +58,7 @@ const BookingPage = () => {
             .then((dataResponse) => {
                 dispatch(userSlice.actions.updateHost());
                 enqueueSnackbar('Đặt phòng thành công', { variant: 'success' });
-                navigate('/historybooking');
+                setIdBooking(dataResponse?.data?.id);
             })
             .catch((error: AxiosError<any>) => {
                 enqueueSnackbar(error.response?.data.message, { variant: 'error' });
@@ -67,6 +69,8 @@ const BookingPage = () => {
         setPriceDay(value);
         setPriceAfterChoosePayment(value);
     };
+
+    const handleCloseReview = () => {};
 
     return (
         <div className="booking__page">
@@ -79,6 +83,11 @@ const BookingPage = () => {
                     />
                 </NavLink>
             </div>
+            {idBooking !== '' && idBooking !== undefined ? (
+                <FormEvaluate showFormReview={true} idBook={idBooking} handleCloseReview={handleCloseReview} />
+            ) : (
+                <></>
+            )}
             <div className="content-booking">
                 <h1>Yêu cầu đặt phòng/đặt chỗ • Yourtours</h1>
                 <div className="row">

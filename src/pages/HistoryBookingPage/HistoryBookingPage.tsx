@@ -22,6 +22,7 @@ const HistoryBookingPage = () => {
     const [dataHistory, setDataHistory] = useState<any>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [showFormReview, setShowFormReview] = useState<boolean>(false);
+    const [idBooking, setIdBooking] = useState<string | undefined>('');
 
     useEffect(() => {
         bookingApi.getHistoryOfUser().then((dataResponse) => {
@@ -30,7 +31,8 @@ const HistoryBookingPage = () => {
         });
     }, []);
 
-    const handleReview = () => {
+    const handleReview = (value: string | undefined) => {
+        setIdBooking(value);
         setShowFormReview(true);
     };
 
@@ -113,18 +115,18 @@ const HistoryBookingPage = () => {
                                                 <ModalConfirmDelete idRemove={history.id} />
                                             )}
                                         </div>
-                                        <h3 onClick={handleReview} className="btn-review">
+                                        <h3 onClick={() => handleReview(history.id)} className="btn-review">
                                             Đánh giá
                                         </h3>
-                                        <FormEvaluate
-                                            showFormReview={showFormReview}
-                                            handleCloseReview={handleCloseReview}
-                                            idBook={history.id}
-                                        />
                                     </div>
                                 </div>
                             );
                         })}
+                        <FormEvaluate
+                            showFormReview={showFormReview}
+                            handleCloseReview={handleCloseReview}
+                            idBook={idBooking}
+                        />
                     </div>
                 </div>
             </div>

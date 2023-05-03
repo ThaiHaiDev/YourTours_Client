@@ -2,6 +2,8 @@ import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { AxiosError } from 'axios';
 
 import { useSnackbar } from 'notistack';
+import { useNavigate } from 'react-router-dom';
+
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Rating } from '@mui/material';
 
 import evaluateApi from '../../services/evaluateApi';
@@ -17,6 +19,8 @@ const FormEvaluate = (props: dataProps) => {
     const [open, setOpen] = useState<boolean>(false);
     const [value, setValue] = useState<number | null>(2);
     const [valueReview, setValueReview] = useState<string>('');
+
+    const navigate = useNavigate();
 
     const { enqueueSnackbar } = useSnackbar();
 
@@ -49,6 +53,7 @@ const FormEvaluate = (props: dataProps) => {
             .then(() => {
                 enqueueSnackbar('Đánh giá thành công', { variant: 'success' });
                 resetForm.reset();
+                navigate('/historybooking');
             })
             .catch((error: AxiosError<any>) => {
                 enqueueSnackbar(error.response?.data.message, { variant: 'error' });
