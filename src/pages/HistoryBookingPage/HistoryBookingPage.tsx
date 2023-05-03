@@ -1,23 +1,27 @@
-import Navbar from '../../components/Navbar/Navbar';
-
-import './HistoryBookingPage.scss';
-
-import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import { useEffect, useState } from 'react';
-import bookingApi from '../../services/bookingApi';
-import ModalConfirmDelete from '../../components/ModalConfirmDelete/ModalConfirmDelete';
-import formatPrice from '../../utils/formatPrice';
-
-import LinearProgress from '@mui/material/LinearProgress';
 
 import AOS from 'aos';
+
 import 'aos/dist/aos.css';
+import FmdGoodIcon from '@mui/icons-material/FmdGood';
+import LinearProgress from '@mui/material/LinearProgress';
+
+import FormEvaluate from '../../components/FormEvaluate/FormEvaluate';
+import ModalConfirmDelete from '../../components/ModalConfirmDelete/ModalConfirmDelete';
+
+import Navbar from '../../components/Navbar/Navbar';
+
 import PopoverRefundPolicy from '../../components/PopoverRefundPolicy/PopoverRefundPolicy';
+import bookingApi from '../../services/bookingApi';
+import formatPrice from '../../utils/formatPrice';
+import './HistoryBookingPage.scss';
+
 AOS.init();
 
 const HistoryBookingPage = () => {
     const [dataHistory, setDataHistory] = useState<any>([]);
     const [loading, setLoading] = useState<boolean>(true);
+    const [showFormReview, setShowFormReview] = useState<boolean>(false);
 
     useEffect(() => {
         bookingApi.getHistoryOfUser().then((dataResponse) => {
@@ -25,6 +29,14 @@ const HistoryBookingPage = () => {
             setLoading(false);
         });
     }, []);
+
+    const handleReview = () => {
+        setShowFormReview(true);
+    };
+
+    const handleCloseReview = () => {
+        setShowFormReview(false);
+    };
 
     return (
         <div>
@@ -101,6 +113,14 @@ const HistoryBookingPage = () => {
                                                 <ModalConfirmDelete idRemove={history.id} />
                                             )}
                                         </div>
+                                        <h3 onClick={handleReview} className="btn-review">
+                                            Đánh giá
+                                        </h3>
+                                        <FormEvaluate
+                                            showFormReview={showFormReview}
+                                            handleCloseReview={handleCloseReview}
+                                            idBook={history.id}
+                                        />
                                     </div>
                                 </div>
                             );

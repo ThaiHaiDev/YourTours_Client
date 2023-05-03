@@ -200,7 +200,7 @@ const RoomDetail = () => {
                                 <hr className="line" />
                                 <h1 style={{ marginTop: '25px', marginBottom: '20px' }}>Đánh giá</h1>
                                 <div style={{ marginTop: '10px' }}>
-                                    <CommentRating />
+                                    <CommentRating idHome={dataDetailHome.id} />
                                 </div>
                             </div>
                         </div>

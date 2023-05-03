@@ -4,7 +4,6 @@ import Button from '@mui/material/Button';
 
 export default function PopoverRefundPolicy(props: any) {
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
-    console.log(props.detailPrice);
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);

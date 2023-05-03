@@ -5,7 +5,6 @@ import formatPrice from '../../utils/formatPrice';
 
 export default function PopoverPrice(props: any) {
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
-    console.log(props.detailPrice)
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
@@ -41,7 +40,14 @@ export default function PopoverPrice(props: any) {
                 {props?.detailPrice.map((detail: any, index: number) => (
                     <div
                         className="item-price-detail"
-                        style={{ display: 'flex', margin: '0 8px', justifyContent: 'space-between', padding: '5px 15px', alignItems: 'center', background: `${detail.especially && '#64b5f6'}` }}
+                        style={{
+                            display: 'flex',
+                            margin: '0 8px',
+                            justifyContent: 'space-between',
+                            padding: '5px 15px',
+                            alignItems: 'center',
+                            background: `${detail.especially && '#64b5f6'}`,
+                        }}
                         key={index}
                     >
                         <p style={{ fontSize: '14px', margin: 0 }}>{detail?.day}</p>
