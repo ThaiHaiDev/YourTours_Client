@@ -1,36 +1,37 @@
-import ListImage from '../../components/ListImage/ListImage';
-import Navbar from '../../components/Navbar/Navbar';
-
-import './RoomDetail.scss';
-
-import FmdGoodIcon from '@mui/icons-material/FmdGood';
-import StarIcon from '@mui/icons-material/Star';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import Convenient from '../../components/Convenient/Convenient';
-import DateGo from '../../components/DateGo/DateGo';
-import Dropdown from '../../components/Dropdown/Dropdown';
-import DialogConvenient from '../../components/DialogConvenient/DialogConvenient';
-import Footer from '../../components/Footer/Footer';
-import BedRoomSlider from '../../components/BedRoomSlider/BedRoomSlider';
 import { useEffect, useState } from 'react';
-import homeDetailApi from '../../services/homeDetailApi';
-import SkeletonRoomDetail from '../../components/Skeleton/SkeletonRoomDetail';
+import { AxiosError } from 'axios';
 
 import format from 'date-fns/format';
+
 import moment from 'moment';
-
 import { useSnackbar } from 'notistack';
-
-import pricesOfHomeApi from '../../services/pricesOfHomeApi';
-import formatPrice from '../../utils/formatPrice';
-import PopoverPrice from '../../components/PopoverPrice/PopoverPrice';
-import bookingSlice from '../BookingPage/bookingSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import FmdGoodIcon from '@mui/icons-material/FmdGood';
+import StarIcon from '@mui/icons-material/Star';
+
+import BedRoomSlider from '../../components/BedRoomSlider/BedRoomSlider';
+import CommentRating from '../../components/Comment/Comment';
+import Convenient from '../../components/Convenient/Convenient';
+import DateGo from '../../components/DateGo/DateGo';
 import DateIsBooking from '../../components/DateIsBooking/DateIsBooking';
+import DialogConvenient from '../../components/DialogConvenient/DialogConvenient';
+
+import Dropdown from '../../components/Dropdown/Dropdown';
+import Footer from '../../components/Footer/Footer';
+
+import ListImage from '../../components/ListImage/ListImage';
+
+import Navbar from '../../components/Navbar/Navbar';
+import PopoverPrice from '../../components/PopoverPrice/PopoverPrice';
+import SkeletonRoomDetail from '../../components/Skeleton/SkeletonRoomDetail';
 import { RootState } from '../../redux/store';
 import bookingApi from '../../services/bookingApi';
-import { AxiosError } from 'axios';
-import CommentRating from '../../components/Comment/Comment';
+import homeDetailApi from '../../services/homeDetailApi';
+import pricesOfHomeApi from '../../services/pricesOfHomeApi';
+import formatPrice from '../../utils/formatPrice';
+import bookingSlice from '../BookingPage/bookingSlice';
+import './RoomDetail.scss';
 
 const RoomDetail = () => {
     const userLogin = useSelector((state: RootState) => state.user);
@@ -198,7 +199,15 @@ const RoomDetail = () => {
                                 <DateIsBooking dateIsBooked={dataDetailHome?.dateIsBooked} />
 
                                 <hr className="line" />
-                                <h1 style={{ marginTop: '25px', marginBottom: '20px' }}>Đánh giá</h1>
+                                <h1
+                                    style={{
+                                        marginTop: '5px',
+                                        padding: '8px 10px',
+                                        borderLeft: '7px solid blue',
+                                    }}
+                                >
+                                    Đánh giá
+                                </h1>
                                 <div style={{ marginTop: '10px' }}>
                                     <CommentRating idHome={dataDetailHome.id} />
                                 </div>
