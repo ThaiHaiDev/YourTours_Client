@@ -162,7 +162,7 @@ const RoomDetail = () => {
                                 </div>
                                 <div className="heading__right">
                                     <StarIcon className="icon_rate" />
-                                    <p>5.0</p>
+                                    <p>{dataDetailHome?.averageRate}</p>
                                     <Link to="/" className="link__rate">
                                         {`(${dataDetailHome?.view} lượt xem)`}
                                     </Link>
