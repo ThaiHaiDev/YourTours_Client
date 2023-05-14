@@ -7,6 +7,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
+import FIlterOwner from '../../../components/FIlterOwner/FIlterOwner';
 import NavbarOwner from '../../../components/NavbarOwner/NavbarOwner';
 import homeDetailApi from '../../../services/homeDetailApi';
 import './ListRoomOfHost.scss';
@@ -47,12 +48,12 @@ const ListRoomOfHost = () => {
                 </div>
             </div>
             <div className="header-listroom">
-                <h1>{`${rows.length} nhà/phòng cho thuê`}</h1>
+                <h1 style={{ marginRight: '10px' }}>{`${rows.length} nhà/phòng cho thuê`}</h1>
+                <FIlterOwner />
             </div>
             <div className="data-table">
                 <DataTable rows={rows} />
             </div>
-            ;
         </div>
     );
 };
