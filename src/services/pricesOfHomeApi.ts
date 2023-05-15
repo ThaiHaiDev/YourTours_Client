@@ -10,8 +10,9 @@ const pricesOfHomeApi = {
     getPriceByMonthOfRoom(
         month: string,
         idHome: string | undefined,
+        year: string
     ): Promise<BaseResponsePriceOfHomeWithMonthResponse> {
-        const url = `api/v1/cms/prices/months?month=${parseInt(month)}&year=2022&homeId=${idHome}`;
+        const url = `api/v1/cms/prices/months?month=${parseInt(month)}&year=${year}&homeId=${idHome}`;
         return axiosClient.get(url);
     },
     customePriceDay(data: PriceOfHomeCreateRequest): Promise<BaseResponseSuccessResponse> {
