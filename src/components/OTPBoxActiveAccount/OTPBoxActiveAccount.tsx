@@ -2,6 +2,7 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import './OTPBoxActiveAccount.scss';
 
 import { OTPActiveAccountRequest } from '../../share/models/auth';
+import { t } from 'i18next';
 
 interface OTPBoxActiveAccountData {
     handleSubmitOTP: (otp: OTPActiveAccountRequest) => void;
@@ -49,13 +50,13 @@ const OTPBoxActiveAccount = (props: OTPBoxActiveAccountData) => {
             otp: O1 + O2 + O3 + O4 + O5,
         };
         if (props.handleSubmitOTP) {
-            props.handleSubmitOTP(newOtp)
+            props.handleSubmitOTP(newOtp);
         }
     };
     return (
         <div className="otp-box-active__account">
             <div className="container">
-                <h1>Nhập mã code mà chúng tôi đã gửi về gmail của bạn</h1>
+                <h1>{t('contentMess.FillOTP')}</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="userInput">
                         <input
@@ -99,9 +100,9 @@ const OTPBoxActiveAccount = (props: OTPBoxActiveAccountData) => {
                             onChange={nameChangeHandler5}
                         />
                     </div>
-                    <div style={{display: 'flex', justifyContent: 'center'}}>
+                    <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <button type="submit" className="customs-btn">
-                            Xác thực
+                            {t('common.active')}
                         </button>
                     </div>
                 </form>

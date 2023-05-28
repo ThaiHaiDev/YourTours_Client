@@ -1,13 +1,61 @@
 {
-    "common": {},
+    "common": {
+        "signin": "Đăng nhập",
+        "signup": "Đăng ký",
+        "active": "Xác thực",
+        "retrievalPassword": "Lấy lại mật khẩu"
+    },
     "message": {
-        "signin": "Đăng nhập thành công"
+        "signin": "Đăng nhập thành công",
+        "signup": "Đăng kí tài khoản thành công",
+        "activeAccout": "Xác thực tài khoản thành công",
+        "sendOTP": "Gửi OTP về email của bạn thành công",
+        "reSendOTP": "Chúng tôi đã gửi OTP lại đến email của bạn",
+        "changePassword": "Đổi mật khẩu thành công"
     },
     "validate": {
         "emailRequire": "Email được yêu cầu",
         "emailError": "Đây không phải là một email hợp lệ",
         "passwordRequire": "Mật khẩu được yêu cầu",
-        "passwordMaxError": "Mật khẩu chỉ giới hạn 16 kí tự"
+        "passwordMaxError": "Mật khẩu chỉ giới hạn 16 kí tự",
+        "fullnameRequire": "Họ tên được yêu cầu",
+        "passwordSpecialError": "Mật khẩu phải bao gồm chữ thường và kí tự in hoa, ít nhất 1 kí tự đặt biệt và 1 con số",
+        "passwordMinError": "Mật khẩu phải ít từ 6 kí tự ",
+        "passwordConfirmRequire": "Mật khẩu xác nhận được yêu cầu",
+        "passwordConfirmError": "Xác nhận mật khẩu không khớp với mật khẩu của bạn"
     },
-    "contentPolicy": {}
+    "contentMess": {
+        "messOTP_1": "Để bảo mật thông tin, chúng tôi cần bạn xác thực tài khoản. Chúng tôi đã gửi cho bạn mã OTP xác thực qua gmail ",
+        "messOTP_2": ". Bạn vui lòng kiểm tra gmail và nhập mã xác thực vào đây:",
+        "messReSendOTP": "Bạn không nhận được mã code, gửi lại?",
+        "changePassword": "Nhập địa chỉ email sử dụng để tạo tài khoản Yourtours và chúng tôi sẽ gửi link để đặt lại mật khẩu tài khoản đến bạn",
+        "confirmSendOTP": "Chúng tôi đã gửi OTP để thay đổi mật khẩu thông qua email. Vui lòng kiểm tra email của bạn.",
+        "FillOTP": "Nhập mã code mà chúng tôi đã gửi về gmail của bạn"
+    },
+    "contentPolicy": {
+        "policyAuth": "Bằng cách đăng ký hoặc đăng nhập, bạn đã hiểu và đồng ý với ",
+        "and": " và ",
+        "ofYourtour": "của Yourtours.",
+        "informationOfYou": "Thông tin của bạn hoàn toàn được bảo mật."
+    },
+    "link": {
+        "rules": "Điều Khoản Sử Dụng",
+        "privacyPolicy": "Chính Sách Bảo Mật",
+        "forgotpassword": "Quên mật khẩu",
+        "signup": "Tạo tài khoản ngay",
+        "signin": "Đăng nhập ngay"
+    },
+    "title": {
+        "signin": "Đăng nhập",
+        "orSignin": "hoặc đăng nhập bằng",
+        "signup": "Đăng ký",
+        "retrievalPassword": "Lấy lại mật khẩu",
+        "newPassword": "Tạo mật khẩu mới"
+    },
+    "label": {
+        "email": "Địa chỉ Email",
+        "fullname": "Họ tên",
+        "password": "Mật khẩu",
+        "confirmPassword": "Xác nhận mật khẩu"
+    }
 }

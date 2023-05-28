@@ -6,6 +6,7 @@ import { useSnackbar } from 'notistack';
 import { AxiosError } from 'axios';
 import { OTPErrorResponse } from '../../share/models/auth';
 import LoadingMaster from '../LoadingMaster/LoadingMaster';
+import { t } from 'i18next';
 
 interface OTPBoxData {
     handleSubmitOTP: (otp: {}) => void;
@@ -70,7 +71,7 @@ const OTPBox = (props: OTPBoxData) => {
             .reSendOtp(newDataReSend)
             .then(() => {
                 setLoadingMaster(false);
-                enqueueSnackbar('Chúng tôi đã gửi OTP lại đến email của bạn', { variant: 'success' });
+                enqueueSnackbar(t('message.reSendOTP'), { variant: 'success' });
             })
             .catch((error: AxiosError<OTPErrorResponse>) => {
                 setLoadingMaster(false);
@@ -84,9 +85,8 @@ const OTPBox = (props: OTPBoxData) => {
             <div className="container">
                 <h1>ENTER OTP</h1>
                 <p>
-                    Để bảo mật thông tin, chúng tôi cần bạn xác thực tài khoản. Chúng tôi đã gửi cho bạn mã OTP xác thực
-                    qua gmail {`${props.emailSend.slice(0, 2)}****@***.***`}. Bạn vui lòng kiểm tra gmail và nhập mã xác
-                    thực vào đây:
+                    {t('contentMess.messOTP_1')} {`${props.emailSend.slice(0, 2)}****@***.***`}{' '}
+                    {t('contentMess.messOTP_2')}
                 </p>
                 <form onSubmit={handleSubmit}>
                     <div className="userInput">
@@ -127,11 +127,11 @@ const OTPBox = (props: OTPBoxData) => {
                         />
                     </div>
                     <button type="submit" className="customs-btn" onClick={handleSubmit}>
-                        Xác thực
+                        {t('common.active')}
                     </button>
                 </form>
                 <p className="re-send" onClick={handleReSendEmail}>
-                    Bạn không nhận được mã code, gửi lại?
+                    {t('contentMess.messReSendOTP')}
                 </p>
             </div>
         </div>

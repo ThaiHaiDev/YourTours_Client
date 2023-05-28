@@ -20,6 +20,7 @@ import { OTPErrorResponse, RegisterErrorResponse } from '../../../share/models/a
 import userSlice from '../userSlice';
 import './Signup.scss';
 import LoadingMaster from '../../../components/LoadingMaster/LoadingMaster';
+import { t } from 'i18next';
 
 interface FormRegisterData {
     password: string;
@@ -49,6 +50,7 @@ function DropdownMenu() {
     const dropdownRef = useRef<any>(null);
 
     const [show, setShow] = useState<boolean>(false);
+    const [showConfirm, setShowConfirm] = useState<boolean>(false);
 
     const regexPassword: ValidationRule<RegExp> = regexCons.email;
 
@@ -80,6 +82,10 @@ function DropdownMenu() {
         setShow(!show);
     };
 
+    const handleShowPassConfirm = () => {
+        setShowConfirm(!showConfirm);
+    };
+
     const onSubmit: SubmitHandler<FormRegisterData> = (data: FormRegisterData) => {
         setEmailSend(data.email);
         setLoadingMaster(true);
@@ -92,7 +98,7 @@ function DropdownMenu() {
             .signUp(dataSignUp)
             .then((dataRes) => {
                 dispatch(userSlice.actions.signup(dataRes));
-                enqueueSnackbar('Đăng kí thành công', { variant: 'success' });
+                enqueueSnackbar(t('message.signup'), { variant: 'success' });
                 setActiveMenu('info_user');
                 setLoadingMaster(false);
                 reset();
@@ -109,7 +115,7 @@ function DropdownMenu() {
             .otpConfirm(otp)
             .then(() => {
                 setLoadingMaster(false);
-                enqueueSnackbar('Xác thực tài khoản thành công', { variant: 'success' });
+                enqueueSnackbar(t('message.activeAccout'), { variant: 'success' });
                 navigate('/signin');
             })
             .catch((error: AxiosError<OTPErrorResponse>) => {
@@ -142,16 +148,16 @@ function DropdownMenu() {
                 <div className="menu" ref={dropdownRef}>
                     <div className="form-email">
                         <form onSubmit={handleSubmit(onSubmit)}>
-                            <h1>Đăng ký</h1>
+                            <h1>{t('title.signup')}</h1>
                             <label>
-                                <label className="label-email">Địa chỉ Email</label>
+                                <label className="label-email">{t('label.email')}</label>
                                 <input
                                     type="text"
                                     {...register('email', {
-                                        required: 'Email được yêu cầu',
+                                        required: t('validate.emailRequire')! as string,
                                         pattern: {
                                             value: /^\S+@\S+$/i,
-                                            message: 'Đây không phải là một email hợp lệ',
+                                            message: t('validate.emailError'),
                                         },
                                     })}
                                 />
@@ -160,11 +166,11 @@ function DropdownMenu() {
                                 )}
                             </label>
                             <label>
-                                <label className="label-email">Họ tên</label>
+                                <label className="label-email">{t('label.fullname')}</label>
                                 <input
                                     type="text"
                                     {...register('fullName', {
-                                        required: 'Họ tên được yêu cầu',
+                                        required: t('validate.fullnameRequire')! as string,
                                     })}
                                 />
                                 {errors.fullName && (
@@ -172,24 +178,23 @@ function DropdownMenu() {
                                 )}
                             </label>
                             <label>
-                                <label className="label-email">Mật khẩu</label>
+                                <label className="label-email">{t('label.password')}</label>
                                 <input
                                     className="signup__form-input"
                                     type={!show ? 'password' : 'text'}
                                     {...register('password', {
-                                        required: 'Mật khẩu được yêu cầu',
+                                        required: t('validate.passwordRequire')! as string,
                                         pattern: {
                                             value: regexPassword,
-                                            message:
-                                                'Mật khẩu phải bao gồm chữ thường và kí tự in hoa, ít nhất 1 kí tự đặt biệt và 1 con số.',
+                                            message: t('validate.passwordSpecialError'),
                                         },
                                         minLength: {
                                             value: 6,
-                                            message: 'Mật khẩu phải ít từ 6 kí tự ',
+                                            message: t('validate.passwordMinError'),
                                         },
                                         maxLength: {
                                             value: 16,
-                                            message: 'Mật khẩu chỉ có thể nhiều nhất 16 kí tự',
+                                            message: t('validate.passwordMaxError'),
                                         },
                                     })}
                                 />
@@ -204,22 +209,22 @@ function DropdownMenu() {
                             </label>
 
                             <label>
-                                <label className="label-email">Xác nhận mật khẩu</label>
+                                <label className="label-email">{t('label.confirmPassword')}</label>
                                 <input
-                                    type={!show ? 'password' : 'text'}
+                                    type={!showConfirm ? 'password' : 'text'}
                                     {...register('password_confirmation', {
-                                        required: 'Mật khẩu được yêu cầu',
+                                        required: t('validate.passwordConfirmRequire')! as string,
                                         validate: (val: string | undefined) => {
                                             if (watch('password') !== val) {
-                                                return 'Xác nhận mật khẩu không khớp với mật khẩu của bạn';
+                                                return t('validate.passwordConfirmError')! as string;
                                             }
                                         },
                                     })}
                                 />
-                                {show ? (
-                                    <VisibilityOffIcon className="icon-eye" onClick={handleShowPass} />
+                                {showConfirm ? (
+                                    <VisibilityOffIcon className="icon-eye" onClick={handleShowPassConfirm} />
                                 ) : (
-                                    <VisibilityIcon className="icon-eye" onClick={handleShowPass} />
+                                    <VisibilityIcon className="icon-eye" onClick={handleShowPassConfirm} />
                                 )}
                                 {errors.password_confirmation && (
                                     <p className="message_error">{`${
@@ -230,18 +235,18 @@ function DropdownMenu() {
 
                             <br />
                             <p style={{ fontStyle: 'italic', marginLeft: '5px', fontSize: '1.2rem', marginTop: '3px' }}>
-                                Thông tin của bạn hoàn toàn được bảo mật.
+                                {t('contentPolicy.informationOfYou')}
                             </p>
                             <button type="submit" className="customs-btn" disabled={isSubmitting}>
-                                Đăng kí
+                                {t('common.signup')}
                             </button>
                         </form>
                         <div className="forgot-password">
                             <Link to="/forgotpassword" className="link__forgot-password">
-                                Quên mật khẩu
+                                {t('link.forgotpassword')}
                             </Link>
                             <Link to="/signin" className="link-create">
-                                Đăng nhập ngay
+                                {t('link.signin')}
                             </Link>
                         </div>
                     </div>
@@ -267,15 +272,15 @@ function DropdownMenu() {
             </CSSTransition>
             <div className="policy">
                 <p>
-                    Bằng cách đăng ký hoặc đăng nhập, bạn đã hiểu và đồng ý với{' '}
+                    {t('contentPolicy.policyAuth')}
                     <Link to="" className="link-policy">
-                        Điều Khoản Sử Dụng
+                        {t('link.rules')}
                     </Link>{' '}
-                    và{' '}
+                    {t('contentPolicy.and')}
                     <Link to="" className="link-policy">
-                        Chính Sách Bảo Mật
+                        {t('link.privacyPolicy')}
                     </Link>{' '}
-                    của Yourtours.
+                    {t('contentPolicy.ofYourtour')}
                 </p>
             </div>
         </div>

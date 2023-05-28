@@ -15,6 +15,7 @@ import { useSnackbar } from 'notistack';
 import { useState } from 'react';
 import OTPBoxForgotPass from '../../../components/OTPBoxForgotPass/OTPBoxForgotPass';
 import LoadingMaster from '../../../components/LoadingMaster/LoadingMaster';
+import { t } from 'i18next';
 
 const ForgotPass = () => {
     const {
@@ -37,7 +38,7 @@ const ForgotPass = () => {
             .forgotPassword(data)
             .then(() => {
                 setLoadingMaster(false);
-                enqueueSnackbar('Thành công', { variant: 'success' });
+                enqueueSnackbar(t('message.sendOTP'), { variant: 'success' });
                 setHidenNoti(true);
                 reset();
             })
@@ -53,7 +54,7 @@ const ForgotPass = () => {
             .otpForgotPassword(otp)
             .then(() => {
                 setLoadingMaster(false);
-                enqueueSnackbar('Đổi mật khẩu thành công', { variant: 'success' });
+                enqueueSnackbar(t('message.changePassword'), { variant: 'success' });
             })
             .catch((error: AxiosError<OTPErrorResponse>) => {
                 setLoadingMaster(false);
@@ -72,20 +73,17 @@ const ForgotPass = () => {
                     <LoadingMaster loadingMaster={loadingMaster} />
                     {!hidenNoti ? (
                         <form onSubmit={handleSubmit(onSubmit)}>
-                            <h1>Lấy lại mật khẩu</h1>
-                            <span>
-                                Nhập địa chỉ email sử dụng để tạo tài khoản Yourtours và chúng tôi sẽ gửi link để đặt
-                                lại tài khoản đến bạn
-                            </span>
+                            <h1>{t('title.retrievalPassword')}</h1>
+                            <span>{t('contentMess.changePassword')}</span>
                             <label>
                                 <input
                                     type="email"
                                     placeholder="Email"
                                     {...register('email', {
-                                        required: 'Email được yêu cầu',
+                                        required: t('validate.emailRequire')! as string,
                                         pattern: {
                                             value: /^\S+@\S+$/i,
-                                            message: 'Đây không phải là một email hợp lệ',
+                                            message: t('validate.emailError'),
                                         },
                                     })}
                                 />
@@ -93,25 +91,22 @@ const ForgotPass = () => {
                                     <span className="message_error">{`${errors.email && errors.email?.message}`}</span>
                                 )}
                             </label>
-                            <button type="submit">Lấy lại mật khẩu</button>
+                            <button type="submit">{t('common.retrievalPassword')}</button>
                         </form>
                     ) : (
                         <OTPBoxForgotPass handleSubmitOTP={handleSubmitOTP} emailSend={emailSend} />
                     )}
                     <div className="forgot-password">
                         <Link to="/signin" className="link__forgot-password">
-                            Đăng nhập ngay
+                            {t('link.signin')}
                         </Link>
                         <Link to="/signup" className="link-create">
-                            Tạo tài khoản ngay
+                            {t('link.signup')}
                         </Link>
                     </div>
                     {hidenNoti && (
                         <div className="noti-reset">
-                            <p>
-                                Chúng tôi đã gửi OTP để thay đổi mật khẩu thông qua email. Vui lòng kiểm tra email của
-                                bạn.
-                            </p>
+                            <p>{t('contentMess.confirmSendOTP')}</p>
                         </div>
                     )}
                 </div>

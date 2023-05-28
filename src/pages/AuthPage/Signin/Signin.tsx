@@ -71,7 +71,7 @@ const Signin = () => {
                 <div className="container__sign-in">
                     <form onSubmit={handleSubmit(onSubmit)}>
                         {loading ? '' : ''}
-                        <h1>Đăng nhập</h1>
+                        <h1>{t('title.signin')}</h1>
                         <div className="social-container">
                             <Link to="#" className="socialg">
                                 <img src="https://img.icons8.com/color/344/google-logo.png" alt="go_icon" />
@@ -83,7 +83,7 @@ const Signin = () => {
                                 <img src="https://img.icons8.com/ios-glyphs/344/github.png" alt="gi_icon" />
                             </Link>
                         </div>
-                        <span>hoặc đăng nhập bằng</span>
+                        <span>{t('title.orSignin')}</span>
                         <label>
                             <input
                                 type="email"
@@ -123,28 +123,28 @@ const Signin = () => {
                             {errors.password && <span className="message_error">{`${errors.password?.message}`}</span>}
                         </label>
                         <button type="submit" disabled={isSubmitting}>
-                            Đăng nhập
+                            {t('common.signin')}
                         </button>
                     </form>
                     <div className="forgot-password">
                         <Link to="/forgotpassword" className="link__forgot-password">
-                            Quên mật khẩu
+                            {t('link.forgotpassword')}
                         </Link>
                         <Link to="/signup" className="link-create">
-                            Tạo tài khoản ngay
+                            {t('link.signup')}
                         </Link>
                     </div>
                     <div className="policy">
                         <p>
-                            Bằng cách đăng ký hoặc đăng nhập, bạn đã hiểu và đồng ý với{' '}
+                            {t('contentPolicy.policyAuth')}
                             <Link to="" className="link-policy">
-                                Điều Khoản Sử Dụng
-                            </Link>{' '}
-                            và{' '}
+                                {t('link.rules')}
+                            </Link>
+                            {t('contentPolicy.and')}
                             <Link to="" className="link-policy">
-                                Chính Sách Bảo Mật
+                                {t('link.privacyPolicy')}
                             </Link>{' '}
-                            của Yourtours.
+                            {t('contentPolicy.ofYourtour')}
                         </p>
                     </div>
                 </div>
