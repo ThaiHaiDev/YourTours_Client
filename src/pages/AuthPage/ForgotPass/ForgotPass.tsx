@@ -22,16 +22,17 @@ const ForgotPass = () => {
         handleSubmit,
         formState: { errors },
     } = useForm<ForgotPasswordRequest>();
+    const [emailSend, setEmailSend] = useState<string>('');
 
     const { enqueueSnackbar } = useSnackbar();
 
     const [hidenNoti, setHidenNoti] = useState<boolean>(false);
 
     const onSubmit: SubmitHandler<ForgotPasswordRequest> = (data: ForgotPasswordRequest) => {
+        setEmailSend(data.email);
         authApi
             .forgotPassword(data)
             .then((userData) => {
-                console.log(userData);
                 enqueueSnackbar('Thành công', { variant: 'success' });
                 setHidenNoti(true);
                 reset();
@@ -42,7 +43,6 @@ const ForgotPass = () => {
     };
 
     const handleSubmitOTP = (otp: OTPForgotPasswordRequest) => {
-        console.log(otp);
         authApi
             .otpForgotPassword(otp)
             .then((dataResend) => {
@@ -56,7 +56,10 @@ const ForgotPass = () => {
     return (
         <div>
             <Navbar />
-            <div className="forgot">
+            <div className="forgot start-background">
+                <div className="stars"></div>
+                <div className="stars2"></div>
+                <div className="stars3"></div>
                 <div className="container__sign-in">
                     {!hidenNoti ? (
                         <form onSubmit={handleSubmit(onSubmit)}>
@@ -84,7 +87,7 @@ const ForgotPass = () => {
                             <button type="submit">Lấy lại mật khẩu</button>
                         </form>
                     ) : (
-                        <OTPBoxForgotPass handleSubmitOTP={handleSubmitOTP} emailSend="test" />
+                        <OTPBoxForgotPass handleSubmitOTP={handleSubmitOTP} emailSend={emailSend} />
                     )}
                     <div className="forgot-password">
                         <Link to="/signin" className="link__forgot-password">

@@ -16,6 +16,7 @@ import { LoginErrorResponse, LoginRequest } from '../../../share/models/auth';
 import userSlice from '../userSlice';
 
 import './Signin.scss';
+import LoadingMaster from '../../../components/LoadingMaster/LoadingMaster';
 
 const Signin = () => {
     const {
@@ -28,6 +29,7 @@ const Signin = () => {
     const { enqueueSnackbar } = useSnackbar();
     const [loading, setLoading] = useState<boolean>(false);
     const [show, setShow] = useState<boolean>(false);
+    const [loadingMaster, setLoadingMaster] = useState<boolean>(false);
 
     const dispatch = useDispatch();
 
@@ -37,16 +39,22 @@ const Signin = () => {
 
     const onSubmit: SubmitHandler<LoginRequest> = (data: LoginRequest) => {
         setLoading(true);
+        setLoadingMaster(true);
         authApi
             .signIn(data)
             .then((userData) => {
                 setLoading(false);
                 dispatch(userSlice.actions.signin(userData.data));
+                setLoadingMaster(true);
+                setLoadingMaster(false);
                 enqueueSnackbar('Đăng nhập thành công', { variant: 'success' });
+                setTimeout(function () {
+                    document.location = '/';
+                }, 2000);
                 reset();
-                document.location = '/';
             })
             .catch((error: AxiosError<LoginErrorResponse>) => {
+                setLoadingMaster(false);
                 enqueueSnackbar(error.response?.data.message, { variant: 'error' });
             });
     };
@@ -58,6 +66,7 @@ const Signin = () => {
                 <div className="stars"></div>
                 <div className="stars2"></div>
                 <div className="stars3"></div>
+                <LoadingMaster loadingMaster={loadingMaster} />
                 <div className="container__sign-in">
                     <form onSubmit={handleSubmit(onSubmit)}>
                         {loading ? '' : ''}

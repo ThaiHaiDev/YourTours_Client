@@ -23,7 +23,6 @@ function App() {
             // Code set auto logout in here
             setTimeout(function () {
                 dispatch(userSlice.actions.logout());
-                console.log('logout');
             }, 5000);
         }
     }, [authMessData.error401, dispatch, enqueueSnackbar]);

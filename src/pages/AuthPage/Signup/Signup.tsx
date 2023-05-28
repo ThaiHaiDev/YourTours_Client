@@ -1,24 +1,24 @@
-import './Signup.scss';
+import React, { useState, useEffect, useRef } from 'react';
 import { AxiosError } from 'axios';
 
-import React, { useState, useEffect, useRef } from 'react';
-import { CSSTransition } from 'react-transition-group';
-import { Link, useNavigate } from 'react-router-dom';
-import Navbar from '../../../components/Navbar/Navbar';
 import { useSnackbar } from 'notistack';
+import { useForm, ValidationRule, SubmitHandler } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { CSSTransition } from 'react-transition-group';
 
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
-import { useForm, ValidationRule, SubmitHandler } from 'react-hook-form';
+import Navbar from '../../../components/Navbar/Navbar';
 import OTPBox from '../../../components/OTPBox/OTPBox';
-import { useDispatch } from 'react-redux';
-import userSlice from '../userSlice';
-import authApi from '../../../services/authApi';
-
 import regexCons from '../../../constants/regexCons';
+import authApi from '../../../services/authApi';
 import { OTPErrorResponse, RegisterErrorResponse } from '../../../share/models/auth';
+
+import userSlice from '../userSlice';
+import './Signup.scss';
 
 interface FormRegisterData {
     password: string;
@@ -31,7 +31,10 @@ function Signup() {
     return (
         <div>
             <Navbar />
-            <div className="signup">
+            <div className="signup start-background">
+                <div className="stars"></div>
+                <div className="stars2"></div>
+                <div className="stars3"></div>
                 <DropdownMenu></DropdownMenu>
             </div>
         </div>
@@ -248,7 +251,7 @@ function DropdownMenu() {
                     <DropdownItem goToMenu="main" leftIcon={<ArrowBackIosIcon style={{ marginLeft: '5px' }} />}>
                         <p style={{ marginTop: '12px', marginLeft: '-5px', color: 'black' }}>Quay lại</p>
                     </DropdownItem>
-                    <div className="form-otp">
+                    <div className="form-otp" style={{ paddingBottom: '148px' }}>
                         <OTPBox handleSubmitOTP={handleSubmitOTP} emailSend={emailSend} />
                     </div>
                 </div>
