@@ -1,0 +1,13 @@
+{
+    "common": {},
+    "message": {
+        "signin": "Sign in successfully"
+    },
+    "validate": {
+        "emailRequire": "Email is required",
+        "emailError": "This is not a valid email",
+        "passwordRequire": "Password is required",
+        "passwordMaxError": "Password is limited to 16 characters"
+    },
+    "contentPolicy": {}
+}

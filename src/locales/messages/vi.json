@@ -1,0 +1,13 @@
+{
+    "common": {},
+    "message": {
+        "signin": "Đăng nhập thành công"
+    },
+    "validate": {
+        "emailRequire": "Email được yêu cầu",
+        "emailError": "Đây không phải là một email hợp lệ",
+        "passwordRequire": "Mật khẩu được yêu cầu",
+        "passwordMaxError": "Mật khẩu chỉ giới hạn 16 kí tự"
+    },
+    "contentPolicy": {}
+}

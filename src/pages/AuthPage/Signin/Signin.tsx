@@ -17,6 +17,7 @@ import userSlice from '../userSlice';
 
 import './Signin.scss';
 import LoadingMaster from '../../../components/LoadingMaster/LoadingMaster';
+import { t } from 'i18next';
 
 const Signin = () => {
     const {
@@ -47,10 +48,10 @@ const Signin = () => {
                 dispatch(userSlice.actions.signin(userData.data));
                 setLoadingMaster(true);
                 setLoadingMaster(false);
-                enqueueSnackbar('Đăng nhập thành công', { variant: 'success' });
+                enqueueSnackbar(t('message.signin'), { variant: 'success' });
                 setTimeout(function () {
                     document.location = '/';
-                }, 2000);
+                }, 1500);
                 reset();
             })
             .catch((error: AxiosError<LoginErrorResponse>) => {
@@ -88,10 +89,10 @@ const Signin = () => {
                                 type="email"
                                 placeholder="Email"
                                 {...register('email', {
-                                    required: 'Email được yêu cầu',
+                                    required: t('validate.emailRequire')! as string,
                                     pattern: {
                                         value: /^\S+@\S+$/i,
-                                        message: 'Đây không phải là một email hợp lệ',
+                                        message: t('validate.emailError'),
                                     },
                                 })}
                             />
@@ -106,10 +107,10 @@ const Signin = () => {
                                 type={!show ? 'password' : 'text'}
                                 placeholder="Enter password"
                                 {...register('password', {
-                                    required: 'Mật khẩu được yêu cầu',
+                                    required: t('validate.passwordRequire')! as string,
                                     maxLength: {
                                         value: 16,
-                                        message: 'Mật khẩu chỉ giới hạn 16 kí tự',
+                                        message: t('validate.passwordMaxError'),
                                     },
                                 })}
                             />
