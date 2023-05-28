@@ -19,6 +19,7 @@ import { OTPErrorResponse, RegisterErrorResponse } from '../../../share/models/a
 
 import userSlice from '../userSlice';
 import './Signup.scss';
+import LoadingMaster from '../../../components/LoadingMaster/LoadingMaster';
 
 interface FormRegisterData {
     password: string;
@@ -56,8 +57,9 @@ function DropdownMenu() {
         reset,
         watch,
         handleSubmit,
-        formState: { errors },
+        formState: { errors, isSubmitting },
     } = useForm<FormRegisterData>();
+    const [loadingMaster, setLoadingMaster] = useState<boolean>(false);
 
     const { enqueueSnackbar } = useSnackbar();
 
@@ -80,6 +82,7 @@ function DropdownMenu() {
 
     const onSubmit: SubmitHandler<FormRegisterData> = (data: FormRegisterData) => {
         setEmailSend(data.email);
+        setLoadingMaster(true);
         const dataSignUp = {
             email: data.email,
             fullName: data.fullName,
@@ -91,21 +94,26 @@ function DropdownMenu() {
                 dispatch(userSlice.actions.signup(dataRes));
                 enqueueSnackbar('Đăng kí thành công', { variant: 'success' });
                 setActiveMenu('info_user');
+                setLoadingMaster(false);
                 reset();
             })
             .catch((error: AxiosError<RegisterErrorResponse>) => {
+                setLoadingMaster(false);
                 enqueueSnackbar(error.response?.data.message, { variant: 'error' });
             });
     };
 
     const handleSubmitOTP = (otp: {}) => {
+        setLoadingMaster(true);
         authApi
             .otpConfirm(otp)
-            .then((dataResend) => {
+            .then(() => {
+                setLoadingMaster(false);
                 enqueueSnackbar('Xác thực tài khoản thành công', { variant: 'success' });
                 navigate('/signin');
             })
             .catch((error: AxiosError<OTPErrorResponse>) => {
+                setLoadingMaster(false);
                 enqueueSnackbar(error.response?.data.message, { variant: 'error' });
             });
     };
@@ -122,6 +130,7 @@ function DropdownMenu() {
 
     return (
         <div className="dropdown" style={{ height: menuHeight }}>
+            <LoadingMaster loadingMaster={loadingMaster} />
             <CSSTransition
                 in={activeMenu === 'main'}
                 timeout={500}
@@ -223,7 +232,7 @@ function DropdownMenu() {
                             <p style={{ fontStyle: 'italic', marginLeft: '5px', fontSize: '1.2rem', marginTop: '3px' }}>
                                 Thông tin của bạn hoàn toàn được bảo mật.
                             </p>
-                            <button type="submit" className="customs-btn">
+                            <button type="submit" className="customs-btn" disabled={isSubmitting}>
                                 Đăng kí
                             </button>
                         </form>

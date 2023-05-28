@@ -14,6 +14,7 @@ import {
 import { useSnackbar } from 'notistack';
 import { useState } from 'react';
 import OTPBoxForgotPass from '../../../components/OTPBoxForgotPass/OTPBoxForgotPass';
+import LoadingMaster from '../../../components/LoadingMaster/LoadingMaster';
 
 const ForgotPass = () => {
     const {
@@ -23,6 +24,7 @@ const ForgotPass = () => {
         formState: { errors },
     } = useForm<ForgotPasswordRequest>();
     const [emailSend, setEmailSend] = useState<string>('');
+    const [loadingMaster, setLoadingMaster] = useState<boolean>(false);
 
     const { enqueueSnackbar } = useSnackbar();
 
@@ -30,25 +32,31 @@ const ForgotPass = () => {
 
     const onSubmit: SubmitHandler<ForgotPasswordRequest> = (data: ForgotPasswordRequest) => {
         setEmailSend(data.email);
+        setLoadingMaster(true);
         authApi
             .forgotPassword(data)
-            .then((userData) => {
+            .then(() => {
+                setLoadingMaster(false);
                 enqueueSnackbar('Thành công', { variant: 'success' });
                 setHidenNoti(true);
                 reset();
             })
             .catch((error: AxiosError<ForgotPasswordErrorResponse>) => {
+                setLoadingMaster(false);
                 enqueueSnackbar(error.response?.data.message, { variant: 'error' });
             });
     };
 
     const handleSubmitOTP = (otp: OTPForgotPasswordRequest) => {
+        setLoadingMaster(true);
         authApi
             .otpForgotPassword(otp)
-            .then((dataResend) => {
+            .then(() => {
+                setLoadingMaster(false);
                 enqueueSnackbar('Đổi mật khẩu thành công', { variant: 'success' });
             })
             .catch((error: AxiosError<OTPErrorResponse>) => {
+                setLoadingMaster(false);
                 enqueueSnackbar(error.response?.data.message, { variant: 'error' });
             });
     };
@@ -61,6 +69,7 @@ const ForgotPass = () => {
                 <div className="stars2"></div>
                 <div className="stars3"></div>
                 <div className="container__sign-in">
+                    <LoadingMaster loadingMaster={loadingMaster} />
                     {!hidenNoti ? (
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <h1>Lấy lại mật khẩu</h1>
