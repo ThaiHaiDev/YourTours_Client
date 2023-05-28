@@ -60,7 +60,7 @@ function SearchHome({ placeholder, data }: any) {
 
                 <input type="text" placeholder={placeholder} value={wordEntered} onChange={handleFilter} />
 
-                <div className="searchIcon">
+                <div className="searchIcon-clear">
                     {filteredData.length === 0 ? '' : <CloseIcon id="clearBtn" onClick={clearInput} />}
                 </div>
             </div>
