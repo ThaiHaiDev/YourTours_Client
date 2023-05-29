@@ -10,13 +10,11 @@ import { RootState } from './redux/store';
 import Auth from './routes/Auth';
 
 import './App.css';
-import { useTranslation } from 'react-i18next';
 
 function App() {
     const authMessData = useSelector((state: RootState) => state.authMess);
     const { enqueueSnackbar } = useSnackbar();
     const dispatch = useDispatch();
-    const { t } = useTranslation();
 
     useEffect(() => {
         if (authMessData.error401) {
@@ -30,7 +28,7 @@ function App() {
     }, [authMessData.error401, dispatch, enqueueSnackbar]);
     return (
         <div>
-            <Auth t={t} />
+            <Auth />
         </div>
     );
 }

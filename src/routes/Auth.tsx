@@ -48,11 +48,11 @@ const TransactionHistoryOwner = React.lazy(
 // Test Page
 const Test = React.lazy(() => import('../pages/Test/Test'));
 
-const Auth = (t: any) => {
+const Auth = () => {
     const user = useSelector((state: RootState) => state.user);
 
     return (
-        <Routes t={t}>
+        <Routes>
             <Route
                 path="/"
                 element={
