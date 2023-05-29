@@ -6,6 +6,7 @@ import './NavbarFix.scss';
 
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
+import { t } from 'i18next';
 
 const NavbarFix = () => {
     const [isActive, setIsActive] = useState<boolean>(false);
@@ -37,13 +38,17 @@ const NavbarFix = () => {
                     </div>
                 </NavLink>
                 <div className="navbar-right menu">
-                    <NavLink to="/" end={true}>Trang chủ</NavLink>
+                    <NavLink to="/" end={true}>
+                        {t('navbar.home')}
+                    </NavLink>
                     {/* <NavLink to="#" onClick={() => setIsActive(!isActive)}>
                         Book
                     </NavLink> */}
-                    <NavLink to="/intro-host">Trở thành chủ nhà</NavLink>
-                    <NavLink to="/list-room">Danh sách nhà</NavLink>
-                    {user.current?.id !== undefined && <NavLink to="/historybooking">Lịch sử đặt phòng</NavLink>}
+                    <NavLink to="/intro-host">{t('navbar.host')}</NavLink>
+                    <NavLink to="/list-room">{t('navbar.listroom')}</NavLink>
+                    {user.current?.id !== undefined && (
+                        <NavLink to="/historybooking">{t('navbar.historyBookingClient')}</NavLink>
+                    )}
                 </div>
 
                 <div className="navbar-right">
@@ -51,8 +56,8 @@ const NavbarFix = () => {
                         <DropdownUser />
                     ) : (
                         <>
-                            <NavLink to="/signin">Đăng nhập</NavLink>
-                            <NavLink to="/signup">Đăng ký</NavLink>
+                            <NavLink to="/signin">{t('navbar.signin')}</NavLink>
+                            <NavLink to="/signup">{t('navbar.signup')}</NavLink>
                         </>
                     )}
                 </div>

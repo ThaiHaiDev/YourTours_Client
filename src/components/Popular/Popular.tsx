@@ -6,6 +6,7 @@ import provinceApi from '../../services/provinceApi';
 import SkeletonProvince from '../Skeleton/SkeletonProvince';
 
 import { BaseResponseBasePagingResponseProvincePopular, ProvincePopularModel } from '../../share/models/province';
+import { t } from 'i18next';
 
 const Popular = () => {
     const [listProvince, setListProvince] = useState<ProvincePopularModel[]>([]);
@@ -25,7 +26,7 @@ const Popular = () => {
         <div className="web-content">
             <div className="package-menu">
                 <div className="package-menu__head">
-                    <p>Khám phá Việt Nam</p>
+                    <p>{t('title.exploreVN')}</p>
                 </div>
                 <div className="row">
                     {loading ? (
@@ -39,7 +40,9 @@ const Popular = () => {
                                             <img src={province?.thumbnail} alt="" className="package-thumbnail" />
                                             <div className="package-info">
                                                 <h3 className="package-heading">{province?.name}</h3>
-                                                <span className="package-desc">{`${province?.numberBooking} lượt đặt`}</span>
+                                                <span className="package-desc">{`${province?.numberBooking} ${t(
+                                                    'numberCount.countBooking',
+                                                )}`}</span>
                                             </div>
                                         </div>
 

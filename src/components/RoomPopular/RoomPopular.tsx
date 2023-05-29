@@ -13,6 +13,7 @@ import SkeletonRoomItem from '../Skeleton/SkeletonRoomItem';
 import { useNavigate } from 'react-router-dom';
 import IconLove from './IconLove';
 import formatPrice from '../../utils/formatPrice';
+import { t } from 'i18next';
 
 export default function RoomPopular() {
     const settings = {
@@ -43,7 +44,7 @@ export default function RoomPopular() {
 
     return (
         <div className="room__popular">
-            <h1>Nhà nổi bật được xem nhiều nhất</h1>
+            <h1>{t('title.popularRoom')}</h1>
             <div className="row">
                 {loading ? (
                     <SkeletonRoomItem />
@@ -89,8 +90,10 @@ export default function RoomPopular() {
                                     <p>{room?.provinceName ? room?.provinceName : undefined}</p>
                                 </div>
                                 <div className="price__room">
-                                    <p>{`Giá: ${formatPrice(room?.costPerNightDefault)} / Đêm`}</p>
-                                    <p>{`Lượt xem: ${room?.view}`}</p>
+                                    <p>{`${t('numberCount.price')} ${formatPrice(room?.costPerNightDefault)} ${t(
+                                        'numberCount.priceDay',
+                                    )}`}</p>
+                                    <p>{`${t('numberCount.view')} ${room?.view}`}</p>
                                 </div>
                             </div>
                         </div>

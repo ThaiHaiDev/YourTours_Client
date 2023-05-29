@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import DropdownHost from '../DropdownHost/DropdownHost';
 import './NavbarOwner.scss';
+import { t } from 'i18next';
 
 const NavbarOwner = () => {
     return (
@@ -15,12 +16,16 @@ const NavbarOwner = () => {
                 </div>
             </NavLink>
             <div className="navbar-right menu">
-                <NavLink to="/host" end={true}>Hôm nay</NavLink>
-                <NavLink to="/host/setting" end={true}>Nhà / Phòng cho thuê</NavLink>
-                <NavLink to="/list-room">Đặt phòng</NavLink>
-                <NavLink to="/host/setting/calendar">Lịch</NavLink>
-                <NavLink to="/intro-host">Tạo mục chủ nhà</NavLink>
-                <NavLink to="/host/setting/transactionhistory">Lịch sử giao dịch</NavLink>
+                <NavLink to="/host" end={true}>
+                    {t('navbar.today')}
+                </NavLink>
+                <NavLink to="/host/setting" end={true}>
+                    {t('navbar.homeHost')}
+                </NavLink>
+                <NavLink to="/list-room">{t('navbar.book')}</NavLink>
+                <NavLink to="/host/setting/calendar">{t('navbar.calender')}</NavLink>
+                <NavLink to="/intro-host">{t('navbar.setHost')}</NavLink>
+                <NavLink to="/host/setting/transactionhistory">{t('navbar.historyHost')}</NavLink>
             </div>
             <div className="navbar-right">
                 <DropdownHost />

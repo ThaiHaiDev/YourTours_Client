@@ -11,7 +11,9 @@
         "activeAccout": "Xác thực tài khoản thành công",
         "sendOTP": "Gửi OTP về email của bạn thành công",
         "reSendOTP": "Chúng tôi đã gửi OTP lại đến email của bạn",
-        "changePassword": "Đổi mật khẩu thành công"
+        "changePassword": "Đổi mật khẩu thành công",
+        "love": "Đã thêm vào mục đã thích",
+        "unlove": "Đã xóa khỏi mục đã thích"
     },
     "validate": {
         "emailRequire": "Email được yêu cầu",
@@ -50,12 +52,59 @@
         "orSignin": "hoặc đăng nhập bằng",
         "signup": "Đăng ký",
         "retrievalPassword": "Lấy lại mật khẩu",
-        "newPassword": "Tạo mật khẩu mới"
+        "newPassword": "Tạo mật khẩu mới",
+        "home": "THẾ GIỚI TRỌN NIỀM VUI",
+        "endow": "Ưu đãi hấp dẫn",
+        "exploreVN": "Khám phá Việt Nam",
+        "whySelected": "Vì sao bạn nên chọn Yourtours",
+        "popularRoom": "Nhà nổi bật được xem nhiều nhất"
     },
     "label": {
         "email": "Địa chỉ Email",
         "fullname": "Họ tên",
         "password": "Mật khẩu",
         "confirmPassword": "Xác nhận mật khẩu"
+    },
+    "contentMain": {
+        "homeinsearch": "Từ chuyến phượt 'ngẫu hứng' đến những cuộc phiêu lưu, khám phá công thức niềm vui của riêng bạn",
+        "policy": {
+            "label_1": "Nhiều lựa chọn",
+            "content_1": "Tìm kiếm niềm vui của bạn với gần nửa triệu điểm tham quan, khách sạn và hơn thế nữa.",
+            "label_2": "Ưu đãi giá tốt",
+            "content_2": "Dịch vụ hàng đầu. Giá tốt. Và nhận Klook credit để được giảm giá cho đơn hàng tiếp theo.",
+            "label_3": "Dễ dàng khám phá",
+            "content_3": "Đặt hàng phút chót, bỏ qua hàng chờ và được miễn phí hủy để tận hưởng trọn vẹn.",
+            "label_4": "Đáng tin cậy",
+            "content_4": "Đọc đánh giá chân thực và được hỗ trợ tận tình. Chúng tôi sẽ phục vụ bạn từng bước."
+        }
+    },
+    "placeholder": {
+        "searchHome": "Nơi bạn muốn đến"
+    },
+    "numberCount": {
+        "countBooking": "lượt đặt",
+        "price": "Giá",
+        "priceDay": "/ Đêm",
+        "view": "Lượt xem:"
+    },
+    "navbar": {
+        "home": "Trang chủ",
+        "host": "Trở thành chủ nhà",
+        "listroom": "Danh sách nhà",
+        "historyBookingClient": "Lịch sử đặt phòng",
+        "signin": "Đăng nhập",
+        "signup": "Đăng ký",
+        "today": "Hôm nay",
+        "homeHost": "Nhà / Phòng cho thuê",
+        "book": "Đặt phòng",
+        "calender": "Lịch",
+        "setHost": "Tạo mục chủ nhà",
+        "historyHost": "Lịch sử giao dịch",
+        "account": "Tài khoản",
+        "listLove": "Danh sách yêu thích",
+        "managerHost": "Quản lý nhà cho thuê",
+        "backHome": "Quay về trang du lịch",
+        "admin": "Trang chủ quản lý",
+        "signout": "Đăng xuất"
     }
 }

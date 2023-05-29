@@ -9,6 +9,7 @@ import './HomeSlider.scss';
 import SearchHome from '../SearchHome/SearchHome';
 
 import SearchData from '../../mockdata/SearchData.json';
+import { t } from 'i18next';
 
 export default function HomeSlider() {
     var settings = {
@@ -73,9 +74,9 @@ export default function HomeSlider() {
                 </div>
             </Slider>
             <div className="content-search">
-                <h1 className="title-home">THẾ GIỚI TRỌN NIỀM VUI</h1>
-                <p>Từ chuyến phượt "ngẫu hứng" đến những cuộc phiêu lưu, khám phá công thức niềm vui của riêng bạn</p>
-                <SearchHome placeholder="Nơi bạn muốn đến" data={SearchData} />
+                <h1 className="title-home">{t('title.home')}</h1>
+                <p>{t('contentMain.homeinsearch')}</p>
+                <SearchHome placeholder={t('placeholder.searchHome')} data={SearchData} />
             </div>
         </div>
     );
