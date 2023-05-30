@@ -1,49 +1,101 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import SockJS from 'sockjs-client';
 import { Stomp } from '@stomp/stompjs';
 
-const SubscriptionBox = () => {
-    const [messages, setMessages] = useState<any>([]);
-    const [connected, setConnected] = useState<boolean>(false);
+const Test = () => {
+    const [connected, setConnected] = useState<any>(false);
+    const [greetings, setGreetings] = useState<any>([]);
+    const [name, setName] = useState<any>('');
 
-    useEffect(() => {
-        const socket = new SockJS('http://localhost:9090/stomp-endpoint'); // Thay đổi URL endpoint tùy thuộc vào máy chủ của bạn
-        const stompClient = Stomp.over(socket);
+    var stompClient: any = null;
 
-        stompClient.connect({}, (frame: any) => {
-            setConnected(true);
-            console.log('Connected: ' + frame);
-            stompClient.subscribe('/topic/greetings', (greeting) => {
-                showGreeting(JSON.parse(greeting.body));
-            });
-        });
-
-        return () => {
-            if (stompClient) {
-                stompClient.disconnect();
-                setConnected(false);
-            }
-        };
-    }, []);
-
-    const showGreeting = (greeting: any) => {
-        setMessages((prevMessages: any) => [...prevMessages, greeting]);
+    const setConnectedStatus = (connected: any) => {
+        setConnected(connected);
     };
 
-    // const onMessageReceived = (message: any) => {
-    //     const newMessage = JSON.parse(message.body);
-    //     setMessages([...messages, newMessage]);
-    // };
+    const showGreeting = (message: any) => {
+        setGreetings((prevGreetings: any) => [...prevGreetings, message]);
+    };
+
+    const connect = () => {
+        const socket = new SockJS('https://yourtour.herokuapp.com/stomp-endpoint');
+
+        stompClient = Stomp.over(socket);
+        // const connectHeaders = {
+        //     authorization: 'Bearer your-token',
+        //     // Add more headers as needed
+        // };
+
+        // stompClient.connect(connectHeaders, function (frame: any) {
+        //     setConnected(true);
+        //     console.log('Connected: ' + frame);
+        //     stompClient.subscribe('/topic/greetings', function (greeting: any) {
+        //         showGreeting(JSON.parse(greeting.body));
+        //     });
+        // });
+
+        stompClient.connect({}, function (frame: any) {
+            setConnectedStatus(true);
+            console.log('Connected: ' + frame);
+            stompClient.subscribe('/topic/greetings', function (greeting: any) {
+                showGreeting(JSON.parse(greeting.body));
+            });
+            stompClient.send('/app/hello', {}, JSON.stringify({ name: name }));
+        });
+    };
+
+    const disconnect = () => {
+        if (stompClient !== null) {
+            stompClient.disconnect();
+        }
+        setConnectedStatus(false);
+        console.log('Disconnected');
+    };
+
+    const sendName = () => {
+        console.log(stompClient);
+        if (stompClient) {
+            stompClient.send('/app/hello', {}, JSON.stringify({ name: name }));
+            console.log('Sent message:', name);
+        } else {
+            console.log('No STOMP connection available');
+        }
+    };
 
     return (
         <div>
-            <h2>Subscription Box</h2>
-            {connected ? <p>Connected to STOMP server</p> : <p>Disconnected from STOMP server</p>}
-            {messages.map((message: any, index: number) => (
-                <p key={index}>{message}</p>
-            ))}
+            <form>
+                <button type="button" disabled={connected} onClick={connect}>
+                    Connect
+                </button>
+                <button type="button" disabled={!connected} onClick={disconnect}>
+                    Disconnect
+                </button>
+                <div>
+                    <label htmlFor="name">Name:</label>
+                    <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
+                    <button type="button" onClick={sendName}>
+                        Send
+                    </button>
+                </div>
+            </form>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Greeting</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {greetings.map((greeting: any, index: number) => (
+                        <tr key={index}>
+                            <td>{greeting.message}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
     );
 };
 
-export default SubscriptionBox;
+export default Test;
