@@ -68,3 +68,8 @@ body {
 .yellow-underline::after {
     background-color: var(--yellow-color);
 }
+.noti-fix {
+    position: fixed;
+    bottom: 10px;
+    right: 20px;
+}

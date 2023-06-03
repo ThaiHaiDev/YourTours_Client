@@ -26,8 +26,6 @@ function SimpleDialog(props: SimpleDialogProps) {
 
 export default function LoadingMaster(props: dataProps) {
     const [open, setOpen] = React.useState(false);
-    console.log('ccc', props.loadingMaster);
-    console.log('ddd', open);
 
     React.useEffect(() => {
         if (props.loadingMaster) {

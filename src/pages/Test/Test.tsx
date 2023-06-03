@@ -1,50 +1,22 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import SockJS from 'sockjs-client';
+
 import { Stomp } from '@stomp/stompjs';
 
-import Bell from '../../assets/img/bell.jpg';
-import audioFile from '../../assets/music/2.mp3';
+import NotificationIcon from '../../components/IconAnimationMaster/NotificationIcon/NotificationIcon';
+import PhoneIcon from '../../components/IconAnimationMaster/PhoneIcon/PhoneIcon';
+import SpinAroundIcon from '../../components/IconAnimationMaster/SpinAroundIcon/SpinAroundIcon';
+import { RootState } from '../../redux/store';
 import './Test.scss';
 
-// const getAccessTokenFromLocalStorage = (): any => {
-//     return localStorage.getItem('access_token') || '{}';
-// };
-
 const Test = () => {
+    const authMessData = useSelector((state: RootState) => state.notification);
     const [connected, setConnected] = useState<any>(false);
     const [greetings, setGreetings] = useState<any>([]);
     const [name, setName] = useState<any>('');
 
     var stompClient: any = null;
-
-    const audioRef = useRef<any>(null);
-
-    useEffect(() => {
-        // audioRef.current.play();
-        // audioRef.current.play().catch((error: any) => {
-        //     console.log(error);
-        //     // Autoplay was prevented, handle the error or show a user interaction prompt.
-        // });
-        const playAudio = () => {
-            audioRef.current.play().catch((error: any) => {
-                // Autoplay was prevented, handle the error or show a user interaction prompt.
-            });
-        };
-
-        // Trigger playAudio() after a user interaction event, such as a button click.
-        document.addEventListener('click', playAudio);
-
-        return () => {
-            // Clean up the event listener when the component unmounts.
-            document.removeEventListener('click', playAudio);
-        };
-    }, []);
-
-    const handlePlay = () => {
-        audioRef.current.play().catch((error: any) => {
-            // Autoplay was prevented, handle the error or show a user interaction prompt.
-        });
-    };
 
     const setConnectedStatus = (connected: any) => {
         setConnected(connected);
@@ -135,12 +107,12 @@ const Test = () => {
                     ))}
                 </tbody>
             </table>
+            {authMessData.notiKey ? <NotificationIcon /> : <></>}
 
-            <h1 className="ring">Tesssstttt</h1>
-            <img src={Bell} alt="" className="bell" onClick={handlePlay} />
-            <audio src={audioFile} controls ref={audioRef} style={{ display: 'none' }}>
-                test
-            </audio>
+            <hr />
+            <SpinAroundIcon />
+            <hr />
+            <PhoneIcon />
         </div>
     );
 };
