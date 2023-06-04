@@ -23,9 +23,16 @@ const NotificationIcon = () => {
         }
     }, [notiData.notiKey]);
 
+    const handlePlay = () => {
+        console.log(notiData.notiTitle);
+        audioRef.current.play().catch((error: any) => {
+            // Autoplay was prevented, handle the error or show a user interaction prompt.
+        });
+    };
+
     return (
         <div>
-            <img src={Bell} alt="noti" className="bell" />
+            <img src={Bell} alt="noti" className="bell" onClick={handlePlay} />
             <audio src={audioFile} controls ref={audioRef} style={{ display: 'none' }}>
                 test
             </audio>

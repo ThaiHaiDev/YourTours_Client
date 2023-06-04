@@ -17,9 +17,9 @@ const ConnectServerSocket = () => {
     stompClient.connect({}, function (frame: any) {
         console.log('Connected: ' + frame);
         stompClient.subscribe(`/topic/notification/${JSON.parse(getUserFromLocalStorage()).id}`, function (greeting: any) {
-            if (JSON.parse(greeting.body)) {
+            if (JSON.parse(greeting.body).number) {
                 const dispatch = store.dispatch;
-                dispatch(notificationSlice.actions.subscribeOnNotification());
+                dispatch(notificationSlice.actions.subscribeOnNotification(JSON.parse(greeting.body).title));
                 setTimeout(function () {
                     dispatch(notificationSlice.actions.subscribeOffNotification());
                 }, 5000);

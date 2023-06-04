@@ -3,7 +3,11 @@
         "signin": "Đăng nhập",
         "signup": "Đăng ký",
         "active": "Xác thực",
-        "retrievalPassword": "Lấy lại mật khẩu"
+        "retrievalPassword": "Lấy lại mật khẩu",
+        "convenient": "Hiện tất cả các tiện nghi",
+        "detail": "Chi tiết",
+        "booking": "Đặt phòng",
+        "edit": "Chỉnh sửa"
     },
     "message": {
         "signin": "Đăng nhập thành công",
@@ -13,7 +17,9 @@
         "reSendOTP": "Chúng tôi đã gửi OTP lại đến email của bạn",
         "changePassword": "Đổi mật khẩu thành công",
         "love": "Đã thêm vào mục đã thích",
-        "unlove": "Đã xóa khỏi mục đã thích"
+        "unlove": "Đã xóa khỏi mục đã thích",
+        "warningSignin": "Để đặt thuê nhà, bạn cần đăng nhập!",
+        "bookingSuccess": "Đặt phòng thành công"
     },
     "validate": {
         "emailRequire": "Email được yêu cầu",
@@ -32,7 +38,8 @@
         "messReSendOTP": "Bạn không nhận được mã code, gửi lại?",
         "changePassword": "Nhập địa chỉ email sử dụng để tạo tài khoản Yourtours và chúng tôi sẽ gửi link để đặt lại mật khẩu tài khoản đến bạn",
         "confirmSendOTP": "Chúng tôi đã gửi OTP để thay đổi mật khẩu thông qua email. Vui lòng kiểm tra email của bạn.",
-        "FillOTP": "Nhập mã code mà chúng tôi đã gửi về gmail của bạn"
+        "FillOTP": "Nhập mã code mà chúng tôi đã gửi về gmail của bạn",
+        "countClient": "1 Người lớn, 0 Trẻ em, 0 Trẻ sơ sinh"
     },
     "contentPolicy": {
         "policyAuth": "Bằng cách đăng ký hoặc đăng nhập, bạn đã hiểu và đồng ý với ",
@@ -57,7 +64,26 @@
         "endow": "Ưu đãi hấp dẫn",
         "exploreVN": "Khám phá Việt Nam",
         "whySelected": "Vì sao bạn nên chọn Yourtours",
-        "popularRoom": "Nhà nổi bật được xem nhiều nhất"
+        "popularRoom": "Nhà nổi bật được xem nhiều nhất",
+        "convenient": "Nơi này có những gì cho bạn",
+        "priceDetail": "Chi tiết giá cơ sở",
+        "discountCompain": "Chương trình giảm giá",
+        "bookingOfYou": {
+            "tilte": "Yêu cầu đặt phòng/đặt chỗ • Yourtours",
+            "drive": "Chuyến đi của bạn",
+            "client": "Khách",
+            "day": "Ngày",
+            "payOnline": "Thanh toán online (Bạn vui lòng thanh toán trước để đặt phòng)",
+            "payBefore": "Số tiền bạn cần thanh toán online",
+            "payfull": "Thanh toán toàn bộ",
+            "pay50": "Thanh toán 50%",
+            "fullHome": "Toàn bộ ngôi nhà",
+            "owner": "Chủ nhà",
+            "policy": "Đặt phòng của bạn được bảo vệ bởi Yourtours.",
+            "surcharges": "Phụ phí bao gồm",
+            "price": "Giá phòng",
+            "totalPrice": "Tổng tiền thanh toán"
+        }
     },
     "label": {
         "email": "Địa chỉ Email",
@@ -76,7 +102,22 @@
             "content_3": "Đặt hàng phút chót, bỏ qua hàng chờ và được miễn phí hủy để tận hưởng trọn vẹn.",
             "label_4": "Đáng tin cậy",
             "content_4": "Đọc đánh giá chân thực và được hỗ trợ tận tình. Chúng tôi sẽ phục vụ bạn từng bước."
-        }
+        },
+        "allHome": "Toàn bộ biệt thự. Chủ nhà",
+        "convenient": "Nơi này có những gì cho bạn",
+        "descHome": "Giới thiệu về nhà / phòng",
+        "bedroom": "Nơi bạn sẽ ngủ nghỉ",
+        "dayBooked": "Những ngày đã được đặt",
+        "rateTitle": "Đánh giá",
+        "fromDay": "Nhận phòng",
+        "toDay": "Trả phòng",
+        "countClient": {
+            "adults": "Người lớn",
+            "children": "Trẻ em",
+            "baby": "Trẻ sơ sinh"
+        },
+        "discount": "Giảm giá",
+        "totalPrice": "Tổng tiền cần thanh toán"
     },
     "placeholder": {
         "searchHome": "Nơi bạn muốn đến"
@@ -85,7 +126,9 @@
         "countBooking": "lượt đặt",
         "price": "Giá",
         "priceDay": "/ Đêm",
-        "view": "Lượt xem:"
+        "view": "Lượt xem:",
+        "viewInDetal": "lượt xem",
+        "countClient": "Số khách"
     },
     "navbar": {
         "home": "Trang chủ",
@@ -106,5 +149,28 @@
         "backHome": "Quay về trang du lịch",
         "admin": "Trang chủ quản lý",
         "signout": "Đăng xuất"
+    },
+    "footer": {
+        "titleFooter": "Tiết kiệm thời gian và tiền bạc!",
+        "contentFooter": "Hãy đăng ký và chúng tôi sẽ gửi những ưu đãi tốt nhất cho bạn",
+        "intro": " Mọi nội dung tại đây © 2005 – 2022 Công ty TNHH Tư nhân Yourtours. Bảo Lưu Mọi Quyền. Yourtours.com là thành viên của Tập đoàn Min Close, nhà cung cấp dịch vụ du lịch trực tuyến & các dịch vụ có liên quan hàng đầu thế giới.",
+        "contact_1": "Về Yourtours",
+        "contact_link_1": "Cách đặt chỗ",
+        "contact_link_2": "Liên hệ chúng tôi",
+        "contact_link_3": "Trợ giúp",
+        "contact_link_4": "Tuyển dụng",
+        "contact_link_5": "Về chúng tôi",
+        "contact_2": "Đối tác",
+        "contact_link_6": "Booking",
+        "contact_link_7": "RentalCar",
+        "contact_link_8": "HostelWorld",
+        "contact_link_9": "Trivago",
+        "contact_link_10": "TripAdvisor",
+        "contact_3": "Khác",
+        "contact_link_11": "London",
+        "contact_link_12": "California",
+        "contact_link_13": "Indonesia",
+        "contact_link_14": "Europe",
+        "contact_link_15": "Oceania"
     }
 }

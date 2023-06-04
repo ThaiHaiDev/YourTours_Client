@@ -7,6 +7,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 import './DialogConvenient.scss';
+import { t } from 'i18next';
 
 export default function DialogConvenient(props: any) {
     const [open, setOpen] = React.useState(false);
@@ -22,7 +23,7 @@ export default function DialogConvenient(props: any) {
     return (
         <div className="dialog-convenient">
             <Button variant="outlined" onClick={handleClickOpen} className="btn-show">
-                Hiện tất cả các tiện nghi
+                {t('common.convenient')}
             </Button>
             <Dialog
                 open={open}
@@ -37,14 +38,25 @@ export default function DialogConvenient(props: any) {
                         id="alert-dialog-title"
                         sx={{ fontSize: '18px', fontWeight: 'bold', width: '600px', marginBottom: '20px' }}
                     >
-                        {'Nơi này có những gì cho bạn'}
+                        {t('title.convenient')}
                     </DialogTitle>
                     {props?.listConvenient?.map((convi: any, index: number) => (
-                        <DialogContent sx={{ fontSize: '16px', fontWeight: 'bold', textDecorationLine: `${!convi.isConfig ? 'line-through' : 'none'}` }} key={index}>
+                        <DialogContent
+                            sx={{
+                                fontSize: '16px',
+                                fontWeight: 'bold',
+                                textDecorationLine: `${!convi.isConfig ? 'line-through' : 'none'}`,
+                            }}
+                            key={index}
+                        >
                             {convi?.name}
                             <DialogContentText
                                 id="alert-dialog-description"
-                                sx={{ fontSize: '14px', marginTop: '20px', textDecorationLine: `${!convi.isConfig ? 'line-through' : 'none'}` }}
+                                sx={{
+                                    fontSize: '14px',
+                                    marginTop: '20px',
+                                    textDecorationLine: `${!convi.isConfig ? 'line-through' : 'none'}`,
+                                }}
                             >
                                 {convi?.description}
                             </DialogContentText>

@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import bookingSlice from '../../pages/BookingPage/bookingSlice';
 
 import './CheckBoxPayment.scss';
+import { t } from 'i18next';
 
 interface StyledFormControlLabelProps extends FormControlLabelProps {
     checked: boolean;
@@ -45,16 +46,16 @@ export default function CheckBoxPayment(props: any) {
     };
 
     return (
-        <div className='payment-radio-box'>
+        <div className="payment-radio-box">
             <RadioGroup name="use-radio-group" defaultValue="PAY_IN_FULL">
                 <MyFormControlLabel
                     value="PAY_IN_FULL"
-                    label="Thanh toán toàn bộ"
+                    label={t('title.bookingOfYou.payfull')}
                     control={<Radio sx={{ fontSize: '14px' }} onChange={handleChangeRadio} />}
                 />
                 <MyFormControlLabel
                     value="PAY_50_PERCENT"
-                    label="Thanh toán 50%"
+                    label={t('title.bookingOfYou.pay50')}
                     control={<Radio onChange={handleChangeRadio} />}
                 />
             </RadioGroup>

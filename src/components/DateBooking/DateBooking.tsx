@@ -10,6 +10,7 @@ import './DateBooking.scss';
 import pricesOfHomeApi from '../../services/pricesOfHomeApi';
 import { useDispatch } from 'react-redux';
 import bookingSlice from '../../pages/BookingPage/bookingSlice';
+import { t } from 'i18next';
 
 const DateBooking = (props: any) => {
     const [range, setRange] = useState<any>([
@@ -63,7 +64,7 @@ const DateBooking = (props: any) => {
         <div className="date__booking">
             <div className="info-day">
                 <div className="day">
-                    <p style={{ fontWeight: 'bold', marginTop: '10px' }}>Ngày</p>
+                    <p style={{ fontWeight: 'bold', marginTop: '10px' }}>{t('title.bookingOfYou.day')}</p>
                     <p className="info_date">{`${format(range[0].startDate, 'MM/dd/yyyy')} -- ${format(
                         range[0].endDate,
                         'MM/dd/yyyy',
@@ -71,7 +72,7 @@ const DateBooking = (props: any) => {
                 </div>
 
                 <p onClick={() => setOpen((open) => !open)} className="edit-date">
-                    Chỉnh sửa
+                    {t('common.edit')}
                 </p>
             </div>
             <div ref={refOne}>

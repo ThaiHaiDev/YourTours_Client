@@ -18,6 +18,7 @@ import convertDola from '../../utils/convertDola';
 import formatPrice from '../../utils/formatPrice';
 import userSlice from '../AuthPage/userSlice';
 import './BookingPage.scss';
+import { t } from 'i18next';
 
 const BookingPage = () => {
     const infoBooking = useSelector((state: RootState) => state.booking);
@@ -38,7 +39,7 @@ const BookingPage = () => {
         if (!infoBooking.checkBooking) {
             navigate('/');
         } else if (userLogin.current.id === undefined) {
-            enqueueSnackbar('Để đặt thuê nhà, bạn cần đăng nhập!', { variant: 'warning' });
+            enqueueSnackbar(t('message.warningSignin'), { variant: 'warning' });
         }
     }, [infoBooking, navigate, userLogin, enqueueSnackbar]);
 
@@ -57,7 +58,7 @@ const BookingPage = () => {
             .bookingRoom(dataBooking)
             .then((dataResponse) => {
                 dispatch(userSlice.actions.updateHost());
-                enqueueSnackbar('Đặt phòng thành công', { variant: 'success' });
+                enqueueSnackbar(t('message.bookingSuccess'), { variant: 'success' });
                 setIdBooking(dataResponse?.data?.id);
             })
             .catch((error: AxiosError<any>) => {
@@ -89,10 +90,10 @@ const BookingPage = () => {
                 <></>
             )}
             <div className="content-booking">
-                <h1>Yêu cầu đặt phòng/đặt chỗ • Yourtours</h1>
+                <h1>{t('title.bookingOfYou.tilte')}</h1>
                 <div className="row">
                     <div className="col l-8" style={{ height: '100vh', paddingRight: '50px' }}>
-                        <h2>Chuyến đi của bạn</h2>
+                        <h2>{t('title.bookingOfYou.drive')}</h2>
                         <DateBooking
                             size="horizontal"
                             dateStart={infoBooking.dateStart}
@@ -104,7 +105,7 @@ const BookingPage = () => {
 
                         <div className="count-customer">
                             <div>
-                                <p className="customer-count__title">Khách</p>
+                                <p className="customer-count__title">{t('title.bookingOfYou.client')}</p>
                                 <p className="count">{infoBooking?.titleGuests}</p>
                             </div>
                         </div>
@@ -112,10 +113,8 @@ const BookingPage = () => {
                         <hr className="line" />
                         <div className="count-customer">
                             <div>
-                                <p className="customer-count__title">
-                                    Thanh toán online (Bạn vui lòng thanh toán trước để đặt phòng)
-                                </p>
-                                <p className="count">{`Số tiền bạn cần thanh toán online: ${convertDola(
+                                <p className="customer-count__title">{t('title.bookingOfYou.payOnline')}</p>
+                                <p className="count">{`${t('title.bookingOfYou.payBefore')}: ${convertDola(
                                     priceAfterChoosePayment,
                                 )} $`}</p>
                             </div>
@@ -135,7 +134,7 @@ const BookingPage = () => {
                                     <img src={dataDetailHomeBooking?.thumbnail} alt="" />
                                 </div>
                                 <div className="desc-room__booking">
-                                    <p className="desc-all">Toàn bộ ngôi nhà</p>
+                                    <p className="desc-all">{t('title.bookingOfYou.fullHome')}</p>
                                     <p className="name-room-booking">{dataDetailHomeBooking?.name}</p>
                                     <div className="locate-room-booking">
                                         <FmdGoodIcon className="icon-locate-booking" />
@@ -149,15 +148,17 @@ const BookingPage = () => {
                                                 : ''
                                         }`}</p>
                                     </div>
-                                    <p className="name-host-room">{`Chủ nhà ${dataDetailHomeBooking?.ownerName}`}</p>
+                                    <p className="name-host-room">{`${t('title.bookingOfYou.owner')} ${
+                                        dataDetailHomeBooking?.ownerName
+                                    }`}</p>
                                 </div>
                             </div>
                             <hr className="line-card" />
-                            <div className="policy-booking">Đặt phòng của bạn được bảo vệ bởi Yourtours.</div>
+                            <div className="policy-booking">{t('title.bookingOfYou.policy')}</div>
 
                             <hr className="line-card" />
                             <div className="card-surcharge">
-                                <p>Phụ phí bao gồm</p>
+                                <p>{t('title.bookingOfYou.surcharges')}</p>
                                 {dataDetailHomeBooking?.surcharges?.map((sur: any, index: number) => (
                                     <li key={index}>{sur?.surchargeCategoryName}</li>
                                 ))}
@@ -165,13 +166,13 @@ const BookingPage = () => {
 
                             <div className="price-booking">
                                 <div className="price-room-booking">
-                                    <p style={{ color: '#757575' }}>Giá phòng</p>
+                                    <p style={{ color: '#757575' }}>{t('title.bookingOfYou.price')}</p>
                                     <p style={{ fontWeight: '550' }}>
                                         {formatPrice(priceDay !== '' ? priceDay : infoBooking?.priceDay)}
                                     </p>
                                 </div>
                                 <div className="price-total-booking">
-                                    <p style={{ color: '#757575' }}>Tổng tiền thanh toán</p>
+                                    <p style={{ color: '#757575' }}>{t('title.bookingOfYou.totalPrice')}</p>
                                     <p style={{ fontWeight: '550' }}>{formatPrice(infoBooking?.priceTotal)}</p>
                                 </div>
                             </div>

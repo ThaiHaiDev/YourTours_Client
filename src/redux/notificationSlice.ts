@@ -8,8 +8,9 @@ const notificationSlice = createSlice({
         notiDes: ''
     },
     reducers: {
-        subscribeOnNotification(state) {
+        subscribeOnNotification(state, action) {
             state.notiKey = true;
+            state.notiTitle = action.payload;
         },
         subscribeOffNotification(state) {
             state.notiKey = false;
