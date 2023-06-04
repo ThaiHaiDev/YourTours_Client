@@ -4,6 +4,7 @@ import { useSnackbar } from 'notistack';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
+import Logo from '../../assets/imgMaster/logo.svg';
 
 import CheckBoxPayment from '../../components/CheckBoxPayment/CheckBoxPayment';
 import DateBooking from '../../components/DateBooking/DateBooking';
@@ -77,11 +78,7 @@ const BookingPage = () => {
         <div className="booking__page">
             <div className="nav">
                 <NavLink to="/" className="logo">
-                    <img
-                        src="https://cdn6.agoda.net/images/kite-js/logo/agoda/color-default.svg"
-                        alt="company logo"
-                        className="logo-bg"
-                    />
+                    <img src={Logo} alt="company logo" className="logo-bg" />
                 </NavLink>
             </div>
             {idBooking !== '' && idBooking !== undefined ? (

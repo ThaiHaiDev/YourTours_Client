@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import Book from '../Book/Book';
 import DropdownUser from '../DropdownUser/DropdownUser';
+import Logo from '../../assets/imgMaster/logo.svg';
 import './Navbar.scss';
 
 import { useSelector } from 'react-redux';
@@ -30,11 +31,7 @@ const Navbar = () => {
             <div className="navbar">
                 <NavLink to="/" className="logo">
                     <div className="sidebar__logo">
-                        <img
-                            src="https://cdn6.agoda.net/images/kite-js/logo/agoda/color-default.svg"
-                            alt="company logo"
-                            className="logo-bg"
-                        />
+                        <img src={Logo} alt="company logo" className="logo-bg" />
                     </div>
                 </NavLink>
                 <div className="navbar-right menu">

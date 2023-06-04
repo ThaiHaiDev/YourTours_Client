@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import DropdownHost from '../DropdownHost/DropdownHost';
+import Logo from '../../assets/imgMaster/logo.svg';
 import './NavbarOwner.scss';
 import { t } from 'i18next';
 
@@ -8,11 +9,7 @@ const NavbarOwner = () => {
         <div className="navbar-owner">
             <NavLink to="/host" className="logo">
                 <div className="sidebar__logo">
-                    <img
-                        src="https://cdn6.agoda.net/images/kite-js/logo/agoda/color-default.svg"
-                        alt="company logo"
-                        className="logo-bg"
-                    />
+                    <img src={Logo} alt="company logo" className="logo-bg" />
                 </div>
             </NavLink>
             <div className="navbar-right menu">

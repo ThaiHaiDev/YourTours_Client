@@ -1,6 +1,11 @@
 import { t } from 'i18next';
 import './Footer.scss';
 import { Link } from 'react-router-dom';
+import Logo from '../../assets/imgMaster/logo.svg';
+import twitterIcon from '../../assets/imgMaster/twitter.png';
+import youtubeicon from '../../assets/imgMaster/youtube-play--v2.png';
+import facebookIcon from '../../assets/imgMaster/facebook-footer.png';
+import instagramIcon from '../../assets/imgMaster/instagram-new.png';
 
 const Footer = () => {
     return (
@@ -21,24 +26,20 @@ const Footer = () => {
                 <div className="grid wide">
                     <div className="row">
                         <div className="col l-6 m-12 c-12">
-                            <img
-                                src="https://cdn6.agoda.net/images/kite-js/logo/agoda/color-default.svg"
-                                alt=""
-                                className="footer__logo"
-                            />
+                            <img src={Logo} alt="" className="footer__logo" />
                             <p className="footer__desc">{t('footer.intro')}</p>
                             <div className="footer__inner-contact">
                                 <Link to="#" className="footer__contact-logo fab fa-twitter">
-                                    <img src="https://img.icons8.com/fluency/40/null/twitter.png" alt="alt-t" />
+                                    <img src={twitterIcon} alt="alt-t" />
                                 </Link>
                                 <Link to="#" className="footer__contact-logo fab fa-youtube">
-                                    <img src="https://img.icons8.com/doodle/40/null/youtube-play--v2.png" alt="alt-y" />
+                                    <img src={youtubeicon} alt="alt-y" />
                                 </Link>
                                 <Link to="#" className="footer__contact-logo fab fa-facebook-square">
-                                    <img src="https://img.icons8.com/color/40/null/facebook-new.png" alt="alt-f" />
+                                    <img src={facebookIcon} alt="alt-f" />
                                 </Link>
                                 <Link to="#" className="footer__contact-logo fab fa-instagram-square">
-                                    <img src="https://img.icons8.com/fluency/40/null/instagram-new.png" alt="alt-i" />
+                                    <img src={instagramIcon} alt="alt-i" />
                                 </Link>
                             </div>
                         </div>

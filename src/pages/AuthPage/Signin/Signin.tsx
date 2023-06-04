@@ -9,14 +9,17 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import GoogleIcon from '../../../assets/imgMaster/google-logo.png';
+import FacebookIcon from '../../../assets/imgMaster/facebook-new.png';
+import GithubIcon from '../../../assets/imgMaster/github.png';
 
 import Navbar from '../../../components/Navbar/Navbar';
 import authApi from '../../../services/authApi';
 import { LoginErrorResponse, LoginRequest } from '../../../share/models/auth';
+import LoadingMaster from '../../../components/LoadingMaster/LoadingMaster';
 import userSlice from '../userSlice';
 
 import './Signin.scss';
-import LoadingMaster from '../../../components/LoadingMaster/LoadingMaster';
 import { t } from 'i18next';
 
 const Signin = () => {
@@ -74,13 +77,13 @@ const Signin = () => {
                         <h1>{t('title.signin')}</h1>
                         <div className="social-container">
                             <Link to="#" className="socialg">
-                                <img src="https://img.icons8.com/color/344/google-logo.png" alt="go_icon" />
+                                <img src={GoogleIcon} alt="go_icon" />
                             </Link>
                             <Link to="#" className="social">
-                                <img src="https://img.icons8.com/fluency/344/facebook-new.png" alt="fa_icon" />
+                                <img src={FacebookIcon} alt="fa_icon" />
                             </Link>
                             <Link to="#" className="social">
-                                <img src="https://img.icons8.com/ios-glyphs/344/github.png" alt="gi_icon" />
+                                <img src={GithubIcon} alt="gi_icon" />
                             </Link>
                         </div>
                         <span>{t('title.orSignin')}</span>

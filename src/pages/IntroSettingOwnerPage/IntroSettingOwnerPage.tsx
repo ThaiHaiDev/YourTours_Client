@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { RootState } from '../../redux/store';
+import Logo from '../../assets/imgMaster/logo.svg';
 import './IntroSettingOwnerPage.scss';
 import { t } from 'i18next';
 
@@ -28,11 +29,7 @@ const IntroSettingOwnerPage = () => {
             <div className="row">
                 <div className="col l-6">
                     <div className="sidebar__logo" onClick={backHome}>
-                        <img
-                            src="https://cdn6.agoda.net/images/kite-js/logo/agoda/color-default.svg"
-                            alt="company logo"
-                            className="logo-bg"
-                        />
+                        <img src={Logo} alt="company logo" className="logo-bg" />
                     </div>
                 </div>
                 <div className="col l-6">
