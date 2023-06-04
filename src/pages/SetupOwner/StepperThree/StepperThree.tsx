@@ -5,6 +5,7 @@ import { AmenityCategoriesModel } from '../../../share/models/amenityCategories'
 import { ConvenientOptionShow } from '../../../share/models/convenient';
 import SelectedMultiple from './SelectedMultiple';
 import './StepperThree.scss';
+import { t } from 'i18next';
 
 interface StepperThreeData {
     setDataStep3: (value: ConvenientOptionShow[]) => void;
@@ -31,13 +32,13 @@ const StepperThree = (props: StepperThreeData) => {
                             alt=""
                             className="image-step3"
                         />
-                        <h1>Cho khách biết chỗ ở của bạn có những gì?</h1>
+                        <h1>{t('setupOwner.content_step_three')}</h1>
                     </div>
                 </div>
                 <div className="col l-6 m-6">
                     <SelectedMultiple dataList={data} setDataStep3={props.setDataStep3} />
                     <Link to="/" className="btn-out">
-                        Thoát
+                        {t('common.close')}
                     </Link>
                 </div>
             </div>

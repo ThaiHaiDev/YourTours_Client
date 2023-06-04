@@ -4,6 +4,7 @@ import './UploadFile.scss';
 
 import { ImageConfig } from '../../config/ImageConfig';
 import uploadImg from '../../assets/upload/cloud-upload-regular-240.png';
+import { t } from 'i18next';
 
 interface DropFileType {
     onFileChange: (value: File[]) => void;
@@ -59,15 +60,15 @@ const UploadFile = (props: DropFileType) => {
             >
                 <div className="drop-file-input__label">
                     <img src={uploadImg} alt="" />
-                    <p>Chọn từ thiết bị hoặc kéo ảnh của bạn vào đây</p>
-                    <p className="desc-input-file">Vui lòng chọn đủ 5 bước hình để tăng thu hút cho căn nhà của bạn</p>
+                    <p>{t('setupOwner.upload')}</p>
+                    <p className="desc-input-file">{t('setupOwner.maxUpload')}</p>
                 </div>
                 <input type="file" value="" onChange={onFileDrop} multiple />
             </div>
             {fileList.length > 0 ? (
                 <div className="drop-file-preview">
                     <p className="drop-file-preview__title">Ready to upload</p>
-                    <div className='list-preview'>
+                    <div className="list-preview">
                         {fileList.map((item, index) => (
                             <div key={index} className="drop-file-preview__item">
                                 <img

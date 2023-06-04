@@ -50,7 +50,7 @@ const Popular = () => {
                                         <div className="package-cover hide-on-mobile-tablet">
                                             <div className="package-btn">
                                                 <Link to="#" className="package-btn-link">
-                                                    Xem chi tiết
+                                                    {t('link.viewDetail')}
                                                 </Link>
                                             </div>
                                         </div>

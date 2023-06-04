@@ -26,8 +26,15 @@ import { ConvenientOptionShow } from '../../share/models/convenient';
 import { ImageHomeDetailRequest } from '../../share/models/imageList';
 import ConfirmOwner from '../../pages/ConfirmOwner/ConfirmOwner';
 import userSlice from '../../pages/AuthPage/userSlice';
+import { t } from 'i18next';
 
-const steps = ['Setup vị trí', 'Setup phòng', 'Setup tiện ích', 'Setup ảnh', 'Chi tiết phòng'];
+const steps = [
+    t('setupOwner.nameStep.one'),
+    t('setupOwner.nameStep.two'),
+    t('setupOwner.nameStep.three'),
+    t('setupOwner.nameStep.four'),
+    t('setupOwner.nameStep.five'),
+];
 
 export default function StepperComponent() {
     const [activeStep, setActiveStep] = React.useState(0);
@@ -79,7 +86,7 @@ export default function StepperComponent() {
                 dispatch(setupOwnerSlice.actions.addAddressDetailRoom(addressDetail));
                 setActiveStep((prevActiveStep) => prevActiveStep + 1);
             } else {
-                enqueueSnackbar('Bạn không thể để trống địa chỉ', {
+                enqueueSnackbar(t('message.addressEmpty'), {
                     anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
                     variant: 'warning',
                 });
@@ -101,13 +108,13 @@ export default function StepperComponent() {
             setActiveStep((prevActiveStep) => prevActiveStep + 1);
         } else if (activeStep === 3) {
             if (dataStep4.length < 5) {
-                enqueueSnackbar('Vui lòng chọn đủ 5 hình', {
+                enqueueSnackbar(t('message.maxImage'), {
                     anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
                     variant: 'warning',
                 });
             } else {
                 if (!checkImage) {
-                    enqueueSnackbar('Vui lòng nhấn upload ảnh lên trước khi tiếp tục', {
+                    enqueueSnackbar(t('message.uploadImagePlease'), {
                         anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
                         variant: 'warning',
                     });
@@ -125,7 +132,7 @@ export default function StepperComponent() {
                 dispatch(setupOwnerSlice.actions.addInfoOfHomeRoom(dataStep5));
                 setActiveStep((prevActiveStep) => prevActiveStep + 1);
             } else {
-                enqueueSnackbar('Vui lòng điền đầy đủ thông tin', {
+                enqueueSnackbar(t('message.fullinfo'), {
                     anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
                     variant: 'warning',
                 });
@@ -166,7 +173,7 @@ export default function StepperComponent() {
         homeDetailApi
             .createHomeDetailByHost(setupRoomHost)
             .then((dataResponse: any) => {
-                enqueueSnackbar('Đăng kí thành công', {
+                enqueueSnackbar(t('message.postHomeSuccess'), {
                     anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
                     variant: 'success',
                 });
@@ -254,7 +261,7 @@ export default function StepperComponent() {
                                 onClick={handleUpload}
                                 style={{ marginRight: '10px', textAlign: 'center' }}
                             >
-                                Tải ảnh lên
+                                {t('common.uploadImage')}
                             </LoadingButton>
                         )}
                         <Button onClick={handleNext}>{activeStep === steps.length - 1 ? 'Finish' : 'Next'}</Button>

@@ -5,6 +5,7 @@ import CountNumberGuest from '../../../components/CountNumber/CountNumberGuest';
 import roomCategoryApi from '../../../services/roomCategoryApi';
 import { RoomOfHomeCreateRequest } from '../../../share/models/roomHome';
 import './StepperTwo.scss';
+import { t } from 'i18next';
 
 interface StepperTwoData {
     setDataStep2?: RoomOfHomeCreateRequest[];
@@ -29,7 +30,7 @@ const StepperTwo = (props: StepperTwoData) => {
                             alt=""
                             className="image-step2"
                         />
-                        <h1>Bạn muốn chào đón bao nhiêu khách?</h1>
+                        <h1>{t('setupOwner.content_step_two')}</h1>
                     </div>
                 </div>
                 <div className="col l-6 m-6">
@@ -38,7 +39,7 @@ const StepperTwo = (props: StepperTwoData) => {
                             <div key={room.id}>
                                 {index === 0 && (
                                     <div className="count tenant">
-                                        <p>Khách</p>
+                                        <p>{t('setupOwner.client')}</p>
                                         <CountNumberGuest setCountGuest={props.setCountGuest} />
                                     </div>
                                 )}
@@ -50,7 +51,7 @@ const StepperTwo = (props: StepperTwoData) => {
                         ))}
                     </div>
                     <Link to="/" className="btn-out">
-                        Thoát
+                        {t('common.close')}
                     </Link>
                 </div>
             </div>

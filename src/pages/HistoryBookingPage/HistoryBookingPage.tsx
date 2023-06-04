@@ -15,6 +15,7 @@ import PopoverRefundPolicy from '../../components/PopoverRefundPolicy/PopoverRef
 import bookingApi from '../../services/bookingApi';
 import formatPrice from '../../utils/formatPrice';
 import './HistoryBookingPage.scss';
+import { t } from 'i18next';
 
 AOS.init();
 
@@ -44,7 +45,7 @@ const HistoryBookingPage = () => {
         <div>
             <Navbar />
             <div className="history-booking__page">
-                <h1>Danh sách đặt phòng của bạn</h1>
+                <h1>{t('title.history')}</h1>
                 {loading && <LinearProgress />}
                 <div
                     data-aos="fade-up"
@@ -58,11 +59,11 @@ const HistoryBookingPage = () => {
                         {dataHistory?.map((history: any, index: number) => {
                             var status = '';
                             if (history?.status === 'CANCELED') {
-                                status = 'Đã hủy';
+                                status = t('contentMess.cancel');
                             } else if (history?.status === 'CHECK_IN') {
-                                status = 'Đã nhận phòng';
+                                status = t('contentMess.checkin');
                             } else if (history?.status === 'CHECK_OUT') {
-                                status = 'Đã trả phòng';
+                                status = t('contentMess.checkout');
                             }
                             return (
                                 <div className="item__booking" key={index}>
@@ -71,7 +72,9 @@ const HistoryBookingPage = () => {
                                     </div>
                                     <div className="info-history__booking">
                                         <p className="name-history__booking">{history?.homeName}</p>
-                                        <p className="name-host-history__booking">{`(Chủ nhà ${history?.owner})`}</p>
+                                        <p className="name-host-history__booking">{`(${t('title.bookingOfYou.owner')} ${
+                                            history?.owner
+                                        })`}</p>
                                         <div className="locate-hictory__booking">
                                             <FmdGoodIcon className="icon-locate-booking" />
                                             <p>{`${
@@ -84,21 +87,23 @@ const HistoryBookingPage = () => {
                                                     : ''
                                             }`}</p>
                                         </div>
-                                        <p className="guests-history___booking">{`Tổng lượng khách: ${history?.numberOfGuests}`}</p>
+                                        <p className="guests-history___booking">{`${t('label.totalClient')} ${
+                                            history?.numberOfGuests
+                                        }`}</p>
                                         <div className="date-history__booking">
-                                            <p>{`Ngày đặt phòng: ${history?.dateStart}`}</p>
-                                            <p>{`Ngày trả phòng: ${history?.dateEnd}`}</p>
+                                            <p>{`${t('label.fromDay')} ${history?.dateStart}`}</p>
+                                            <p>{`${t('label.toDay')} ${history?.dateEnd}`}</p>
                                         </div>
                                     </div>
                                     <div className="price-history__booking">
                                         <div className="price-day__booking">
-                                            <p>Giá theo đêm:</p>
+                                            <p>{t('label.priceNight')}</p>
                                             <p style={{ paddingLeft: '5px', fontWeight: '600' }}>
                                                 {formatPrice(history?.cost)}
                                             </p>
                                         </div>
                                         <div className="price-total__booking">
-                                            <p>Tổng tiền thanh toán:</p>
+                                            <p>{t('label.totalPrice')}</p>
                                             <p style={{ paddingLeft: '5px', fontWeight: '700', color: 'red' }}>
                                                 {formatPrice(history?.totalCost)}
                                             </p>
@@ -116,7 +121,7 @@ const HistoryBookingPage = () => {
                                             )}
                                         </div>
                                         <h3 onClick={() => handleReview(history.id)} className="btn-review">
-                                            Đánh giá
+                                            {t('common.review')}
                                         </h3>
                                     </div>
                                 </div>

@@ -7,6 +7,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 import provinceApi from '../../../services/provinceApi';
 import { ProvinceModel } from '../../../share/models/province';
+import { t } from 'i18next';
 
 export default function SelectedLocate(props: any) {
     const [age, setAge] = React.useState('');
@@ -50,7 +51,7 @@ export default function SelectedLocate(props: any) {
                         </MenuItem>
                     ))}
                 </Select>
-                <FormHelperText sx={{ fontSize: '10px' }}>Vui lòng chọn tỉnh thành</FormHelperText>
+                <FormHelperText sx={{ fontSize: '10px' }}>{t('contentMess.province')}</FormHelperText>
             </FormControl>
         </div>
     );

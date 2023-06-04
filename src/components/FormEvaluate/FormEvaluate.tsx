@@ -8,6 +8,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogContentText, Dialog
 
 import evaluateApi from '../../services/evaluateApi';
 import './FormEvaluate.scss';
+import { t } from 'i18next';
 
 export interface dataProps {
     showFormReview: boolean;
@@ -51,7 +52,7 @@ const FormEvaluate = (props: dataProps) => {
         evaluateApi
             .addEvaluate(dataReview)
             .then(() => {
-                enqueueSnackbar('Đánh giá thành công', { variant: 'success' });
+                enqueueSnackbar(t('message.reviewSuccess'), { variant: 'success' });
                 resetForm.reset();
                 navigate('/historybooking');
             })
@@ -62,18 +63,14 @@ const FormEvaluate = (props: dataProps) => {
 
     return (
         <Dialog open={open} onClose={handleClose} maxWidth="xl">
-            <DialogTitle sx={{ fontSize: '20px' }}>Đánh Giá Khách Hàng</DialogTitle>
+            <DialogTitle sx={{ fontSize: '20px' }}>{t('title.review')}</DialogTitle>
             <form onSubmit={submitFormHandler}>
                 <DialogContent>
-                    <DialogContentText sx={{ fontSize: '16px' }}>
-                        Chúng tôi rất lấy làm vinh dự khi có được sự tin tưởng của quý khách.
-                    </DialogContentText>
-                    <DialogContentText sx={{ fontSize: '16px' }}>
-                        Vui lòng để lại đánh giá để chúng tôi có thể cải thiện dịch vụ của mình!
-                    </DialogContentText>
+                    <DialogContentText sx={{ fontSize: '16px' }}>{t('label.thanksReview')}</DialogContentText>
+                    <DialogContentText sx={{ fontSize: '16px' }}>{t('label.fillReview')}</DialogContentText>
 
                     <div style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
-                        <p style={{ fontSize: '15px', marginRight: '10px' }}>Lựa chọn đánh giá của bạn: </p>
+                        <p style={{ fontSize: '15px', marginRight: '10px' }}>{t('label.selectedRate')}</p>
                         <Rating
                             sx={{ fontSize: '20px' }}
                             name="simple-controlled"
@@ -86,7 +83,7 @@ const FormEvaluate = (props: dataProps) => {
 
                     <input
                         type="text"
-                        placeholder="Phản hồi từ khách hàng"
+                        placeholder={t('placeholder.feedback')! as string}
                         onChange={reviewChangeHandler}
                         required
                         style={{ fontSize: '14px', padding: '10px 15px', marginTop: '10px', width: '100%' }}
@@ -94,7 +91,7 @@ const FormEvaluate = (props: dataProps) => {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>
-                    <button type="submit">Đánh giá</button>
+                    <button type="submit">{t('common.review')}</button>
                 </DialogActions>
             </form>
         </Dialog>

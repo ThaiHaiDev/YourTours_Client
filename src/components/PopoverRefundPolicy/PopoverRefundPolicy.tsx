@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Popover from '@mui/material/Popover';
 import Button from '@mui/material/Button';
+import { t } from 'i18next';
 
 export default function PopoverRefundPolicy(props: any) {
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
@@ -24,7 +25,7 @@ export default function PopoverRefundPolicy(props: any) {
                 onClick={handleClick}
                 sx={{ marginRight: '15px', textTransform: 'none' }}
             >
-                Chính sách trả phòng
+                {t('common.refundPolicy')}
             </Button>
             <Popover
                 id={id}
@@ -40,7 +41,7 @@ export default function PopoverRefundPolicy(props: any) {
                     horizontal: 'right',
                 }}
             >
-                <h2 style={{ width: '300px', textAlign: 'center', paddingBottom: '6px' }}>Chính sách hủy phòng</h2>
+                <h2 style={{ width: '300px', textAlign: 'center', paddingBottom: '6px' }}>{t('title.refundPolicy')}</h2>
 
                 <div
                     className="item-price-detail"
@@ -54,8 +55,8 @@ export default function PopoverRefundPolicy(props: any) {
                 >
                     <p style={{ fontSize: '14px', margin: 0 }}>
                         {props?.dataShow === 'BEFORE_ONE_DAY'
-                            ? 'Chỉ được hủy phòng trước 1 ngày'
-                            : 'Chỉ được hủy phòng trước 7 ngày'}
+                            ? t('contentMess.beforeOneDay')
+                            : t('contentMess.beforeOneWeek')}
                     </p>
                 </div>
 

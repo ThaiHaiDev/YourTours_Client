@@ -12,6 +12,7 @@ import LocalActivityIcon from '@mui/icons-material/LocalActivity';
 
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
+import { t } from 'i18next';
 
 const InfoUserPage = () => {
     const user = useSelector((state: RootState) => state.user);
@@ -31,14 +32,19 @@ const InfoUserPage = () => {
                             <div className="name-info">
                                 <h1>{user.current?.fullName}</h1>
                                 <Link to="/account" className="edit-info_-link">
-                                    Chỉnh sửa
+                                    {t('common.edit')}
                                 </Link>
                             </div>
                             <br />
                             <hr />
-                            <Link to="/account/edit-account" className='link-user'><AccountBoxIcon sx={{marginRight: '10px'}}/>Thông tin cá nhân</Link>
-                            <Link to="/account/active-account" className='link-user'><LocalActivityIcon sx={{marginRight: '10px'}}/>Kích hoạt tài khoản</Link>
-
+                            <Link to="/account/edit-account" className="link-user">
+                                <AccountBoxIcon sx={{ marginRight: '10px' }} />
+                                {t('navbar.profile')}
+                            </Link>
+                            <Link to="/account/active-account" className="link-user">
+                                <LocalActivityIcon sx={{ marginRight: '10px' }} />
+                                {t('navbar.activeAccout')}
+                            </Link>
                         </div>
                     </div>
                     <div className="col l-9">
