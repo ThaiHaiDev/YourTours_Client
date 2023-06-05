@@ -49,7 +49,6 @@ const Signin = () => {
             .then((userData) => {
                 setLoading(false);
                 dispatch(userSlice.actions.signin(userData.data));
-                setLoadingMaster(true);
                 setLoadingMaster(false);
                 enqueueSnackbar(t('message.signin'), { variant: 'success' });
                 setTimeout(function () {

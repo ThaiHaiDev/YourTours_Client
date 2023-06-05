@@ -8,6 +8,7 @@ import './Navbar.scss';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { t } from 'i18next';
+import LanguageSelected from '../LanguageSelected/LanguageSelected';
 
 const Navbar = () => {
     const [isActive, setIsActive] = useState<boolean>(false);
@@ -56,6 +57,7 @@ const Navbar = () => {
                             <NavLink to="/signin">{t('navbar.signin')}</NavLink>
                         </>
                     )}
+                    <LanguageSelected />
                 </div>
             </div>
             {isActive && <Book refOne={refOne} />}

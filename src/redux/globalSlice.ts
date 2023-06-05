@@ -4,7 +4,8 @@ const globalSlice = createSlice({
     name: 'global', 
     initialState: {
         mode: '',
-        color: ''
+        color: '',
+        language: 'vi'
     },
     reducers: {
         setMode: (state, action) => {
@@ -23,6 +24,14 @@ const globalSlice = createSlice({
 
         getTheme: state => {
             return state
+        },
+
+        setLanguage: (state, action) => {
+            localStorage.setItem('i18n', action.payload)
+            return {
+                ...state,
+                language: action.payload
+            }
         }
     }
 })

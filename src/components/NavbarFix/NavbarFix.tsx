@@ -8,6 +8,7 @@ import './NavbarFix.scss';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { t } from 'i18next';
+import LanguageSelected from '../LanguageSelected/LanguageSelected';
 
 const NavbarFix = () => {
     const [isActive, setIsActive] = useState<boolean>(false);
@@ -57,6 +58,7 @@ const NavbarFix = () => {
                             <NavLink to="/signup">{t('navbar.signup')}</NavLink>
                         </>
                     )}
+                    <LanguageSelected />
                 </div>
             </div>
             {isActive && <Book refOne={refOne} />}

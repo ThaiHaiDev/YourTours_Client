@@ -13,10 +13,14 @@ const resources = {
   },
 };
 
+const geti18nFromLocalStorage = (): any => {
+  return localStorage.getItem('i18n') || 'vi';
+};
+
 i18n.use(initReactI18next).init({
   resources,
-  lng: 'vi',
-  fallbackLng: 'vi',
+  lng: geti18nFromLocalStorage(),
+  fallbackLng: geti18nFromLocalStorage(),
   interpolation: {
     escapeValue: false,
   },
