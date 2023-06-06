@@ -45,3 +45,13 @@
         transition: 0.5s;
     }
 }
+
+.notification-item {
+    .notification-content {
+        font-size: 14px;
+    }
+
+    .notification-icon {
+        font-size: 18px;
+    }
+}

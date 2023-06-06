@@ -1,14 +1,25 @@
 import { useState, useRef, useEffect } from 'react';
+import { t } from 'i18next';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+
+import Logo from '../../assets/imgMaster/logo.svg';
+import notifications from '../../mockdata/notification.json';
+
+import { RootState } from '../../redux/store';
+import BellRing from '../BellRing/BellRing';
 import Book from '../Book/Book';
 import DropdownUser from '../DropdownUser/DropdownUser';
-import Logo from '../../assets/imgMaster/logo.svg';
+import LanguageSelected from '../LanguageSelected/LanguageSelected';
+
 import './Navbar.scss';
 
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
-import { t } from 'i18next';
-import LanguageSelected from '../LanguageSelected/LanguageSelected';
+const renderNotificationItem = (item: any, index: any) => (
+    <div className="notification-item" key={index}>
+        <i className={`${item.icon} notification-icon`}></i>
+        <span className="notification-content">{item.content}</span>
+    </div>
+);
 
 const Navbar = () => {
     const [isActive, setIsActive] = useState<boolean>(false);
@@ -35,7 +46,8 @@ const Navbar = () => {
                         <img src={Logo} alt="company logo" className="logo-bg" />
                     </div>
                 </NavLink>
-                <div className="navbar-right menu">
+                <div className="navbar-right menu" style={{ display: 'flex' }}>
+                    <LanguageSelected />
                     <NavLink to="/" end={true}>
                         {t('navbar.home')}
                     </NavLink>
@@ -49,7 +61,7 @@ const Navbar = () => {
                     )}
                 </div>
 
-                <div className="navbar-right">
+                <div className="navbar-right" style={{ display: 'flex' }}>
                     {user.current?.id !== undefined ? (
                         <DropdownUser />
                     ) : (
@@ -57,7 +69,13 @@ const Navbar = () => {
                             <NavLink to="/signin">{t('navbar.signin')}</NavLink>
                         </>
                     )}
-                    <LanguageSelected />
+                    <BellRing
+                        icon="bx bx-bell"
+                        badge="12"
+                        contentData={notifications}
+                        renderItems={(item: any, index: any) => renderNotificationItem(item, index)}
+                        renderFooter={() => <p>View All</p>}
+                    />
                 </div>
             </div>
             {isActive && <Book refOne={refOne} />}
