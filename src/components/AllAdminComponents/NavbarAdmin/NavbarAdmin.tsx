@@ -1,13 +1,8 @@
 import React from 'react';
-
 import { useSelector } from 'react-redux';
-
 import { Link } from 'react-router-dom';
-
 import notifications from '../../../mockdata//notification.json';
-
 import user_menu from '../../../mockdata/user_menus.json';
-
 import { RootState } from '../../../redux/store';
 import FilterAdmin from '../../FIlterAdmin/FIlterAdmin';
 import Dropdown from '../DropdownAdmin/DropdownAdmin';

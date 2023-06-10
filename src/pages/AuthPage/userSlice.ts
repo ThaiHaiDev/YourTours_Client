@@ -14,6 +14,9 @@ const userSlice = createSlice({
             localStorage.setItem('access_token', action.payload.data.access_token)
             localStorage.setItem('user', JSON.stringify(action.payload.data.userInfo))
         },
+        setProfile(state, action) {
+            localStorage.setItem('user', JSON.stringify(action.payload.data))
+        },
         logout(state) {
             localStorage.removeItem('user')
             localStorage.removeItem('access_token')

@@ -1,23 +1,26 @@
 import { useState, useRef, useEffect } from 'react';
 import { t } from 'i18next';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import Logo from '../../assets/imgMaster/logo.svg';
 import notifications from '../../mockdata/notification.json';
 
+import userSlice from '../../pages/AuthPage/userSlice';
 import { RootState } from '../../redux/store';
+import userApi from '../../services/userApi';
 import BellRing from '../BellRing/BellRing';
 import Book from '../Book/Book';
+
 import DropdownUser from '../DropdownUser/DropdownUser';
 import LanguageSelected from '../LanguageSelected/LanguageSelected';
-
 import './Navbar.scss';
 
 const renderNotificationItem = (item: any, index: any) => (
     <div className="notification-item" key={index}>
-        <i className={`${item.icon} notification-icon`}></i>
-        <span className="notification-content">{item.content}</span>
+        {/* <i className={`${item.icon} notification-icon`}></i> */}
+        <i className={`notification-icon`}></i>
+        <span className="notification-content">{item.description}</span>
     </div>
 );
 
@@ -26,11 +29,23 @@ const Navbar = () => {
     const refOne = useRef<HTMLInputElement | null>(null);
 
     const user = useSelector((state: RootState) => state.user);
+    const noti = useSelector((state: RootState) => state.notification);
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
         document.addEventListener('click', hideOnClickOutside, true);
         document.addEventListener('scroll', hideOnClickOutside);
     }, []);
+
+    useEffect(() => {
+        userApi.getProfile().then((dataRes: any) => {
+            if (dataRes.data !== undefined) {
+                dispatch(userSlice.actions.setProfile({ data: dataRes.data }));
+            }
+        });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [noti.numberOfNotification]);
 
     const hideOnClickOutside = (e: any) => {
         if (refOne.current && !refOne.current.contains(e.target)) {
@@ -56,9 +71,6 @@ const Navbar = () => {
                     </NavLink> */}
                     <NavLink to="/intro-host">{t('navbar.host')}</NavLink>
                     <NavLink to="/list-room">{t('navbar.listroom')}</NavLink>
-                    {user.current?.id !== undefined && (
-                        <NavLink to="/historybooking">{t('navbar.historyBookingClient')}</NavLink>
-                    )}
                 </div>
 
                 <div className="navbar-right" style={{ display: 'flex' }}>
@@ -71,7 +83,11 @@ const Navbar = () => {
                     )}
                     <BellRing
                         icon="bx bx-bell"
-                        badge="12"
+                        badge={
+                            noti.numberOfNotification !== -1
+                                ? noti.numberOfNotification
+                                : user.current.numberOfNotification
+                        }
                         contentData={notifications}
                         renderItems={(item: any, index: any) => renderNotificationItem(item, index)}
                         renderFooter={() => <p>View All</p>}

@@ -20,6 +20,7 @@ const ConnectServerSocket = () => {
             if (JSON.parse(greeting.body).number) {
                 const dispatch = store.dispatch;
                 dispatch(notificationSlice.actions.subscribeOnNotification(JSON.parse(greeting.body).title));
+                dispatch(notificationSlice.actions.subscribeNumberOfNotification(JSON.parse(greeting.body).number));
                 setTimeout(function () {
                     dispatch(notificationSlice.actions.subscribeOffNotification());
                 }, 5000);
@@ -27,7 +28,6 @@ const ConnectServerSocket = () => {
                 const dispatch = store.dispatch;
                 dispatch(notificationSlice.actions.subscribeOffNotification());
             }
-            console.log('Check server socket', JSON.parse(greeting.body));
         });
     });
 }

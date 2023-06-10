@@ -35,7 +35,8 @@ const NavbarFix = () => {
                         <img src={Logo} alt="company logo" className="logo-bg" />
                     </div>
                 </NavLink>
-                <div className="navbar-right menu">
+                <div className="navbar-right menu" style={{ display: 'flex' }}>
+                    <LanguageSelected />
                     <NavLink to="/" end={true}>
                         {t('navbar.home')}
                     </NavLink>
@@ -44,9 +45,6 @@ const NavbarFix = () => {
                     </NavLink> */}
                     <NavLink to="/intro-host">{t('navbar.host')}</NavLink>
                     <NavLink to="/list-room">{t('navbar.listroom')}</NavLink>
-                    {user.current?.id !== undefined && (
-                        <NavLink to="/historybooking">{t('navbar.historyBookingClient')}</NavLink>
-                    )}
                 </div>
 
                 <div className="navbar-right">
@@ -58,7 +56,6 @@ const NavbarFix = () => {
                             <NavLink to="/signup">{t('navbar.signup')}</NavLink>
                         </>
                     )}
-                    <LanguageSelected />
                 </div>
             </div>
             {isActive && <Book refOne={refOne} />}

@@ -70,6 +70,11 @@ function DropdownMenu() {
             <Link to="/wishlists" className="dropdown__link">
                 {t('navbar.listLove')}
             </Link>
+            {user.current?.id !== undefined && (
+                <Link to="/historybooking" className="dropdown__link">
+                    {t('navbar.historyBookingClient')}
+                </Link>
+            )}
             {user.current.isOwner || user.settings ? (
                 <Link to="/host" className="dropdown__link">
                     {t('navbar.managerHost')}

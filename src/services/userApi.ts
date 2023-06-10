@@ -8,6 +8,10 @@ import {
 } from '../share/models/user';
 
 const userApi = {
+    getProfile(): Promise<any> {
+        const url = `api/v1/user/profile`;
+        return axiosClient.get(url);
+    },
     updateInfoUser(data: any): Promise<BaseResponseUserDetail> {
         const url = 'api/v1/user/update/current-user';
         return axiosClient.put(url, data);

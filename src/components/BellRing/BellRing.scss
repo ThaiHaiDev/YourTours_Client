@@ -32,6 +32,7 @@
     }
 
     .dropdown__content {
+        border: 1px solid black;
         position: absolute;
         top: calc(100% + 5px);
         right: 0;

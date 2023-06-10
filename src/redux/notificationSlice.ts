@@ -5,7 +5,8 @@ const notificationSlice = createSlice({
     initialState: {
         notiKey: false,
         notiTitle: '',
-        notiDes: ''
+        notiDes: '',
+        numberOfNotification: -1
     },
     reducers: {
         subscribeOnNotification(state, action) {
@@ -14,6 +15,9 @@ const notificationSlice = createSlice({
         },
         subscribeOffNotification(state) {
             state.notiKey = false;
+        },
+        subscribeNumberOfNotification(state, action) {
+            state.numberOfNotification = action.payload;
         },
     },
 });
