@@ -22,8 +22,10 @@ const clickOutsideRef = (content_ref: any, toggle_ref: any) => {
 
 const BellRing = (props: any) => {
     const [dataNoti, setDataNoti] = useState<any>([]);
-    const dropdown_toggle_el = useRef(null);
-    const dropdown_content_el = useRef(null);
+    const [showAll, setShowAll] = useState<number>(8);
+    const [checkDelete, setCheckDelete] = useState<boolean>(false);
+    const dropdown_toggle_el = useRef<any>(null);
+    const dropdown_content_el = useRef<any>(null);
     const user = useSelector((state: RootState) => state.user);
     const noti = useSelector((state: RootState) => state.notification);
 
@@ -31,11 +33,15 @@ const BellRing = (props: any) => {
 
     useEffect(() => {
         if (user.current.id) {
-            notificationApi.getNotificationForUser().then((dataRes: any) => {
+            notificationApi.getNotificationForUser(100).then((dataRes: any) => {
                 setDataNoti(dataRes.data.content);
             });
         }
-    }, [user]);
+        if (showAll === 100) {
+            dropdown_content_el.current.classList.add('active');
+        }
+        setCheckDelete(false);
+    }, [user, showAll, checkDelete]);
 
     clickOutsideRef(dropdown_content_el, dropdown_toggle_el);
 
@@ -43,6 +49,17 @@ const BellRing = (props: any) => {
         if (noti.numberOfNotification !== 0) {
             notificationApi.resetNumberNotification('').then(() => {
                 dispatch(notificationSlice.actions.subscribeNumberOfNotification(0));
+            });
+        }
+    };
+
+    const handleShowAll = () => {
+        if (showAll === 8) {
+            setShowAll(100);
+            dropdown_content_el.current.classList.add('active');
+        } else {
+            notificationApi.deleteNotificationViewed().then(() => {
+                setCheckDelete(true);
             });
         }
     };
@@ -56,11 +73,21 @@ const BellRing = (props: any) => {
                         {props.badge ? <span className="dropdown__toggle-badge">{props.badge}</span> : ''}
                         {props.customToggle ? props.customToggle() : ''}
                     </button>
-                    <div ref={dropdown_content_el} className="dropdown__content">
-                        {props.contentData && props.renderItems
-                            ? dataNoti.map((item: any, index: any) => props.renderItems(item, index))
-                            : ''}
-                        {props.renderFooter ? <div className="dropdown__footer">{props.renderFooter()}</div> : ''}
+                    <div ref={dropdown_content_el} className={`dropdown__content`}>
+                        <div className={`${showAll !== 8 ? 'all-noti' : ''}`}>
+                            {props.contentData && props.renderItems
+                                ? dataNoti
+                                      .slice(0, showAll)
+                                      .map((item: any, index: any) => props.renderItems(item, index))
+                                : ''}
+                        </div>
+                        {props.renderFooter ? (
+                            <div className="dropdown__footer" onClick={handleShowAll}>
+                                {showAll === 8 ? props.renderFooter() : 'Delete all viewed notifications'}
+                            </div>
+                        ) : (
+                            ''
+                        )}
                     </div>
                 </div>
             ) : (

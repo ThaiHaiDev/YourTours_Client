@@ -46,6 +46,14 @@
         transform-origin: top right; // Hiện dropdown từ trên bên phải xuống
         transform: scale(0); // Ẩn dropdown
         transition: transform 0.3s ease 0s; // Set time cho hiện dropdown transform 0.3s
+
+        .list__content {
+        }
+    }
+
+    .all-noti {
+        overflow: scroll;
+        height: 600px;
     }
 
     .dropdown__content.active {
