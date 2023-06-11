@@ -9,6 +9,10 @@ const notificationApi = {
         const url = `api/v1/user/reset/notification`;
         return axiosClient.post(url, data);
     },
+    showOffViewNotification(data: any): Promise<any> {
+        const url = `api/v1/app/notification/tick-view`;
+        return axiosClient.put(url, data);
+    },
 };
 
 export default notificationApi;

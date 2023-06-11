@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { t } from 'i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import Logo from '../../assets/imgMaster/logo.svg';
 import notifications from '../../mockdata/notification.json';
@@ -15,18 +15,12 @@ import Book from '../Book/Book';
 import DropdownUser from '../DropdownUser/DropdownUser';
 import LanguageSelected from '../LanguageSelected/LanguageSelected';
 import './Navbar.scss';
-
-const renderNotificationItem = (item: any, index: any) => (
-    <div className="notification-item" key={index}>
-        {/* <i className={`${item.icon} notification-icon`}></i> */}
-        <i className={`notification-icon`}></i>
-        <span className="notification-content">{item.description}</span>
-    </div>
-);
+import notificationApi from '../../services/notificationApi';
 
 const Navbar = () => {
     const [isActive, setIsActive] = useState<boolean>(false);
     const refOne = useRef<HTMLInputElement | null>(null);
+    const navigate = useNavigate();
 
     const user = useSelector((state: RootState) => state.user);
     const noti = useSelector((state: RootState) => state.notification);
@@ -50,6 +44,22 @@ const Navbar = () => {
     const hideOnClickOutside = (e: any) => {
         if (refOne.current && !refOne.current.contains(e.target)) {
             setIsActive(false);
+        }
+    };
+
+    const renderNotificationItem = (item: any, index: any) => (
+        <div className="notification-item" key={index} onClick={() => handleSetView(item.id, item.view, item.homeId)}>
+            <i className={`${item.icon} bx bx-package`}></i>
+            {/* <i className={`notification-icon`}></i> */}
+            <span className={`${!item.view ? 'no-view ' : ''} notification-content`}>{item.description}</span>
+        </div>
+    );
+
+    const handleSetView = (id: string | undefined, view: boolean, homeId: string | undefined) => {
+        if (!view) {
+            notificationApi.showOffViewNotification({ notificationId: id }).then(() => {
+                navigate(`/detail/${homeId}`);
+            });
         }
     };
 
