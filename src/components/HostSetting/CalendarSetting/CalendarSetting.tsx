@@ -62,7 +62,7 @@ export default function CalendarSetting() {
     };
 
     useEffect(() => {
-        homeDetailApi.getListHomeOfHost().then((dataResponse: any) => {
+        homeDetailApi.getListHomeOfHost('').then((dataResponse: any) => {
             setDataListHome(dataResponse.data.content);
         });
         if (idRoom !== '') {

@@ -10,8 +10,8 @@ const homeDetailApi = {
         const url = 'api/v1/cms/homes/create';
         return axiosClient.post(url, data);
     },
-    getListHomeOfHost(): Promise<BaseResponseBasePagingResponseHomeInfo> {
-        const url = `api/v1/cms/homes/page`;
+    getListHomeOfHost(dataSearch: string): Promise<BaseResponseBasePagingResponseHomeInfo> {
+        const url = `api/v1/cms/homes/page${dataSearch !== '' ? `?keyword=${dataSearch}` : ''}`;
         return axiosClient.get(url);
     },
     getDetailHome(idHome: string | undefined): Promise<any> {

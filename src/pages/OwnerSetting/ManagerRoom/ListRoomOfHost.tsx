@@ -16,10 +16,16 @@ const ListRoomOfHost = () => {
     const [dataListhome, setDataListHome] = useState<any>([]);
 
     useEffect(() => {
-        homeDetailApi.getListHomeOfHost().then((dataResponse: any) => {
+        homeDetailApi.getListHomeOfHost('').then((dataResponse: any) => {
             setDataListHome(dataResponse.data.content);
         });
     }, []);
+
+    const handleSearchByHomeName = (value: string) => {
+        homeDetailApi.getListHomeOfHost(value).then((dataResponse: any) => {
+            setDataListHome(dataResponse.data.content);
+        });
+    };
 
     const rows = [];
     for (var i = 0; i < dataListhome.length; i++) {
@@ -49,7 +55,10 @@ const ListRoomOfHost = () => {
             </div>
             <div className="header-listroom">
                 <h1 style={{ marginRight: '10px' }}>{`${rows.length} nhà/phòng cho thuê`}</h1>
-                <SearchHomeByOwner placeholder="Tìm kiếm theo tên nhà" />
+                <SearchHomeByOwner
+                    placeholder="Tìm kiếm theo tên nhà"
+                    handleSearchByHomeName={handleSearchByHomeName}
+                />
             </div>
             <div className="data-table">
                 <DataTable rows={rows} />
