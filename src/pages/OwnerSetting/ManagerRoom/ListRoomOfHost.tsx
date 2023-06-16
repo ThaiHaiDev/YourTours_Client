@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import format from 'date-fns/format';
 
 import Popup from 'reactjs-popup';
-
 import DeleteIcon from '@mui/icons-material/Delete';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
-import FIlterOwner from '../../../components/FIlterOwner/FIlterOwner';
 import NavbarOwner from '../../../components/NavbarOwner/NavbarOwner';
+import SearchHomeByOwner from '../../../components/SearchHomeByOwner/SearchHomeByOwner';
 import homeDetailApi from '../../../services/homeDetailApi';
 import './ListRoomOfHost.scss';
 
@@ -49,7 +49,7 @@ const ListRoomOfHost = () => {
             </div>
             <div className="header-listroom">
                 <h1 style={{ marginRight: '10px' }}>{`${rows.length} nhà/phòng cho thuê`}</h1>
-                <FIlterOwner />
+                <SearchHomeByOwner placeholder="Tìm kiếm theo tên nhà" />
             </div>
             <div className="data-table">
                 <DataTable rows={rows} />

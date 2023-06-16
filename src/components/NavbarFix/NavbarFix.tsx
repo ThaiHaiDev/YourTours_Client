@@ -53,7 +53,6 @@ const NavbarFix = () => {
                     ) : (
                         <>
                             <NavLink to="/signin">{t('navbar.signin')}</NavLink>
-                            <NavLink to="/signup">{t('navbar.signup')}</NavLink>
                         </>
                     )}
                 </div>

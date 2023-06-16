@@ -1,14 +1,15 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { AxiosError } from 'axios';
 
+import { t } from 'i18next';
 import { useSnackbar } from 'notistack';
+
 import { useNavigate } from 'react-router-dom';
 
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Rating } from '@mui/material';
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Rating } from '@mui/material';
 
 import evaluateApi from '../../services/evaluateApi';
 import './FormEvaluate.scss';
-import { t } from 'i18next';
 
 export interface dataProps {
     showFormReview: boolean;
@@ -63,7 +64,19 @@ const FormEvaluate = (props: dataProps) => {
 
     return (
         <Dialog open={open} onClose={handleClose} maxWidth="xl">
-            <DialogTitle sx={{ fontSize: '20px' }}>{t('title.review')}</DialogTitle>
+            <DialogTitle
+                sx={{
+                    fontSize: '20px',
+                    borderBottom: '1px solid #2196f3',
+                    marginLeft: '25px',
+                    paddingLeft: '0',
+                    marginRight: '25px',
+                    paddingRight: '0',
+                    paddingBottom: '10px',
+                }}
+            >
+                {t('title.review')}
+            </DialogTitle>
             <form onSubmit={submitFormHandler}>
                 <DialogContent>
                     <DialogContentText sx={{ fontSize: '16px' }}>{t('label.thanksReview')}</DialogContentText>
@@ -89,9 +102,13 @@ const FormEvaluate = (props: dataProps) => {
                         style={{ fontSize: '14px', padding: '10px 15px', marginTop: '10px', width: '100%' }}
                     />
                 </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose}>Cancel</Button>
-                    <button type="submit">{t('common.review')}</button>
+                <DialogActions sx={{ marginBottom: '10px' }}>
+                    <button onClick={handleClose} className="btn-review-cancel">
+                        Cancel
+                    </button>
+                    <button type="submit" className="btn-review-detail">
+                        {t('common.review')}
+                    </button>
                 </DialogActions>
             </form>
         </Dialog>

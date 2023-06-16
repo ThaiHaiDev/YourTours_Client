@@ -71,8 +71,10 @@ const CommentRating = (props: dataProps) => {
     return (
         <>
             <div style={{ display: 'flex', marginBottom: '5px', alignItems: 'center' }}>
-                <p style={{ fontSize: '16px', fontWeight: 'bold', marginRight: '5px' }}>{`${props.rate}/5`}</p>
-                <Rating name="half-rating-read" defaultValue={2.5} precision={0.5} readOnly />
+                <p style={{ fontSize: '16px', fontWeight: 'bold', marginRight: '5px' }}>{`${
+                    props.rate ? props.rate : '0'
+                }/5`}</p>
+                <Rating name="half-rating-read" defaultValue={props.rate ? props.rate : 0} precision={0.5} readOnly />
                 <p style={{ fontSize: '16px', marginLeft: '15px' }}>{`${pagination.total}+ đánh giá`}</p>
             </div>
             {dataComment.map((cmt: any, index: number) => (
