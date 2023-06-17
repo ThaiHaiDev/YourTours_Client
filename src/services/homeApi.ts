@@ -1,11 +1,13 @@
 import { AxiosResponse } from 'axios';
 import axiosClient from '../share/axios-client/axiosClient';
 import {
+    ActiveHomeRequest,
     BaseResponseHostHomeDetailModel,
     FactoryUpdateRequestUUIDUpdateAddressHomeModel,
     FactoryUpdateRequestUUIDUpdateBasePriceHomeModel,
     FactoryUpdateRequestUUIDUpdateBaseProfileHomeModel,
 } from '../share/models/home';
+import { BaseResponseFactoryDeleteResponse } from '../share/models/cms';
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
@@ -35,6 +37,10 @@ const homeApi = {
     getAllHome(): Promise<BaseResponseHostHomeDetailModel> {
         const url = `api/v1/cms/homes/admin/pages?number=0&size=20`;
         return axiosClient.get(url);
+    },
+    activeHome(data: ActiveHomeRequest): Promise<BaseResponseFactoryDeleteResponse> {
+        const url = `api/v1/cms/homes/update/status`;
+        return axiosClient.put(url, data);
     },
 };
 

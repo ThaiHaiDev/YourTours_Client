@@ -16,6 +16,11 @@ export interface BaseResponseHostHomeDetailModel {
     data?: BaseResponseHomeInfo;
 }
 
+export interface ActiveHomeRequest {
+    homeId?: string;
+    status?: string;
+}
+
 export interface BaseResponseHomeInfo {
     content?: HostHomeDetailModel[];
     /** @format int32 */

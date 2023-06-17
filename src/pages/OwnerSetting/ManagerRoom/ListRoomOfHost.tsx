@@ -2,13 +2,15 @@ import { useEffect, useState } from 'react';
 import format from 'date-fns/format';
 
 import Popup from 'reactjs-popup';
-import DeleteIcon from '@mui/icons-material/Delete';
+import LockIcon from '@mui/icons-material/Lock';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
 import NavbarOwner from '../../../components/NavbarOwner/NavbarOwner';
 import SearchHomeByOwner from '../../../components/SearchHomeByOwner/SearchHomeByOwner';
+import homeApi from '../../../services/homeApi';
 import homeDetailApi from '../../../services/homeDetailApi';
 import './ListRoomOfHost.scss';
 
@@ -40,7 +42,7 @@ const ListRoomOfHost = () => {
             location: dataListhome[i].provinceName ? dataListhome[i].provinceName : '',
             editrecent: format(new Date(dataListhome[i].lastModifiedDate.toString()), 'hh:mm MM/dd/yyyy'),
             view: dataListhome[i].id,
-            remove: dataListhome[i].id,
+            remove: dataListhome[i],
         });
     }
 
@@ -96,14 +98,10 @@ const columns: GridColDef[] = [
         field: 'view',
         headerName: '',
         width: 10,
-        renderCell: (params) => <RemoveRedEyeIcon onClick={() => handleView(params.row.remove)} />,
+        renderCell: (params) => (
+            <RemoveRedEyeIcon onClick={() => handleView(params.row.remove)} sx={{ cursor: 'pointer' }} />
+        ),
     },
-    // {
-    //     field: 'remove',
-    //     headerName: '',
-    //     width: 10,
-    //     renderCell: (params) => <DeleteIcon color="secondary" onClick={() => handleDelete(params.row.remove)} />,
-    // },
     {
         field: 'remove',
         headerName: '',
@@ -111,13 +109,22 @@ const columns: GridColDef[] = [
         renderCell: (params) => (
             <Popup
                 trigger={
-                    <DeleteIcon className="icon__btn" sx={{ color: 'red', cursor: 'pointer', fontSize: '18px' }} />
+                    params.row.remove.status === 'LOCK' ? (
+                        <LockOpenIcon
+                            className="icon__btn"
+                            sx={{ color: 'red', cursor: 'pointer', fontSize: '18px' }}
+                        />
+                    ) : (
+                        <LockIcon className="icon__btn" sx={{ color: 'red', cursor: 'pointer', fontSize: '18px' }} />
+                    )
                 }
                 position="top right"
             >
                 <div>
-                    <p style={{ margin: '0', padding: '5px', fontSize: '14px' }}>
-                        Bạn chắc chắn muốn xóa dữ liệu này không?
+                    <p style={{ margin: '0', padding: '5px 10px', fontSize: '14px', marginBottom: '10px' }}>
+                        {`Bạn chắc chắn muốn ${
+                            params.row.remove.status === 'LOCK' ? 'active' : 'unactive'
+                        } ngôi nhà này không?`}
                     </p>
                     <p
                         style={{
@@ -127,11 +134,15 @@ const columns: GridColDef[] = [
                             paddingLeft: '15px',
                             paddingTop: '5px',
                             paddingBottom: '5px',
-                            marginLeft: '75%',
+                            marginLeft: '70%',
+                            marginBottom: '7px',
+                            marginRight: '10px',
                             cursor: 'pointer',
                             color: 'white',
                         }}
-                        onClick={() => handleDelete(params.row.remove)}
+                        onClick={() =>
+                            handleDelete(params.row.remove.id, params.row.remove.status === 'LOCK' ? 'ACTIVE' : 'LOCK')
+                        }
                     >
                         Yes
                     </p>
@@ -141,8 +152,14 @@ const columns: GridColDef[] = [
     },
 ];
 
-function handleDelete(id: string | undefined) {
-    console.log('id remove', id);
+async function handleDelete(id: string | undefined, status: string) {
+    const dataActive = {
+        homeId: id,
+        status: status,
+    };
+    await homeApi.activeHome(dataActive).then((dataRes) => {
+        window.location.href = `/host/setting`;
+    });
 }
 
 function handleView(id: string | undefined) {
