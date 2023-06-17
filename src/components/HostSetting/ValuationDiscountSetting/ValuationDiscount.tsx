@@ -1,23 +1,27 @@
 import * as React from 'react';
-import Accordion from '@mui/material/Accordion';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
-import './ValuationDiscount.scss';
-import formatPrice from '../../../utils/formatPrice';
-
 import { AxiosError } from 'axios';
+import format from 'date-fns/format';
 import { useSnackbar } from 'notistack';
-
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
+
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Accordion from '@mui/material/Accordion';
+
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
+
 import homeApi from '../../../services/homeApi';
 import pricesOfHomeApi from '../../../services/pricesOfHomeApi';
+import formatPrice from '../../../utils/formatPrice';
+import DateRangePickerComp from '../../DateGo/DateGo';
+import './ValuationDiscount.scss';
 
 export default function ValuationDiscountSetting(props: any) {
     const [expanded, setExpanded] = React.useState<string | false>(false);
     const [numberLength, setNumberLength] = React.useState<number>(0);
+    const [dateDiscountWeek, setDateDiscountWeek] = React.useState<any>(null);
+    const [dateDiscountMonth, setDateDiscountMonth] = React.useState<any>(null);
 
     const { handleSubmit, register, setValue } = useForm();
 
@@ -82,11 +86,15 @@ export default function ValuationDiscountSetting(props: any) {
                     percent: dataDiscount.percent0 ? parseFloat(dataDiscount.percent0) : null,
                     homeId: params.idHome,
                     categoryId: dataDiscount.idCategory_0,
+                    dateStart: dateDiscountMonth ? format(dateDiscountMonth[0].startDate, 'yyyy-MM-dd') : null,
+                    dateEnd: dateDiscountMonth ? format(dateDiscountMonth[0].endDate, 'yyyy-MM-dd') : null,
                 },
                 {
                     percent: dataDiscount.percent1 ? parseFloat(dataDiscount.percent1) : null,
                     homeId: params.idHome,
                     categoryId: dataDiscount.idCategory_1,
+                    dateStart: dateDiscountWeek ? format(dateDiscountWeek[0].startDate, 'yyyy-MM-dd') : null,
+                    dateEnd: dateDiscountWeek ? format(dateDiscountWeek[0].endDate, 'yyyy-MM-dd') : null,
                 },
             ],
         };
@@ -182,13 +190,35 @@ export default function ValuationDiscountSetting(props: any) {
                             >
                                 <p style={{ width: '33%', flexShrink: 0 }}>{discount?.category.name}</p>
                                 <p style={{ color: 'text.secondary' }}>
-                                    {discount?.config !== null ? discount?.config.percent : 'Chưa thiết lập'}
+                                    {discount?.config !== null &&
+                                    discount?.config.percent &&
+                                    discount?.config.percent !== ''
+                                        ? discount?.config.percent
+                                        : 'Chưa thiết lập'}
                                 </p>
                             </AccordionSummary>
                             <AccordionDetails>
-                                <div className="content-input">
+                                <div className="content-input-discount">
                                     <h4>Mô tả {discount?.category.name}</h4>
-                                    <p>{discount?.category.description ? discount?.category.description : 'Không có mô tả'}</p>
+                                    <p>
+                                        {discount?.category.description
+                                            ? discount?.category.description
+                                            : 'Không có mô tả'}
+                                    </p>
+                                    {index === 0 ? (
+                                        <DateRangePickerComp
+                                            setDataDay={setDateDiscountMonth}
+                                            dateStart={discount?.config.dateStart}
+                                            dateEnd={discount?.config.dateEnd}
+                                        />
+                                    ) : (
+                                        <DateRangePickerComp
+                                            setDataDay={setDateDiscountWeek}
+                                            dateStart={discount?.config.dateStart}
+                                            dateEnd={discount?.config.dateEnd}
+                                        />
+                                    )}
+
                                     <input className="input-price-room__setting" {...register(`percent${index}`)} />
                                     <input
                                         {...register(`idCategory_${index}`)}

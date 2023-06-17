@@ -3,19 +3,20 @@ import { useEffect, useState } from 'react';
 import AOS from 'aos';
 
 import 'aos/dist/aos.css';
+import { t } from 'i18next';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
+
 import LinearProgress from '@mui/material/LinearProgress';
 
 import FormEvaluate from '../../components/FormEvaluate/FormEvaluate';
+
 import ModalConfirmDelete from '../../components/ModalConfirmDelete/ModalConfirmDelete';
 
 import Navbar from '../../components/Navbar/Navbar';
-
 import PopoverRefundPolicy from '../../components/PopoverRefundPolicy/PopoverRefundPolicy';
 import bookingApi from '../../services/bookingApi';
 import formatPrice from '../../utils/formatPrice';
 import './HistoryBookingPage.scss';
-import { t } from 'i18next';
 
 AOS.init();
 
@@ -120,9 +121,13 @@ const HistoryBookingPage = () => {
                                                 <ModalConfirmDelete idRemove={history.id} />
                                             )}
                                         </div>
-                                        <h3 onClick={() => handleReview(history.id)} className="btn-review">
-                                            {t('common.review')}
-                                        </h3>
+                                        {history?.status === 'CHECK_OUT' ? (
+                                            <h3 onClick={() => handleReview(history.id)} className="btn-review">
+                                                {t('common.review')}
+                                            </h3>
+                                        ) : (
+                                            <></>
+                                        )}
                                     </div>
                                 </div>
                             );

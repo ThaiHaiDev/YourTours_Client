@@ -9,8 +9,6 @@ import Logo from '../../assets/imgMaster/logo.svg';
 import CheckBoxPayment from '../../components/CheckBoxPayment/CheckBoxPayment';
 import DateBooking from '../../components/DateBooking/DateBooking';
 
-import FormEvaluate from '../../components/FormEvaluate/FormEvaluate';
-
 import Paypal from '../../components/Paypal/Paypal';
 import { RootState } from '../../redux/store';
 import bookingApi from '../../services/bookingApi';
@@ -27,7 +25,7 @@ const BookingPage = () => {
 
     const [dataDetailHomeBooking, setDataDetalHomeBooking] = useState<any>([]);
     const [priceDay, setPriceDay] = useState<string>('');
-    const [idBooking, setIdBooking] = useState<string | undefined>('');
+    // const [idBooking, setIdBooking] = useState<string | undefined>('');
 
     const [priceAfterChoosePayment, setPriceAfterChoosePayment] = useState<any>(infoBooking?.priceTotal);
 
@@ -60,7 +58,7 @@ const BookingPage = () => {
             .then((dataResponse) => {
                 dispatch(userSlice.actions.updateHost());
                 enqueueSnackbar(t('message.bookingSuccess'), { variant: 'success' });
-                setIdBooking(dataResponse?.data?.id);
+                // setIdBooking(dataResponse?.data?.id);
             })
             .catch((error: AxiosError<any>) => {
                 enqueueSnackbar(error.response?.data.message, { variant: 'error' });
@@ -72,7 +70,7 @@ const BookingPage = () => {
         setPriceAfterChoosePayment(value);
     };
 
-    const handleCloseReview = () => {};
+    // const handleCloseReview = () => {};
 
     return (
         <div className="booking__page">
@@ -81,11 +79,12 @@ const BookingPage = () => {
                     <img src={Logo} alt="company logo" className="logo-bg" />
                 </NavLink>
             </div>
-            {idBooking !== '' && idBooking !== undefined ? (
+            {/* Show review when booking success  */}
+            {/* {idBooking !== '' && idBooking !== undefined ? (
                 <FormEvaluate showFormReview={true} idBook={idBooking} handleCloseReview={handleCloseReview} />
             ) : (
                 <></>
-            )}
+            )} */}
             <div className="content-booking">
                 <h1>{t('title.bookingOfYou.tilte')}</h1>
                 <div className="row">
