@@ -11,6 +11,7 @@ import LinearProgress from '@mui/material/LinearProgress';
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { t } from 'i18next';
 AOS.init();
 
 const FavoritesPage = () => {
@@ -35,17 +36,14 @@ const FavoritesPage = () => {
             <Navbar />
             {loading ? (
                 <div className="no__favorites">
-                    <h1>Yêu thích</h1>
-                    <h2>Tạo danh sách Yêu thích đầu tiên</h2>
-                    <p>
-                        Trong quá trình tìm kiếm, hãy nhấn vào biểu tượng hình trái tim để lưu các chỗ ở yêu thích hoặc
-                        những điều nên trải nghiệm vào danh sách Yêu thích.
-                    </p>
+                    <h1>{t('title.love')}</h1>
+                    <h2>{t('title.firstLove')}</h2>
+                    <p>{t('contentMain.love')}</p>
                     <LinearProgress />
                 </div>
             ) : (
                 <div className="yes__favorites">
-                    <h1>Yêu thích</h1>
+                    <h1>{t('title.love')}</h1>
                     <div
                         data-aos="fade-up"
                         data-aos-duration="1200"
@@ -61,10 +59,10 @@ const FavoritesPage = () => {
                                         <div className="content__favorite" onClick={() => handleLinkToDetail(room?.id)}>
                                             <img src={room?.thumbnail} alt="" />
                                             <p className="name__favorite">{room?.name}</p>
-                                            <p className="price__favorite">{`Giá chỉ ${formatPrice(
+                                            <p className="price__favorite">{`${t('label.pricelove')} ${formatPrice(
                                                 room?.costPerNightDefault,
                                             )}`}</p>
-                                            <p className="book-now">Đặt ngay hôm nay</p>
+                                            <p className="book-now">{t('common.bookRightNow')}</p>
                                         </div>
                                         <IconLoveLike idHome={room?.id} />
                                     </div>

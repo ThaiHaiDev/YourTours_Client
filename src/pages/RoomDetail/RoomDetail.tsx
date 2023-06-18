@@ -1,36 +1,38 @@
-import ListImage from '../../components/ListImage/ListImage';
-import Navbar from '../../components/Navbar/Navbar';
-
-import './RoomDetail.scss';
-
-import FmdGoodIcon from '@mui/icons-material/FmdGood';
-import StarIcon from '@mui/icons-material/Star';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import Convenient from '../../components/Convenient/Convenient';
-import DateGo from '../../components/DateGo/DateGo';
-import Dropdown from '../../components/Dropdown/Dropdown';
-import DialogConvenient from '../../components/DialogConvenient/DialogConvenient';
-import Footer from '../../components/Footer/Footer';
-import BedRoomSlider from '../../components/BedRoomSlider/BedRoomSlider';
 import { useEffect, useState } from 'react';
-import homeDetailApi from '../../services/homeDetailApi';
-import mapProvince from '../../utils/mapProvince';
-import SkeletonRoomDetail from '../../components/Skeleton/SkeletonRoomDetail';
+import { AxiosError } from 'axios';
 
 import format from 'date-fns/format';
+
 import moment from 'moment';
-
 import { useSnackbar } from 'notistack';
-
-import pricesOfHomeApi from '../../services/pricesOfHomeApi';
-import formatPrice from '../../utils/formatPrice';
-import PopoverPrice from '../../components/PopoverPrice/PopoverPrice';
-import bookingSlice from '../BookingPage/bookingSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import FmdGoodIcon from '@mui/icons-material/FmdGood';
+import StarIcon from '@mui/icons-material/Star';
+
+import BedRoomSlider from '../../components/BedRoomSlider/BedRoomSlider';
+import CommentRating from '../../components/Comment/Comment';
+import Convenient from '../../components/Convenient/Convenient';
+import DateGo from '../../components/DateGo/DateGo';
 import DateIsBooking from '../../components/DateIsBooking/DateIsBooking';
+import DialogConvenient from '../../components/DialogConvenient/DialogConvenient';
+
+import Dropdown from '../../components/Dropdown/Dropdown';
+import Footer from '../../components/Footer/Footer';
+
+import ListImage from '../../components/ListImage/ListImage';
+
+import Navbar from '../../components/Navbar/Navbar';
+import PopoverPrice from '../../components/PopoverPrice/PopoverPrice';
+import SkeletonRoomDetail from '../../components/Skeleton/SkeletonRoomDetail';
 import { RootState } from '../../redux/store';
 import bookingApi from '../../services/bookingApi';
-import { AxiosError } from 'axios';
+import homeDetailApi from '../../services/homeDetailApi';
+import pricesOfHomeApi from '../../services/pricesOfHomeApi';
+import formatPrice from '../../utils/formatPrice';
+import bookingSlice from '../BookingPage/bookingSlice';
+import './RoomDetail.scss';
+import { t } from 'i18next';
 
 const RoomDetail = () => {
     const userLogin = useSelector((state: RootState) => state.user);
@@ -41,8 +43,8 @@ const RoomDetail = () => {
     const [detailPrice, setDetailPrice] = useState<any>([]);
     const [dateBook, setDateBook] = useState<string[]>([moment().format('YYYY-MM-DD'), moment().format('YYYY-MM-DD')]);
     const [guests, setGuests] = useState<any>([]);
-    const [titleGuests, setTitleGuests] = useState<any>('1 Người lớn, 0 Trẻ em, 0 Trẻ sơ sinh');
-    const [priceTotal, setPriceTotal] = useState<string>('');
+    const [titleGuests, setTitleGuests] = useState<any>(t('contentMess.countClient'));
+    const [priceTotal, setPriceTotal] = useState<any>('');
     const [discount, setDiscount] = useState<number>(0);
     const [priceNoDiscount, setPriceNoDiscount] = useState<any>('');
 
@@ -76,17 +78,17 @@ const RoomDetail = () => {
         const dateTo = format(value[0].endDate, 'yyyy-MM-dd');
         setDateBook([dateFrom, dateTo]);
         pricesOfHomeApi.showPriceByRangeDay(params?.idHome, dateFrom, dateTo).then((dataResponse) => {
-            setPriceDay(dataResponse.data.totalCost);
-            setDetailPrice(dataResponse.data.detail);
-            setPriceTotal(dataResponse.data.totalCostWithSurcharge);
-            setDiscount(dataResponse.data.percent !== null ? dataResponse.data.percent : 0);
-            setPriceNoDiscount(dataResponse.data.totalCostWithNoDiscount);
+            setPriceDay(dataResponse?.data?.totalCost);
+            setDetailPrice(dataResponse?.data?.detail);
+            setPriceTotal(dataResponse?.data?.totalCostWithSurcharge);
+            setDiscount(dataResponse?.data?.percent !== null ? Number(dataResponse?.data?.percent) : 0);
+            setPriceNoDiscount(dataResponse?.data?.totalCostWithNoDiscount);
         });
     };
 
     const handleBooking = async () => {
         if (userLogin.current.id === undefined) {
-            enqueueSnackbar('Để đặt thuê nhà, bạn cần đăng nhập!', { variant: 'warning' });
+            enqueueSnackbar(t('message.warningSignin'), { variant: 'warning' });
         } else {
             const dataCheck = {
                 dateStart: dateBook[0],
@@ -154,16 +156,16 @@ const RoomDetail = () => {
                                         <FmdGoodIcon className="icon_locate" />
                                         <p>{`${
                                             dataDetailHome?.addressDetail !== null ? dataDetailHome?.addressDetail : ''
-                                        } ${dataDetailHome?.addressDetail !== null ? ',' : ''} ${mapProvince(
-                                            dataDetailHome?.provinceCode ? dataDetailHome?.provinceCode : undefined,
-                                        )}`}</p>
+                                        } ${dataDetailHome?.addressDetail !== null ? ',' : ''} ${
+                                            dataDetailHome?.provinceName ? dataDetailHome?.provinceName : ''
+                                        }`}</p>
                                     </div>
                                 </div>
                                 <div className="heading__right">
                                     <StarIcon className="icon_rate" />
-                                    <p>5.0</p>
+                                    <p>{dataDetailHome?.averageRate}</p>
                                     <Link to="/" className="link__rate">
-                                        {`(${dataDetailHome?.view} lượt xem)`}
+                                        {`(${dataDetailHome?.view} ${t('numberCount.viewInDetal')})`}
                                     </Link>
                                 </div>
                             </div>
@@ -175,7 +177,9 @@ const RoomDetail = () => {
                     <div className="row">
                         <div className="col l-8 m-7 c-12">
                             <div className="title-room">
-                                <h1>Toàn bộ biệt thự. Chủ nhà {dataDetailHome?.ownerName}</h1>
+                                <h1>
+                                    {t('contentMain.allHome')} {dataDetailHome?.ownerName}
+                                </h1>
                                 <p className="count-detail">{dataDetailHome?.descriptionHomeDetail}</p>
                                 <hr className="line" />
                                 <Convenient listConvenient={dataDetailHome?.amenitiesView} />
@@ -183,13 +187,13 @@ const RoomDetail = () => {
                                 <hr className="line" />
 
                                 <div className="desc-room">
-                                    <h1>Giới thiệu về nhà / phòng</h1>
+                                    <h1>{t('contentMain.descHome')}</h1>
                                     <p>{dataDetailHome?.description}</p>
                                 </div>
 
                                 <hr className="line" />
                                 <div className="bed-room">
-                                    <h1>Nơi bạn sẽ ngủ nghỉ</h1>
+                                    <h1>{t('contentMain.bedroom')}</h1>
                                     <BedRoomSlider listRoom={dataDetailHome?.rooms} />
                                 </div>
 
@@ -198,7 +202,18 @@ const RoomDetail = () => {
                                 <DateIsBooking dateIsBooked={dataDetailHome?.dateIsBooked} />
 
                                 <hr className="line" />
-                                <h1 style={{ marginTop: '25px' }}>Đánh giá</h1>
+                                <h1
+                                    style={{
+                                        marginTop: '5px',
+                                        padding: '8px 10px',
+                                        borderLeft: '7px solid blue',
+                                    }}
+                                >
+                                    {t('contentMain.rateTitle')}
+                                </h1>
+                                <div style={{ marginTop: '10px' }}>
+                                    <CommentRating idHome={dataDetailHome.id} rate={dataDetailHome.averageRate} />
+                                </div>
                             </div>
                         </div>
 
@@ -207,8 +222,8 @@ const RoomDetail = () => {
                                 <div className="price-room">{formatPrice(dataDetailHome?.costPerNightDefault)}</div>
                                 <div className="date-book">
                                     <div className="title__date-book">
-                                        <p>Nhận phòng</p>
-                                        <p>Trả phòng</p>
+                                        <p>{t('contentMain.fromDay')}</p>
+                                        <p>{t('contentMain.toDay')}</p>
                                     </div>
                                     <DateGo
                                         size="vertical"
@@ -217,7 +232,7 @@ const RoomDetail = () => {
                                     />
                                 </div>
                                 <div className="count__guest">
-                                    <p>Số khách</p>
+                                    <p>{t('numberCount.countClient')}</p>
                                     <Dropdown handleChangeGuests={handleChangeGuests} setTitleGuests={setTitleGuests} />
                                 </div>
 
@@ -257,7 +272,7 @@ const RoomDetail = () => {
                                     <>
                                         <div className="discount-campain">
                                             <div className="discount-campain__title">
-                                                <h2 className="title">Chương trình giảm giá</h2>
+                                                <h2 className="title">{t('title.discountCompain')}</h2>
                                                 <img src="https://img.icons8.com/emoji/30/null/fire.png" alt="" />
                                             </div>
                                             {dataDetailHome?.discounts?.map((discount: any, index: number) => (
@@ -280,7 +295,7 @@ const RoomDetail = () => {
                                 {discount !== 0 && (
                                     <div className="price-total">
                                         <div className="title-price">
-                                            <p className="name-surcharge">Giảm giá</p>
+                                            <p className="name-surcharge">{t('contentMain.discount')}</p>
                                         </div>
                                         <div className="real-price" style={{ display: 'flex' }}>
                                             <p
@@ -301,7 +316,7 @@ const RoomDetail = () => {
 
                                 <div className="price-total">
                                     <div className="title-price">
-                                        <p className="name-surcharge">Tổng tiền cần thanh toán</p>
+                                        <p className="name-surcharge">{t('contentMain.totalPrice')}</p>
                                     </div>
                                     <div className="real-price">
                                         <p className="cost-surcharge">
@@ -312,7 +327,7 @@ const RoomDetail = () => {
 
                                 <div className="btn-booking">
                                     <button className="btn-booking-room" onClick={handleBooking}>
-                                        Đặt phòng
+                                        {t('common.booking')}
                                     </button>
                                 </div>
                             </div>

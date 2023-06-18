@@ -1,4 +1,5 @@
 .forgot {
+    padding-bottom: calc(100vh - 465px);
 
     .container__sign-in {
         background-color: #fff;
@@ -111,7 +112,7 @@
         h2 {
             position: relative;
         }
-        
+
         h2:before {
             content: '';
             position: absolute;
@@ -140,7 +141,7 @@
 
             .link__forgot-password {
                 padding-top: 6px;
-                font-size: 1.3rem; 
+                font-size: 1.3rem;
             }
 
             .link__forgot-password:hover {
@@ -150,7 +151,7 @@
 
             .link-create {
                 padding-top: 6px;
-                font-size: 1.3rem; 
+                font-size: 1.3rem;
             }
 
             .link-create:hover {
@@ -162,7 +163,7 @@
         .noti-reset {
             position: absolute;
             bottom: 15px;
-            
+
             p {
                 margin: 0;
                 font-size: 1.2rem;

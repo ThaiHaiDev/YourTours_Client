@@ -1,13 +1,15 @@
 .signup {
     position: relative;
-    margin-top: 50px;
+    padding-top: 50px;
+    padding-bottom: 78px;
+    background: #e3f2fd;
 
     .nav-item {
         width: calc(var(--nav-size) * 0.8);
         display: flex;
         align-items: center;
         justify-content: center;
-    
+
         /* Icon Button */
         .icon-button {
             --button-size: calc(var(--nav-size) * 0.5);
@@ -22,11 +24,11 @@
             justify-content: center;
             transition: filter 300ms;
         }
-    
+
         .icon-button:hover {
             filter: brightness(1.2);
         }
-    
+
         .icon-button svg {
             fill: var(--text-color);
             width: 20px;
@@ -47,7 +49,7 @@
 
         .menu {
             width: 100%;
-            
+
             .form-email {
                 padding: 0 20px;
 
@@ -91,7 +93,7 @@
                     padding-left: 5px;
                 }
 
-                .customs-btn { 
+                .customs-btn {
                     background: #4f46e5;
                     padding: 10px 150px;
                     font-size: 1.6rem;
@@ -102,7 +104,7 @@
                     cursor: pointer;
                     margin-bottom: 15px;
                 }
-    
+
                 .customs-btn:hover {
                     background: #1e88e5;
                 }
@@ -114,22 +116,22 @@
                 margin-left: 50px;
                 margin-right: 50px;
                 margin-bottom: 15px;
-    
+
                 .link__forgot-password {
                     padding-top: 6px;
-                    font-size: 1.3rem; 
+                    font-size: 1.3rem;
                 }
-    
+
                 .link__forgot-password:hover {
                     text-decoration: none;
                     color: var(--blue-link);
                 }
-    
+
                 .link-create {
                     padding-top: 6px;
-                    font-size: 1.3rem; 
+                    font-size: 1.3rem;
                 }
-    
+
                 .link-create:hover {
                     text-decoration: none;
                     color: var(--blue-link);
@@ -158,10 +160,9 @@
             }
         }
 
-
         .policy {
             bottom: 15px;
-            
+
             p {
                 margin: 0;
                 font-size: 1.2rem;
@@ -212,7 +213,3 @@ a {
     color: var(--text-color);
     text-decoration: none;
 }
-
-
-
-

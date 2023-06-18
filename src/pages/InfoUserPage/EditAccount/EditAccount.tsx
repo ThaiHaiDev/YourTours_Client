@@ -7,6 +7,7 @@ import { AxiosError } from 'axios';
 import { useSnackbar } from 'notistack';
 import userApi from '../../../services/userApi';
 import userSlice from '../../AuthPage/userSlice';
+import { t } from 'i18next';
 
 const EditInfo = () => {
     const user = useSelector((state: RootState) => state.user);
@@ -29,17 +30,17 @@ const EditInfo = () => {
     const onSubmit: SubmitHandler<any> = (data: any) => {
         const dataUpdate = {
             fullName: data.fullName,
-            email: data.email, 
+            email: data.email,
             phoneNumber: data.phoneNumber,
             dateOfBirth: data.dateOfBirth,
             address: data.address,
-            gender: data.male !== false ? 'MALE': 'FEMALE'
-        }
+            gender: data.male !== false ? 'MALE' : 'FEMALE',
+        };
         userApi
             .updateInfoUser(dataUpdate)
             .then((dataResponse: any) => {
-                dispatch(userSlice.actions.editInfo({data : dataResponse.data}))
-                enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
+                dispatch(userSlice.actions.editInfo({ data: dataResponse.data }));
+                enqueueSnackbar(t('message.updateSuccess'), { variant: 'success' });
             })
             .catch((error: AxiosError<any>) => {
                 enqueueSnackbar(error.response?.data.message, { variant: 'error' });
@@ -48,48 +49,45 @@ const EditInfo = () => {
 
     return (
         <>
-            <h2>Thông tin tài khoản</h2>
-            <p className="desc-info-content">
-                Thông tin này sẽ được từ nhập vào đơn hàng sau của bạn. Thông tin của bạn sẽ được mã hoá và không chia
-                sẻ với bên thứ 3
-            </p>
+            <h2>{t('title.profileAccount')}</h2>
+            <p className="desc-info-content">{t('contentMain.profileAccount')}</p>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="row" style={{ margin: '0 30px' }}>
                     <div className="col l-6">
-                        <p className="label-info__user">Họ tên đầy đủ</p>
+                        <p className="label-info__user">{t('label.fullnameProfile')}</p>
                         <input type="text" className="input-info__user" {...register('fullName')} />
                     </div>
 
                     <div className="col l-6">
-                        <p className="label-info__user">Email (nhận voucher)</p>
+                        <p className="label-info__user">{t('label.emailVoucher')}</p>
                         <input type="email" className="input-info__user" {...register('email')} />
                     </div>
 
                     <div className="col l-6">
-                        <p className="label-info__user">Ngày sinh</p>
+                        <p className="label-info__user">{t('label.birthday')}</p>
                         <input type="date" className="input-info__user" {...register('dateOfBirth')} />
                     </div>
 
                     <div className="col l-6">
-                        <p className="label-info__user">Số điện thoại</p>
+                        <p className="label-info__user">{t('label.phone')}</p>
                         <input type="text" className="input-info__user" {...register('phoneNumber')} />
                     </div>
 
                     <div className="col l-6">
-                        <p className="label-info__user">Địa chỉ</p>
+                        <p className="label-info__user">{t('label.address')}</p>
                         <input type="text" className="input-info__user" {...register('address')} />
                     </div>
 
                     <div className="col l-6">
-                        <p className="label-info__user">Giới tính</p>
+                        <p className="label-info__user">{t('label.gender')}</p>
                         <div className="input-checkbox">
                             <input type="checkbox" value="MALE" {...register('male')} />
-                            <label>Nam</label>
+                            <label>{t('label.male')}</label>
                             <input type="checkbox" value="FEMALE" {...register('female')} />
-                            <label>Nữ</label>
+                            <label>{t('label.female')}</label>
                         </div>
                     </div>
-                    <button className="btn-save-info">Lưu</button>
+                    <button className="btn-save-info">{t('common.save')}</button>
                 </div>
             </form>
         </>

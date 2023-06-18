@@ -1,22 +1,27 @@
 import React from 'react';
 
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+
+import SidebarData from '../../../mockdata/sidebarData';
 
 import './Sidebar.scss';
 
 import SidebarItem from './SidebarItem';
-
-import SidebarData from '../../../mockdata/sidebarData';
 
 const logo = 'https://cdn6.agoda.net/images/kite-js/logo/agoda/color-default.svg';
 
 const Sidebar = (props: any) => {
     const location = useLocation();
     const activeItem = SidebarData.All.findIndex((item) => item.route === location.pathname);
-    
+    const navigate = useNavigate();
+
+    const handleHome = () => {
+        navigate('/');
+    };
+
     return (
         <div className="sidebar">
-            <div className="sidebar__logo">
+            <div className="sidebar__logo" onClick={handleHome}>
                 <img src={logo} alt="company logo" />
             </div>
 

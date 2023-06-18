@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import UploadFile from '../../../components/UploadFile/UploadFile';
 
 import './StepperFour.scss';
+import { t } from 'i18next';
 
 interface StepperFourData {
     setDataStep4: (value: File[]) => void;
@@ -24,14 +25,16 @@ const StepperFour = (props: StepperFourData) => {
                             alt=""
                             className="image-step4"
                         />
-                        <h1>Tiếp theo, hãy thêm một số ảnh chụp chỗ ở của bạn</h1>
+                        <h1>{t('setupOwner.content_step_four')}</h1>
                     </div>
                 </div>
                 <div className="col l-6 m-6">
                     <div className="upload-file">
                         <UploadFile onFileChange={(files) => onFileChange(files)} />
                     </div>
-                    <Link to='/' className='btn-out'>Thoát</Link>
+                    <Link to="/" className="btn-out">
+                        {t('common.close')}
+                    </Link>
                 </div>
             </div>
         </div>

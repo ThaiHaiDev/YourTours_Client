@@ -7,10 +7,10 @@ import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-import mapProvince from '../../utils/mapProvince';
 import formatPrice from '../../utils/formatPrice';
 import { useNavigate } from 'react-router-dom';
 import IconLove from '../RoomPopular/IconLove';
+import { t } from 'i18next';
 
 const RoomItem = (props: any) => {
     const settings = {
@@ -66,11 +66,13 @@ const RoomItem = (props: any) => {
                     </div>
                     <div className="locate__room">
                         <FmdGoodIcon className="icon_locate" />
-                        <p>{mapProvince(props?.infoRoom?.provinceCode ? props?.infoRoom?.provinceCode : undefined)}</p>
+                        <p>{props?.infoRoom?.provinceName ? props?.infoRoom?.provinceName : ''}</p>
                     </div>
                     <div className="price__room">
-                        <p>{`Giá: ${formatPrice(props?.infoRoom?.costPerNightDefault)} / Đêm`}</p>
-                        <p>{`Lượt xem: ${props?.infoRoom?.view}`}</p>
+                        <p>{`${t('numberCount.price')} ${formatPrice(props?.infoRoom?.costPerNightDefault)} ${t(
+                            'numberCount.priceDay',
+                        )}`}</p>
+                        <p>{`${t('numberCount.view')} ${props?.infoRoom?.view}`}</p>
                     </div>
                 </div>
             </div>

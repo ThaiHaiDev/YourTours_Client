@@ -6,12 +6,12 @@ const SidebarData = {
             "route": "/admin",
             "icon": "bx bx-category-alt"
         },
-        {
-            "id": 1,
-            "display_name": "Đặt phòng",
-            "route": "/admin/booking",
-            "icon": "bx bx-cart"
-        },
+        // {
+        //     "id": 1,
+        //     "display_name": "Đặt phòng",
+        //     "route": "/admin/booking",
+        //     "icon": "bx bx-cart"
+        // },
     ],
     Manage: [
         {

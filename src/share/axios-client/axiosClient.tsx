@@ -1,5 +1,9 @@
 import axios from 'axios';
 import process from 'process';
+
+import authMessSlice from '../../redux/authMess';
+import store from '../../redux/store';
+
 // import jwt_decode from 'jwt-decode';
 // import { getCookie } from 'cookies-next';
 
@@ -13,7 +17,9 @@ const axiosClient = axios.create({
     baseURL: API_BASE_URL,
     headers: {
         Accept: 'application/json',
-        Authorization: `${getAccessTokenFromLocalStorage() !== '{}' && `Bearer`} ${getAccessTokenFromLocalStorage() !== '{}' ? getAccessTokenFromLocalStorage() : ''}`,
+        Authorization: `${getAccessTokenFromLocalStorage() !== '{}' && `Bearer`} ${
+            getAccessTokenFromLocalStorage() !== '{}' ? getAccessTokenFromLocalStorage() : ''
+        }`,
     },
 });
 
@@ -33,7 +39,13 @@ axiosClient.interceptors.response.use(
         return response.data;
     },
     (error) => {
-        return Promise.reject(error);
+        if (error.response.status === 401) {
+            const dispatch = store.dispatch;
+            dispatch(authMessSlice.actions.addError401());
+            return new Promise(() => {});
+        } else {
+            return Promise.reject(error);
+        }
     },
 );
 

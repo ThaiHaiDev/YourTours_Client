@@ -1,0 +1,100 @@
+import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import notificationSlice from '../../redux/notificationSlice';
+import { RootState } from '../../redux/store';
+import notificationApi from '../../services/notificationApi';
+import './BellRing.scss';
+
+const clickOutsideRef = (content_ref: any, toggle_ref: any) => {
+    document.addEventListener('mousedown', (e) => {
+        // user click toggle
+        if (toggle_ref.current && toggle_ref.current.contains(e.target)) {
+            content_ref.current.classList.toggle('active');
+        } else {
+            // user click outside toggle and content
+            if (content_ref.current && !content_ref.current.contains(e.target)) {
+                content_ref.current.classList.remove('active');
+            }
+        }
+    });
+};
+
+const BellRing = (props: any) => {
+    const [dataNoti, setDataNoti] = useState<any>([]);
+    const [showAll, setShowAll] = useState<number>(8);
+    const [checkDelete, setCheckDelete] = useState<boolean>(false);
+    const dropdown_toggle_el = useRef<any>(null);
+    const dropdown_content_el = useRef<any>(null);
+    const user = useSelector((state: RootState) => state.user);
+    const noti = useSelector((state: RootState) => state.notification);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (user.current.id) {
+            notificationApi.getNotificationForUser(100).then((dataRes: any) => {
+                setDataNoti(dataRes.data.content);
+            });
+        }
+        if (showAll === 100) {
+            dropdown_content_el.current.classList.add('active');
+        }
+        setCheckDelete(false);
+    }, [user, showAll, checkDelete]);
+
+    clickOutsideRef(dropdown_content_el, dropdown_toggle_el);
+
+    const handleResetNoti = () => {
+        if (noti.numberOfNotification !== 0) {
+            notificationApi.resetNumberNotification('').then(() => {
+                dispatch(notificationSlice.actions.subscribeNumberOfNotification(0));
+            });
+        }
+    };
+
+    const handleShowAll = () => {
+        if (showAll === 8) {
+            setShowAll(100);
+            dropdown_content_el.current.classList.add('active');
+        } else {
+            notificationApi.deleteNotificationViewed().then(() => {
+                setCheckDelete(true);
+            });
+        }
+    };
+
+    return (
+        <>
+            {user.current.id ? (
+                <div className="bell-ring" onClick={handleResetNoti}>
+                    <button ref={dropdown_toggle_el} className="dropdown__toggle">
+                        {props.icon ? <i className={props.icon}></i> : ''}
+                        {props.badge ? <span className="dropdown__toggle-badge">{props.badge}</span> : ''}
+                        {props.customToggle ? props.customToggle() : ''}
+                    </button>
+                    <div ref={dropdown_content_el} className={`dropdown__content`}>
+                        <div className={`${showAll !== 8 ? 'all-noti' : ''}`}>
+                            {props.contentData && props.renderItems
+                                ? dataNoti
+                                      .slice(0, showAll)
+                                      .map((item: any, index: any) => props.renderItems(item, index))
+                                : ''}
+                        </div>
+                        {props.renderFooter ? (
+                            <div className="dropdown__footer" onClick={handleShowAll}>
+                                {showAll === 8 ? props.renderFooter() : 'Delete all viewed notifications'}
+                            </div>
+                        ) : (
+                            ''
+                        )}
+                    </div>
+                </div>
+            ) : (
+                <></>
+            )}
+        </>
+    );
+};
+
+export default BellRing;

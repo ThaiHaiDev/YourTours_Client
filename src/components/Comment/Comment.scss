@@ -1,0 +1,49 @@
+.comment__item {
+    display: flex;
+    margin-bottom: 15px;
+
+    .comment__info {
+        margin-left: 10px;
+
+        .comment__info-user {
+            display: flex;
+            margin-bottom: 5px;
+            justify-content: space-between;
+
+            .star-rating {
+                margin-right: 5px;
+            }
+
+            .comment__info-name {
+                margin: 0;
+                font-weight: bold;
+                font-size: 15px;
+                margin-right: 3px;
+                padding-bottom: 3px;
+            }
+
+            .comment__info-time {
+                margin: 0;
+                font-weight: 550;
+                font-size: 13px;
+                color: #bdbdbd;
+            }
+        }
+
+        .comment__info-content {
+            margin: 0;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+    }
+}
+
+.comment-input {
+    width: 1000px;
+}
+
+.paging {
+    .MuiPaginationItem-root {
+        font-size: 13px;
+    }
+}

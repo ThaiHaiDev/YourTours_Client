@@ -11,6 +11,7 @@ import CheckBox from './CheckBoxFilter/CheckBox';
 import CountRoomFilter from './CountRoomFilter/CountRoomFilter';
 import filterApi from '../../services/filterApi';
 import { useNavigate } from 'react-router-dom';
+import { t } from 'i18next';
 
 export default function DialogFilter(props: any) {
     const [open, setOpen] = useState<boolean>(false);
@@ -40,7 +41,7 @@ export default function DialogFilter(props: any) {
     const navigate = useNavigate();
 
     const handleFilter = () => {
-        filterApi.getAllRoomsWithFilter({queryParams: filter, pagi: props?.pagi}).then((dataResponse: any) => {
+        filterApi.getAllRoomsWithFilter({ queryParams: filter, pagi: props?.pagi }).then((dataResponse: any) => {
             if (props.filterData) {
                 props.filterData(dataResponse.data.content);
             }
@@ -98,10 +99,10 @@ export default function DialogFilter(props: any) {
                         id="alert-dialog-title"
                         sx={{ fontSize: '18px', fontWeight: 'bold', width: '600px', marginBottom: '20px' }}
                     >
-                        {'Bộ lọc'}
+                        {t('common.filter')}
                     </DialogTitle>
                     <DialogContent sx={{ fontSize: '16px', fontWeight: 'bold' }}>
-                        Khoảng giá
+                        {t('label.priceRange')}
                         <div style={{ marginTop: '30px' }}>
                             <RangePriceFilter handleChangePriceRange={handleChangePriceRange} />
                         </div>
@@ -109,7 +110,7 @@ export default function DialogFilter(props: any) {
                     </DialogContent>
 
                     <DialogContent sx={{ fontSize: '16px', fontWeight: 'bold' }}>
-                        Tiện ích
+                        {t('label.convenient')}
                         <div style={{ marginTop: '30px' }}>
                             <CheckBox setFilterAmenities={handleChangeFilterAmenities} />
                         </div>
@@ -117,12 +118,18 @@ export default function DialogFilter(props: any) {
                     </DialogContent>
 
                     <DialogContent sx={{ fontSize: '16px', fontWeight: 'bold' }}>
-                        Phòng và phòng ngủ
+                        {t('label.room')}
                         <div style={{ marginTop: '30px', marginBottom: '50px' }}>
-                            <CountRoomFilter name="Phòng ngủ" handleChangeNumberOfBed={handleChangeNumberOfBed} />
-                            <CountRoomFilter name="Gường" handleChangeNumberOfBedRoom={handleChangeNumberOfBedRoom} />
                             <CountRoomFilter
-                                name="Phòng tắm"
+                                name={t('label.bedroom')}
+                                handleChangeNumberOfBed={handleChangeNumberOfBed}
+                            />
+                            <CountRoomFilter
+                                name={t('label.bed')}
+                                handleChangeNumberOfBedRoom={handleChangeNumberOfBedRoom}
+                            />
+                            <CountRoomFilter
+                                name={t('label.bathroom')}
                                 handleChangeNumberOfBathRoom={handleChangeNumberOfBathRoom}
                             />
                         </div>

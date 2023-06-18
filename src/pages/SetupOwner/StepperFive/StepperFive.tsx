@@ -1,6 +1,7 @@
 import { ChangeEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './StepperFive.scss';
+import { t } from 'i18next';
 
 const StepperFive = (props: any) => {
     const [nameRoom, setNameRoom] = useState<string>('');
@@ -49,35 +50,32 @@ const StepperFive = (props: any) => {
                         alt=""
                         className="image-step5"
                     />
-                    <h1>Hãy đặt tên và mô tả cho chỗ ở của bạn</h1>
+                    <h1>{t('setupOwner.content_step_five')}</h1>
                 </div>
                 <div className="col l-6 m-6">
                     <form>
-                        <p className="title-desc-step5">
-                            Tiêu đề nhà/phòng cho thuê cần làm nổi bật những điều tạo nên nét đặc biệt cho chỗ ở của
-                            bạn.
-                        </p>
+                        <p className="title-desc-step5">{t('label.nameHome')}</p>
                         <input
                             type="text"
-                            placeholder="Tên căn nhà"
+                            placeholder={t('placeholder.nameHome')! as string}
                             className="input-step5"
                             onChange={handleChangeNameRoom}
                         />
 
-                        <p className="title-desc-step5">
-                            Tạo phần mô tả để chia sẻ những điều tạo nên nét đặc biệt cho chỗ ở của bạn.
-                        </p>
+                        <p className="title-desc-step5">{t('label.descHome')}</p>
                         <textarea className="text-step5" onChange={handleChangeDescRoom} />
 
-                        <p className="title-desc-step5">Bây giờ, hãy đặt mức giá mà bạn muốn.</p>
+                        <p className="title-desc-step5">{t('label.priceHome')}</p>
                         <input
                             type="number"
-                            placeholder="Đơn vị VND"
+                            placeholder={t('placeholder.priceVND')! as string}
                             className="input-step5"
                             onChange={handleChangePriceRoom}
                         />
                     </form>
-                    <Link to='/' className='btn-out'>Thoát</Link>
+                    <Link to="/" className="btn-out">
+                        {t('common.close')}
+                    </Link>
                 </div>
             </div>
         </div>

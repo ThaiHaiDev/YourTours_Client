@@ -10,7 +10,7 @@ const getAccessTokenFromLocalStorage = (): any => {
 const axiosClientFile = axios.create({
     baseURL: API_BASE_URL,
     headers: {
-        'Accept': 'application/json, text/plain, multipart/form-data, */*',
+        Accept: 'application/json, text/plain, multipart/form-data, */*',
         'Content-Type': 'multipart/form-data',
         Authorization: `Bearer ${getAccessTokenFromLocalStorage()}`,
     },

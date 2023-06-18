@@ -28,26 +28,27 @@ const ManagerRoom = () => {
         name: dataHomeDetail?.name ? dataHomeDetail?.name : '',
         desc: dataHomeDetail?.description,
         guide: dataHomeDetail?.guide,
-        refundPolicy: dataHomeDetail?.refundPolicy
-    }
+        refundPolicy: dataHomeDetail?.refundPolicy,
+    };
 
     const detailPriceRoom = {
         costPerNightDefault: dataHomeDetail?.costPerNightDefault,
         discounts: dataHomeDetail?.discounts ? dataHomeDetail?.discounts : [],
-        surcharges: dataHomeDetail?.surcharges ? dataHomeDetail?.surcharges : []
-    }
+        surcharges: dataHomeDetail?.surcharges ? dataHomeDetail?.surcharges : [],
+    };
 
     const locationRoom = {
         loca: dataHomeDetail?.provinceCode,
-        address: dataHomeDetail?.addressDetail
-    }
+        localName: dataHomeDetail?.provinceName,
+        address: dataHomeDetail?.addressDetail,
+    };
 
     const children = [
         {
             id: '#section1',
             to: 'section1',
             info: 'Hình ảnh',
-            comp: <ImageSetting listImage={dataHomeDetail?.imagesOfHome} thumbnail={dataHomeDetail?.thumbnail}/>,
+            comp: <ImageSetting listImage={dataHomeDetail?.imagesOfHome} thumbnail={dataHomeDetail?.thumbnail} />,
         },
         {
             id: '#section2',
@@ -85,14 +86,14 @@ const ManagerRoom = () => {
 
     useEffect(() => {
         homeApi.getRoomCategory(params.idHome).then((dataResponse: any) => {
-            setDataHomeDetail(dataResponse.data)
-        })
-    }, [params.idHome])
+            setDataHomeDetail(dataResponse.data);
+        });
+    }, [params.idHome]);
 
     return (
         <div className="manager-room">
             <NavbarOwner />
-            <ScrollspyComponent children={children} item={item} infoLink={infoLink} backUrl={backUrl}/>
+            <ScrollspyComponent children={children} item={item} infoLink={infoLink} backUrl={backUrl} />
         </div>
     );
 };

@@ -8,6 +8,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import './Advertisement.scss';
 import advertisementApi from '../../services/advertisementApi';
 import SkeletonAdvertisement from '../Skeleton/SkeletonAdvertisement';
+import { t } from 'i18next';
 
 export default function SimpleSlider() {
     const [listDiscount, setListDiscount] = useState<any>([]);
@@ -59,7 +60,7 @@ export default function SimpleSlider() {
     };
     return (
         <div className="slider__adversiment">
-            <h1>Ưu đãi hấp dẫn</h1>
+            <h1>{t('title.endow')}</h1>
             {loading ? (
                 <SkeletonAdvertisement />
             ) : (

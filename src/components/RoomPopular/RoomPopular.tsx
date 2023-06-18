@@ -3,8 +3,6 @@ import Slider from 'react-slick';
 import './RoomPopular.scss';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
 
-import mapProvince from '../../utils/mapProvince';
-
 // Import css files
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -15,6 +13,7 @@ import SkeletonRoomItem from '../Skeleton/SkeletonRoomItem';
 import { useNavigate } from 'react-router-dom';
 import IconLove from './IconLove';
 import formatPrice from '../../utils/formatPrice';
+import { t } from 'i18next';
 
 export default function RoomPopular() {
     const settings = {
@@ -32,7 +31,7 @@ export default function RoomPopular() {
     useEffect(() => {
         setLoading(true);
         homeApi.getRoomFavorite().then((dataResponse) => {
-            setListRoom(dataResponse.data.content);
+            setListRoom(dataResponse?.data?.content);
             setLoading(false);
         });
     }, []);
@@ -45,7 +44,7 @@ export default function RoomPopular() {
 
     return (
         <div className="room__popular">
-            <h1>Nhà nổi bật được xem nhiều nhất</h1>
+            <h1>{t('title.popularRoom')}</h1>
             <div className="row">
                 {loading ? (
                     <SkeletonRoomItem />
@@ -56,11 +55,11 @@ export default function RoomPopular() {
                                 {room.imagesOfHome.length !== 0 &&
                                     room?.imagesOfHome?.map((image: any) => (
                                         <div key={image?.id}>
-                                            <img src={image.path} alt="room_hot" className='image-home'/>
+                                            <img src={image.path} alt="room_hot" className="image-home" />
                                         </div>
                                     ))}
                             </Slider>
-                            <IconLove idHome={room?.id} isFavorite={room?.isFavorite}/>
+                            <IconLove idHome={room?.id} isFavorite={room?.isFavorite} />
                             <div className="info__room" onClick={() => handleLinkToDetail(room?.id)}>
                                 <h2>{room?.name}</h2>
                                 <div className="obility__room">
@@ -88,11 +87,13 @@ export default function RoomPopular() {
                                 </div>
                                 <div className="locate__room">
                                     <FmdGoodIcon className="icon_locate" />
-                                    <p>{mapProvince(room?.provinceCode ? room?.provinceCode : undefined)}</p>
+                                    <p>{room?.provinceName ? room?.provinceName : undefined}</p>
                                 </div>
                                 <div className="price__room">
-                                    <p>{`Giá: ${formatPrice(room?.costPerNightDefault)} / Đêm`}</p>
-                                    <p>{`Lượt xem: ${room?.view}`}</p>
+                                    <p>{`${t('numberCount.price')} ${formatPrice(room?.costPerNightDefault)} ${t(
+                                        'numberCount.priceDay',
+                                    )}`}</p>
+                                    <p>{`${t('numberCount.view')} ${room?.view}`}</p>
                                 </div>
                             </div>
                         </div>

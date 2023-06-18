@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 import { useSnackbar } from 'notistack';
 import { AxiosError } from 'axios';
+import { t } from 'i18next';
 
 const IconLove = (props: any) => {
     const [like, setLike] = useState<boolean>(props?.isFavorite);
@@ -20,9 +21,9 @@ const IconLove = (props: any) => {
             .then((data: any) => {
                 setLike(!like);
                 if (data.data.success) {
-                    enqueueSnackbar('Đã thêm vào mục đã thích', { variant: 'success' });
+                    enqueueSnackbar(t('message.love'), { variant: 'success' });
                 } else {
-                    enqueueSnackbar('Đã xóa khỏi mục đã thích', { variant: 'success' });
+                    enqueueSnackbar(t('message.unlove'), { variant: 'success' });
                 }
             })
             .catch((error: AxiosError<any>) => {

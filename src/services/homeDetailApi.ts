@@ -1,17 +1,21 @@
 import axiosClient from '../share/axios-client/axiosClient';
-import { CreateHomeDetailResquest } from '../share/models/homeDetail';
+import {
+    BaseResponseBasePagingResponseHomeInfo,
+    BaseResponseHomeDetail,
+    CreateHomeDetailResquest,
+} from '../share/models/homeDetail';
 
 const homeDetailApi = {
-    createHomeDetailByHost(data: CreateHomeDetailResquest): Promise<any> {
+    createHomeDetailByHost(data: CreateHomeDetailResquest): Promise<BaseResponseHomeDetail> {
         const url = 'api/v1/cms/homes/create';
         return axiosClient.post(url, data);
     },
-    getListHomeOfHost(): Promise<any> {
-        const url = `api/v1/cms/homes/page`;
+    getListHomeOfHost(dataSearch: string): Promise<BaseResponseBasePagingResponseHomeInfo> {
+        const url = `api/v1/cms/homes/page${dataSearch !== '' ? `?keyword=${dataSearch}` : ''}`;
         return axiosClient.get(url);
     },
-    getDetailHome(idHome : string | undefined): Promise<any> {
-        const url =`api/v1/public/homes/${idHome}/detail`;
+    getDetailHome(idHome: string | undefined): Promise<any> {
+        const url = `api/v1/public/homes/${idHome}/detail`;
         return axiosClient.get(url);
     },
 };

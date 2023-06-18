@@ -1,20 +1,26 @@
-import './Signin.scss';
+import { useState } from 'react';
 
 import { AxiosError } from 'axios';
 import { useSnackbar } from 'notistack';
 
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+
+import { Link } from 'react-router-dom';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import GoogleIcon from '../../../assets/imgMaster/google-logo.png';
+import FacebookIcon from '../../../assets/imgMaster/facebook-new.png';
+import GithubIcon from '../../../assets/imgMaster/github.png';
 
 import Navbar from '../../../components/Navbar/Navbar';
-import { Link } from 'react-router-dom';
-import { useForm, SubmitHandler } from 'react-hook-form';
 import authApi from '../../../services/authApi';
 import { LoginErrorResponse, LoginRequest } from '../../../share/models/auth';
-import { useDispatch } from 'react-redux';
+import LoadingMaster from '../../../components/LoadingMaster/LoadingMaster';
 import userSlice from '../userSlice';
 
-import { useState } from 'react';
+import './Signin.scss';
+import { t } from 'i18next';
 
 const Signin = () => {
     const {
@@ -27,6 +33,7 @@ const Signin = () => {
     const { enqueueSnackbar } = useSnackbar();
     const [loading, setLoading] = useState<boolean>(false);
     const [show, setShow] = useState<boolean>(false);
+    const [loadingMaster, setLoadingMaster] = useState<boolean>(false);
 
     const dispatch = useDispatch();
 
@@ -36,16 +43,21 @@ const Signin = () => {
 
     const onSubmit: SubmitHandler<LoginRequest> = (data: LoginRequest) => {
         setLoading(true);
+        setLoadingMaster(true);
         authApi
             .signIn(data)
             .then((userData) => {
                 setLoading(false);
                 dispatch(userSlice.actions.signin(userData.data));
-                enqueueSnackbar('Đăng nhập thành công', { variant: 'success' });
+                setLoadingMaster(false);
+                enqueueSnackbar(t('message.signin'), { variant: 'success' });
+                setTimeout(function () {
+                    document.location = '/';
+                }, 1500);
                 reset();
-                document.location = '/';
             })
             .catch((error: AxiosError<LoginErrorResponse>) => {
+                setLoadingMaster(false);
                 enqueueSnackbar(error.response?.data.message, { variant: 'error' });
             });
     };
@@ -53,32 +65,36 @@ const Signin = () => {
     return (
         <div>
             <Navbar />
-            <div className="signin">
+            <div className="signin start-background">
+                <div className="stars"></div>
+                <div className="stars2"></div>
+                <div className="stars3"></div>
+                <LoadingMaster loadingMaster={loadingMaster} />
                 <div className="container__sign-in">
                     <form onSubmit={handleSubmit(onSubmit)}>
                         {loading ? '' : ''}
-                        <h1>Đăng nhập</h1>
+                        <h1>{t('title.signin')}</h1>
                         <div className="social-container">
                             <Link to="#" className="socialg">
-                                <img src="https://img.icons8.com/color/344/google-logo.png" alt="go_icon" />
+                                <img src={GoogleIcon} alt="go_icon" />
                             </Link>
                             <Link to="#" className="social">
-                                <img src="https://img.icons8.com/fluency/344/facebook-new.png" alt="fa_icon" />
+                                <img src={FacebookIcon} alt="fa_icon" />
                             </Link>
                             <Link to="#" className="social">
-                                <img src="https://img.icons8.com/ios-glyphs/344/github.png" alt="gi_icon" />
+                                <img src={GithubIcon} alt="gi_icon" />
                             </Link>
                         </div>
-                        <span>hoặc đăng nhập bằng</span>
+                        <span>{t('title.orSignin')}</span>
                         <label>
                             <input
                                 type="email"
                                 placeholder="Email"
                                 {...register('email', {
-                                    required: 'Email được yêu cầu',
+                                    required: t('validate.emailRequire')! as string,
                                     pattern: {
                                         value: /^\S+@\S+$/i,
-                                        message: 'Đây không phải là một email hợp lệ',
+                                        message: t('validate.emailError'),
                                     },
                                 })}
                             />
@@ -93,10 +109,10 @@ const Signin = () => {
                                 type={!show ? 'password' : 'text'}
                                 placeholder="Enter password"
                                 {...register('password', {
-                                    required: 'Mật khẩu được yêu cầu',
+                                    required: t('validate.passwordRequire')! as string,
                                     maxLength: {
                                         value: 16,
-                                        message: 'Mật khẩu chỉ giới hạn 16 kí tự',
+                                        message: t('validate.passwordMaxError'),
                                     },
                                 })}
                             />
@@ -109,28 +125,28 @@ const Signin = () => {
                             {errors.password && <span className="message_error">{`${errors.password?.message}`}</span>}
                         </label>
                         <button type="submit" disabled={isSubmitting}>
-                            Đăng nhập
+                            {t('common.signin')}
                         </button>
                     </form>
                     <div className="forgot-password">
                         <Link to="/forgotpassword" className="link__forgot-password">
-                            Quên mật khẩu
+                            {t('link.forgotpassword')}
                         </Link>
                         <Link to="/signup" className="link-create">
-                            Tạo tài khoản ngay
+                            {t('link.signup')}
                         </Link>
                     </div>
                     <div className="policy">
                         <p>
-                            Bằng cách đăng ký hoặc đăng nhập, bạn đã hiểu và đồng ý với{' '}
+                            {t('contentPolicy.policyAuth')}
                             <Link to="" className="link-policy">
-                                Điều Khoản Sử Dụng
-                            </Link>{' '}
-                            và{' '}
+                                {t('link.rules')}
+                            </Link>
+                            {t('contentPolicy.and')}
                             <Link to="" className="link-policy">
-                                Chính Sách Bảo Mật
+                                {t('link.privacyPolicy')}
                             </Link>{' '}
-                            của Yourtours.
+                            {t('contentPolicy.ofYourtour')}
                         </p>
                     </div>
                 </div>

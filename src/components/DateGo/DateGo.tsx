@@ -9,7 +9,7 @@ import 'react-date-range/dist/theme/default.css';
 
 import './DateGo.scss';
 
-const DateRangePickerComp = (props:any) => {
+const DateRangePickerComp = (props: any) => {
     // date state
     const [range, setRange] = useState<any>([
         {
@@ -21,7 +21,6 @@ const DateRangePickerComp = (props:any) => {
 
     // open close
     const [open, setOpen] = useState(false);
-
 
     // get the target element to toggle
     const refOne = useRef<HTMLInputElement | null>(null);
@@ -36,14 +35,14 @@ const DateRangePickerComp = (props:any) => {
     // console.log('end',format(range[0].endDate, 'MM/dd/yyyy'));
 
     // hide dropdown on ESC press
-    const hideOnEscape = (e:any) => {
+    const hideOnEscape = (e: any) => {
         if (e.key === 'Escape') {
             setOpen(false);
         }
     };
 
     // Hide dropdown on outside click
-    const hideOnClickOutside = (e : any) => {
+    const hideOnClickOutside = (e: any) => {
         // console.log(refOne.current)
         // console.log(e.target)
         if (refOne.current && !refOne.current.contains(e.target)) {
@@ -77,9 +76,9 @@ const DateRangePickerComp = (props:any) => {
                 {open && (
                     <DateRangePicker
                         onChange={(item) => {
-                            setRange([item.selection])
+                            setRange([item.selection]);
                             if (props?.setDataDay) {
-                                props.setDataDay([item.selection])
+                                props.setDataDay([item.selection]);
                             }
                         }}
                         editableDateInputs={true}

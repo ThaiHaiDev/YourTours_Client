@@ -133,18 +133,18 @@
                 .info_date {
                     display: flex;
                     margin: auto;
-    
+
                     .output {
                         width: 160px;
                         margin-left: 0;
-        
+
                         input {
                             padding: 10px;
                             width: 100%;
                         }
                     }
                 }
-    
+
                 .calendarElement {
                     margin-left: -100px;
                 }
@@ -169,7 +169,6 @@
                     margin-left: 28px;
                 }
             }
-            
         }
 
         .title-room {
@@ -183,7 +182,7 @@
             }
 
             .line {
-                border: 0.2px solid #e0e0e0;;
+                border: 0.2px solid #e0e0e0;
             }
 
             .desc-room {
@@ -270,8 +269,6 @@
     }
 }
 
-
 .footer-page {
-    margin-top: 180vh;
+    margin-top: 190vh;
 }
-

@@ -2,10 +2,10 @@ import * as React from 'react';
 import Popover from '@mui/material/Popover';
 import Button from '@mui/material/Button';
 import formatPrice from '../../utils/formatPrice';
+import { t } from 'i18next';
 
 export default function PopoverPrice(props: any) {
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
-    console.log(props.detailPrice)
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
@@ -21,7 +21,7 @@ export default function PopoverPrice(props: any) {
     return (
         <div className="popover-price">
             <Button aria-describedby={id} variant="contained" onClick={handleClick}>
-                Chi tiết
+                {t('common.detail')}
             </Button>
             <Popover
                 id={id}
@@ -37,11 +37,18 @@ export default function PopoverPrice(props: any) {
                     horizontal: 'right',
                 }}
             >
-                <h2 style={{ width: '300px', textAlign: 'center', paddingBottom: '6px' }}>Chi tiết giá cơ sở</h2>
+                <h2 style={{ width: '300px', textAlign: 'center', paddingBottom: '6px' }}>{t('title.priceDetail')}</h2>
                 {props?.detailPrice.map((detail: any, index: number) => (
                     <div
                         className="item-price-detail"
-                        style={{ display: 'flex', margin: '0 8px', justifyContent: 'space-between', padding: '5px 15px', alignItems: 'center', background: `${detail.especially && '#64b5f6'}` }}
+                        style={{
+                            display: 'flex',
+                            margin: '0 8px',
+                            justifyContent: 'space-between',
+                            padding: '5px 15px',
+                            alignItems: 'center',
+                            background: `${detail.especially && '#64b5f6'}`,
+                        }}
                         key={index}
                     >
                         <p style={{ fontSize: '14px', margin: 0 }}>{detail?.day}</p>

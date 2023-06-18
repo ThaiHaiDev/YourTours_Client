@@ -1,5 +1,6 @@
 import './Dropdown.scss';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { t } from 'i18next';
 import { useState, useRef, useEffect, ChangeEvent } from 'react';
 
 const Dropdown = (props: any) => {
@@ -38,7 +39,11 @@ const Dropdown = (props: any) => {
             ]);
         }
         if (props.setTitleGuests) {
-            props.setTitleGuests(`${event.currentTarget?.value} Người lớn, ${children} Trẻ em, ${baby} Trẻ sơ sinh`)
+            props.setTitleGuests(
+                `${event.currentTarget?.value} ${t('contentMain.countClient.adults')}, ${children} ${t(
+                    'contentMain.countClient.children',
+                )}, ${baby} ${t('contentMain.countClient.baby')}`,
+            );
         }
         setAdults(event.currentTarget?.value);
     };
@@ -61,7 +66,11 @@ const Dropdown = (props: any) => {
             ]);
         }
         if (props.setTitleGuests) {
-            props.setTitleGuests(`${adults} Người lớn, ${event.currentTarget?.value} Trẻ em, ${baby} Trẻ sơ sinh`)
+            props.setTitleGuests(
+                `${adults} ${t('contentMain.countClient.adults')}, ${event.currentTarget?.value}  ${t(
+                    'contentMain.countClient.children',
+                )}, ${baby}  ${t('contentMain.countClient.baby')}`,
+            );
         }
         setChildren(event.currentTarget?.value);
     };
@@ -84,7 +93,11 @@ const Dropdown = (props: any) => {
             ]);
         }
         if (props.setTitleGuests) {
-            props.setTitleGuests(`${adults} Người lớn, ${children} Trẻ em, ${event.currentTarget?.value} Trẻ sơ sinh`)
+            props.setTitleGuests(
+                `${adults} ${t('contentMain.countClient.adults')}, ${children} ${t(
+                    'contentMain.countClient.children',
+                )}, ${event.currentTarget?.value} ${t('contentMain.countClient.baby')}`,
+            );
         }
         setBaby(event.currentTarget?.value);
     };
@@ -92,13 +105,15 @@ const Dropdown = (props: any) => {
     return (
         <div className="dropdown" ref={refOne}>
             <div className="dropdown-btn" onClick={(e) => setIsActive(!isActive)}>
-                {`${adults} Người lớn, ${children} Trẻ em, ${baby} Trẻ sơ sinh`}
+                {`${adults} ${t('contentMain.countClient.adults')}, ${children} ${t(
+                    'contentMain.countClient.children',
+                )}, ${baby} ${t('contentMain.countClient.baby')}`}
                 <ExpandMoreIcon />
             </div>
             {isActive && (
                 <div className="dropdown-content">
                     <div className="dropdown-item">
-                        Người lớn
+                        {t('contentMain.countClient.adults')}
                         <input
                             type="number"
                             id="quantity"
@@ -110,7 +125,7 @@ const Dropdown = (props: any) => {
                         ></input>
                     </div>
                     <div className="dropdown-item">
-                        Trẻ em
+                        {t('contentMain.countClient.children')}
                         <input
                             type="number"
                             id="quantity"
@@ -122,7 +137,7 @@ const Dropdown = (props: any) => {
                         ></input>
                     </div>
                     <div className="dropdown-item">
-                        Trẻ sơ sinh
+                        {t('contentMain.countClient.baby')}
                         <input
                             type="number"
                             id="quantity"

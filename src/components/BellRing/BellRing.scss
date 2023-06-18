@@ -1,0 +1,69 @@
+.bell-ring {
+    position: relative;
+    z-index: 99;
+    margin-top: 6px;
+
+    .dropdown__toggle {
+        border: 0;
+        outline: 0;
+        background-color: transparent;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .dropdown__toggle > i {
+        font-size: 25px;
+        color: var(--txt-color);
+    }
+
+    .dropdown__toggle-badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: -8px;
+        right: -6px;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background-color: var(--main-color);
+        color: var(--txt-white);
+        font-size: 0.8rem;
+    }
+
+    .dropdown__content {
+        border: 1px solid black;
+        position: absolute;
+        z-index: 99;
+        top: calc(100% + 5px);
+        right: 0;
+        width: max-content;
+        max-width: 400px;
+        background-color: vaR(--main-bg);
+        box-shadow: var(--box-shadow);
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        transform-origin: top right; // Hiện dropdown từ trên bên phải xuống
+        transform: scale(0); // Ẩn dropdown
+        transition: transform 0.3s ease 0s; // Set time cho hiện dropdown transform 0.3s
+
+        .list__content {
+        }
+    }
+
+    .all-noti {
+        overflow: scroll;
+        height: 600px;
+    }
+
+    .dropdown__content.active {
+        transform: scale(1);
+        transition: transform 0.5s var(--transition-cubic);
+    }
+
+    .dropdown__footer {
+        padding: 5px;
+        text-align: center;
+        cursor: pointer;
+    }
+}

@@ -13,6 +13,7 @@
     "@mui/x-date-pickers": "^5.0.8",
     "@paypal/react-paypal-js": "^7.8.2",
     "@reduxjs/toolkit": "^1.8.6",
+    "@stomp/stompjs": "^7.0.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -21,9 +22,12 @@
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
     "aos": "^2.3.4",
+    "apexcharts": "^3.37.2",
     "axios": "^1.1.3",
+    "chart.js": "^4.2.1",
     "date-fns": "^2.29.3",
     "dayjs": "^1.11.6",
+    "i18next": "^22.5.0",
     "moment": "^2.29.4",
     "node-sass": "^7.0.3",
     "notistack": "^2.0.8",
@@ -35,6 +39,7 @@
     "react-date-range": "^1.4.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.38.0",
+    "react-i18next": "^12.3.1",
     "react-infinite-scroll-component": "^6.1.0",
     "react-redux": "^8.0.4",
     "react-router-dom": "^6.4.2",
@@ -48,6 +53,7 @@
     "redux-thunk": "^2.4.1",
     "scss": "^0.2.4",
     "slick-carousel": "^1.8.1",
+    "sockjs-client": "^1.6.1",
     "typescript": "^4.8.4",
     "web-vitals": "^2.1.4"
   },
@@ -80,6 +86,8 @@
     "@types/react-calendar": "^3.9.0",
     "@types/react-date-range": "^1.4.4",
     "@types/react-scrollspy": "^3.3.5",
-    "@types/react-slick": "^0.23.10"
+    "@types/react-slick": "^0.23.10",
+    "@types/sockjs-client": "^1.5.1",
+    "@types/stompjs": "^2.3.5"
   }
 }

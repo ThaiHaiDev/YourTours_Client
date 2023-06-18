@@ -1,23 +1,24 @@
-import './CalendarSetting.scss';
-import SelectedIdRoom from './SelectedIdRoom';
-import pricesOfHomeApi from '../../../services/pricesOfHomeApi';
 import { useEffect, useState } from 'react';
 import { AxiosError } from 'axios';
-
-import moment from 'moment';
-
 import dayjs, { Dayjs } from 'dayjs';
-import Grid from '@mui/material/Grid';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { CalendarPicker } from '@mui/x-date-pickers/CalendarPicker';
+import moment from 'moment';
 import { useSnackbar } from 'notistack';
-import homeDetailApi from '../../../services/homeDetailApi';
 
 import { useForm, SubmitHandler } from 'react-hook-form';
 
-import formatPrice from '../../../utils/formatPrice';
 import { Link } from 'react-router-dom';
+import Grid from '@mui/material/Grid';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { CalendarPicker } from '@mui/x-date-pickers/CalendarPicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+
+import homeDetailApi from '../../../services/homeDetailApi';
+import pricesOfHomeApi from '../../../services/pricesOfHomeApi';
+
+import formatPrice from '../../../utils/formatPrice';
+
+import './CalendarSetting.scss';
+import SelectedIdRoom from './SelectedIdRoom';
 
 export default function CalendarSetting() {
     const [date, setDate] = useState<Dayjs | null>(dayjs(moment().format('YYYY-MM-DD')));
@@ -61,15 +62,15 @@ export default function CalendarSetting() {
     };
 
     useEffect(() => {
-        homeDetailApi.getListHomeOfHost().then((dataResponse: any) => {
+        homeDetailApi.getListHomeOfHost('').then((dataResponse: any) => {
             setDataListHome(dataResponse.data.content);
         });
         if (idRoom !== '') {
-            pricesOfHomeApi.getPriceByMonthOfRoom(month, idRoom).then((data: any) => {
+            pricesOfHomeApi.getPriceByMonthOfRoom(month, idRoom, year).then((data: any) => {
                 setListPriceDay(data.data.prices);
             });
         }
-    }, [idRoom, month]);
+    }, [idRoom, month, year]);
 
     const handleChangeMonth = (newValue: any) => {
         setDate(newValue);

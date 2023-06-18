@@ -10,6 +10,7 @@ import './DateBooking.scss';
 import pricesOfHomeApi from '../../services/pricesOfHomeApi';
 import { useDispatch } from 'react-redux';
 import bookingSlice from '../../pages/BookingPage/bookingSlice';
+import { t } from 'i18next';
 
 const DateBooking = (props: any) => {
     const [range, setRange] = useState<any>([
@@ -47,12 +48,14 @@ const DateBooking = (props: any) => {
 
     const handleChangeDayBooking = async (value: any) => {
         const dateFrom = format(value[0].startDate, 'yyyy-MM-dd');
-        const dateTo = format(value[0].endDate, 'yyyy-MM-dd'); 
-        dispatch(bookingSlice.actions.addDay({dateFrom, dateTo}));
+        const dateTo = format(value[0].endDate, 'yyyy-MM-dd');
+        dispatch(bookingSlice.actions.addDay({ dateFrom, dateTo }));
         pricesOfHomeApi.showPriceByRangeDay(props?.idHome, dateFrom, dateTo).then((dataResponse) => {
             if (props.handleChangePriceDay) {
-                props.handleChangePriceDay(dataResponse.data.totalCost);
-                dispatch(bookingSlice.actions.addPriceTotal({priceTotal: dataResponse.data.totalCostWithSurcharge}));
+                props.handleChangePriceDay(dataResponse?.data?.totalCost);
+                dispatch(
+                    bookingSlice.actions.addPriceTotal({ priceTotal: dataResponse?.data?.totalCostWithSurcharge }),
+                );
             }
         });
     };
@@ -60,8 +63,8 @@ const DateBooking = (props: any) => {
     return (
         <div className="date__booking">
             <div className="info-day">
-                <div className='day'>
-                    <p style={{ fontWeight: 'bold', marginTop: '10px' }}>Ngày</p>
+                <div className="day">
+                    <p style={{ fontWeight: 'bold', marginTop: '10px' }}>{t('title.bookingOfYou.day')}</p>
                     <p className="info_date">{`${format(range[0].startDate, 'MM/dd/yyyy')} -- ${format(
                         range[0].endDate,
                         'MM/dd/yyyy',
@@ -69,15 +72,15 @@ const DateBooking = (props: any) => {
                 </div>
 
                 <p onClick={() => setOpen((open) => !open)} className="edit-date">
-                    Chỉnh sửa
+                    {t('common.edit')}
                 </p>
             </div>
             <div ref={refOne}>
                 {open && (
                     <DateRangePicker
                         onChange={(item) => {
-                            setRange([item.selection])
-                            handleChangeDayBooking([item.selection])
+                            setRange([item.selection]);
+                            handleChangeDayBooking([item.selection]);
                         }}
                         editableDateInputs={true}
                         moveRangeOnFirstSelection={false}

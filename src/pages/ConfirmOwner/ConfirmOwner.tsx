@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import './ConfirmOwner.scss';
 
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import Logo from '../../assets/imgMaster/logo.svg';
 
 import Province from '../../mockdata/ProvinceVN.json';
 
@@ -9,6 +10,7 @@ import { RootState } from '../../redux/store';
 import { useSelector } from 'react-redux';
 
 import formatPrice from '../../utils/formatPrice';
+import { t } from 'i18next';
 
 const ConfirmOwner = () => {
     const setupRoomHost = useSelector((state: RootState) => state.settingowner.detailRoom);
@@ -16,16 +18,12 @@ const ConfirmOwner = () => {
         return parseInt(pro.code) === parseInt(setupRoomHost.provinceCode);
     });
     const priceRoom = formatPrice(setupRoomHost.costPerNightDefault);
-    const linkImage = setupRoomHost?.imagesOfHome[0]['path']
+    const linkImage = setupRoomHost?.imagesOfHome[0]['path'];
 
     return (
         <div className="confirm-page">
             <NavLink to="/" className="logo">
-                <img
-                    src="https://cdn6.agoda.net/images/kite-js/logo/agoda/color-default.svg"
-                    alt="company logo"
-                    className="logo-bg"
-                />
+                <img src={Logo} alt="company logo" className="logo-bg" />
             </NavLink>
             <div className="content-confirm">
                 <div className="row" style={{ margin: '0', width: '100%' }}>
@@ -38,33 +36,28 @@ const ConfirmOwner = () => {
                             paddingLeft: '50px',
                         }}
                     >
-                        <h1>Bạn đã sẵn sàng đăng!</h1>
-                        <span>
-                            Khi bạn nhấn đăng, khách có thể tìm thấy nhà/phòng cho thuê của bạn trên Yourtours và đặt
-                            bất kì ngày nào còn trống.
-                        </span>
-                        <span>
-                            Ngoài ra, bạn hãy vào phần chủ nhà để có thể cập nhật thêm nhiều thông tin (phụ phí, giá
-                            theo ngày đặc biệt, ...) cho ngôi nhà của bạn để thêm phần chi tiết.
-                        </span>
+                        <h1>{t('setupOwner.confirm.ready')}</h1>
+                        <span>{t('setupOwner.confirm.content_1')}</span>
+                        <span>{t('setupOwner.confirm.content_2')}</span>
                         <br /> <br /> <br />
                         <div className="status">
-                            <p>Tạo mục nhà/phòng cho thuê </p>
+                            <p>{t('setupOwner.confirm.create')}</p>
                             <div className="status-icon">
-                                <CheckCircleOutlineIcon className="icon-success" /> <p>Hoàn tất!</p>
+                                <CheckCircleOutlineIcon className="icon-success" />{' '}
+                                <p>{t('setupOwner.confirm.completed')}</p>
                             </div>
                         </div>
                         <br />
                         <div className="status">
-                            <p>Xác nhận tài khoản của bạn </p>
+                            <p>{t('setupOwner.confirm.active')}</p>
                             <span>
-                                Khi bạn nhấn đăng, khách có thể tìm thấy nhà/phòng cho thuê của bạn trên Yourtours và
-                                đặt bất kì ngày nào còn trống.
+                                {t('setupOwner.confirm.active_content')}
                                 <br />
                             </span>
 
                             <div className="status-icon" style={{ marginTop: '10px' }}>
-                                <CheckCircleOutlineIcon className="icon-success" /> <p>Hoàn tất!</p>
+                                <CheckCircleOutlineIcon className="icon-success" />{' '}
+                                <p>{t('setupOwner.confirm.completed')}</p>
                             </div>
                         </div>
                     </div>

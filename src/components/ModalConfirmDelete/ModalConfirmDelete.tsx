@@ -10,6 +10,7 @@ import './ModalConfirmDelete.scss';
 
 import { AxiosError } from 'axios';
 import { useSnackbar } from 'notistack';
+import { t } from 'i18next';
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -21,7 +22,7 @@ const style = {
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
-    paddingBottom: '25px'
+    paddingBottom: '25px',
 };
 
 export default function ModalConfirmDelete(props: any) {
@@ -38,7 +39,7 @@ export default function ModalConfirmDelete(props: any) {
         bookingApi
             .cancelBooking(dataCancel)
             .then((data) => {
-                enqueueSnackbar('Hủy thành công', { variant: 'success' });
+                enqueueSnackbar(t('message.cancelSuccess'), { variant: 'success' });
                 setOpen(false);
             })
             .catch((error: AxiosError<any>) => {
@@ -48,7 +49,7 @@ export default function ModalConfirmDelete(props: any) {
 
     return (
         <div>
-            <button onClick={handleOpen}>Hủy đặt</button>
+            <button onClick={handleOpen}>{t('common.cancelBooking')}</button>
             <Modal
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
@@ -63,13 +64,15 @@ export default function ModalConfirmDelete(props: any) {
                 <Fade in={open}>
                     <Box sx={style}>
                         <Typography id="transition-modal-title" variant="h4" component="h2">
-                            Bạn có chắc rằng muốn hủy hay không ?
+                            {t('title.cancelPopup')}
                         </Typography>
                         <div style={{ display: 'flex', justifyContent: 'right', marginTop: '10px' }}>
-                            <button onClick={handleClose} className='no-btn'>
-                                Không
+                            <button onClick={handleClose} className="no-btn">
+                                {t('common.no')}
                             </button>
-                            <button onClick={handleCancelBooking} className='yes-btn'>Có</button>
+                            <button onClick={handleCancelBooking} className="yes-btn">
+                                {t('common.yes')}
+                            </button>
                         </div>
                     </Box>
                 </Fade>

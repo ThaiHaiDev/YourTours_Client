@@ -2,6 +2,7 @@ import { ChangeEvent } from 'react';
 import { Link } from 'react-router-dom';
 import SelectedLocate from './SelectedLocate';
 import './StepperOne.scss';
+import { t } from 'i18next';
 
 interface StepperOneData {
     setDataStep1: (value: string) => void;
@@ -25,14 +26,16 @@ const StepperOne = (props: StepperOneData) => {
                             alt=""
                             className="image-step1"
                         />
-                        <h1>Chỗ ở của bạn nằm ở đâu?</h1>
+                        <h1>{t('setupOwner.content_step_one')}</h1>
                     </div>
                 </div>
                 <div className="col l-6 m-6 c-6">
                     <SelectedLocate setValueStepOne={props.setDataStep1} />
                     <input type="text" className="input-address-step1" onChange={handleChangeAddrees} required />
-                    <p className="span-address-step1">Vui lòng điền địa chỉ chi tiết</p>
-                    <Link to='/' className='btn-out'>Thoát</Link>
+                    <p className="span-address-step1">{t('contentMess.address')}</p>
+                    <Link to="/" className="btn-out">
+                        {t('common.close')}
+                    </Link>
                 </div>
             </div>
         </div>

@@ -8,6 +8,7 @@ import { OTPForgotPasswordRequest } from '../../share/models/auth';
 
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { t } from 'i18next';
 
 interface OTPBoxForgotData {
     handleSubmitOTP: (otp: OTPForgotPasswordRequest) => void;
@@ -83,11 +84,10 @@ const OTPBoxForgotPass = (props: OTPBoxForgotData) => {
     return (
         <div className="otp-box-forgot__pass">
             <div className="container">
-                <h1>Tạo mật khẩu mới</h1>
+                <h1>{t('title.newPassword')}</h1>
                 <p style={{ marginTop: '0' }}>
-                    Để bảo mật thông tin, chúng tôi cần bạn nhập OTP. Chúng tôi đã gửi cho bạn mã OTP xác thực qua gmail{' '}
-                    {`${props.emailSend.slice(0, 2)}****@***.***`}. Bạn vui lòng kiểm tra gmail và nhập mã xác thực vào
-                    đây:
+                    {t('contentMess.messOTP_1')} {`${props.emailSend.slice(0, 2)}****@***.***`}{' '}
+                    {t('contentMess.messOTP_2')}
                 </p>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="userInput">
@@ -138,19 +138,18 @@ const OTPBoxForgotPass = (props: OTPBoxForgotData) => {
                             className="forgot__form-input"
                             type={!show ? 'password' : 'text'}
                             {...register('password', {
-                                required: 'Mật khẩu được yêu cầu',
+                                required: t('validate.passwordRequire')! as string,
                                 pattern: {
                                     value: regexPassword,
-                                    message:
-                                        'Mật khẩu phải bao gồm chữ thường và kí tự in hoa, ít nhất 1 kí tự đặt biệt và 1 con số.',
+                                    message: t('validate.passwordSpecialError'),
                                 },
                                 minLength: {
                                     value: 6,
-                                    message: 'Mật khẩu phải ít từ 6 kí tự ',
+                                    message: t('validate.passwordMinError'),
                                 },
                                 maxLength: {
                                     value: 16,
-                                    message: 'Mật khẩu chỉ có thể nhiều nhất 16 kí tự',
+                                    message: t('validate.passwordMaxError'),
                                 },
                             })}
                         />
@@ -170,10 +169,10 @@ const OTPBoxForgotPass = (props: OTPBoxForgotData) => {
                             className="forgot__form-input"
                             type="password"
                             {...register('password_confirmation', {
-                                required: 'Mật khẩu được yêu cầu',
+                                required: t('validate.passwordConfirmRequire')! as string,
                                 validate: (val: string | undefined) => {
                                     if (watch('password') !== val) {
-                                        return 'Xác nhận mật khẩu không khớp với mật khẩu của bạn';
+                                        return t('validate.passwordConfirmError')! as string;
                                     }
                                 },
                             })}
@@ -185,7 +184,7 @@ const OTPBoxForgotPass = (props: OTPBoxForgotData) => {
                         )}
                     </label>
                     <button type="submit" className="customs-btn">
-                        Xác thực
+                        {t('common.active')}
                     </button>
                 </form>
             </div>
