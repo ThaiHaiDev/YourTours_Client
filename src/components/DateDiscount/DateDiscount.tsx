@@ -1,20 +1,19 @@
 import { useEffect, useRef, useState } from 'react';
-import { DateRangePicker } from 'react-date-range';
 
 import format from 'date-fns/format';
-import { addDays } from 'date-fns';
+import { DateRangePicker } from 'react-date-range';
 
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 
-import './DateGo.scss';
+import './DateDiscount.tsx.scss';
 
-const DateRangePickerComp = (props: any) => {
+const DateDiscount = (props: any) => {
     // date state
     const [range, setRange] = useState<any>([
         {
-            startDate: new Date(),
-            endDate: addDays(new Date(), 0),
+            startDate: props.dateStart ? new Date(props.dateStart) : new Date(),
+            endDate: props.dateEnd ? new Date(props.dateEnd) : new Date(),
             key: 'selection',
         },
     ]);
@@ -30,9 +29,6 @@ const DateRangePickerComp = (props: any) => {
         document.addEventListener('keydown', hideOnEscape, true);
         document.addEventListener('click', hideOnClickOutside, true);
     }, []);
-
-    // console.log('start',format(range[0].startDate, 'MM/dd/yyyy'));
-    // console.log('end',format(range[0].endDate, 'MM/dd/yyyy'));
 
     // hide dropdown on ESC press
     const hideOnEscape = (e: any) => {
@@ -54,6 +50,7 @@ const DateRangePickerComp = (props: any) => {
         <div className="calendarWrap">
             <div className="info_date">
                 <div className="output start">
+                    <p style={{ fontWeight: 'bold', margin: '0', marginBottom: '5px' }}>Ngày bắt đầu khuyến mãi</p>
                     <input
                         value={`${format(range[0].startDate, 'MM/dd/yyyy')}`}
                         readOnly
@@ -63,6 +60,7 @@ const DateRangePickerComp = (props: any) => {
                 </div>
 
                 <div className="output end">
+                    <p style={{ fontWeight: 'bold', margin: '0', marginBottom: '5px' }}>Ngày kết thúc khuyến mãi</p>
                     <input
                         value={`${format(range[0].endDate, 'MM/dd/yyyy')}`}
                         readOnly
@@ -94,4 +92,4 @@ const DateRangePickerComp = (props: any) => {
     );
 };
 
-export default DateRangePickerComp;
+export default DateDiscount;

@@ -99,7 +99,7 @@ const columns: GridColDef[] = [
         headerName: '',
         width: 10,
         renderCell: (params) => (
-            <RemoveRedEyeIcon onClick={() => handleView(params.row.remove)} sx={{ cursor: 'pointer' }} />
+            <RemoveRedEyeIcon onClick={() => handleView(params.row.view)} sx={{ cursor: 'pointer' }} />
         ),
     },
     {

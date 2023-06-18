@@ -14,8 +14,8 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import homeApi from '../../../services/homeApi';
 import pricesOfHomeApi from '../../../services/pricesOfHomeApi';
 import formatPrice from '../../../utils/formatPrice';
-import DateRangePickerComp from '../../DateGo/DateGo';
 import './ValuationDiscount.scss';
+import DateDiscount from '../../DateDiscount/DateDiscount';
 
 export default function ValuationDiscountSetting(props: any) {
     const [expanded, setExpanded] = React.useState<string | false>(false);
@@ -206,13 +206,13 @@ export default function ValuationDiscountSetting(props: any) {
                                             : 'Không có mô tả'}
                                     </p>
                                     {index === 0 ? (
-                                        <DateRangePickerComp
+                                        <DateDiscount
                                             setDataDay={setDateDiscountMonth}
                                             dateStart={discount?.config.dateStart}
                                             dateEnd={discount?.config.dateEnd}
                                         />
                                     ) : (
-                                        <DateRangePickerComp
+                                        <DateDiscount
                                             setDataDay={setDateDiscountWeek}
                                             dateStart={discount?.config.dateStart}
                                             dateEnd={discount?.config.dateEnd}
