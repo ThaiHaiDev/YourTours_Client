@@ -13,7 +13,7 @@ import format3Dots from '../../utils/format3Dots';
 import formatPrice from '../../utils/formatPrice';
 import './HomeAdmin.scss';
 
-const customerTableHead = ['', 'Tên nhà', 'Mô tả', 'Địa chỉ', 'Tỉnh thành', 'Giá theo đêm', 'Chính sách hoàn tiền'];
+const customerTableHead = ['', 'Tên nhà', 'Chủ nhà', 'Địa chỉ', 'Tỉnh thành', 'Giá theo đêm', 'Chính sách hoàn tiền'];
 
 // const fieldData = [
 //     {
@@ -71,9 +71,9 @@ const HomeAdmin = (props: any) => {
     };
     const renderBody = (item: any, index: any) => (
         <tr key={index}>
-            <td>{index}</td>
+            <td>{index + 1}</td>
             <td>{format3Dots(item.name, 30)}</td>
-            <td>{format3Dots(item.description, 70)}</td>
+            <td>{format3Dots(item.ownerName, 30)}</td>
             <td>{item.addressDetail}</td>
             <td>{item?.provinceName ? item?.provinceName : ''}</td>
             <td>{formatPrice(item.costPerNightDefault)}</td>
@@ -97,7 +97,7 @@ const HomeAdmin = (props: any) => {
                 >
                     <div>
                         <p style={{ margin: '0', padding: '5px 10px', fontSize: '14px', marginBottom: '10px' }}>
-                            {`Bạn chắc chắn muốn ${item.status === 'LOCK' ? 'active' : 'unactive'} ngôi nhà này không?`}
+                            {`Bạn chắc chắn muốn ${item.status === 'LOCK' ? 'khóa' : 'mở khóa'} ngôi nhà này không?`}
                         </p>
                         <p
                             style={{

@@ -4,8 +4,6 @@ import './ConfirmOwner.scss';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import Logo from '../../assets/imgMaster/logo.svg';
 
-import Province from '../../mockdata/ProvinceVN.json';
-
 import { RootState } from '../../redux/store';
 import { useSelector } from 'react-redux';
 
@@ -14,9 +12,7 @@ import { t } from 'i18next';
 
 const ConfirmOwner = () => {
     const setupRoomHost = useSelector((state: RootState) => state.settingowner.detailRoom);
-    const provinceName = Province.filter((pro: any) => {
-        return parseInt(pro.code) === parseInt(setupRoomHost.provinceCode);
-    });
+    const provinceName = setupRoomHost.provinceName;
     const priceRoom = formatPrice(setupRoomHost.costPerNightDefault);
     const linkImage = setupRoomHost?.imagesOfHome[0]['path'];
 
@@ -75,7 +71,7 @@ const ConfirmOwner = () => {
                                 <img src={`${linkImage}`} alt="" />
                             </div>
                             <h2>{setupRoomHost.name}</h2>
-                            <p>{`${provinceName[0]?.name}, Việt Nam`}</p>
+                            <p>{`${provinceName}, Việt Nam`}</p>
                             <span>{`${priceRoom} VND / ngày`}</span>
                         </div>
                     </div>

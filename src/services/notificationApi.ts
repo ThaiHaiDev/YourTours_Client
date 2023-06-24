@@ -15,7 +15,7 @@ const notificationApi = {
         return axiosClient.put(url, data);
     },
     deleteNotificationViewed(): Promise<BaseResponseFactoryDeleteResponse> {
-        const url = `api/v1/app/notification/list/delete`;
+        const url = `api/v1/app/notification/list/delete?all=true`;
         return axiosClient.delete(url);
     },
 };

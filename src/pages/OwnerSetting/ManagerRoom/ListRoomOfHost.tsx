@@ -123,7 +123,7 @@ const columns: GridColDef[] = [
                 <div>
                     <p style={{ margin: '0', padding: '5px 10px', fontSize: '14px', marginBottom: '10px' }}>
                         {`Bạn chắc chắn muốn ${
-                            params.row.remove.status === 'LOCK' ? 'active' : 'unactive'
+                            params.row.remove.status === 'LOCK' ? 'khóa' : 'mở khóa'
                         } ngôi nhà này không?`}
                     </p>
                     <p

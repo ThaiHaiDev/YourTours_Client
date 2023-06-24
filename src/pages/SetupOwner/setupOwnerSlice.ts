@@ -5,6 +5,7 @@ const setupOwnerSlice = createSlice({
     initialState: {
         detailRoom: {
             provinceCode: '',
+            provinceName: '',
             name: 'Room Demo',
             description: '',
             wifi: '',
@@ -20,6 +21,9 @@ const setupOwnerSlice = createSlice({
     reducers: {
         addProvinceIdRoom(state, action) {
             state.detailRoom.provinceCode = action.payload;
+        },
+        addProvinceNameRoom(state, action) {
+            state.detailRoom.provinceName = action.payload;
         },
         addAddressDetailRoom(state, action) {
             state.detailRoom.addressDetail = action.payload;

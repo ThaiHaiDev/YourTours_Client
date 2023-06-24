@@ -1,8 +1,9 @@
-import { NavLink } from 'react-router-dom';
-import DropdownHost from '../DropdownHost/DropdownHost';
-import Logo from '../../assets/imgMaster/logo.svg';
-import './NavbarOwner.scss';
 import { t } from 'i18next';
+import { NavLink } from 'react-router-dom';
+
+import Logo from '../../assets/imgMaster/logo.svg';
+import DropdownHost from '../DropdownHost/DropdownHost';
+import './NavbarOwner.scss';
 
 const NavbarOwner = () => {
     return (
@@ -19,7 +20,7 @@ const NavbarOwner = () => {
                 <NavLink to="/host/setting" end={true}>
                     {t('navbar.homeHost')}
                 </NavLink>
-                <NavLink to="/list-room">{t('navbar.book')}</NavLink>
+                {/* <NavLink to="/list-room">{t('navbar.book')}</NavLink> */}
                 <NavLink to="/host/setting/calendar">{t('navbar.calender')}</NavLink>
                 <NavLink to="/intro-host">{t('navbar.setHost')}</NavLink>
                 <NavLink to="/host/setting/transactionhistory">{t('navbar.historyHost')}</NavLink>

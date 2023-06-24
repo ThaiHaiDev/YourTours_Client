@@ -25,6 +25,7 @@ const BookingPage = () => {
 
     const [dataDetailHomeBooking, setDataDetalHomeBooking] = useState<any>([]);
     const [priceDay, setPriceDay] = useState<string>('');
+    const navigate = useNavigate();
     // const [idBooking, setIdBooking] = useState<string | undefined>('');
 
     const [priceAfterChoosePayment, setPriceAfterChoosePayment] = useState<any>(infoBooking?.priceTotal);
@@ -33,7 +34,6 @@ const BookingPage = () => {
 
     const dispatch = useDispatch();
 
-    const navigate = useNavigate();
     useEffect(() => {
         if (!infoBooking.checkBooking) {
             navigate('/');
@@ -58,6 +58,7 @@ const BookingPage = () => {
             .then((dataResponse) => {
                 dispatch(userSlice.actions.updateHost());
                 enqueueSnackbar(t('message.bookingSuccess'), { variant: 'success' });
+                navigate('/historybooking');
                 // setIdBooking(dataResponse?.data?.id);
             })
             .catch((error: AxiosError<any>) => {

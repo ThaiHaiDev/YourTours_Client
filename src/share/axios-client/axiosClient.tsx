@@ -13,6 +13,10 @@ const getAccessTokenFromLocalStorage = (): any => {
     return localStorage.getItem('access_token') || '{}';
 };
 
+const geti18nFromLocalStorage = (): any => {
+    return localStorage.getItem('i18n') || 'vi';
+};
+
 const axiosClient = axios.create({
     baseURL: API_BASE_URL,
     headers: {
@@ -20,6 +24,7 @@ const axiosClient = axios.create({
         Authorization: `${getAccessTokenFromLocalStorage() !== '{}' && `Bearer`} ${
             getAccessTokenFromLocalStorage() !== '{}' ? getAccessTokenFromLocalStorage() : ''
         }`,
+        'Accept-Language': geti18nFromLocalStorage(),
     },
 });
 
