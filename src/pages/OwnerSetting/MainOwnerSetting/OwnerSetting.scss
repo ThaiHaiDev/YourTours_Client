@@ -30,9 +30,9 @@
             }
 
             .listdata_summary {
-                .MuiDataGrid-virtualScroller {
-                    overflow-x: hidden;
-                }
+                // .MuiDataGrid-virtualScroller {
+                //     overflow-x: hidden;
+                // }
 
                 .btn-check-status {
                     background: #42a5f5;
@@ -56,4 +56,3 @@
         }
     }
 }
-

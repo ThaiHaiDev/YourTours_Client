@@ -18,6 +18,10 @@ const statisticApi = {
         const url = `api/v1/cms/statistic/admin/owners`;
         return axiosClient.get(url);
     },
+    getStatisticOfAdminForOwnerByMonth(date: any): Promise<any> {
+        const url = `api/v1/cms/statistic/owner/month?year=${date.year}&month=${date.month}&number=0&size=100`;
+        return axiosClient.get(url);
+    },
 };
 
 export default statisticApi;

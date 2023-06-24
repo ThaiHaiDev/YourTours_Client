@@ -5,6 +5,7 @@ import { PieChart } from '../../../../components/Chart/PieChart/PieChart';
 import statisticApi from '../../../../services/statisticApi';
 
 import './StatisShow.scss';
+import TableDataStatis from './TableDataStatis';
 
 const StatisShow = () => {
     const [dataStatis, setDataStatis] = useState<any>();
@@ -69,6 +70,8 @@ const StatisShow = () => {
                     <LineChart data={dataStatis?.revenueStatistics} />
                 </div>
             </div>
+            <br /> <br /> <hr /> <br />
+            <TableDataStatis data={[]} />
         </div>
     );
 };

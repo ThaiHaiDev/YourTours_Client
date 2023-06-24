@@ -24,7 +24,7 @@ const TableDataHostSummary = (props: any) => {
             dateEnd: props.data[i]?.dateEnd ? props.data[i].dateEnd : '',
             guests: props.data[i]?.guests ? props.data[i].guests : '1',
             price: props.data[i]?.totalCost ? formatPrice(props.data[i].totalCost) : '1 đ',
-            priceBefore: props.data[i]?.moneyPayed ? formatPrice(props.data[i].moneyPayed) : '0 đ'
+            priceBefore: props.data[i]?.moneyPayed ? formatPrice(props.data[i].moneyPayed) : '0 đ',
         });
     }
 
@@ -45,7 +45,7 @@ const TableDataHostSummary = (props: any) => {
                     .then((dataResponse) => {
                         enqueueSnackbar('Check in thành công', { variant: 'success' });
                         if (props?.setDataCheckIn) {
-                            props?.setDataCheckIn(dataCheckIn)
+                            props?.setDataCheckIn(dataCheckIn);
                         }
                     })
                     .catch((error: AxiosError<any>) => {
