@@ -1,28 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import DoneAllIcon from '@mui/icons-material/DoneAll';
 
 import notificationSlice from '../../redux/notificationSlice';
 import { RootState } from '../../redux/store';
 import notificationApi from '../../services/notificationApi';
 import './BellRing.scss';
 
-const clickOutsideRef = (content_ref: any, toggle_ref: any) => {
-    document.addEventListener('mousedown', (e) => {
-        // user click toggle
-        if (toggle_ref.current && toggle_ref.current.contains(e.target)) {
-            content_ref.current.classList.toggle('active');
-        } else {
-            // user click outside toggle and content
-            if (content_ref.current && !content_ref.current.contains(e.target)) {
-                content_ref.current.classList.remove('active');
-            }
-        }
-    });
-};
-
 const BellRing = (props: any) => {
     const [dataNoti, setDataNoti] = useState<any>([]);
-    const [showAll, setShowAll] = useState<number>(8);
+    const [showAll, setShowAll] = useState<number>(6);
     const [checkDelete, setCheckDelete] = useState<boolean>(false);
     const dropdown_toggle_el = useRef<any>(null);
     const dropdown_content_el = useRef<any>(null);
@@ -43,9 +30,27 @@ const BellRing = (props: any) => {
         setCheckDelete(false);
     }, [user, showAll, checkDelete]);
 
+    const clickOutsideRef = (content_ref: any, toggle_ref: any) => {
+        document.addEventListener('mousedown', (e) => {
+            // user click toggle
+            if (toggle_ref.current && toggle_ref.current.contains(e.target)) {
+                content_ref.current.classList.toggle('active');
+            } else {
+                // user click outside toggle and content
+                if (content_ref.current && !content_ref.current.contains(e.target)) {
+                    content_ref.current.classList.remove('active');
+                    setShowAll(6);
+                }
+            }
+        });
+    };
+
     clickOutsideRef(dropdown_content_el, dropdown_toggle_el);
 
     const handleResetNoti = () => {
+        notificationApi.getNotificationForUser(100).then((dataRes: any) => {
+            setDataNoti(dataRes.data.content);
+        });
         if (noti.numberOfNotification !== 0) {
             notificationApi.resetNumberNotification('').then(() => {
                 dispatch(notificationSlice.actions.subscribeNumberOfNotification(0));
@@ -54,14 +59,22 @@ const BellRing = (props: any) => {
     };
 
     const handleShowAll = () => {
-        if (showAll === 8) {
-            setShowAll(100);
-            dropdown_content_el.current.classList.add('active');
-        } else {
-            notificationApi.deleteNotificationViewed().then(() => {
-                setCheckDelete(true);
-            });
+        if (dataNoti.length !== 0) {
+            if (showAll === 6) {
+                setShowAll(100);
+                dropdown_content_el.current.classList.add('active');
+            } else {
+                notificationApi.deleteNotificationViewed(true).then(() => {
+                    setCheckDelete(true);
+                });
+            }
         }
+    };
+
+    const clearNoti = () => {
+        notificationApi.deleteNotificationViewed(false).then(() => {
+            setCheckDelete(true);
+        });
     };
 
     return (
@@ -74,16 +87,26 @@ const BellRing = (props: any) => {
                         {props.customToggle ? props.customToggle() : ''}
                     </button>
                     <div ref={dropdown_content_el} className={`dropdown__content`}>
-                        <div className={`${showAll !== 8 ? 'all-noti' : ''}`}>
+                        <div className="header__noti">
+                            <h1>Notifications</h1>
+                        </div>
+                        <div className={`${showAll !== 6 ? 'all-noti' : ''}`}>
                             {props.contentData && props.renderItems
                                 ? dataNoti
                                       .slice(0, showAll)
                                       .map((item: any, index: any) => props.renderItems(item, index))
                                 : ''}
                         </div>
+                        <hr style={{ border: '0.2px solid #e0e0e0', padding: '0px 18px' }} />
                         {props.renderFooter ? (
-                            <div className="dropdown__footer" onClick={handleShowAll}>
-                                {showAll === 8 ? props.renderFooter() : 'Delete all viewed notifications'}
+                            <div className="dropdown__footer">
+                                <div className="btn-read-all" onClick={clearNoti}>
+                                    <DoneAllIcon sx={{ color: '#2979ff', fontSize: '18px', marginRight: '4px' }} />
+                                    <p>Mark all as read</p>
+                                </div>
+                                <p onClick={handleShowAll} aria-disabled={dataNoti.length === 0} className="btn-view">
+                                    {showAll === 6 ? props.renderFooter() : <p className="btn-view">Clear all</p>}
+                                </p>
                             </div>
                         ) : (
                             ''
