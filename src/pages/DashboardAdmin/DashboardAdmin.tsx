@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from 'react';
 
-import { Link } from 'react-router-dom';
-
 import Chart from 'react-apexcharts';
-import StatusCard from '../../components/AllAdminComponents/Statuscard/Statuscard';
-import Table from '../../components/AllAdminComponents/Table/Table';
 
 import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
+import TabContext from '@mui/lab/TabContext';
 
-import './DashboardAdmin.scss';
+import TabList from '@mui/lab/TabList';
+import TabPanel from '@mui/lab/TabPanel';
+
+import Box from '@mui/material/Box';
+import Tab from '@mui/material/Tab';
+
+import StatusCard from '../../components/AllAdminComponents/Statuscard/Statuscard';
+import Table from '../../components/AllAdminComponents/Table/Table';
+import { RootState } from '../../redux/store';
 import statisticApi from '../../services/statisticApi';
 import {
     guestsStatisData,
@@ -17,6 +21,7 @@ import {
     ownersStatisData,
     revenueStatisticsResponse,
 } from '../../share/models/statisticAdmin';
+import './DashboardAdmin.scss';
 
 const topCustomers = {
     head: ['Tên khách hàng', 'Tổng lượt đặt', 'Tổng chi tiêu'],
@@ -54,9 +59,10 @@ const DashboardAdmin = () => {
     const [dataChart, setdataChart] = useState<revenueStatisticsResponse[]>([]);
     const [dataGuests, setDataGuests] = useState<guestsStatisData[]>([]);
     const [dataOwners, setDataOwners] = useState<ownersStatisData[]>([]);
+    const [value, setValue] = React.useState('1');
 
     useEffect(() => {
-        statisticApi.getStatisticOfAdmin().then((dataResponse) => {
+        statisticApi.getStatisticOfAdmin(new Date().getFullYear().toString()).then((dataResponse) => {
             const dataStatistic = [
                 {
                     icon: 'bx bx-user',
@@ -80,6 +86,9 @@ const DashboardAdmin = () => {
                 },
             ];
             setNumberStatis(dataStatistic);
+        });
+
+        statisticApi.getStatisticOfAdminForChart().then((dataResponse) => {
             setdataChart(dataResponse?.data?.revenueStatistics);
         });
 
@@ -122,6 +131,10 @@ const DashboardAdmin = () => {
         ],
     };
 
+    const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+        setValue(newValue);
+    };
+
     return (
         <div className="dashboard__admin">
             <h2 className="page-header">Dashboard</h2>
@@ -160,41 +173,55 @@ const DashboardAdmin = () => {
                     </div>
                 </div>
 
-                <div className="col l-4">
-                    <div className="card-admin">
-                        <div className="card__header">
-                            <h3>Khách hàng thân thiết</h3>
-                        </div>
-                        <div className="card__body">
-                            <Table
-                                headData={topCustomers.head}
-                                renderHead={(item: string, index: number) => renderCusomerHead(item, index)}
-                                bodyData={dataGuests}
-                                renderBody={(item: guestsStatisData, index: number) => renderCusomerBody(item, index)}
-                            />
-                        </div>
-                        <div className="card__footer">
-                            <Link to="/">view all</Link>
-                        </div>
-                    </div>
-                </div>
-                <div className="col l-8">
-                    <div className="card-admin">
-                        <div className="card__header">
-                            <h3>Chủ nhà cho thuê tốt nhất</h3>
-                        </div>
-                        <div className="card__body">
-                            <Table
-                                headData={latestOrders.header}
-                                renderHead={(item: string, index: number) => renderOrderHead(item, index)}
-                                bodyData={dataOwners}
-                                renderBody={(item: ownersStatisData, index: number) => renderOrderBody(item, index)}
-                            />
-                        </div>
-                        <div className="card__footer">
-                            <Link to="/">view all</Link>
-                        </div>
-                    </div>
+                <div className="col l-12">
+                    <Box sx={{ width: '100%', typography: 'body1' }}>
+                        <TabContext value={value}>
+                            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                                <TabList onChange={handleChange} aria-label="lab API tabs example">
+                                    <Tab label="Thống kê khách" value="1" sx={{ textTransform: 'none' }} />
+                                    <Tab label="Thống kê chủ nhà" value="2" sx={{ textTransform: 'none' }} />
+                                    <Tab label="Thống kê nhà" value="3" sx={{ textTransform: 'none' }} />
+                                </TabList>
+                            </Box>
+                            <TabPanel value="1">
+                                <div className="card-admin">
+                                    <div className="card__header">
+                                        <h3>Khách hàng thân thiết</h3>
+                                    </div>
+                                    <div className="card__body">
+                                        <Table
+                                            headData={topCustomers.head}
+                                            renderHead={(item: string, index: number) => renderCusomerHead(item, index)}
+                                            bodyData={dataGuests}
+                                            renderBody={(item: guestsStatisData, index: number) =>
+                                                renderCusomerBody(item, index)
+                                            }
+                                        />
+                                    </div>
+                                </div>
+                            </TabPanel>
+                            <TabPanel value="2">
+                                <div className="card-admin">
+                                    <div className="card__header">
+                                        <h3>Chủ nhà cho thuê tốt nhất</h3>
+                                    </div>
+                                    <div className="card__body">
+                                        <Table
+                                            headData={latestOrders.header}
+                                            renderHead={(item: string, index: number) => renderOrderHead(item, index)}
+                                            bodyData={dataOwners}
+                                            renderBody={(item: ownersStatisData, index: number) =>
+                                                renderOrderBody(item, index)
+                                            }
+                                        />
+                                    </div>
+                                </div>
+                            </TabPanel>
+                            <TabPanel value="3">
+                                <h2>gaaa</h2>
+                            </TabPanel>
+                        </TabContext>
+                    </Box>
                 </div>
             </div>
         </div>
