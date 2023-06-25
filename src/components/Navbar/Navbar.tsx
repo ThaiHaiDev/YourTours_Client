@@ -3,19 +3,24 @@ import { t } from 'i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 
+import BookOnlineIcon from '@mui/icons-material/BookOnline';
+import HomeIcon from '@mui/icons-material/Home';
+import ManageHistoryIcon from '@mui/icons-material/ManageHistory';
+
 import Logo from '../../assets/imgMaster/logo.svg';
 import notifications from '../../mockdata/notification.json';
-
 import userSlice from '../../pages/AuthPage/userSlice';
 import { RootState } from '../../redux/store';
+
+// Icon notification
+import notificationApi from '../../services/notificationApi';
 import userApi from '../../services/userApi';
 import BellRing from '../BellRing/BellRing';
-import Book from '../Book/Book';
 
+import Book from '../Book/Book';
 import DropdownUser from '../DropdownUser/DropdownUser';
 import LanguageSelected from '../LanguageSelected/LanguageSelected';
 import './Navbar.scss';
-import notificationApi from '../../services/notificationApi';
 
 const Navbar = () => {
     const [isActive, setIsActive] = useState<boolean>(false);
@@ -47,19 +52,57 @@ const Navbar = () => {
         }
     };
 
+    const renderIcon = (type: string | undefined, view: boolean) => {
+        if (type === 'BOOKING_NOTIFICATION') {
+            return <BookOnlineIcon sx={{ color: `${!view ? '#2962ff' : 'black'}`, fontSize: '18px' }} />;
+        }
+        if (type === 'HOME_NOTIFICATION') {
+            return <HomeIcon sx={{ color: `${!view ? '#2962ff' : 'black'}`, fontSize: '18px' }} />;
+        }
+        if (type === 'OWNER_HOME_NOTIFICATION') {
+            return <ManageHistoryIcon sx={{ color: `${!view ? '#2962ff' : 'black'}`, fontSize: '18px' }} />;
+        }
+    };
+
     const renderNotificationItem = (item: any, index: any) => (
-        <div className="notification-item" key={index} onClick={() => handleSetView(item.id, item.view, item.homeId)}>
-            <i className={`${item.icon} bx bx-package`}></i>
-            {/* <i className={`notification-icon`}></i> */}
+        <div
+            className="notification-item"
+            key={index}
+            onClick={() => handleSetView(item.id, item.view, item.homeId, item.type)}
+        >
+            <div className="icon-notification">{renderIcon(item.type, item.view)}</div>
             <span className={`${!item.view ? 'no-view ' : ''} notification-content`}>{item.description}</span>
         </div>
     );
 
-    const handleSetView = (id: string | undefined, view: boolean, homeId: string | undefined) => {
+    const handleSetView = (
+        id: string | undefined,
+        view: boolean,
+        homeId: string | undefined,
+        type: string | undefined,
+    ) => {
         if (!view) {
             notificationApi.showOffViewNotification({ notificationId: id }).then(() => {
-                navigate(`/detail/${homeId}`);
+                if (type === 'BOOKING_NOTIFICATION') {
+                    navigate(`/historybooking`);
+                }
+                if (type === 'HOME_NOTIFICATION') {
+                    navigate(`/detail/${homeId}`);
+                }
+                if (type === 'OWNER_HOME_NOTIFICATION') {
+                    navigate(`/host`);
+                }
             });
+        } else {
+            if (type === 'BOOKING_NOTIFICATION') {
+                navigate(`/historybooking`);
+            }
+            if (type === 'HOME_NOTIFICATION') {
+                navigate(`/detail/${homeId}`);
+            }
+            if (type === 'OWNER_HOME_NOTIFICATION') {
+                navigate(`/host`);
+            }
         }
     };
 
@@ -100,7 +143,7 @@ const Navbar = () => {
                         }
                         contentData={notifications}
                         renderItems={(item: any, index: any) => renderNotificationItem(item, index)}
-                        renderFooter={() => <p>View All</p>}
+                        renderFooter={() => <p>View all</p>}
                     />
                 </div>
             </div>
