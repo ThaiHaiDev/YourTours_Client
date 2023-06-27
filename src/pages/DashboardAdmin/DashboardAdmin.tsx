@@ -11,8 +11,11 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
+import Typography from '@mui/material/Typography';
 
 import DateForStatistic from '../../components/AllAdminComponents/DateForStatistic/DateForStatistic';
+
 import StatusCard from '../../components/AllAdminComponents/Statuscard/Statuscard';
 import Table from '../../components/AllAdminComponents/Table/Table';
 import { RootState } from '../../redux/store';
@@ -23,7 +26,41 @@ import {
     ownersStatisData,
     revenueStatisticsResponse,
 } from '../../share/models/statisticAdmin';
+import formatPrice from '../../utils/formatPrice';
 import './DashboardAdmin.scss';
+
+interface TabPanelProps {
+    children?: React.ReactNode;
+    index: number;
+    value: number;
+}
+
+function TabPanelChart(props: TabPanelProps) {
+    const { children, value, index, ...other } = props;
+
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`vertical-tabpanel-${index}`}
+            aria-labelledby={`vertical-tab-${index}`}
+            {...other}
+        >
+            {value === index && (
+                <Box sx={{ p: 3 }}>
+                    <Typography sx={{ textTransform: 'none', fontSize: '14px' }}>{children}</Typography>
+                </Box>
+            )}
+        </div>
+    );
+}
+
+function a11yProps(index: number) {
+    return {
+        id: `vertical-tab-${index}`,
+        'aria-controls': `vertical-tabpanel-${index}`,
+    };
+}
 
 const topCustomers = {
     head: ['Tên khách hàng', 'Tổng lượt đặt', 'Tổng chi tiêu'],
@@ -35,7 +72,7 @@ const renderCusomerBody = (item: guestsStatisData, index: number) => (
     <tr key={index}>
         <td>{item.fullName}</td>
         <td>{item.numberOfBooking}</td>
-        <td>{item.totalCost}</td>
+        <td>{formatPrice(item.totalCost)}</td>
     </tr>
 );
 
@@ -54,6 +91,21 @@ const renderOrderBody = (item: ownersStatisData, index: number) => (
     </tr>
 );
 
+const homesHeader = {
+    header: ['Tên chủ nhà', 'Số nhà cho thuê', 'Số lượng khách đặt phòng', 'Doanh thu'],
+};
+
+const renderHomeHead = (item: string, index: number) => <th key={index}>{item}</th>;
+
+const renderHomeBody = (item: ownersStatisData, index: number) => (
+    <tr key={index}>
+        <td>{item.fullName}</td>
+        <td>{item.numberOfHomes}</td>
+        <td>{item.numberOfBooking}</td>
+        <td>{item.totalCost}</td>
+    </tr>
+);
+
 const DashboardAdmin = () => {
     const themeReducer = useSelector((state: RootState) => state.global);
     const date = new Date();
@@ -61,13 +113,21 @@ const DashboardAdmin = () => {
     const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
     const [numberStatis, setNumberStatis] = useState<numberStatisData[]>([]);
     const [dataChart, setdataChart] = useState<revenueStatisticsResponse[]>([]);
+    const [dataChartRevenue, setdataChartRevenue] = useState<revenueStatisticsResponse[]>([]);
     const [dataGuests, setDataGuests] = useState<guestsStatisData[]>([]);
     const [dataOwners, setDataOwners] = useState<ownersStatisData[]>([]);
+    const [dataHomes, setDataHomes] = useState<ownersStatisData[]>([]);
     const [value, setValue] = React.useState('1');
     const [dateStatistic, setDateStatistic] = useState<any>([
         format(firstDay, 'yyyy-MM-dd'),
         format(lastDay, 'yyyy-MM-dd'),
     ]);
+
+    const [valueChart, setValueChart] = React.useState(0);
+
+    const handleChangeChart = (event: React.SyntheticEvent, newValue: number) => {
+        setValueChart(newValue);
+    };
 
     useEffect(() => {
         statisticApi.getStatisticOfAdmin(new Date().getFullYear().toString()).then((dataResponse) => {
@@ -96,16 +156,24 @@ const DashboardAdmin = () => {
             setNumberStatis(dataStatistic);
         });
 
-        statisticApi.getStatisticOfAdminForChart().then((dataResponse) => {
+        statisticApi.getStatisticOfAdminForChart('BOOKING').then((dataResponse) => {
             setdataChart(dataResponse?.data?.revenueStatistics);
+        });
+
+        statisticApi.getStatisticOfAdminForChart('REVENUE').then((dataResponse) => {
+            setdataChartRevenue(dataResponse?.data?.revenueStatistics);
         });
 
         statisticApi.getStatisticOfAdminForGuest(dateStatistic).then((dataResponse) => {
             setDataGuests(dataResponse?.data?.content);
         });
 
-        statisticApi.getStatisticOfAdminForOwner().then((dataResponse) => {
+        statisticApi.getStatisticOfAdminForOwner(dateStatistic).then((dataResponse) => {
             setDataOwners(dataResponse.data.content);
+        });
+
+        statisticApi.getStatisticOfAdminForHome(dateStatistic).then((dataResponse) => {
+            setDataHomes(dataResponse.data.content);
         });
     }, [dateStatistic]);
 
@@ -120,7 +188,7 @@ const DashboardAdmin = () => {
         },
         series: [
             {
-                name: 'Doanh thu',
+                name: 'Booking',
                 data: [
                     dataChart.length !== 0 ? dataChart[0]?.amount : 0,
                     dataChart.length !== 0 ? dataChart[1]?.amount : 0,
@@ -134,6 +202,36 @@ const DashboardAdmin = () => {
                     dataChart.length !== 0 ? dataChart[9]?.amount : 0,
                     dataChart.length !== 0 ? dataChart[10]?.amount : 0,
                     dataChart.length !== 0 ? dataChart[11]?.amount : 0,
+                ],
+            },
+        ],
+    };
+
+    const chartOptionsRevenue = {
+        options: {
+            chart: {
+                id: 'basic-bar',
+            },
+            xaxis: {
+                categories: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+            },
+        },
+        series: [
+            {
+                name: 'Doanh thu',
+                data: [
+                    dataChartRevenue.length !== 0 ? dataChartRevenue[0]?.amount : 0,
+                    dataChartRevenue.length !== 0 ? dataChartRevenue[1]?.amount : 0,
+                    dataChartRevenue.length !== 0 ? dataChartRevenue[2]?.amount : 0,
+                    dataChartRevenue.length !== 0 ? dataChartRevenue[3]?.amount : 0,
+                    dataChartRevenue.length !== 0 ? dataChartRevenue[4]?.amount : 0,
+                    dataChartRevenue.length !== 0 ? dataChartRevenue[5]?.amount : 0,
+                    dataChartRevenue.length !== 0 ? dataChartRevenue[6]?.amount : 0,
+                    dataChartRevenue.length !== 0 ? dataChartRevenue[7]?.amount : 0,
+                    dataChartRevenue.length !== 0 ? dataChartRevenue[8]?.amount : 0,
+                    dataChartRevenue.length !== 0 ? dataChartRevenue[9]?.amount : 0,
+                    dataChartRevenue.length !== 0 ? dataChartRevenue[10]?.amount : 0,
+                    dataChartRevenue.length !== 0 ? dataChartRevenue[11]?.amount : 0,
                 ],
             },
         ],
@@ -164,27 +262,63 @@ const DashboardAdmin = () => {
                 </div>
 
                 <div className="col l-7" style={{ paddingBottom: '30px' }}>
-                    <div className="card-admin-chart">
-                        {/* chart */}
-                        <Chart
-                            options={
-                                themeReducer.mode === 'theme-mode-dark'
-                                    ? {
-                                          ...chartOptions.options,
-                                          theme: { mode: 'dark' },
-                                      }
-                                    : {
-                                          ...chartOptions.options,
-                                          theme: { mode: 'light' },
-                                      }
-                            }
-                            // options={chartOptions.options}
-                            series={chartOptions.series}
-                            type="line"
-                            height="100%"
-                            width="100%"
-                        />
-                    </div>
+                    <Box sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: 224 }}>
+                        <Tabs
+                            orientation="vertical"
+                            variant="scrollable"
+                            value={value}
+                            onChange={handleChangeChart}
+                            aria-label="Vertical tabs example"
+                            sx={{ borderRight: 1, borderColor: 'divider' }}
+                        >
+                            <Tab label="Đặt phòng" {...a11yProps(0)} />
+                            <Tab label="Doanh thu" {...a11yProps(1)} />
+                        </Tabs>
+                        <TabPanelChart value={valueChart} index={0}>
+                            <div className="card-admin-chart">
+                                <Chart
+                                    options={
+                                        themeReducer.mode === 'theme-mode-dark'
+                                            ? {
+                                                  ...chartOptions.options,
+                                                  theme: { mode: 'dark' },
+                                              }
+                                            : {
+                                                  ...chartOptions.options,
+                                                  theme: { mode: 'light' },
+                                              }
+                                    }
+                                    // options={chartOptions.options}
+                                    series={chartOptions.series}
+                                    type="line"
+                                    height="100%"
+                                    width="100%"
+                                />
+                            </div>
+                        </TabPanelChart>
+                        <TabPanelChart value={valueChart} index={1}>
+                            <div className="card-admin-chart">
+                                <Chart
+                                    options={
+                                        themeReducer.mode === 'theme-mode-dark'
+                                            ? {
+                                                  ...chartOptionsRevenue.options,
+                                                  theme: { mode: 'dark' },
+                                              }
+                                            : {
+                                                  ...chartOptionsRevenue.options,
+                                                  theme: { mode: 'light' },
+                                              }
+                                    }
+                                    // options={chartOptions.options}
+                                    series={chartOptionsRevenue.series}
+                                    type="line"
+                                    height="100%"
+                                    width="100%"
+                                />
+                            </div>
+                        </TabPanelChart>
+                    </Box>
                 </div>
 
                 <div className="col l-12">
@@ -236,6 +370,12 @@ const DashboardAdmin = () => {
                                 <div className="card-admin">
                                     <div className="card__header">
                                         <h3>Chủ nhà cho thuê tốt nhất</h3>
+                                        <DateForStatistic
+                                            size="horizontal"
+                                            setDataDay={handleChangeDayStatistic}
+                                            dateStart={firstDay}
+                                            dateEnd={lastDay}
+                                        />
                                     </div>
                                     <div className="card__body">
                                         <Table
@@ -250,7 +390,27 @@ const DashboardAdmin = () => {
                                 </div>
                             </TabPanel>
                             <TabPanel value="3">
-                                <h2>gaaa</h2>
+                                <div className="card-admin">
+                                    <div className="card__header">
+                                        <h3>Chủ nhà cho thuê tốt nhất</h3>
+                                        <DateForStatistic
+                                            size="horizontal"
+                                            setDataDay={handleChangeDayStatistic}
+                                            dateStart={firstDay}
+                                            dateEnd={lastDay}
+                                        />
+                                    </div>
+                                    <div className="card__body">
+                                        <Table
+                                            headData={homesHeader.header}
+                                            renderHead={(item: string, index: number) => renderHomeHead(item, index)}
+                                            bodyData={dataHomes}
+                                            renderBody={(item: ownersStatisData, index: number) =>
+                                                renderHomeBody(item, index)
+                                            }
+                                        />
+                                    </div>
+                                </div>
                             </TabPanel>
                         </TabContext>
                     </Box>

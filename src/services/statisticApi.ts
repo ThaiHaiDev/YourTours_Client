@@ -11,16 +11,20 @@ const statisticApi = {
         const url = `api/v1/cms/statistic/admin?year=${year}`;
         return axiosClient.get(url);
     },
-    getStatisticOfAdminForChart(): Promise<any> {
-        const url = `api/v1/cms/statistic/admin/chart?year=2023&type=BOOKING`;
+    getStatisticOfAdminForChart(type: string | undefined): Promise<any> {
+        const url = `api/v1/cms/statistic/admin/chart?year=2023&type=${type}`;
         return axiosClient.get(url);
     },
     getStatisticOfAdminForGuest(date: any): Promise<any> {
         const url = `api/v1/cms/statistic/admin/guests?dateStart=${date[0]}&dateEnd=${date[1]}&number=0&size=20`;
         return axiosClient.get(url);
     },
-    getStatisticOfAdminForOwner(): Promise<any> {
-        const url = `api/v1/cms/statistic/admin/owners`;
+    getStatisticOfAdminForOwner(date: any): Promise<any> {
+        const url = `api/v1/cms/statistic/admin/owners?dateStart=${date[0]}&dateEnd=${date[1]}`;
+        return axiosClient.get(url);
+    },
+    getStatisticOfAdminForHome(date: any): Promise<any> {
+        const url = `api/v1/cms/statistic/admin/home?dateStart=${date[0]}&dateEnd=${date[1]}`;
         return axiosClient.get(url);
     },
     getStatisticOfAdminForOwnerByMonth(date: any): Promise<any> {
