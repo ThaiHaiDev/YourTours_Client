@@ -1,93 +1,92 @@
 {
-  "name": "yourtoursts",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@date-io/date-fns": "^2.16.0",
-    "@emotion/react": "^11.10.4",
-    "@emotion/styled": "^11.10.4",
-    "@mui/icons-material": "^5.10.9",
-    "@mui/lab": "^5.0.0-alpha.105",
-    "@mui/material": "^5.10.11",
-    "@mui/x-data-grid": "^5.17.11",
-    "@mui/x-date-pickers": "^5.0.8",
-    "@paypal/react-paypal-js": "^7.8.2",
-    "@reduxjs/toolkit": "^1.8.6",
-    "@stomp/stompjs": "^7.0.0",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.11.68",
-    "@types/react": "^18.0.21",
-    "@types/react-dom": "^18.0.6",
-    "aos": "^2.3.4",
-    "apexcharts": "^3.37.2",
-    "axios": "^1.1.3",
-    "chart.js": "^4.2.1",
-    "date-fns": "^2.29.3",
-    "dayjs": "^1.11.6",
-    "i18next": "^22.5.0",
-    "moment": "^2.29.4",
-    "node-sass": "^7.0.3",
-    "notistack": "^2.0.8",
-    "process": "^0.11.10",
-    "react": "^18.2.0",
-    "react-apexcharts": "^1.4.0",
-    "react-calendar": "^4.0.0",
-    "react-chartjs-2": "^5.0.1",
-    "react-date-range": "^1.4.0",
-    "react-dom": "^18.2.0",
-    "react-hook-form": "^7.38.0",
-    "react-i18next": "^12.3.1",
-    "react-infinite-scroll-component": "^6.1.0",
-    "react-redux": "^8.0.4",
-    "react-router-dom": "^6.4.2",
-    "react-scripts": "5.0.1",
-    "react-scrollspy": "^3.4.3",
-    "react-select": "^5.5.4",
-    "react-slick": "^0.29.0",
-    "react-transition-group": "^4.4.5",
-    "reactjs-popup": "^2.0.5",
-    "redux": "^4.2.0",
-    "redux-thunk": "^2.4.1",
-    "scss": "^0.2.4",
-    "slick-carousel": "^1.8.1",
-    "sockjs-client": "^1.6.1",
-    "typescript": "^4.8.4",
-    "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "@types/aos": "^3.0.4",
-    "@types/react-calendar": "^3.9.0",
-    "@types/react-date-range": "^1.4.4",
-    "@types/react-scrollspy": "^3.3.5",
-    "@types/react-slick": "^0.23.10",
-    "@types/sockjs-client": "^1.5.1",
-    "@types/stompjs": "^2.3.5"
-  }
+    "name": "yourtoursts",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "@date-io/date-fns": "^2.16.0",
+        "@emotion/react": "^11.10.4",
+        "@emotion/styled": "^11.10.4",
+        "@mui/icons-material": "^5.10.9",
+        "@mui/lab": "^5.0.0-alpha.105",
+        "@mui/material": "^5.10.11",
+        "@mui/x-data-grid": "^5.17.11",
+        "@paypal/react-paypal-js": "^7.8.2",
+        "@reduxjs/toolkit": "^1.8.6",
+        "@stomp/stompjs": "^7.0.0",
+        "@testing-library/jest-dom": "^5.16.5",
+        "@testing-library/react": "^13.4.0",
+        "@testing-library/user-event": "^13.5.0",
+        "@types/jest": "^27.5.2",
+        "@types/node": "^16.11.68",
+        "@types/react": "^18.0.21",
+        "@types/react-dom": "^18.0.6",
+        "aos": "^2.3.4",
+        "apexcharts": "^3.37.2",
+        "axios": "^1.1.3",
+        "chart.js": "^4.2.1",
+        "date-fns": "^2.29.3",
+        "dayjs": "^1.11.6",
+        "i18next": "^22.5.0",
+        "moment": "^2.29.4",
+        "node-sass": "^7.0.3",
+        "notistack": "^2.0.8",
+        "process": "^0.11.10",
+        "react": "^18.2.0",
+        "react-apexcharts": "^1.4.0",
+        "react-calendar": "^4.0.0",
+        "react-chartjs-2": "^5.0.1",
+        "react-date-range": "^1.4.0",
+        "react-dom": "^18.2.0",
+        "react-hook-form": "^7.38.0",
+        "react-i18next": "^12.3.1",
+        "react-infinite-scroll-component": "^6.1.0",
+        "react-redux": "^8.0.4",
+        "react-router-dom": "^6.4.2",
+        "react-scripts": "5.0.1",
+        "react-scrollspy": "^3.4.3",
+        "react-select": "^5.5.4",
+        "react-slick": "^0.29.0",
+        "react-transition-group": "^4.4.5",
+        "reactjs-popup": "^2.0.5",
+        "redux": "^4.2.0",
+        "redux-thunk": "^2.4.1",
+        "scss": "^0.2.4",
+        "slick-carousel": "^1.8.1",
+        "sockjs-client": "^1.6.1",
+        "typescript": "^4.8.4",
+        "web-vitals": "^2.1.4"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "@types/aos": "^3.0.4",
+        "@types/react-calendar": "^3.9.0",
+        "@types/react-date-range": "^1.4.4",
+        "@types/react-scrollspy": "^3.3.5",
+        "@types/react-slick": "^0.23.10",
+        "@types/sockjs-client": "^1.5.1",
+        "@types/stompjs": "^2.3.5"
+    }
 }

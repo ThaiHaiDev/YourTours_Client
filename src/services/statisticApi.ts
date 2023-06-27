@@ -15,8 +15,8 @@ const statisticApi = {
         const url = `api/v1/cms/statistic/admin/chart?year=2023&type=BOOKING`;
         return axiosClient.get(url);
     },
-    getStatisticOfAdminForGuest(): Promise<any> {
-        const url = `api/v1/cms/statistic/admin/guests?number=0&size=20`;
+    getStatisticOfAdminForGuest(date: any): Promise<any> {
+        const url = `api/v1/cms/statistic/admin/guests?dateStart=${date[0]}&dateEnd=${date[1]}&number=0&size=20`;
         return axiosClient.get(url);
     },
     getStatisticOfAdminForOwner(): Promise<any> {

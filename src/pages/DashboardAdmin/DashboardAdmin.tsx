@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
 
+import format from 'date-fns/format';
+
 import Chart from 'react-apexcharts';
-
 import { useSelector } from 'react-redux';
+
 import TabContext from '@mui/lab/TabContext';
-
 import TabList from '@mui/lab/TabList';
-import TabPanel from '@mui/lab/TabPanel';
 
+import TabPanel from '@mui/lab/TabPanel';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 
+import DateForStatistic from '../../components/AllAdminComponents/DateForStatistic/DateForStatistic';
 import StatusCard from '../../components/AllAdminComponents/Statuscard/Statuscard';
 import Table from '../../components/AllAdminComponents/Table/Table';
 import { RootState } from '../../redux/store';
@@ -54,12 +56,18 @@ const renderOrderBody = (item: ownersStatisData, index: number) => (
 
 const DashboardAdmin = () => {
     const themeReducer = useSelector((state: RootState) => state.global);
-
+    const date = new Date();
+    const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+    const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
     const [numberStatis, setNumberStatis] = useState<numberStatisData[]>([]);
     const [dataChart, setdataChart] = useState<revenueStatisticsResponse[]>([]);
     const [dataGuests, setDataGuests] = useState<guestsStatisData[]>([]);
     const [dataOwners, setDataOwners] = useState<ownersStatisData[]>([]);
     const [value, setValue] = React.useState('1');
+    const [dateStatistic, setDateStatistic] = useState<any>([
+        format(firstDay, 'yyyy-MM-dd'),
+        format(lastDay, 'yyyy-MM-dd'),
+    ]);
 
     useEffect(() => {
         statisticApi.getStatisticOfAdmin(new Date().getFullYear().toString()).then((dataResponse) => {
@@ -92,14 +100,14 @@ const DashboardAdmin = () => {
             setdataChart(dataResponse?.data?.revenueStatistics);
         });
 
-        statisticApi.getStatisticOfAdminForGuest().then((dataResponse) => {
+        statisticApi.getStatisticOfAdminForGuest(dateStatistic).then((dataResponse) => {
             setDataGuests(dataResponse?.data?.content);
         });
 
         statisticApi.getStatisticOfAdminForOwner().then((dataResponse) => {
             setDataOwners(dataResponse.data.content);
         });
-    }, []);
+    }, [dateStatistic]);
 
     const chartOptions = {
         options: {
@@ -133,6 +141,12 @@ const DashboardAdmin = () => {
 
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
         setValue(newValue);
+    };
+
+    const handleChangeDayStatistic = (value: any) => {
+        const dateFrom = format(value[0].startDate, 'yyyy-MM-dd');
+        const dateTo = format(value[0].endDate, 'yyyy-MM-dd');
+        setDateStatistic([dateFrom, dateTo]);
     };
 
     return (
@@ -178,15 +192,33 @@ const DashboardAdmin = () => {
                         <TabContext value={value}>
                             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                                 <TabList onChange={handleChange} aria-label="lab API tabs example">
-                                    <Tab label="Thống kê khách" value="1" sx={{ textTransform: 'none' }} />
-                                    <Tab label="Thống kê chủ nhà" value="2" sx={{ textTransform: 'none' }} />
-                                    <Tab label="Thống kê nhà" value="3" sx={{ textTransform: 'none' }} />
+                                    <Tab
+                                        label="Thống kê khách"
+                                        value="1"
+                                        sx={{ textTransform: 'none', fontSize: '14px' }}
+                                    />
+                                    <Tab
+                                        label="Thống kê chủ nhà"
+                                        value="2"
+                                        sx={{ textTransform: 'none', fontSize: '14px' }}
+                                    />
+                                    <Tab
+                                        label="Thống kê nhà"
+                                        value="3"
+                                        sx={{ textTransform: 'none', fontSize: '14px' }}
+                                    />
                                 </TabList>
                             </Box>
                             <TabPanel value="1">
                                 <div className="card-admin">
                                     <div className="card__header">
                                         <h3>Khách hàng thân thiết</h3>
+                                        <DateForStatistic
+                                            size="horizontal"
+                                            setDataDay={handleChangeDayStatistic}
+                                            dateStart={firstDay}
+                                            dateEnd={lastDay}
+                                        />
                                     </div>
                                     <div className="card__body">
                                         <Table

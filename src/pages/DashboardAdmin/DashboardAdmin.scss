@@ -12,4 +12,12 @@
         border-radius: var(--border-radius);
         height: 100%;
     }
+
+    .card__header {
+        display: flex;
+        h3 {
+            margin-top: 0;
+            font-size: 14px;
+        }
+    }
 }

@@ -1,19 +1,18 @@
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 import SimpleSlider from '../../components/Advertisement/Advertisement';
 import Footer from '../../components/Footer/Footer';
 import HomeSlider from '../../components/HomeSlider/HomeSlider';
 import Navbar from '../../components/Navbar/Navbar';
 import Policy from '../../components/Policy/Policy';
+
 import Popular from '../../components/Popular/Popular';
 import RoomPopular from '../../components/RoomPopular/RoomPopular';
 
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 AOS.init();
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
-
 const HomePage = () => {
-    console.log('check env', API_BASE_URL);
     return (
         <div>
             <Navbar />
