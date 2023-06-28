@@ -49,7 +49,18 @@ const DateForStatistic = (props: any) => {
     return (
         <div className="calendar-statistic">
             <div className="info_date">
-                <div className="output start">
+                <div className="output start" style={{ display: 'flex', alignItems: 'center' }}>
+                    <p
+                        style={{
+                            fontWeight: 'bold',
+                            margin: '0',
+                            marginBottom: '5px',
+                            fontSize: '13px',
+                            paddingTop: '4px',
+                        }}
+                    >
+                        Từ ngày
+                    </p>
                     <input
                         value={`${format(range[0].startDate, 'MM/dd/yyyy')}`}
                         readOnly
@@ -58,7 +69,19 @@ const DateForStatistic = (props: any) => {
                     ></input>
                 </div>
 
-                <div className="output end">
+                <div className="output end" style={{ display: 'flex', alignItems: 'center' }}>
+                    <p
+                        style={{
+                            fontWeight: 'bold',
+                            margin: '0',
+                            marginBottom: '5px',
+                            fontSize: '13px',
+                            paddingTop: '4px',
+                            paddingRight: '8px',
+                        }}
+                    >
+                        Đến ngày
+                    </p>
                     <input
                         value={`${format(range[0].endDate, 'MM/dd/yyyy')}`}
                         readOnly

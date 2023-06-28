@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import format from 'date-fns/format';
-
-import Chart from 'react-apexcharts';
-import { useSelector } from 'react-redux';
 
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
@@ -11,56 +8,16 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
-import Tabs from '@mui/material/Tabs';
-import Typography from '@mui/material/Typography';
 
 import DateForStatistic from '../../components/AllAdminComponents/DateForStatistic/DateForStatistic';
 
 import StatusCard from '../../components/AllAdminComponents/Statuscard/Statuscard';
 import Table from '../../components/AllAdminComponents/Table/Table';
-import { RootState } from '../../redux/store';
 import statisticApi from '../../services/statisticApi';
-import {
-    guestsStatisData,
-    numberStatisData,
-    ownersStatisData,
-    revenueStatisticsResponse,
-} from '../../share/models/statisticAdmin';
+import { guestsStatisData, numberStatisData, ownersStatisData } from '../../share/models/statisticAdmin';
 import formatPrice from '../../utils/formatPrice';
 import './DashboardAdmin.scss';
-
-interface TabPanelProps {
-    children?: React.ReactNode;
-    index: number;
-    value: number;
-}
-
-function TabPanelChart(props: TabPanelProps) {
-    const { children, value, index, ...other } = props;
-
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`vertical-tabpanel-${index}`}
-            aria-labelledby={`vertical-tab-${index}`}
-            {...other}
-        >
-            {value === index && (
-                <Box sx={{ p: 3 }}>
-                    <Typography sx={{ textTransform: 'none', fontSize: '14px' }}>{children}</Typography>
-                </Box>
-            )}
-        </div>
-    );
-}
-
-function a11yProps(index: number) {
-    return {
-        id: `vertical-tab-${index}`,
-        'aria-controls': `vertical-tabpanel-${index}`,
-    };
-}
+import TabsChart from './TabsChart/TabsChart';
 
 const topCustomers = {
     head: ['Tên khách hàng', 'Tổng lượt đặt', 'Tổng chi tiêu'],
@@ -107,13 +64,10 @@ const renderHomeBody = (item: ownersStatisData, index: number) => (
 );
 
 const DashboardAdmin = () => {
-    const themeReducer = useSelector((state: RootState) => state.global);
     const date = new Date();
     const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
     const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
     const [numberStatis, setNumberStatis] = useState<numberStatisData[]>([]);
-    const [dataChart, setdataChart] = useState<revenueStatisticsResponse[]>([]);
-    const [dataChartRevenue, setdataChartRevenue] = useState<revenueStatisticsResponse[]>([]);
     const [dataGuests, setDataGuests] = useState<guestsStatisData[]>([]);
     const [dataOwners, setDataOwners] = useState<ownersStatisData[]>([]);
     const [dataHomes, setDataHomes] = useState<ownersStatisData[]>([]);
@@ -122,12 +76,8 @@ const DashboardAdmin = () => {
         format(firstDay, 'yyyy-MM-dd'),
         format(lastDay, 'yyyy-MM-dd'),
     ]);
-
-    const [valueChart, setValueChart] = React.useState(0);
-
-    const handleChangeChart = (event: React.SyntheticEvent, newValue: number) => {
-        setValueChart(newValue);
-    };
+    const [year, setYear] = useState<number>(0);
+    const currentYear = new Date().getFullYear();
 
     useEffect(() => {
         statisticApi.getStatisticOfAdmin(new Date().getFullYear().toString()).then((dataResponse) => {
@@ -156,14 +106,6 @@ const DashboardAdmin = () => {
             setNumberStatis(dataStatistic);
         });
 
-        statisticApi.getStatisticOfAdminForChart('BOOKING').then((dataResponse) => {
-            setdataChart(dataResponse?.data?.revenueStatistics);
-        });
-
-        statisticApi.getStatisticOfAdminForChart('REVENUE').then((dataResponse) => {
-            setdataChartRevenue(dataResponse?.data?.revenueStatistics);
-        });
-
         statisticApi.getStatisticOfAdminForGuest(dateStatistic).then((dataResponse) => {
             setDataGuests(dataResponse?.data?.content);
         });
@@ -177,66 +119,6 @@ const DashboardAdmin = () => {
         });
     }, [dateStatistic]);
 
-    const chartOptions = {
-        options: {
-            chart: {
-                id: 'basic-bar',
-            },
-            xaxis: {
-                categories: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-            },
-        },
-        series: [
-            {
-                name: 'Booking',
-                data: [
-                    dataChart.length !== 0 ? dataChart[0]?.amount : 0,
-                    dataChart.length !== 0 ? dataChart[1]?.amount : 0,
-                    dataChart.length !== 0 ? dataChart[2]?.amount : 0,
-                    dataChart.length !== 0 ? dataChart[3]?.amount : 0,
-                    dataChart.length !== 0 ? dataChart[4]?.amount : 0,
-                    dataChart.length !== 0 ? dataChart[5]?.amount : 0,
-                    dataChart.length !== 0 ? dataChart[6]?.amount : 0,
-                    dataChart.length !== 0 ? dataChart[7]?.amount : 0,
-                    dataChart.length !== 0 ? dataChart[8]?.amount : 0,
-                    dataChart.length !== 0 ? dataChart[9]?.amount : 0,
-                    dataChart.length !== 0 ? dataChart[10]?.amount : 0,
-                    dataChart.length !== 0 ? dataChart[11]?.amount : 0,
-                ],
-            },
-        ],
-    };
-
-    const chartOptionsRevenue = {
-        options: {
-            chart: {
-                id: 'basic-bar',
-            },
-            xaxis: {
-                categories: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-            },
-        },
-        series: [
-            {
-                name: 'Doanh thu',
-                data: [
-                    dataChartRevenue.length !== 0 ? dataChartRevenue[0]?.amount : 0,
-                    dataChartRevenue.length !== 0 ? dataChartRevenue[1]?.amount : 0,
-                    dataChartRevenue.length !== 0 ? dataChartRevenue[2]?.amount : 0,
-                    dataChartRevenue.length !== 0 ? dataChartRevenue[3]?.amount : 0,
-                    dataChartRevenue.length !== 0 ? dataChartRevenue[4]?.amount : 0,
-                    dataChartRevenue.length !== 0 ? dataChartRevenue[5]?.amount : 0,
-                    dataChartRevenue.length !== 0 ? dataChartRevenue[6]?.amount : 0,
-                    dataChartRevenue.length !== 0 ? dataChartRevenue[7]?.amount : 0,
-                    dataChartRevenue.length !== 0 ? dataChartRevenue[8]?.amount : 0,
-                    dataChartRevenue.length !== 0 ? dataChartRevenue[9]?.amount : 0,
-                    dataChartRevenue.length !== 0 ? dataChartRevenue[10]?.amount : 0,
-                    dataChartRevenue.length !== 0 ? dataChartRevenue[11]?.amount : 0,
-                ],
-            },
-        ],
-    };
-
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
         setValue(newValue);
     };
@@ -247,9 +129,35 @@ const DashboardAdmin = () => {
         setDateStatistic([dateFrom, dateTo]);
     };
 
+    const handleChangeYear = (event: ChangeEvent<HTMLInputElement>) => {
+        setYear(parseInt(event.currentTarget?.value));
+    };
+
+    const handleStatistic = () => {
+        // statisticApi.getStatisticOfHost(`${year !== 0 ? `?year=${year}` : ''}`).then((dataResponse) => {
+        //     setDataStatis(dataResponse.data);
+        // });
+    };
+
     return (
         <div className="dashboard__admin">
-            <h2 className="page-header">Dashboard</h2>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <h2 className="page-header">Dashboard</h2>
+                <div className="choose-year">
+                    <h2>Chọn năm thống kê:</h2>
+                    <input
+                        type="number"
+                        min={2000}
+                        max={2100}
+                        defaultValue={currentYear}
+                        className="input-year"
+                        onChange={handleChangeYear}
+                    />
+                    <button onClick={handleStatistic} className="btn-statistic">
+                        Thống kê
+                    </button>
+                </div>
+            </div>
             <div className="row">
                 <div className="col l-5">
                     <div className="row">
@@ -262,62 +170,8 @@ const DashboardAdmin = () => {
                 </div>
 
                 <div className="col l-7" style={{ paddingBottom: '30px' }}>
-                    <Box sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: 224 }}>
-                        <Tabs
-                            orientation="vertical"
-                            variant="scrollable"
-                            value={value}
-                            onChange={handleChangeChart}
-                            aria-label="Vertical tabs example"
-                            sx={{ borderRight: 1, borderColor: 'divider' }}
-                        >
-                            <Tab label="Đặt phòng" {...a11yProps(0)} />
-                            <Tab label="Doanh thu" {...a11yProps(1)} />
-                        </Tabs>
-                        <TabPanelChart value={valueChart} index={0}>
-                            <div className="card-admin-chart">
-                                <Chart
-                                    options={
-                                        themeReducer.mode === 'theme-mode-dark'
-                                            ? {
-                                                  ...chartOptions.options,
-                                                  theme: { mode: 'dark' },
-                                              }
-                                            : {
-                                                  ...chartOptions.options,
-                                                  theme: { mode: 'light' },
-                                              }
-                                    }
-                                    // options={chartOptions.options}
-                                    series={chartOptions.series}
-                                    type="line"
-                                    height="100%"
-                                    width="100%"
-                                />
-                            </div>
-                        </TabPanelChart>
-                        <TabPanelChart value={valueChart} index={1}>
-                            <div className="card-admin-chart">
-                                <Chart
-                                    options={
-                                        themeReducer.mode === 'theme-mode-dark'
-                                            ? {
-                                                  ...chartOptionsRevenue.options,
-                                                  theme: { mode: 'dark' },
-                                              }
-                                            : {
-                                                  ...chartOptionsRevenue.options,
-                                                  theme: { mode: 'light' },
-                                              }
-                                    }
-                                    // options={chartOptions.options}
-                                    series={chartOptionsRevenue.series}
-                                    type="line"
-                                    height="100%"
-                                    width="100%"
-                                />
-                            </div>
-                        </TabPanelChart>
+                    <Box sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: '100%' }}>
+                        <TabsChart year={year} />
                     </Box>
                 </div>
 

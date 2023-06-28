@@ -11,8 +11,8 @@ const statisticApi = {
         const url = `api/v1/cms/statistic/admin?year=${year}`;
         return axiosClient.get(url);
     },
-    getStatisticOfAdminForChart(type: string | undefined): Promise<any> {
-        const url = `api/v1/cms/statistic/admin/chart?year=2023&type=${type}`;
+    getStatisticOfAdminForChart(type: string | undefined, year: string | undefined): Promise<any> {
+        const url = `api/v1/cms/statistic/admin/chart?year=${year}&type=${type}`;
         return axiosClient.get(url);
     },
     getStatisticOfAdminForGuest(date: any): Promise<any> {
