@@ -14,8 +14,8 @@ const notificationApi = {
         const url = `api/v1/app/notification/tick-view`;
         return axiosClient.put(url, data);
     },
-    deleteNotificationViewed(): Promise<BaseResponseFactoryDeleteResponse> {
-        const url = `api/v1/app/notification/list/delete`;
+    deleteNotificationViewed(all: any): Promise<BaseResponseFactoryDeleteResponse> {
+        const url = `api/v1/app/notification/list/delete?all=${all}`;
         return axiosClient.delete(url);
     },
 };

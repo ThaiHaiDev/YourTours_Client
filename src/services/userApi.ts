@@ -28,6 +28,10 @@ const userApi = {
         const url = 'api/v1/auth/active-account';
         return axiosClient.post(url, otp);
     },
+    lockAccount(data: any): Promise<BaseResponseSuccessResponse> {
+        const url = `api/v1/cms/user/update/status`;
+        return axiosClient.put(url, data);
+    },
 };
 
 export default userApi;

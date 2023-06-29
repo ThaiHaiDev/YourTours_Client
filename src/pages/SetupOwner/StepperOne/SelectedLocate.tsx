@@ -8,10 +8,13 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import provinceApi from '../../../services/provinceApi';
 import { ProvinceModel } from '../../../share/models/province';
 import { t } from 'i18next';
+import { useDispatch } from 'react-redux';
+import setupOwnerSlice from '../setupOwnerSlice';
 
 export default function SelectedLocate(props: any) {
     const [age, setAge] = React.useState('');
     const [proviceList, setProvinceList] = React.useState<ProvinceModel[]>([]);
+    const dispatch = useDispatch();
 
     React.useEffect(() => {
         provinceApi.getListProvices().then((dataResponse) => {
@@ -24,6 +27,10 @@ export default function SelectedLocate(props: any) {
     const handleChange = (event: SelectChangeEvent) => {
         setAge(event.target.value);
         props.setValueStepOne(event.target.value);
+        const provinceName = proviceList.find((pro: any) => pro.codeName === event.target.value);
+        if (provinceName) {
+            dispatch(setupOwnerSlice.actions.addProvinceNameRoom(provinceName.name));
+        }
     };
 
     return (

@@ -1,17 +1,22 @@
-import './ConvenientSetting.scss';
-
 import * as React from 'react';
+
+import { useNavigate, useParams } from 'react-router-dom';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import { useNavigate, useParams } from 'react-router-dom';
+
+import './ConvenientSetting.scss';
 
 export default function ConvenientSetting(props: any) {
     const navigate = useNavigate();
     const params = useParams();
 
-    const nameConvenient = `${props?.convent ? props?.convent[0]?.name : ''}, ${
-        props?.convent !== undefined ? props?.convent[1]?.name : ''
+    const nameConvenient = `${
+        props?.convent && props?.convent.length !== 0 && props?.convent[0]?.name ? props?.convent[0]?.name : ''
+    } ${
+        props?.convent !== undefined && props?.convent.length !== 0 && props?.convent[1]?.name
+            ? `, ${props?.convent[1]?.name}`
+            : ''
     }, ...`;
 
     const handleChange = () => {

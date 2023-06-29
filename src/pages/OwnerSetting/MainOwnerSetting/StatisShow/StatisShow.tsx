@@ -1,13 +1,16 @@
 import { ChangeEvent, useEffect, useState } from 'react';
+
 import LineChart from '../../../../components/Chart/LineChart/LineChart';
 import { PieChart } from '../../../../components/Chart/PieChart/PieChart';
 import statisticApi from '../../../../services/statisticApi';
 
 import './StatisShow.scss';
+import TableDataStatis from './TableDataStatis';
 
 const StatisShow = () => {
     const [dataStatis, setDataStatis] = useState<any>();
     const [year, setYear] = useState<number>(0);
+    const currentYear = new Date().getFullYear();
 
     useEffect(() => {
         statisticApi.getStatisticOfHost('').then((dataResponse) => {
@@ -33,7 +36,7 @@ const StatisShow = () => {
                     type="number"
                     min={2000}
                     max={2100}
-                    defaultValue={2022}
+                    defaultValue={currentYear}
                     className="input-year"
                     onChange={handleChangeYear}
                 />
@@ -41,8 +44,7 @@ const StatisShow = () => {
                     Thống kê
                 </button>
             </div>
-
-            <hr />  <br />
+            <hr /> <br />
             <div className="row">
                 <div className="col l-6">
                     <div className="card-statis">
@@ -55,7 +57,7 @@ const StatisShow = () => {
                     </div>
                 </div>
             </div>
-            <br /> <br /> 
+            <br /> <br />
             <div className="row">
                 <div className="col l-4">
                     <h2 style={{ marginLeft: '20px' }}>Thông số đặt phòng của từng nhà</h2>
@@ -68,6 +70,8 @@ const StatisShow = () => {
                     <LineChart data={dataStatis?.revenueStatistics} />
                 </div>
             </div>
+            <br /> <br /> <hr /> <br />
+            <TableDataStatis data={[]} />
         </div>
     );
 };

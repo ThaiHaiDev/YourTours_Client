@@ -14,8 +14,8 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import homeApi from '../../../services/homeApi';
 import pricesOfHomeApi from '../../../services/pricesOfHomeApi';
 import formatPrice from '../../../utils/formatPrice';
-import './ValuationDiscount.scss';
 import DateDiscount from '../../DateDiscount/DateDiscount';
+import './ValuationDiscount.scss';
 
 export default function ValuationDiscountSetting(props: any) {
     const [expanded, setExpanded] = React.useState<string | false>(false);
@@ -208,14 +208,14 @@ export default function ValuationDiscountSetting(props: any) {
                                     {index === 0 ? (
                                         <DateDiscount
                                             setDataDay={setDateDiscountMonth}
-                                            dateStart={discount?.config.dateStart}
-                                            dateEnd={discount?.config.dateEnd}
+                                            dateStart={discount?.config?.dateStart}
+                                            dateEnd={discount?.config?.dateEnd}
                                         />
                                     ) : (
                                         <DateDiscount
                                             setDataDay={setDateDiscountWeek}
-                                            dateStart={discount?.config.dateStart}
-                                            dateEnd={discount?.config.dateEnd}
+                                            dateStart={discount?.config?.dateStart}
+                                            dateEnd={discount?.config?.dateEnd}
                                         />
                                     )}
 

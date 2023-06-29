@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import Slider from 'react-slick';
+import { t } from 'i18next';
 
 // Import css files
-import 'slick-carousel/slick/slick.css';
+import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 
-import './Advertisement.scss';
+import 'slick-carousel/slick/slick.css';
+
 import advertisementApi from '../../services/advertisementApi';
 import SkeletonAdvertisement from '../Skeleton/SkeletonAdvertisement';
-import { t } from 'i18next';
+import './Advertisement.scss';
 
 export default function SimpleSlider() {
     const [listDiscount, setListDiscount] = useState<any>([]);
@@ -17,7 +18,7 @@ export default function SimpleSlider() {
     useEffect(() => {
         setLoading(true);
         advertisementApi.getDiscountsCampaign().then((dataResponse: any) => {
-            setListDiscount(dataResponse.data.content);
+            setListDiscount(dataResponse?.data?.content);
             setLoading(false);
         });
     }, []);
