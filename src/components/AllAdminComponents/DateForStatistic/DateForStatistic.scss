@@ -1,0 +1,27 @@
+.calendar-statistic {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    z-index: 91;
+    position: absolute;
+    right: 100px;
+    margin-top: -5px;
+
+    .info_date {
+        display: flex;
+        flex-wrap: wrap;
+
+        .output {
+            width: 40%;
+
+            input {
+                padding: 8px;
+                width: 70%;
+            }
+        }
+
+        .output:nth-child(2) {
+            margin-left: 28px;
+        }
+    }
+}

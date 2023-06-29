@@ -1,27 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 
-import Chart from 'react-apexcharts';
+import format from 'date-fns/format';
 
-import { useSelector } from 'react-redux';
 import TabContext from '@mui/lab/TabContext';
-
 import TabList from '@mui/lab/TabList';
-import TabPanel from '@mui/lab/TabPanel';
 
+import TabPanel from '@mui/lab/TabPanel';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 
+import DateForStatistic from '../../components/AllAdminComponents/DateForStatistic/DateForStatistic';
+
 import StatusCard from '../../components/AllAdminComponents/Statuscard/Statuscard';
 import Table from '../../components/AllAdminComponents/Table/Table';
-import { RootState } from '../../redux/store';
 import statisticApi from '../../services/statisticApi';
-import {
-    guestsStatisData,
-    numberStatisData,
-    ownersStatisData,
-    revenueStatisticsResponse,
-} from '../../share/models/statisticAdmin';
+import { guestsStatisData, numberStatisData, ownersStatisData } from '../../share/models/statisticAdmin';
+import formatPrice from '../../utils/formatPrice';
 import './DashboardAdmin.scss';
+import TabsChart from './TabsChart/TabsChart';
 
 const topCustomers = {
     head: ['Tên khách hàng', 'Tổng lượt đặt', 'Tổng chi tiêu'],
@@ -33,7 +29,7 @@ const renderCusomerBody = (item: guestsStatisData, index: number) => (
     <tr key={index}>
         <td>{item.fullName}</td>
         <td>{item.numberOfBooking}</td>
-        <td>{item.totalCost}</td>
+        <td>{formatPrice(item.totalCost)}</td>
     </tr>
 );
 
@@ -52,14 +48,36 @@ const renderOrderBody = (item: ownersStatisData, index: number) => (
     </tr>
 );
 
-const DashboardAdmin = () => {
-    const themeReducer = useSelector((state: RootState) => state.global);
+const homesHeader = {
+    header: ['Tên chủ nhà', 'Số nhà cho thuê', 'Số lượng khách đặt phòng', 'Doanh thu'],
+};
 
+const renderHomeHead = (item: string, index: number) => <th key={index}>{item}</th>;
+
+const renderHomeBody = (item: ownersStatisData, index: number) => (
+    <tr key={index}>
+        <td>{item.fullName}</td>
+        <td>{item.numberOfHomes}</td>
+        <td>{item.numberOfBooking}</td>
+        <td>{item.totalCost}</td>
+    </tr>
+);
+
+const DashboardAdmin = () => {
+    const date = new Date();
+    const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+    const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
     const [numberStatis, setNumberStatis] = useState<numberStatisData[]>([]);
-    const [dataChart, setdataChart] = useState<revenueStatisticsResponse[]>([]);
     const [dataGuests, setDataGuests] = useState<guestsStatisData[]>([]);
     const [dataOwners, setDataOwners] = useState<ownersStatisData[]>([]);
+    const [dataHomes, setDataHomes] = useState<ownersStatisData[]>([]);
     const [value, setValue] = React.useState('1');
+    const [dateStatistic, setDateStatistic] = useState<any>([
+        format(firstDay, 'yyyy-MM-dd'),
+        format(lastDay, 'yyyy-MM-dd'),
+    ]);
+    const [year, setYear] = useState<number>(0);
+    const currentYear = new Date().getFullYear();
 
     useEffect(() => {
         statisticApi.getStatisticOfAdmin(new Date().getFullYear().toString()).then((dataResponse) => {
@@ -88,56 +106,58 @@ const DashboardAdmin = () => {
             setNumberStatis(dataStatistic);
         });
 
-        statisticApi.getStatisticOfAdminForChart().then((dataResponse) => {
-            setdataChart(dataResponse?.data?.revenueStatistics);
-        });
-
-        statisticApi.getStatisticOfAdminForGuest().then((dataResponse) => {
+        statisticApi.getStatisticOfAdminForGuest(dateStatistic).then((dataResponse) => {
             setDataGuests(dataResponse?.data?.content);
         });
 
-        statisticApi.getStatisticOfAdminForOwner().then((dataResponse) => {
+        statisticApi.getStatisticOfAdminForOwner(dateStatistic).then((dataResponse) => {
             setDataOwners(dataResponse.data.content);
         });
-    }, []);
 
-    const chartOptions = {
-        options: {
-            chart: {
-                id: 'basic-bar',
-            },
-            xaxis: {
-                categories: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-            },
-        },
-        series: [
-            {
-                name: 'Doanh thu',
-                data: [
-                    dataChart.length !== 0 ? dataChart[0]?.amount : 0,
-                    dataChart.length !== 0 ? dataChart[1]?.amount : 0,
-                    dataChart.length !== 0 ? dataChart[2]?.amount : 0,
-                    dataChart.length !== 0 ? dataChart[3]?.amount : 0,
-                    dataChart.length !== 0 ? dataChart[4]?.amount : 0,
-                    dataChart.length !== 0 ? dataChart[5]?.amount : 0,
-                    dataChart.length !== 0 ? dataChart[6]?.amount : 0,
-                    dataChart.length !== 0 ? dataChart[7]?.amount : 0,
-                    dataChart.length !== 0 ? dataChart[8]?.amount : 0,
-                    dataChart.length !== 0 ? dataChart[9]?.amount : 0,
-                    dataChart.length !== 0 ? dataChart[10]?.amount : 0,
-                    dataChart.length !== 0 ? dataChart[11]?.amount : 0,
-                ],
-            },
-        ],
-    };
+        statisticApi.getStatisticOfAdminForHome(dateStatistic).then((dataResponse) => {
+            setDataHomes(dataResponse.data.content);
+        });
+    }, [dateStatistic]);
 
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
         setValue(newValue);
     };
 
+    const handleChangeDayStatistic = (value: any) => {
+        const dateFrom = format(value[0].startDate, 'yyyy-MM-dd');
+        const dateTo = format(value[0].endDate, 'yyyy-MM-dd');
+        setDateStatistic([dateFrom, dateTo]);
+    };
+
+    const handleChangeYear = (event: ChangeEvent<HTMLInputElement>) => {
+        setYear(parseInt(event.currentTarget?.value));
+    };
+
+    const handleStatistic = () => {
+        // statisticApi.getStatisticOfHost(`${year !== 0 ? `?year=${year}` : ''}`).then((dataResponse) => {
+        //     setDataStatis(dataResponse.data);
+        // });
+    };
+
     return (
         <div className="dashboard__admin">
-            <h2 className="page-header">Dashboard</h2>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <h2 className="page-header">Dashboard</h2>
+                <div className="choose-year">
+                    <h2>Chọn năm thống kê:</h2>
+                    <input
+                        type="number"
+                        min={2000}
+                        max={2100}
+                        defaultValue={currentYear}
+                        className="input-year"
+                        onChange={handleChangeYear}
+                    />
+                    <button onClick={handleStatistic} className="btn-statistic">
+                        Thống kê
+                    </button>
+                </div>
+            </div>
             <div className="row">
                 <div className="col l-5">
                     <div className="row">
@@ -150,27 +170,9 @@ const DashboardAdmin = () => {
                 </div>
 
                 <div className="col l-7" style={{ paddingBottom: '30px' }}>
-                    <div className="card-admin-chart">
-                        {/* chart */}
-                        <Chart
-                            options={
-                                themeReducer.mode === 'theme-mode-dark'
-                                    ? {
-                                          ...chartOptions.options,
-                                          theme: { mode: 'dark' },
-                                      }
-                                    : {
-                                          ...chartOptions.options,
-                                          theme: { mode: 'light' },
-                                      }
-                            }
-                            // options={chartOptions.options}
-                            series={chartOptions.series}
-                            type="line"
-                            height="100%"
-                            width="100%"
-                        />
-                    </div>
+                    <Box sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: '100%' }}>
+                        <TabsChart year={year} />
+                    </Box>
                 </div>
 
                 <div className="col l-12">
@@ -178,15 +180,33 @@ const DashboardAdmin = () => {
                         <TabContext value={value}>
                             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                                 <TabList onChange={handleChange} aria-label="lab API tabs example">
-                                    <Tab label="Thống kê khách" value="1" sx={{ textTransform: 'none' }} />
-                                    <Tab label="Thống kê chủ nhà" value="2" sx={{ textTransform: 'none' }} />
-                                    <Tab label="Thống kê nhà" value="3" sx={{ textTransform: 'none' }} />
+                                    <Tab
+                                        label="Thống kê khách"
+                                        value="1"
+                                        sx={{ textTransform: 'none', fontSize: '14px' }}
+                                    />
+                                    <Tab
+                                        label="Thống kê chủ nhà"
+                                        value="2"
+                                        sx={{ textTransform: 'none', fontSize: '14px' }}
+                                    />
+                                    <Tab
+                                        label="Thống kê nhà"
+                                        value="3"
+                                        sx={{ textTransform: 'none', fontSize: '14px' }}
+                                    />
                                 </TabList>
                             </Box>
                             <TabPanel value="1">
                                 <div className="card-admin">
                                     <div className="card__header">
                                         <h3>Khách hàng thân thiết</h3>
+                                        <DateForStatistic
+                                            size="horizontal"
+                                            setDataDay={handleChangeDayStatistic}
+                                            dateStart={firstDay}
+                                            dateEnd={lastDay}
+                                        />
                                     </div>
                                     <div className="card__body">
                                         <Table
@@ -204,6 +224,12 @@ const DashboardAdmin = () => {
                                 <div className="card-admin">
                                     <div className="card__header">
                                         <h3>Chủ nhà cho thuê tốt nhất</h3>
+                                        <DateForStatistic
+                                            size="horizontal"
+                                            setDataDay={handleChangeDayStatistic}
+                                            dateStart={firstDay}
+                                            dateEnd={lastDay}
+                                        />
                                     </div>
                                     <div className="card__body">
                                         <Table
@@ -218,7 +244,27 @@ const DashboardAdmin = () => {
                                 </div>
                             </TabPanel>
                             <TabPanel value="3">
-                                <h2>gaaa</h2>
+                                <div className="card-admin">
+                                    <div className="card__header">
+                                        <h3>Chủ nhà cho thuê tốt nhất</h3>
+                                        <DateForStatistic
+                                            size="horizontal"
+                                            setDataDay={handleChangeDayStatistic}
+                                            dateStart={firstDay}
+                                            dateEnd={lastDay}
+                                        />
+                                    </div>
+                                    <div className="card__body">
+                                        <Table
+                                            headData={homesHeader.header}
+                                            renderHead={(item: string, index: number) => renderHomeHead(item, index)}
+                                            bodyData={dataHomes}
+                                            renderBody={(item: ownersStatisData, index: number) =>
+                                                renderHomeBody(item, index)
+                                            }
+                                        />
+                                    </div>
+                                </div>
                             </TabPanel>
                         </TabContext>
                     </Box>
