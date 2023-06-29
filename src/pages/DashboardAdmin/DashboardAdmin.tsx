@@ -76,7 +76,7 @@ const DashboardAdmin = () => {
         format(firstDay, 'yyyy-MM-dd'),
         format(lastDay, 'yyyy-MM-dd'),
     ]);
-    const [year, setYear] = useState<number>(0);
+    const [year, setYear] = useState<number>(new Date().getFullYear());
     const currentYear = new Date().getFullYear();
 
     useEffect(() => {
@@ -133,12 +133,6 @@ const DashboardAdmin = () => {
         setYear(parseInt(event.currentTarget?.value));
     };
 
-    const handleStatistic = () => {
-        // statisticApi.getStatisticOfHost(`${year !== 0 ? `?year=${year}` : ''}`).then((dataResponse) => {
-        //     setDataStatis(dataResponse.data);
-        // });
-    };
-
     return (
         <div className="dashboard__admin">
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -153,9 +147,6 @@ const DashboardAdmin = () => {
                         className="input-year"
                         onChange={handleChangeYear}
                     />
-                    <button onClick={handleStatistic} className="btn-statistic">
-                        Thống kê
-                    </button>
                 </div>
             </div>
             <div className="row">
@@ -210,6 +201,7 @@ const DashboardAdmin = () => {
                                     </div>
                                     <div className="card__body">
                                         <Table
+                                            limit="5"
                                             headData={topCustomers.head}
                                             renderHead={(item: string, index: number) => renderCusomerHead(item, index)}
                                             bodyData={dataGuests}
@@ -233,6 +225,7 @@ const DashboardAdmin = () => {
                                     </div>
                                     <div className="card__body">
                                         <Table
+                                            limit="5"
                                             headData={latestOrders.header}
                                             renderHead={(item: string, index: number) => renderOrderHead(item, index)}
                                             bodyData={dataOwners}
@@ -256,6 +249,7 @@ const DashboardAdmin = () => {
                                     </div>
                                     <div className="card__body">
                                         <Table
+                                            limit="5"
                                             headData={homesHeader.header}
                                             renderHead={(item: string, index: number) => renderHomeHead(item, index)}
                                             bodyData={dataHomes}
