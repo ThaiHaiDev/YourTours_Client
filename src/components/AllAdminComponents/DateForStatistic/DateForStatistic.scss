@@ -1,11 +1,20 @@
 .calendar-statistic {
     display: flex;
     flex-direction: column;
-    width: 600px;
+    width: 650px;
     z-index: 91;
     position: absolute;
     right: 100px;
     margin-top: -5px;
+
+    .input-date-statistic {
+        width: 100%;
+        font-size: 14px;
+        border-radius: 3px;
+        border: 1px solid var(--text-color);
+        font-family: Roboto;
+        margin-left: 10px;
+    }
 
     .info_date {
         display: flex;
@@ -15,7 +24,7 @@
             width: 40%;
 
             input {
-                padding: 8px;
+                padding: 6px;
                 width: 70%;
             }
         }

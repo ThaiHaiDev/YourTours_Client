@@ -85,8 +85,8 @@ const renderHomeBody = (item: homesStatisData, index: number) => (
 
 const DashboardAdmin = () => {
     const date = new Date();
-    const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-    const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+    const firstDay = format(new Date(date.getFullYear(), date.getMonth(), 1), 'yyyy-MM-dd');
+    const lastDay = format(new Date(date.getFullYear(), date.getMonth() + 1, 0), 'yyyy-MM-dd');
     const [numberStatis, setNumberStatis] = useState<numberStatisData[]>([
         {
             icon: 'bx bx-user',
@@ -113,10 +113,7 @@ const DashboardAdmin = () => {
     const [dataOwners, setDataOwners] = useState<ownersStatisData[]>([]);
     const [dataHomes, setDataHomes] = useState<ownersStatisData[]>([]);
     const [value, setValue] = React.useState('1');
-    const [dateStatistic, setDateStatistic] = useState<any>([
-        format(firstDay, 'yyyy-MM-dd'),
-        format(lastDay, 'yyyy-MM-dd'),
-    ]);
+    const [dateStatistic, setDateStatistic] = useState<any>([firstDay, lastDay]);
     const [year, setYear] = useState<number>(new Date().getFullYear());
     const currentYear = new Date().getFullYear();
 
@@ -165,8 +162,11 @@ const DashboardAdmin = () => {
     };
 
     const handleChangeDayStatistic = (value: any) => {
-        const dateFrom = format(value[0].startDate, 'yyyy-MM-dd');
-        const dateTo = format(value[0].endDate, 'yyyy-MM-dd');
+        // const dateFrom = format(value[0].startDate, 'yyyy-MM-dd');
+        // const dateTo = format(value[0].endDate, 'yyyy-MM-dd');
+        const dateFrom = value[0].startDate;
+        const dateTo = value[0].endDate;
+        console.log('ad', value[0]);
         setDateStatistic([dateFrom, dateTo]);
     };
 

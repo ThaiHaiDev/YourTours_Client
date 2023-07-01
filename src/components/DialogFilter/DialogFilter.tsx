@@ -1,17 +1,18 @@
 import { useState, useEffect } from 'react';
+import { t } from 'i18next';
+import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
+
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 
-import './DialogFilter.scss';
-import RangePriceFilter from './RangePriceFilter/RangePriceFilter';
+import filterApi from '../../services/filterApi';
 import CheckBox from './CheckBoxFilter/CheckBox';
 import CountRoomFilter from './CountRoomFilter/CountRoomFilter';
-import filterApi from '../../services/filterApi';
-import { useNavigate } from 'react-router-dom';
-import { t } from 'i18next';
+import './DialogFilter.scss';
+import RangePriceFilter from './RangePriceFilter/RangePriceFilter';
 
 export default function DialogFilter(props: any) {
     const [open, setOpen] = useState<boolean>(false);
