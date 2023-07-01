@@ -54,7 +54,6 @@ const NavbarAdmin = () => {
     const handleSeach = (event: KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
             searchContext?.setHanldSearch(true);
-            console.log('he', searchContext?.hanldSearch);
         }
     };
 
@@ -67,6 +66,7 @@ const NavbarAdmin = () => {
                         placeholder={dataSetupSearch.title}
                         onChange={searchChangeHandler}
                         onKeyDown={handleSeach}
+                        value={searchContext?.searchText}
                     />
                     <i className="bx bx-search"></i>
                 </div>
