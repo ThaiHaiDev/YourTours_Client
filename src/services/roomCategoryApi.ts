@@ -37,8 +37,8 @@ const roomCategoryApi = {
         const url = 'api/v1/cms/room-of-home/create/list';
         return axiosClient.post(url, data);
     },
-    getAllRoomCategory(): Promise<BaseResponseBasePagingResponseRoomCategoryInfo> {
-        const url = `api/v1/cms/room-categories/page?number=0&size=20`;
+    getAllRoomCategory(searchText: string | undefined): Promise<BaseResponseBasePagingResponseRoomCategoryInfo> {
+        const url = `api/v1/cms/room-categories/page?${searchText !== '' ? `keyword=${searchText}&` : ''}number=0&size=20`;
         return axiosClient.get(url);
     },
 };

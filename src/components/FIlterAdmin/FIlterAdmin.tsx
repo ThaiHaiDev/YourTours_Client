@@ -14,8 +14,6 @@ const FilterAdmin = () => {
 
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
 
-    console.log(dataFilter);
-
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
     };

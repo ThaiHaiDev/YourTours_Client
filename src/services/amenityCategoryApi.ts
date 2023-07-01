@@ -16,8 +16,8 @@ const amenityCategoryApi = {
         return axiosClient.get(url);
     },
 
-    getAmenityCategoriesAll(): Promise<BaseResponseAmenityCategoryHomeDetail> {
-        const url = 'api/v1/cms/amenity-categories/page?number=0&size=20';
+    getAmenityCategoriesAll(searchText: string | undefined): Promise<BaseResponseAmenityCategoryHomeDetail> {
+        const url = `api/v1/cms/amenity-categories/page?${searchText !== '' ? `keyword=${searchText}&` : ''}number=0&size=20`;
         return axiosClient.get(url);
     },
     addAmenityCategories(data: AmenityCategoriesModel): Promise<BaseResponseAmenityCategoryHomeDetail> {

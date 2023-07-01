@@ -34,8 +34,8 @@ const homeApi = {
         const url = `api/v1/public/homes/page?sort=VIEW&number=0&size=8`;
         return axiosClient.get(url);
     },
-    getAllHome(): Promise<BaseResponseHostHomeDetailModel> {
-        const url = `api/v1/cms/homes/admin/pages?number=0&size=20`;
+    getAllHome(searchText: string | undefined): Promise<BaseResponseHostHomeDetailModel> {
+        const url = `api/v1/cms/homes/admin/pages?${searchText !== '' ? `keyword=${searchText}&` : ''}number=0&size=20`;
         return axiosClient.get(url);
     },
     activeHome(data: ActiveHomeRequest): Promise<BaseResponseFactoryDeleteResponse> {

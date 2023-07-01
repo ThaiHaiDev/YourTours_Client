@@ -7,8 +7,8 @@ import {
 import { BaseResponseFactoryDeleteResponse } from '../share/models/cms';
 
 const bedApi = {
-    getAllTypeBed(): Promise<BaseResponseBasePagingResponseBedCategoryInfo> {
-        const url = 'api/v1/cms/bed-categories/page?number=0&size=20';
+    getAllTypeBed(searchText: string | undefined): Promise<BaseResponseBasePagingResponseBedCategoryInfo> {
+        const url = `api/v1/cms/bed-categories/page?${searchText !== '' ? `keyword=${searchText}&` : ''}number=0&size=20`;
         return axiosClient.get(url);
     },
     addTypeBed(data: FactoryCreateRequestUUIDBedCategoryDetail): Promise<BaseResponseBedCategoryDetail> {
