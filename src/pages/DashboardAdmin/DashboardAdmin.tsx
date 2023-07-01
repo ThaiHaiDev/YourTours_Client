@@ -14,13 +14,19 @@ import DateForStatistic from '../../components/AllAdminComponents/DateForStatist
 import StatusCard from '../../components/AllAdminComponents/Statuscard/Statuscard';
 import Table from '../../components/AllAdminComponents/Table/Table';
 import statisticApi from '../../services/statisticApi';
-import { guestsStatisData, numberStatisData, ownersStatisData } from '../../share/models/statisticAdmin';
+import {
+    guestsStatisData,
+    homesStatisData,
+    numberStatisData,
+    ownersStatisData,
+} from '../../share/models/statisticAdmin';
+import format3Dots from '../../utils/format3Dots';
 import formatPrice from '../../utils/formatPrice';
 import './DashboardAdmin.scss';
 import TabsChart from './TabsChart/TabsChart';
 
 const topCustomers = {
-    head: ['Tên khách hàng', 'Tổng lượt đặt', 'Tổng chi tiêu'],
+    head: ['Tên khách hàng', 'Tổng lượt đặt', 'Tổng chi tiêu', 'Đánh giá'],
 };
 
 const renderCusomerHead = (item: string, index: number) => <th key={index}>{item}</th>;
@@ -30,6 +36,7 @@ const renderCusomerBody = (item: guestsStatisData, index: number) => (
         <td>{item.fullName}</td>
         <td>{item.numberOfBooking}</td>
         <td>{formatPrice(item.totalCost)}</td>
+        <td>{item.rate ? item.rate : '--'}</td>
     </tr>
 );
 
@@ -49,17 +56,30 @@ const renderOrderBody = (item: ownersStatisData, index: number) => (
 );
 
 const homesHeader = {
-    header: ['Tên chủ nhà', 'Số nhà cho thuê', 'Số lượng khách đặt phòng', 'Doanh thu'],
+    header: [
+        'Tên chủ nhà',
+        'Tên nhà',
+        'Số lượng khách đặt phòng',
+        'Lượt xem',
+        'Lượt rate',
+        'Rate',
+        'Tỉ lệ đặt phòng',
+        'Doanh thu',
+    ],
 };
 
 const renderHomeHead = (item: string, index: number) => <th key={index}>{item}</th>;
 
-const renderHomeBody = (item: ownersStatisData, index: number) => (
+const renderHomeBody = (item: homesStatisData, index: number) => (
     <tr key={index}>
-        <td>{item.fullName}</td>
-        <td>{item.numberOfHomes}</td>
+        <td>{item.ownerName}</td>
+        <td>{format3Dots(item.homeName, 24)}</td>
         <td>{item.numberOfBooking}</td>
-        <td>{item.totalCost}</td>
+        <td>{item.numberOfView}</td>
+        <td>{item.numberOfEvaluate}</td>
+        <td>{item.averageRate}</td>
+        <td>{item.reservationRate ? item.reservationRate.toFixed(2) : 0}</td>
+        <td>{item.revenue ? formatPrice(item.revenue) : '--'}</td>
     </tr>
 );
 
@@ -67,7 +87,28 @@ const DashboardAdmin = () => {
     const date = new Date();
     const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
     const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-    const [numberStatis, setNumberStatis] = useState<numberStatisData[]>([]);
+    const [numberStatis, setNumberStatis] = useState<numberStatisData[]>([
+        {
+            icon: 'bx bx-user',
+            count: 0,
+            title: 'Tổng số khách hàng',
+        },
+        {
+            icon: 'bx bx-cart',
+            count: 0,
+            title: 'Tổng lượt đặt phòng',
+        },
+        {
+            icon: 'bx bx-dollar-circle',
+            count: 0,
+            title: 'Tổng doanh thu',
+        },
+        {
+            icon: 'bx bx-home-circle',
+            count: 0,
+            title: 'Tổng số chủ nhà',
+        },
+    ]);
     const [dataGuests, setDataGuests] = useState<guestsStatisData[]>([]);
     const [dataOwners, setDataOwners] = useState<ownersStatisData[]>([]);
     const [dataHomes, setDataHomes] = useState<ownersStatisData[]>([]);
@@ -80,7 +121,7 @@ const DashboardAdmin = () => {
     const currentYear = new Date().getFullYear();
 
     useEffect(() => {
-        statisticApi.getStatisticOfAdmin(new Date().getFullYear().toString()).then((dataResponse) => {
+        statisticApi.getStatisticOfAdmin(year.toString()).then((dataResponse) => {
             const dataStatistic = [
                 {
                     icon: 'bx bx-user',
@@ -94,7 +135,7 @@ const DashboardAdmin = () => {
                 },
                 {
                     icon: 'bx bx-dollar-circle',
-                    count: dataResponse.data.totalNumberOfRevenue,
+                    count: `${new Intl.NumberFormat('vi-VN').format(parseInt(dataResponse.data.totalNumberOfRevenue))}`,
                     title: 'Tổng doanh thu',
                 },
                 {
@@ -117,7 +158,7 @@ const DashboardAdmin = () => {
         statisticApi.getStatisticOfAdminForHome(dateStatistic).then((dataResponse) => {
             setDataHomes(dataResponse.data.content);
         });
-    }, [dateStatistic]);
+    }, [dateStatistic, year]);
 
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
         setValue(newValue);

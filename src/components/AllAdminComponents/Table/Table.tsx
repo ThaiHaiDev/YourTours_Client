@@ -1,6 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 
+import tableEmpty from '../../../assets/img/empty.png';
+
 import './Table.scss';
 
 const Table = (props: any) => {
@@ -44,9 +46,39 @@ const Table = (props: any) => {
                             <tr>{props.headData.map((item: any, index: any) => props.renderHead(item, index))}</tr>
                         </thead>
                     ) : null}
-                    {props?.bodyData && props?.renderBody ? (
+                    {props?.bodyData && props?.renderBody && dataShow.length !== 0 ? (
                         <tbody>{dataShow?.map((item: any, index: any) => props.renderBody(item, index))}</tbody>
-                    ) : null}
+                    ) : (
+                        <tbody>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <div className="table-empty">
+                                <img src={tableEmpty} alt="icon-empty" />
+                            </div>
+                        </tbody>
+                    )}
                 </table>
             </div>
             {pages > 1 ? (

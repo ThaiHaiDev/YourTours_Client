@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { ChangeEvent, useContext, KeyboardEvent } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+
+import { SearchContext } from '../../../contexts/searchContext';
+import { setupQuerySearch } from '../../../helpers/setupQuerySearch';
 import notifications from '../../../mockdata//notification.json';
 import user_menu from '../../../mockdata/user_menus.json';
 import { RootState } from '../../../redux/store';
-import FilterAdmin from '../../FIlterAdmin/FIlterAdmin';
 import Dropdown from '../DropdownAdmin/DropdownAdmin';
 import ThemeMenu from '../Thememenu/Thememenu';
 import './NavbarAdmin.scss';
@@ -36,22 +38,43 @@ const renderUserMenu = (item: any, index: any) => (
 
 const NavbarAdmin = () => {
     const userLogin = useSelector((state: RootState) => state.user);
+    const location = useLocation();
+    const dataSetupSearch = setupQuerySearch(location.pathname);
 
     const curr_user = {
         display_name: userLogin.current.fullName,
         image: 'https://avatars.githubusercontent.com/u/85157423?v=4',
     };
 
+    const searchContext = useContext(SearchContext);
+
+    const searchChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        searchContext?.setSearchText(event.currentTarget?.value);
+    };
+    const handleSeach = (event: KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter') {
+            searchContext?.setHanldSearch(true);
+            console.log('he', searchContext?.hanldSearch);
+        }
+    };
+
     return (
         <div className="topnav-admin">
-            <div className="topnav__search">
-                <input type="text" placeholder="Search here..." />
-                <i className="bx bx-search"></i>
-            </div>
+            {dataSetupSearch.isShow ? (
+                <div className="topnav__search">
+                    <input
+                        type="text"
+                        placeholder={dataSetupSearch.title}
+                        onChange={searchChangeHandler}
+                        onKeyDown={handleSeach}
+                    />
+                    <i className="bx bx-search"></i>
+                </div>
+            ) : (
+                <></>
+            )}
 
-            <div style={{ marginTop: '20px' }}>
-                <FilterAdmin />
-            </div>
+            <div style={{ marginTop: '20px' }}>{/* <FilterAdmin /> */}</div>
 
             <div className="topnav__right">
                 <div className="topnav__right-item">

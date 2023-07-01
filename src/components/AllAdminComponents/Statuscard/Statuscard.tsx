@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 
-import './Statuscard.scss'
+import './Statuscard.scss';
 
 const StatusCard = (props: any) => {
     return (
-        <div className='status-card'>
+        <div className="status-card">
             <div className="status-card__icon">
                 <i className={props.icon}></i>
             </div>
@@ -13,7 +13,7 @@ const StatusCard = (props: any) => {
                 <span>{props.title}</span>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default StatusCard
+export default StatusCard;

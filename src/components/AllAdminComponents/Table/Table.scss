@@ -1,6 +1,13 @@
 .table-wrapper {
     overflow-y: auto;
     font-size: 14px;
+    position: relative;
+
+    .table-empty {
+        position: absolute;
+        top: 70px;
+        left: 45%;
+    }
 }
 
 table {

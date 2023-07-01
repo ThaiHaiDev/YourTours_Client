@@ -27,6 +27,7 @@
     text-align: center;
     z-index: 1;
     text-transform: capitalize;
+    padding-left: 5px;
 }
 
 .status-card__info {
@@ -38,15 +39,11 @@
 }
 
 .status-card::before {
-    content: "";
+    content: '';
     width: 100%;
     padding-top: 100%;
     border-radius: 50%;
-    background-image: linear-gradient(
-        to top right,
-        var(--main-color),
-        var(--second-color)
-    );
+    background-image: linear-gradient(to top right, var(--main-color), var(--second-color));
     position: absolute;
     left: -50%;
     top: 0;
