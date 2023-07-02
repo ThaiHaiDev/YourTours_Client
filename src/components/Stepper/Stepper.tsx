@@ -1,32 +1,34 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
-import Button from '@mui/material/Button';
-
-import StepperOne from '../../pages/SetupOwner/StepperOne/StepperOne';
-import StepperTwo from '../../pages/SetupOwner/StepperTwo/StepperTwo';
-import StepperThree from '../../pages/SetupOwner/StepperThree/StepperThree';
-import StepperFour from '../../pages/SetupOwner/StepperFour/StepperFour';
-import StepperFive from '../../pages/SetupOwner/StepperFive/StepperFive';
+import { AxiosError } from 'axios';
+import { t } from 'i18next';
+import { useSnackbar } from 'notistack';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import imageRoomApi from '../../services/imageRoomApi';
 
 import { LoadingButton } from '@mui/lab';
-import { useDispatch, useSelector } from 'react-redux';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+import Stepper from '@mui/material/Stepper';
+
+import userSlice from '../../pages/AuthPage/userSlice';
+
+import ConfirmOwner from '../../pages/ConfirmOwner/ConfirmOwner';
 import setupOwnerSlice from '../../pages/SetupOwner/setupOwnerSlice';
+import StepperFive from '../../pages/SetupOwner/StepperFive/StepperFive';
+import StepperFour from '../../pages/SetupOwner/StepperFour/StepperFour';
+import StepperOne from '../../pages/SetupOwner/StepperOne/StepperOne';
+import StepperThree from '../../pages/SetupOwner/StepperThree/StepperThree';
+import StepperTwo from '../../pages/SetupOwner/StepperTwo/StepperTwo';
+
 import { RootState } from '../../redux/store';
 import homeDetailApi from '../../services/homeDetailApi';
-import { useSnackbar } from 'notistack';
-import { AxiosError } from 'axios';
-
-import { RoomOfHomeCreateRequest } from '../../share/models/roomHome';
+import imageRoomApi from '../../services/imageRoomApi';
 import { ConvenientOptionShow } from '../../share/models/convenient';
 import { ImageHomeDetailRequest } from '../../share/models/imageList';
-import ConfirmOwner from '../../pages/ConfirmOwner/ConfirmOwner';
-import userSlice from '../../pages/AuthPage/userSlice';
-import { t } from 'i18next';
+import { RoomOfHomeCreateRequest } from '../../share/models/roomHome';
+import LoadingMaster from '../LoadingMaster/LoadingMaster';
 
 const steps = [
     t('setupOwner.nameStep.one'),
@@ -112,6 +114,11 @@ export default function StepperComponent() {
                     anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
                     variant: 'warning',
                 });
+            } else if (dataStep4.length > 5) {
+                enqueueSnackbar(t('message.fullImage'), {
+                    anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
+                    variant: 'warning',
+                });
             } else {
                 if (!checkImage) {
                     enqueueSnackbar(t('message.uploadImagePlease'), {
@@ -155,18 +162,34 @@ export default function StepperComponent() {
     };
 
     const handleUpload = async () => {
-        setLoad(true);
-        for (var i = 0; i < dataStep4.length; i++) {
-            const formData = new FormData();
-            await formData.append('file', dataStep4[i]);
-            const dataUrlImage = await imageRoomApi.uploadImage(formData);
-            await setDataStep4URL.push({ path: dataUrlImage?.data?.previewUrl });
+        if (dataStep4.length === 5) {
+            try {
+                setLoad(true);
+                for (var i = 0; i < dataStep4.length; i++) {
+                    const formData = new FormData();
+                    await formData.append('file', dataStep4[i]);
+                    const dataUrlImage = await imageRoomApi.uploadImage(formData);
+                    await setDataStep4URL.push({ path: dataUrlImage?.data?.previewUrl });
+                }
+                if (setDataStep4URL.length >= 5) {
+                    setCheckImage(true);
+                }
+                await dispatch(setupOwnerSlice.actions.addimagesOfHomeRoom(setDataStep4URL));
+                setLoad(false);
+            } catch (error) {
+                setLoad(false);
+            }
+        } else if (dataStep4.length < 5) {
+            enqueueSnackbar(t('message.maxImage'), {
+                anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
+                variant: 'warning',
+            });
+        } else {
+            enqueueSnackbar(t('message.fullImage'), {
+                anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
+                variant: 'warning',
+            });
         }
-        if (setDataStep4URL.length >= 5) {
-            setCheckImage(true);
-        }
-        await dispatch(setupOwnerSlice.actions.addimagesOfHomeRoom(setDataStep4URL));
-        setLoad(false);
     };
 
     const handlePostRoom = () => {
@@ -191,6 +214,7 @@ export default function StepperComponent() {
 
     return (
         <Box sx={{ width: '100%' }}>
+            <LoadingMaster loadingMaster={load} />
             <Stepper activeStep={activeStep}>
                 {steps.map((label, index) => {
                     const stepProps: { completed?: boolean } = {};

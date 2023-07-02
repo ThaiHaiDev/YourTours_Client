@@ -1,14 +1,16 @@
-import './RoomPopular.scss';
-import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
-import favoriteApi from '../../services/favoriteApi';
 import { useState } from 'react';
-
-import { useSnackbar } from 'notistack';
 import { AxiosError } from 'axios';
 import { t } from 'i18next';
+import { useSnackbar } from 'notistack';
+
+import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
+
+import favoriteApi from '../../services/favoriteApi';
+import './RoomPopular.scss';
 
 const IconLove = (props: any) => {
     const [like, setLike] = useState<boolean>(props?.isFavorite);
+    const [loading, setLoading] = useState<boolean>(false);
 
     const { enqueueSnackbar } = useSnackbar();
 
@@ -16,19 +18,24 @@ const IconLove = (props: any) => {
         const dataSend = {
             homeId: props.idHome,
         };
-        favoriteApi
-            .likeFavoriteRoom(dataSend)
-            .then((data: any) => {
-                setLike(!like);
-                if (data.data.success) {
-                    enqueueSnackbar(t('message.love'), { variant: 'success' });
-                } else {
-                    enqueueSnackbar(t('message.unlove'), { variant: 'success' });
-                }
-            })
-            .catch((error: AxiosError<any>) => {
-                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
-            });
+        if (!loading) {
+            setLoading(true);
+            favoriteApi
+                .likeFavoriteRoom(dataSend)
+                .then((data: any) => {
+                    setLike(!like);
+                    setLoading(false);
+                    if (data.data.success) {
+                        enqueueSnackbar(t('message.love'), { variant: 'success' });
+                    } else {
+                        enqueueSnackbar(t('message.unlove'), { variant: 'success' });
+                    }
+                })
+                .catch((error: AxiosError<any>) => {
+                    setLoading(false);
+                    enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+                });
+        }
     };
 
     return (

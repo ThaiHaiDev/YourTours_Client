@@ -36,6 +36,7 @@
         "bookingSuccess": "Booking successfully",
         "addressEmpty": "Address must be not blank",
         "maxImage": "Please choose all 5 pictures",
+        "fullImage": "You have selected more than 5 required images",
         "uploadImagePlease": "Please click upload photo before continue",
         "fullinfo": "Please complete all information",
         "postHomeSuccess": "Register successfully",
@@ -123,7 +124,8 @@
         "love": "Favourite",
         "firstLove": "Create your first Favorites list",
         "profileAccount": "Account information",
-        "activeAccout": "Active account"
+        "activeAccout": "Active account",
+        "confirmClose": "Confirm"
     },
     "label": {
         "email": "Email",
@@ -187,7 +189,8 @@
         "totalPrice": "Total amount to pay",
         "love": "During your search, tap the heart-shaped icon to save your favorite accommodations or things to do in your Favorites list.",
         "profileAccount": "This information will be from entering your next order. Your information will be encrypted and not shared with 3rd parties",
-        "roleActive": "Your account once activated can extend more privileges"
+        "roleActive": "Your account once activated can extend more privileges",
+        "confirmClose": "Are you sure you want to exit? The data will be deleted upon leaving."
     },
     "placeholder": {
         "searchHome": "Where you want to go",

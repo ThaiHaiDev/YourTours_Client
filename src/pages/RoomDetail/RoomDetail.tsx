@@ -18,7 +18,6 @@ import DateIsBooking from '../../components/DateIsBooking/DateIsBooking';
 import DialogConvenient from '../../components/DialogConvenient/DialogConvenient';
 
 import Dropdown from '../../components/Dropdown/Dropdown';
-import Footer from '../../components/Footer/Footer';
 
 import ListImage from '../../components/ListImage/ListImage';
 
@@ -334,9 +333,6 @@ const RoomDetail = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="footer-page">
-                <Footer />
             </div>
         </div>
     );
