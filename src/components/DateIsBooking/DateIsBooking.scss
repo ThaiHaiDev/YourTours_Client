@@ -1,13 +1,14 @@
 .highlight {
     color: white !important;
     background: #ff5722;
-    border-radius: 15px;
+    // border-radius: 15px;
 }
 
 .data-isbooking {
     .react-calendar {
         width: 100%;
-        border-radius: 15px;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
 
         .react-calendar__navigation__prev2-button {
             border-top-left-radius: 15px;
@@ -18,15 +19,15 @@
         }
 
         .react-calendar__tile--rangeBothEnds {
-            border-radius: 15px;
+            // border-radius: 15px;
         }
 
         .react-calendar__tile--rangeBothEnds:hover {
-            border-radius: 15px;
+            // border-radius: 15px;
         }
 
         .react-calendar__tile:hover {
-            border-radius: 15px;
+            // border-radius: 15px;
         }
     }
 }
