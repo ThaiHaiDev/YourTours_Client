@@ -55,6 +55,7 @@ const FormEvaluate = (props: dataProps) => {
             .then(() => {
                 enqueueSnackbar(t('message.reviewSuccess'), { variant: 'success' });
                 resetForm.reset();
+                setOpen(false);
                 navigate('/historybooking');
             })
             .catch((error: AxiosError<any>) => {

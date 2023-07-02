@@ -1,7 +1,8 @@
 import { ChangeEvent, useState } from 'react';
-import { Link } from 'react-router-dom';
-import './StepperFive.scss';
 import { t } from 'i18next';
+
+import ConfirmClose from '../../../components/ConfirmClose/ConfirmClose';
+import './StepperFive.scss';
 
 const StepperFive = (props: any) => {
     const [nameRoom, setNameRoom] = useState<string>('');
@@ -73,9 +74,7 @@ const StepperFive = (props: any) => {
                             onChange={handleChangePriceRoom}
                         />
                     </form>
-                    <Link to="/" className="btn-out">
-                        {t('common.close')}
-                    </Link>
+                    <ConfirmClose />
                 </div>
             </div>
         </div>

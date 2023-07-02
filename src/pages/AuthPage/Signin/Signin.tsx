@@ -1,26 +1,27 @@
 import { useState } from 'react';
 
 import { AxiosError } from 'axios';
+import { t } from 'i18next';
+
 import { useSnackbar } from 'notistack';
-
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
 
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import GoogleIcon from '../../../assets/imgMaster/google-logo.png';
+
 import FacebookIcon from '../../../assets/imgMaster/facebook-new.png';
 import GithubIcon from '../../../assets/imgMaster/github.png';
 
+import GoogleIcon from '../../../assets/imgMaster/google-logo.png';
+import LoadingMaster from '../../../components/LoadingMaster/LoadingMaster';
 import Navbar from '../../../components/Navbar/Navbar';
 import authApi from '../../../services/authApi';
 import { LoginErrorResponse, LoginRequest } from '../../../share/models/auth';
-import LoadingMaster from '../../../components/LoadingMaster/LoadingMaster';
-import userSlice from '../userSlice';
 
+import userSlice from '../userSlice';
 import './Signin.scss';
-import { t } from 'i18next';
 
 const Signin = () => {
     const {
@@ -53,7 +54,7 @@ const Signin = () => {
                 enqueueSnackbar(t('message.signin'), { variant: 'success' });
                 setTimeout(function () {
                     document.location = '/';
-                }, 1500);
+                }, 500);
                 reset();
             })
             .catch((error: AxiosError<LoginErrorResponse>) => {

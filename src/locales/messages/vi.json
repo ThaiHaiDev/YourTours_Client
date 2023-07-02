@@ -36,6 +36,7 @@
         "bookingSuccess": "Đặt phòng thành công",
         "addressEmpty": "Bạn không thể để trống địa chỉ",
         "maxImage": "Vui lòng chọn đủ 5 hình",
+        "fullImage": "Bạn đã chọn vượt quá 5 hình yêu cầu",
         "uploadImagePlease": "Vui lòng nhấn upload ảnh lên trước khi tiếp tục",
         "fullinfo": "Vui lòng điền đầy đủ thông tin",
         "postHomeSuccess": "Đăng kí thành công",
@@ -123,7 +124,8 @@
         "love": "Yêu thích",
         "firstLove": "Tạo danh sách Yêu thích đầu tiên",
         "profileAccount": "Thông tin tài khoản",
-        "activeAccout": "Kích hoạt tài khoản"
+        "activeAccout": "Kích hoạt tài khoản",
+        "confirmClose": "Xác nhận"
     },
     "label": {
         "email": "Địa chỉ Email",
@@ -187,7 +189,8 @@
         "totalPrice": "Tổng tiền cần thanh toán",
         "love": "Trong quá trình tìm kiếm, hãy nhấn vào biểu tượng hình trái tim để lưu các chỗ ở yêu thích hoặc những điều nên trải nghiệm vào danh sách Yêu thích.",
         "profileAccount": "Thông tin này sẽ được từ nhập vào đơn hàng sau của bạn. Thông tin của bạn sẽ được mã hoá và không chia sẻ với bên thứ 3",
-        "roleActive": "Tài khoản của bạn khi đã kích hoạt có thể mở rộng hơn các đặc quyền"
+        "roleActive": "Tài khoản của bạn khi đã kích hoạt có thể mở rộng hơn các đặc quyền",
+        "confirmClose": "Bạn có chắc chắn muốn thoát không? Dữ liệu sẽ bị xóa khi rời đi."
     },
     "placeholder": {
         "searchHome": "Nơi bạn muốn đến",
@@ -282,6 +285,7 @@
     },
     "language": {
         "title": "Ngôn ngữ:",
+        "selectTitle": "Chọn ngôn ngữ",
         "en": "Tiếng Anh",
         "vi": "Tiếng Việt"
     }

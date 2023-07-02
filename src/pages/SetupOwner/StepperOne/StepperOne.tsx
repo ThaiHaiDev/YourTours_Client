@@ -1,8 +1,8 @@
 import { ChangeEvent } from 'react';
-import { Link } from 'react-router-dom';
 import SelectedLocate from './SelectedLocate';
 import './StepperOne.scss';
 import { t } from 'i18next';
+import ConfirmClose from '../../../components/ConfirmClose/ConfirmClose';
 
 interface StepperOneData {
     setDataStep1: (value: string) => void;
@@ -33,9 +33,7 @@ const StepperOne = (props: StepperOneData) => {
                     <SelectedLocate setValueStepOne={props.setDataStep1} />
                     <input type="text" className="input-address-step1" onChange={handleChangeAddrees} required />
                     <p className="span-address-step1">{t('contentMess.address')}</p>
-                    <Link to="/" className="btn-out">
-                        {t('common.close')}
-                    </Link>
+                    <ConfirmClose />
                 </div>
             </div>
         </div>

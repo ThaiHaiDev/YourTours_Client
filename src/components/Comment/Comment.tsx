@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Avatar, Pagination, Rating, Stack } from '@mui/material';
 
 import evaluateApi from '../../services/evaluateApi';
+import Footer from '../Footer/Footer';
 import './Comment.scss';
 
 export interface dataProps {
@@ -116,6 +117,9 @@ const CommentRating = (props: dataProps) => {
             ) : (
                 <></>
             )}
+            <div className="footer-page" style={{ width: '175%', marginLeft: '-100px' }}>
+                <Footer />
+            </div>
         </>
     );
 };

@@ -9,7 +9,7 @@
 
     .footer__contact {
         height: 210px;
-        padding: 80px;
+        padding: 30px 80px 60px 80px;
         display: flex !important;
         align-items: center;
         justify-content: center;
@@ -59,7 +59,7 @@
             cursor: pointer;
             height: 100%;
         }
-        
+
         .footer-input {
             border: 1px solid black;
         }
@@ -123,16 +123,10 @@
                     text-decoration: none;
                 }
             }
-            
+
             .footer__item:hover {
                 left: 8px;
             }
         }
     }
 }
-
-
-
-
-
-
