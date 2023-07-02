@@ -282,6 +282,7 @@
     },
     "language": {
         "title": "Language:",
+        "selectTitle": "Select language",
         "en": "English",
         "vi": "Vietnamese"
     }

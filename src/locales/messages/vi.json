@@ -282,6 +282,7 @@
     },
     "language": {
         "title": "Ngôn ngữ:",
+        "selectTitle": "Chọn ngôn ngữ",
         "en": "Tiếng Anh",
         "vi": "Tiếng Việt"
     }
