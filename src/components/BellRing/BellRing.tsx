@@ -102,7 +102,7 @@ const BellRing = (props: any) => {
                             <div className="dropdown__footer">
                                 <div className="btn-read-all" onClick={clearNoti}>
                                     <DoneAllIcon sx={{ color: '#2979ff', fontSize: '18px', marginRight: '4px' }} />
-                                    <p>Mark all as read</p>
+                                    <p>Clear all as read</p>
                                 </div>
                                 <p onClick={handleShowAll} aria-disabled={dataNoti.length === 0} className="btn-view">
                                     {showAll === 6 ? props.renderFooter() : <p className="btn-view">Clear all</p>}

@@ -10,7 +10,6 @@ import LockOpenIcon from '@mui/icons-material/LockOpen';
 import Table from '../../components/AllAdminComponents/Table/Table';
 import homeApi from '../../services/homeApi';
 import format3Dots from '../../utils/format3Dots';
-import formatPrice from '../../utils/formatPrice';
 import './HomeAdmin.scss';
 
 const customerTableHead = [

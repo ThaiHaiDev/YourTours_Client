@@ -19,6 +19,7 @@ import {
     homesStatisData,
     numberStatisData,
     ownersStatisData,
+    transactionStatisData,
 } from '../../share/models/statisticAdmin';
 import format3Dots from '../../utils/format3Dots';
 import formatPrice from '../../utils/formatPrice';
@@ -26,7 +27,7 @@ import './DashboardAdmin.scss';
 import TabsChart from './TabsChart/TabsChart';
 
 const topCustomers = {
-    head: ['Tên khách hàng', 'Tổng lượt đặt', 'Tổng chi tiêu', 'Đánh giá'],
+    head: ['Tên khách hàng', 'Email', 'Tổng lượt đặt', 'Tổng chi tiêu', 'Đánh giá'],
 };
 
 const renderCusomerHead = (item: string, index: number) => <th key={index}>{item}</th>;
@@ -34,6 +35,7 @@ const renderCusomerHead = (item: string, index: number) => <th key={index}>{item
 const renderCusomerBody = (item: guestsStatisData, index: number) => (
     <tr key={index}>
         <td>{item.fullName}</td>
+        <td>{item.email}</td>
         <td>{item.numberOfBooking}</td>
         <td>{formatPrice(item.totalCost)}</td>
         <td>{item.rate ? item.rate : '--'}</td>
@@ -41,7 +43,7 @@ const renderCusomerBody = (item: guestsStatisData, index: number) => (
 );
 
 const latestOrders = {
-    header: ['Tên chủ nhà', 'Số nhà cho thuê', 'Số lượng khách đặt phòng', 'Doanh thu'],
+    header: ['Tên chủ nhà', 'Email', 'Số nhà cho thuê', 'Số lượng khách đặt phòng', 'Doanh thu'],
 };
 
 const renderOrderHead = (item: string, index: number) => <th key={index}>{item}</th>;
@@ -49,6 +51,7 @@ const renderOrderHead = (item: string, index: number) => <th key={index}>{item}<
 const renderOrderBody = (item: ownersStatisData, index: number) => (
     <tr key={index}>
         <td>{item.fullName}</td>
+        <td>{item.email}</td>
         <td>{item.numberOfHomes}</td>
         <td>{item.numberOfBooking}</td>
         <td>{item.totalCost}</td>
@@ -61,8 +64,8 @@ const homesHeader = {
         'Tên nhà',
         'Số lượng khách đặt phòng',
         'Lượt xem',
-        'Lượt rate',
-        'Rate',
+        'Lượt đánh giá',
+        'Đánh giá trung bình',
         'Tỉ lệ đặt phòng',
         'Doanh thu',
     ],
@@ -80,6 +83,30 @@ const renderHomeBody = (item: homesStatisData, index: number) => (
         <td>{item.averageRate}</td>
         <td>{item.reservationRate ? item.reservationRate.toFixed(2) : 0}</td>
         <td>{item.revenue ? formatPrice(item.revenue) : '--'}</td>
+    </tr>
+);
+
+const transactionHeader = {
+    header: [
+        'Tên chủ nhà',
+        'Tên khách hàng',
+        'Tên nhà thuê',
+        'Ngày tạo',
+        'Tổng tiền thanh toán',
+        'Tiền thụ hưởng admin',
+    ],
+};
+
+const renderTransactionHead = (item: string, index: number) => <th key={index}>{item}</th>;
+
+const renderTransactionBody = (item: transactionStatisData, index: number) => (
+    <tr key={index}>
+        <td>{item.ownerName}</td>
+        <td>{item.customerName}</td>
+        <td>{format3Dots(item.homeName, 24)}</td>
+        <td>{item.createdDate}</td>
+        <td>{item.totalCost ? formatPrice(item.totalCost) : '--'}</td>
+        <td>{item.adminCost ? formatPrice(item.adminCost) : '--'}</td>
     </tr>
 );
 
@@ -111,7 +138,8 @@ const DashboardAdmin = () => {
     ]);
     const [dataGuests, setDataGuests] = useState<guestsStatisData[]>([]);
     const [dataOwners, setDataOwners] = useState<ownersStatisData[]>([]);
-    const [dataHomes, setDataHomes] = useState<ownersStatisData[]>([]);
+    const [dataHomes, setDataHomes] = useState<homesStatisData[]>([]);
+    const [dataTransaction, setDataTransaction] = useState<transactionStatisData[]>([]);
     const [value, setValue] = React.useState('1');
     const [dateStatistic, setDateStatistic] = useState<any>([firstDay, lastDay]);
     const [year, setYear] = useState<number>(new Date().getFullYear());
@@ -155,6 +183,10 @@ const DashboardAdmin = () => {
         statisticApi.getStatisticOfAdminForHome(dateStatistic).then((dataResponse) => {
             setDataHomes(dataResponse.data.content);
         });
+
+        statisticApi.getStatisticOfTransaction(dateStatistic).then((dataResponse) => {
+            setDataTransaction(dataResponse.data.content);
+        });
     }, [dateStatistic, year]);
 
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -166,7 +198,6 @@ const DashboardAdmin = () => {
         // const dateTo = format(value[0].endDate, 'yyyy-MM-dd');
         const dateFrom = value[0].startDate;
         const dateTo = value[0].endDate;
-        console.log('ad', value[0]);
         setDateStatistic([dateFrom, dateTo]);
     };
 
@@ -227,6 +258,7 @@ const DashboardAdmin = () => {
                                         value="3"
                                         sx={{ textTransform: 'none', fontSize: '14px' }}
                                     />
+                                    <Tab label="Giao dịch" value="4" sx={{ textTransform: 'none', fontSize: '14px' }} />
                                 </TabList>
                             </Box>
                             <TabPanel value="1">
@@ -280,7 +312,7 @@ const DashboardAdmin = () => {
                             <TabPanel value="3">
                                 <div className="card-admin">
                                     <div className="card__header">
-                                        <h3>Chủ nhà cho thuê tốt nhất</h3>
+                                        <h3>Thống kê nhà</h3>
                                         <DateForStatistic
                                             size="horizontal"
                                             setDataDay={handleChangeDayStatistic}
@@ -296,6 +328,32 @@ const DashboardAdmin = () => {
                                             bodyData={dataHomes}
                                             renderBody={(item: ownersStatisData, index: number) =>
                                                 renderHomeBody(item, index)
+                                            }
+                                        />
+                                    </div>
+                                </div>
+                            </TabPanel>
+                            <TabPanel value="4">
+                                <div className="card-admin">
+                                    <div className="card__header">
+                                        <h3>Thống kê giao dịch</h3>
+                                        <DateForStatistic
+                                            size="horizontal"
+                                            setDataDay={handleChangeDayStatistic}
+                                            dateStart={firstDay}
+                                            dateEnd={lastDay}
+                                        />
+                                    </div>
+                                    <div className="card__body">
+                                        <Table
+                                            limit="5"
+                                            headData={transactionHeader.header}
+                                            renderHead={(item: string, index: number) =>
+                                                renderTransactionHead(item, index)
+                                            }
+                                            bodyData={dataTransaction}
+                                            renderBody={(item: transactionStatisData, index: number) =>
+                                                renderTransactionBody(item, index)
                                             }
                                         />
                                     </div>
