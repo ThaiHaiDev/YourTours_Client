@@ -7,7 +7,7 @@ import './Comment.scss';
 
 export interface dataProps {
     idHome?: string;
-    rate?: any;
+    rate?: number;
 }
 
 const CommentRating = (props: dataProps) => {
@@ -67,7 +67,7 @@ const CommentRating = (props: dataProps) => {
             });
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [pagination.page, props.idHome]);
+    }, [pagination.page, props.idHome, props.rate]);
 
     return (
         <>
@@ -75,7 +75,12 @@ const CommentRating = (props: dataProps) => {
                 <p style={{ fontSize: '16px', fontWeight: 'bold', marginRight: '5px' }}>{`${
                     props.rate ? props.rate : '0'
                 }/5`}</p>
-                <Rating name="half-rating-read" defaultValue={props.rate ? props.rate : 0} precision={0.5} readOnly />
+                <Rating
+                    name="half-rating-read"
+                    defaultValue={props.rate !== undefined ? props.rate : 0}
+                    precision={0.5}
+                    readOnly
+                />
                 <p style={{ fontSize: '16px', marginLeft: '15px' }}>{`${pagination.total}+ đánh giá`}</p>
             </div>
             {dataComment.map((cmt: any, index: number) => (

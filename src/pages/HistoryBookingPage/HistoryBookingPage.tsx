@@ -79,13 +79,9 @@ const HistoryBookingPage = () => {
                                         <div className="locate-hictory__booking">
                                             <FmdGoodIcon className="icon-locate-booking" />
                                             <p>{`${
-                                                history?.homeAddressDetail?.addressDetail !== null
-                                                    ? history?.homeAddressDetail?.addressDetail
-                                                    : ''
-                                            } ${history?.homeAddressDetail?.addressDetail !== null ? ',' : ''} ${
-                                                history?.homeAddressDetail?.provinceName
-                                                    ? history?.homeAddressDetail?.provinceName
-                                                    : ''
+                                                history?.homeAddressDetail !== null ? history?.homeAddressDetail : ''
+                                            } ${history?.homeProvinceName !== null ? ',' : ''} ${
+                                                history?.homeProvinceName ? history?.homeProvinceName : ''
                                             }`}</p>
                                         </div>
                                         <p className="guests-history___booking">{`${t('label.totalClient')} ${
