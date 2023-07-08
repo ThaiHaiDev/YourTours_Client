@@ -14,6 +14,8 @@
 -   react-slick / react-transition-group
 -   react-paypal-js / moment
 
+***Here is the source Front end of the project. You can refer backend api (spring boot) from following source: https://github.com/MinhThang03/YourTours !***
+
 ## Features
 
 <details>
@@ -106,7 +108,9 @@
     -   BOOKING_NOTIFICATION: Notify check in check out for user -> click return to booking history page.
     -   HOME_NOTIFICATION: Promotion notice -> click go to home detail page.
 
--   Owner: + OWNER_HOME_NOTIFICATION: Notify someone booking or canceling a room -> click return to Today page in rental management
+-   Owner:
+  
+    - OWNER_HOME_NOTIFICATION: Notify someone booking or canceling a room -> click return to Today page in rental management
 </details>
 
 ## Setup
@@ -120,10 +124,95 @@
     |REACT_APP_PAYPAL_CLIENT_ID |✔ |Connection string to connect to Paypal development | |
 
 ## Preview
-- Home page
+
+### Home page
 ![1](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/0d922b7e-b1e6-4d29-acdd-0a7cec802fd5)
 
 <details>
 <summary><b>Plus</b></summary><br />
-    ![3](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/69f224e8-c1ce-4cab-82ce-32b7c7831e29)
+
+- View table notification
+
+![3](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/69f224e8-c1ce-4cab-82ce-32b7c7831e29)
+
+- View select language
+
+![4](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/d4be3def-2c5a-48a4-be1d-37befdf5cae4)
+
+- View infomation room from search by province or name room
+
+![5](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/9d0e0563-5fa5-4bde-8d93-70c01855fe93)
+
 </details>
+
+### Detail room page
+![2](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/aa949939-f092-423e-8fe6-98f90160423a)
+
+<details>
+<summary><b>Plus</b></summary><br />
+
+- View more house utilities
+
+![3](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/2754b01a-472c-4afc-b9cf-a58c8a5f3f1f)
+
+- Details of base price by day
+
+![4](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/224a2b57-a010-4bcd-b237-9fd7796b34cc)
+
+- Selected count client rent home
+
+![5](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/1d2516e3-d345-40c9-b916-63f714374d04)
+
+- Full booking information with promotion
+
+![6](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/2f1639a9-cdcd-46f8-85ef-8304eeb82739)
+
+</details>
+
+### Booking page
+![7](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/1d93d59e-aaf1-483b-8735-00e4e106b090)
+
+### Page becomes the host
+
+- Introduce
+
+![10](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/e41819c5-0d5a-4fc4-9119-fd923f7c3dfc)
+
+- Step setup one
+
+![11](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/4037ac29-9643-4969-9b20-b11abe17a0df)
+
+- Step setup two
+  
+![12](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/324a71e3-b75e-416b-96a0-70c21337c7f6)
+
+- Step setup three
+  
+![13](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/68dbf68e-2b92-458c-a11b-ab00a89d18c6)
+
+- Step setup four
+
+![14](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/982f0341-2487-422b-9bb5-3af600f0cf1b)
+
+- Step setup five
+
+![15](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/3294778c-7b0a-44ce-b2d9-d33d6fb4aafb)
+
+- Confirm setup
+  
+![17](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/93e06708-8cad-470b-bf4c-fe64dbf5c9dd)
+
+- Welcome owner new
+
+![18](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/b1584275-6287-43ac-8621-256ddaee46e7)
+
+<details>
+<summary><b>Plus</b></summary><br />
+
+- When close setup
+
+![16](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/c14e09fa-d818-418f-8c57-72fa40b30c64)
+
+</details>
+
+
