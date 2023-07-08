@@ -120,3 +120,10 @@
     |REACT_APP_PAYPAL_CLIENT_ID |✔ |Connection string to connect to Paypal development | |
 
 ## Preview
+- Home page
+![1](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/0d922b7e-b1e6-4d29-acdd-0a7cec802fd5)
+
+<details>
+<summary><b>Plus</b></summary><br />
+    ![3](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/69f224e8-c1ce-4cab-82ce-32b7c7831e29)
+</details>
