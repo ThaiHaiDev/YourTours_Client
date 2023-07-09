@@ -125,6 +125,42 @@
 
 ## Preview
 
+<details>
+<summary><b>Table of contents</b></summary><br />
+    
+- Home page (with UI plus)
+
+- Detail room page (with UI plus)
+
+- Booking page
+
+- Page becomes the host (with UI plus)
+
+- List room page (with UI plus)
+
+- Favorites page
+
+- History for customer page (with UI plus)
+
+- Overview host page (with UI plus)
+
+- List room of host page
+
+- Config for room of host (*Main config) (with UI plus)
+
+- Calender set config price special page
+
+- History transaction of host page
+
+- Sign in page
+
+- Forgot password page
+
+- Dashboard admin
+
+- Management CMS (because they are similar, show a few pages)
+</details>
+
 ### Home page
 ![1](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/0d922b7e-b1e6-4d29-acdd-0a7cec802fd5)
 
@@ -214,5 +250,98 @@
 ![16](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/c14e09fa-d818-418f-8c57-72fa40b30c64)
 
 </details>
+
+### List room page
+
+![8](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/687fc28c-b578-4d25-b035-8936527c6c50)
+
+<details>
+<summary><b>Plus</b></summary><br />
+
+- Filter
+
+![9](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/f45ed252-a02e-4aed-a0d3-e620cb240811)
+
+</details>
+
+### Favorites page
+
+![19](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/5a056692-6c79-416c-a506-ed6c0f432bf5)
+
+### History for customer page
+
+![20](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/9d443552-5288-4cb3-b2fa-fff885cbd6e4)
+
+<details>
+<summary><b>Plus</b></summary><br />
+
+- Rate
+
+![21](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/fad4915b-ad4e-4587-836f-e39655af8a92)
+
+</details>
+
+### Overview host page
+
+![22](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/b66c0d97-e733-4ee3-99f0-d5b0da77f5e5)
+
+![23](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/c97168d2-63a3-4097-839a-cdcd050f6807)
+
+![24](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/bbd75343-6780-4e92-8929-1e3609cc8086)
+
+### List room of host page
+
+![25](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/b7d8215c-387c-4774-8f17-13dbf69e664e)
+
+### Config for room of host (*Main config)
+
+![26](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/9ed2a951-3a7a-40d1-a627-1bd8909720fa)
+
+<details>
+<summary><b>Plus</b></summary><br />
+
+- Config type room page
+
+![27](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/1044a88c-1c97-4c9e-b897-37c0e7eb4559)
+
+![28](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/1f8f1e87-e588-414b-a64d-fbc28c0fb403)
+
+- Config type bed page
+
+![29](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/37e1222e-f2e6-41e5-b30a-1a79416d2192)
+
+- Config convenient for room page
+
+![30](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/5fb72b9c-b9cc-4044-b2ed-7a29598b40e6)
+
+</details>
+
+### Calender set config price special page
+
+![31](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/7a003c76-e85f-4acb-8c0b-22b82d4cd754)
+
+### History transaction of host page
+
+![32](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/6b5173d0-783b-4f99-a9b9-b18653da3999)
+
+### Sign in page
+
+![33](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/1c46d2c4-6778-4c91-affe-09c30ccbf3fe)
+
+### Forgot password
+
+![35](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/544ec446-ddab-47b3-9e3e-59103943075e)
+
+![36](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/2689eb00-40d0-4ace-ac4b-c4eb31b4836f)
+
+### Dashboard admin
+
+![37](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/029c5252-2f93-4dfe-a375-6454a0bfa92f)
+
+### Management CMS (because they are similar, show a few pages)
+
+![38](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/42c7cec5-4437-4288-bbe8-2c391cc85a78)
+
+![39](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/f03d3afe-768e-4fd6-a0fc-8d079d2944ca)
 
 
