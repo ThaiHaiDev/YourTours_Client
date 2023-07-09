@@ -182,7 +182,8 @@
 </details>
 
 ### Detail room page
-![2](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/aa949939-f092-423e-8fe6-98f90160423a)
+
+![2](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/7beb2d26-d6d7-4699-b841-82b8b722235e)
 
 <details>
 <summary><b>Plus</b></summary><br />
