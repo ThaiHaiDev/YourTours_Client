@@ -6,10 +6,18 @@ import './RangePriceFilter.scss';
 
 interface RangePriceFilterData {
     handleChangePriceRange: (value: number[]) => void;
+    dataFilterDefauld?: any;
 }
 
 export default function RangePriceFilter(props: RangePriceFilterData) {
-    const [value, setValue] = React.useState<number[]>([1, 5000000]);
+    const [value, setValue] = React.useState<number[]>(
+        props?.dataFilterDefauld?.priceFrom &&
+            props?.dataFilterDefauld?.priceTo &&
+            props?.dataFilterDefauld?.priceFrom !== '' &&
+            props?.dataFilterDefauld?.priceTo !== ''
+            ? [Number(props?.dataFilterDefauld?.priceFrom), Number(props?.dataFilterDefauld?.priceTo)]
+            : [1, 5000000],
+    );
 
     const handleChange = (event: Event, newValue: number | number[]) => {
         setValue(newValue as number[]);
@@ -27,8 +35,8 @@ export default function RangePriceFilter(props: RangePriceFilterData) {
                 valueLabelDisplay="auto"
                 max={10000000}
             />
-            <div className='show-rang__price'>
-                <p style={{marginRight: '10px'}}>Giá tối thiểu</p>
+            <div className="show-rang__price">
+                <p style={{ marginRight: '10px' }}>Giá tối thiểu</p>
                 <input
                     type="number"
                     className="input-pricerange"

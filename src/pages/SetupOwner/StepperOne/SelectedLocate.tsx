@@ -12,7 +12,9 @@ import { useDispatch } from 'react-redux';
 import setupOwnerSlice from '../setupOwnerSlice';
 
 export default function SelectedLocate(props: any) {
-    const [age, setAge] = React.useState('');
+    const [age, setAge] = React.useState(
+        props?.dataFilterDefauld?.provinceCode ? props?.dataFilterDefauld?.provinceCode : '',
+    );
     const [proviceList, setProvinceList] = React.useState<ProvinceModel[]>([]);
     const dispatch = useDispatch();
 

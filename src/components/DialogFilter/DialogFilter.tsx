@@ -8,6 +8,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 
+import SelectedLocate from '../../pages/SetupOwner/StepperOne/SelectedLocate';
 import filterApi from '../../services/filterApi';
 import CheckBox from './CheckBoxFilter/CheckBox';
 import CountRoomFilter from './CountRoomFilter/CountRoomFilter';
@@ -21,17 +22,53 @@ export default function DialogFilter(props: any) {
     const [numberOfBed, setNumberOfBed] = useState<string>('');
     const [numberOfBedRoom, setNumberOfBedRoom] = useState<string>('');
     const [numberOfBathRoom, setNumberOfBathRoom] = useState<string>('');
+    const [filterProvince, setFilterProvince] = useState<string>('');
+    const [dataFilterDefauld, setDataFilterDefauld] = useState<any>({});
     const [filter, setFilter] = useState<string>('');
 
     useEffect(() => {
         if (valuePriceRange.slice(0, 9) === 'priceFrom') {
-            setFilter(`${valuePriceRange}${numberOfBed}${numberOfBedRoom}${numberOfBathRoom}${filterAmenities}`);
+            setFilter(
+                `${valuePriceRange}${filterProvince}${numberOfBed}${numberOfBedRoom}${numberOfBathRoom}${filterAmenities}`,
+            );
         } else {
-            setFilter(`${numberOfBed}${numberOfBedRoom}${numberOfBathRoom}${filterAmenities}`);
+            setFilter(`${filterProvince}${numberOfBed}${numberOfBedRoom}${numberOfBathRoom}${filterAmenities}`);
         }
-    }, [filterAmenities, valuePriceRange, numberOfBed, numberOfBedRoom, numberOfBathRoom]);
+    }, [filterAmenities, valuePriceRange, numberOfBed, numberOfBedRoom, numberOfBathRoom, filterProvince]);
 
     const handleClickOpen = () => {
+        var provinceCode = '';
+        var priceFrom = '';
+        var priceTo = '';
+        if (props.dataQueryDefauld.includes('provinceCode')) {
+            var startprovinceCode = props.dataQueryDefauld.indexOf('provinceCode=') + 'provinceCode='.length;
+            var endprovinceCode = props.dataQueryDefauld.indexOf('&', startprovinceCode);
+
+            if (startprovinceCode !== -1 && endprovinceCode !== -1) {
+                provinceCode = props.dataQueryDefauld.substring(startprovinceCode, endprovinceCode);
+            }
+        }
+        if (props.dataQueryDefauld.includes('priceFrom')) {
+            var startpriceFrom = props.dataQueryDefauld.indexOf('priceFrom=') + 'priceFrom='.length;
+            var endpriceFrom = props.dataQueryDefauld.indexOf('&', startpriceFrom);
+
+            if (startpriceFrom !== -1 && endpriceFrom !== -1) {
+                priceFrom = props.dataQueryDefauld.substring(startpriceFrom, endpriceFrom);
+            }
+        }
+        if (props.dataQueryDefauld.includes('priceTo')) {
+            var startpriceTo = props.dataQueryDefauld.indexOf('priceTo=') + 'priceTo='.length;
+            var endpriceTo = props.dataQueryDefauld.indexOf('&', startpriceTo);
+
+            if (startpriceTo !== -1 && endpriceTo !== -1) {
+                priceTo = props.dataQueryDefauld.substring(startpriceTo, endpriceTo);
+            }
+        }
+        setDataFilterDefauld({
+            provinceCode,
+            priceFrom,
+            priceTo,
+        });
         setOpen(true);
     };
 
@@ -81,6 +118,13 @@ export default function DialogFilter(props: any) {
             setNumberOfBathRoom('');
         }
     };
+    const handleChangeProvince = (value: any) => {
+        if (value) {
+            setFilterProvince(`provinceCode=${value}&`);
+        } else {
+            setFilterProvince('');
+        }
+    };
 
     return (
         <div className="dialog-filter">
@@ -103,9 +147,22 @@ export default function DialogFilter(props: any) {
                         {t('common.filter')}
                     </DialogTitle>
                     <DialogContent sx={{ fontSize: '16px', fontWeight: 'bold' }}>
+                        Chọn tỉnh thành bạn muốn đến
+                        <div style={{ marginTop: '30px' }}>
+                            <SelectedLocate
+                                setValueStepOne={handleChangeProvince}
+                                dataFilterDefauld={dataFilterDefauld}
+                            />
+                        </div>
+                        <br /> <hr />
+                    </DialogContent>
+                    <DialogContent sx={{ fontSize: '16px', fontWeight: 'bold' }}>
                         {t('label.priceRange')}
                         <div style={{ marginTop: '30px' }}>
-                            <RangePriceFilter handleChangePriceRange={handleChangePriceRange} />
+                            <RangePriceFilter
+                                handleChangePriceRange={handleChangePriceRange}
+                                dataFilterDefauld={dataFilterDefauld}
+                            />
                         </div>
                         <br /> <hr />
                     </DialogContent>
