@@ -79,7 +79,7 @@ const FilterBar = (props: any) => {
                     </div>
                 ))}
             </Slider>
-            <DialogFilter filterData={props.filterData} pagi={props?.pagi} />
+            <DialogFilter filterData={props.filterData} pagi={props?.pagi} dataQueryDefauld={props.dataQueryDefauld} />
         </div>
     );
 };
