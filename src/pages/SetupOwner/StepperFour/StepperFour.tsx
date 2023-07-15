@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom';
-import UploadFile from '../../../components/UploadFile/UploadFile';
-
-import './StepperFour.scss';
 import { t } from 'i18next';
+
+import ConfirmClose from '../../../components/ConfirmClose/ConfirmClose';
+import UploadFile from '../../../components/UploadFile/UploadFile';
+import './StepperFour.scss';
 
 interface StepperFourData {
     setDataStep4: (value: File[]) => void;
@@ -32,9 +32,7 @@ const StepperFour = (props: StepperFourData) => {
                     <div className="upload-file">
                         <UploadFile onFileChange={(files) => onFileChange(files)} />
                     </div>
-                    <Link to="/" className="btn-out">
-                        {t('common.close')}
-                    </Link>
+                    <ConfirmClose />
                 </div>
             </div>
         </div>

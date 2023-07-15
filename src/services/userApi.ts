@@ -16,8 +16,8 @@ const userApi = {
         const url = 'api/v1/user/update/current-user';
         return axiosClient.put(url, data);
     },
-    getAllUser(): Promise<BaseResponseBasePagingResponseUserInfo> {
-        const url = `api/v1/cms/user/page?number=0&size=20`;
+    getAllUser(searchText: string | undefined): Promise<BaseResponseBasePagingResponseUserInfo> {
+        const url = `api/v1/cms/user/page?${searchText !== '' ? `keyword=${searchText}&` : ''}number=0&size=20`;
         return axiosClient.get(url);
     },
     sendEmailActiveAccount(): Promise<BaseResponseSuccessResponse> {

@@ -20,16 +20,41 @@ export interface numberStatisData {
 export interface guestsStatisData {
     userId?: string;
     fullName: string;
+    email: string;
     numberOfBooking: number;
     totalCost: string;
+    rate: string;
 }
 
 export interface ownersStatisData {
     userId?: string;
+    email: string;
     fullName: string;
     numberOfBooking: number;
     totalCost: string;
     numberOfHomes: number;
+}
+
+export interface homesStatisData {
+    homeId?: string;
+    homeName?: string;
+    numberOfView?: number;
+    numberOfBooking?: number;
+    revenue?: string;
+    numberOfEvaluate?: number;
+    averageRate?: number;
+    reservationRate?: number;
+    ownerName?: string;
+}
+
+export interface transactionStatisData {
+    homeId?: string;
+    homeName?: string;
+    customerName: string;
+    ownerName?: string;
+    totalCost?: any;
+    adminCost?: any;
+    createdDate: string;
 }
 
 export interface BaseResponseOwnerStatistic {

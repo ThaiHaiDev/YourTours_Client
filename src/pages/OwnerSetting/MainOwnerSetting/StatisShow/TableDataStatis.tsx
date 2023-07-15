@@ -13,7 +13,7 @@ const TableDataStatis = (props: any) => {
     const [stopMonthLast, setStopMonthLast] = useState<boolean>(false);
 
     const [dateStatistic, setDateStatistic] = useState<any>({
-        year: new Date().getFullYear(),
+        year: props.year ? props.year : new Date().getFullYear(),
         month: new Date().getMonth() + 1,
     });
 
@@ -21,7 +21,7 @@ const TableDataStatis = (props: any) => {
         statisticApi.getStatisticOfAdminForOwnerByMonth(dateStatistic).then((dataRes) => {
             setDataStatisticMonth(dataRes.data.content);
         });
-    }, [dateStatistic]);
+    }, [dateStatistic, props.reCall]);
 
     const rows = [];
     for (var i = 0; i < dataStatisticMonth.length; i++) {
@@ -97,7 +97,7 @@ const TableDataStatis = (props: any) => {
                                 } else {
                                     setStopMonthFirst(false);
                                     setDateStatistic({
-                                        ...dateStatistic,
+                                        year: props.year,
                                         month: dateStatistic.month - 1,
                                     });
                                 }
@@ -123,7 +123,7 @@ const TableDataStatis = (props: any) => {
                                 } else {
                                     setStopMonthLast(false);
                                     setDateStatistic({
-                                        ...dateStatistic,
+                                        year: props.year,
                                         month: dateStatistic.month + 1,
                                     });
                                 }

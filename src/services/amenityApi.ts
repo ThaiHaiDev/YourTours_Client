@@ -3,8 +3,8 @@ import { BaseResponseAmenityDetail, BaseResponseAmenityDetailAdd, RequestAmenity
 import { BaseResponseFactoryDeleteResponse, BaseResponseSuccessResponse } from '../share/models/cms';
 
 const amenityApi = {
-    getAllAmenity(): Promise<BaseResponseAmenityDetail> {
-        const url = 'api/v1/cms/amenities/page?number=0&size=100';
+    getAllAmenity(searchText: string | undefined): Promise<BaseResponseAmenityDetail> {
+        const url = `api/v1/cms/amenities/page?${searchText !== '' ? `keyword=${searchText}&` : ''}number=0&size=100`;
         return axiosClient.get(url);
     },
     addAmenity(data: RequestAmenity): Promise<BaseResponseAmenityDetailAdd> {

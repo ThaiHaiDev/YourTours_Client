@@ -8,8 +8,8 @@ import {
 } from '../share/models/surcharge';
 
 const surchargeApi = {
-    getAllSurcharge(): Promise<BaseResponseBasePagingResponseSurchargeHomeCategoryInfo> {
-        const url = 'api/v1/cms/surcharge-home-categories/page?number=0&size=20';
+    getAllSurcharge(searchText: string | undefined): Promise<BaseResponseBasePagingResponseSurchargeHomeCategoryInfo> {
+        const url = `api/v1/cms/surcharge-home-categories/page?${searchText !== '' ? `keyword=${searchText}&` : ''}number=0&size=20`;
         return axiosClient.get(url);
     },
     addSurcharge(

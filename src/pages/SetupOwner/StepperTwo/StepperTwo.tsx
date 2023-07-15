@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { t } from 'i18next';
+
+import ConfirmClose from '../../../components/ConfirmClose/ConfirmClose';
 import CountNumber from '../../../components/CountNumber/CountNumber';
 import CountNumberGuest from '../../../components/CountNumber/CountNumberGuest';
 import roomCategoryApi from '../../../services/roomCategoryApi';
 import { RoomOfHomeCreateRequest } from '../../../share/models/roomHome';
 import './StepperTwo.scss';
-import { t } from 'i18next';
 
 interface StepperTwoData {
     setDataStep2?: RoomOfHomeCreateRequest[];
@@ -50,9 +51,7 @@ const StepperTwo = (props: StepperTwoData) => {
                             </div>
                         ))}
                     </div>
-                    <Link to="/" className="btn-out">
-                        {t('common.close')}
-                    </Link>
+                    <ConfirmClose />
                 </div>
             </div>
         </div>

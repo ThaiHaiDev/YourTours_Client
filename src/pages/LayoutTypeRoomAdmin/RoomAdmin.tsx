@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import './RoomAdmin.scss';
-import Table from '../../components/AllAdminComponents/Table/Table';
-import AddForm from '../../components/AllAdminComponents/AddForm/AddForm';
-
 import { AxiosError } from 'axios';
 import { useSnackbar } from 'notistack';
-
 import Popup from 'reactjs-popup';
+
 import 'reactjs-popup/dist/index.css';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-import roomCategoryApi from '../../services/roomCategoryApi';
+import AddForm from '../../components/AllAdminComponents/AddForm/AddForm';
+import Table from '../../components/AllAdminComponents/Table/Table';
 import UpdateForm from '../../components/AllAdminComponents/UpdateForm/UpdateForm';
+
+import roomCategoryApi from '../../services/roomCategoryApi';
 import format3Dots from '../../utils/format3Dots';
+import './RoomAdmin.scss';
 
 const customerTableHead = ['', 'Tên phòng', 'Mô tả', 'Config giường', 'Quan trọng', '', ''];
 
@@ -160,15 +160,13 @@ const RoomAdmin = (props: any) => {
                     <div className="col l-12">
                         <div className="card-admin">
                             <div className="card__body">
-                                {props.data.length !== 0 && (
-                                    <Table
-                                        limit="10"
-                                        headData={customerTableHead}
-                                        renderHead={(item: any, index: any) => renderHead(item, index)}
-                                        bodyData={props.data}
-                                        renderBody={(item: any, index: any) => renderBody(item, index)}
-                                    />
-                                )}
+                                <Table
+                                    limit="10"
+                                    headData={customerTableHead}
+                                    renderHead={(item: any, index: any) => renderHead(item, index)}
+                                    bodyData={props.data}
+                                    renderBody={(item: any, index: any) => renderBody(item, index)}
+                                />
                             </div>
                         </div>
                     </div>

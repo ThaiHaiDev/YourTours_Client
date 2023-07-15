@@ -9,8 +9,9 @@ import TableDataStatis from './TableDataStatis';
 
 const StatisShow = () => {
     const [dataStatis, setDataStatis] = useState<any>();
-    const [year, setYear] = useState<number>(0);
     const currentYear = new Date().getFullYear();
+    const [year, setYear] = useState<number>(currentYear);
+    const [reCall, setReCall] = useState<boolean>(false);
 
     useEffect(() => {
         statisticApi.getStatisticOfHost('').then((dataResponse) => {
@@ -23,6 +24,7 @@ const StatisShow = () => {
     };
 
     const handleStatistic = () => {
+        setReCall(!reCall);
         statisticApi.getStatisticOfHost(`${year !== 0 ? `?year=${year}` : ''}`).then((dataResponse) => {
             setDataStatis(dataResponse.data);
         });
@@ -71,7 +73,7 @@ const StatisShow = () => {
                 </div>
             </div>
             <br /> <br /> <hr /> <br />
-            <TableDataStatis data={[]} />
+            <TableDataStatis data={[]} year={year} reCall={reCall} />
         </div>
     );
 };

@@ -8,8 +8,8 @@ import {
 } from '../share/models/discount';
 
 const discountApi = {
-    getAllDiscount(): Promise<BaseResponseBasePagingResponseDiscountHomeCategoryInfo> {
-        const url = `api/v1/cms/discount-home-categories/page?number=0&size=20`;
+    getAllDiscount(searchText: string | undefined): Promise<BaseResponseBasePagingResponseDiscountHomeCategoryInfo> {
+        const url = `api/v1/cms/discount-home-categories/page?${searchText !== '' ? `keyword=${searchText}&` : ''}number=0&size=20`;
         return axiosClient.get(url);
     },
     addDiscount(

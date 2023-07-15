@@ -90,16 +90,18 @@ const UserAdmin = (props: any) => {
                 <h2 className="page-header">Người dùng</h2>
             </div>
 
-            <div className="col l-12">
-                <div className="card-admin">
-                    <div className="card__body">
-                        <Table
-                            limit="10"
-                            headData={customerTableHead}
-                            renderHead={(item: any, index: any) => renderHead(item, index)}
-                            bodyData={props?.data}
-                            renderBody={(item: any, index: any) => renderBody(item, index)}
-                        />
+            <div className="row">
+                <div className="col l-12">
+                    <div className="card-admin">
+                        <div className="card__body">
+                            <Table
+                                limit="10"
+                                headData={customerTableHead}
+                                renderHead={(item: any, index: any) => renderHead(item, index)}
+                                bodyData={props?.data}
+                                renderBody={(item: any, index: any) => renderBody(item, index)}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>

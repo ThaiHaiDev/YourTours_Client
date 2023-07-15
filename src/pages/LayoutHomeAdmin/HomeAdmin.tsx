@@ -10,10 +10,17 @@ import LockOpenIcon from '@mui/icons-material/LockOpen';
 import Table from '../../components/AllAdminComponents/Table/Table';
 import homeApi from '../../services/homeApi';
 import format3Dots from '../../utils/format3Dots';
-import formatPrice from '../../utils/formatPrice';
 import './HomeAdmin.scss';
 
-const customerTableHead = ['', 'Tên nhà', 'Chủ nhà', 'Địa chỉ', 'Tỉnh thành', 'Giá theo đêm', 'Chính sách hoàn tiền'];
+const customerTableHead = [
+    '',
+    'Tên nhà',
+    'Chủ nhà',
+    'Địa chỉ',
+    'Tỉnh thành',
+    'Giá theo đêm (VND)',
+    'Chính sách hoàn tiền',
+];
 
 // const fieldData = [
 //     {
@@ -76,7 +83,7 @@ const HomeAdmin = (props: any) => {
             <td>{format3Dots(item.ownerName, 30)}</td>
             <td>{item.addressDetail}</td>
             <td>{item?.provinceName ? item?.provinceName : ''}</td>
-            <td>{formatPrice(item.costPerNightDefault)}</td>
+            <td>{item.costPerNightDefault}</td>
             <td>{format3Dots(item.refundPolicy, 10)}</td>
             <td>
                 <Popup
