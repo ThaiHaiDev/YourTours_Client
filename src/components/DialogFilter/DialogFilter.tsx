@@ -40,6 +40,9 @@ export default function DialogFilter(props: any) {
         var provinceCode = '';
         var priceFrom = '';
         var priceTo = '';
+        var numberOfBed = '';
+        var numberOfBedRoom = '';
+        var numberOfBathRoom = '';
         if (props.dataQueryDefauld.includes('provinceCode')) {
             var startprovinceCode = props.dataQueryDefauld.indexOf('provinceCode=') + 'provinceCode='.length;
             var endprovinceCode = props.dataQueryDefauld.indexOf('&', startprovinceCode);
@@ -64,10 +67,46 @@ export default function DialogFilter(props: any) {
                 priceTo = props.dataQueryDefauld.substring(startpriceTo, endpriceTo);
             }
         }
+        if (props.dataQueryDefauld.includes('numberOfBed')) {
+            var startnumberOfBed = props.dataQueryDefauld.indexOf('numberOfBed=') + 'numberOfBed='.length;
+            var endnumberOfBed = props.dataQueryDefauld.indexOf('&', startnumberOfBed);
+
+            if (startnumberOfBed !== -1 && endnumberOfBed !== -1) {
+                numberOfBed = props.dataQueryDefauld.substring(startnumberOfBed, endnumberOfBed);
+            }
+        }
+        if (props.dataQueryDefauld.includes('numberOfBedRoom')) {
+            var startnumberOfBedRoom = props.dataQueryDefauld.indexOf('numberOfBedRoom=') + 'numberOfBedRoom='.length;
+            var endnumberOfBedRoom = props.dataQueryDefauld.indexOf('&', startnumberOfBedRoom);
+
+            if (startnumberOfBedRoom !== -1 && endnumberOfBedRoom !== -1) {
+                numberOfBedRoom = props.dataQueryDefauld.substring(startnumberOfBedRoom, endnumberOfBedRoom);
+            }
+        }
+        if (props.dataQueryDefauld.includes('numberOfBathRoom')) {
+            var startnumberOfBathRoom =
+                props.dataQueryDefauld.indexOf('numberOfBathRoom=') + 'numberOfBathRoom='.length;
+            var endnumberOfBathRoom = props.dataQueryDefauld.indexOf('&', startnumberOfBathRoom);
+
+            if (startnumberOfBathRoom !== -1 && endnumberOfBathRoom !== -1) {
+                numberOfBathRoom = props.dataQueryDefauld.substring(startnumberOfBathRoom, endnumberOfBathRoom);
+            }
+        }
         setDataFilterDefauld({
             provinceCode,
             priceFrom,
             priceTo,
+            numberOfBed,
+            numberOfBedRoom,
+            numberOfBathRoom,
+        });
+        console.log('ad', {
+            provinceCode,
+            priceFrom,
+            priceTo,
+            numberOfBed,
+            numberOfBedRoom,
+            numberOfBathRoom,
         });
         setOpen(true);
     };
@@ -181,14 +220,17 @@ export default function DialogFilter(props: any) {
                             <CountRoomFilter
                                 name={t('label.bedroom')}
                                 handleChangeNumberOfBed={handleChangeNumberOfBed}
+                                dataFilterDefauld={dataFilterDefauld?.numberOfBed}
                             />
                             <CountRoomFilter
                                 name={t('label.bed')}
                                 handleChangeNumberOfBedRoom={handleChangeNumberOfBedRoom}
+                                dataFilterDefauld={dataFilterDefauld?.numberOfBedRoom}
                             />
                             <CountRoomFilter
                                 name={t('label.bathroom')}
                                 handleChangeNumberOfBathRoom={handleChangeNumberOfBathRoom}
+                                dataFilterDefauld={dataFilterDefauld?.numberOfBathRoom}
                             />
                         </div>
                         <hr />

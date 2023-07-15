@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import './CountRoomFilter.scss';
 import { t } from 'i18next';
+
+import './CountRoomFilter.scss';
 
 const DataFakeCount = [
     {
@@ -38,7 +39,7 @@ const DataFakeCount = [
 ];
 
 const CountRoomFilter = (props: any) => {
-    const [idActive, setIdActive] = useState<number>(0);
+    const [idActive, setIdActive] = useState<number>(props?.dataFilterDefauld ? Number(props?.dataFilterDefauld) : 0);
 
     const handleSetActive = (id: number) => {
         setIdActive(id);
