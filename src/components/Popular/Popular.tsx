@@ -1,16 +1,18 @@
-import { Link } from 'react-router-dom';
-import './Popular.scss';
-
 import { useEffect, useState } from 'react';
-import provinceApi from '../../services/provinceApi';
-import SkeletonProvince from '../Skeleton/SkeletonProvince';
-
-import { BaseResponseBasePagingResponseProvincePopular, ProvincePopularModel } from '../../share/models/province';
 import { t } from 'i18next';
+
+import { Link, useNavigate } from 'react-router-dom';
+
+import provinceApi from '../../services/provinceApi';
+import { BaseResponseBasePagingResponseProvincePopular, ProvincePopularModel } from '../../share/models/province';
+
+import SkeletonProvince from '../Skeleton/SkeletonProvince';
+import './Popular.scss';
 
 const Popular = () => {
     const [listProvince, setListProvince] = useState<ProvincePopularModel[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         setLoading(true);
@@ -21,6 +23,10 @@ const Popular = () => {
             setLoading(false);
         });
     }, []);
+
+    const handleLinkToProvince = (province: ProvincePopularModel) => {
+        navigate(`list-room?provinceCode=${province.codeName}&`);
+    };
 
     return (
         <div className="web-content">
@@ -49,9 +55,12 @@ const Popular = () => {
                                         <Link to="#" className="mobile-package__link"></Link>
                                         <div className="package-cover hide-on-mobile-tablet">
                                             <div className="package-btn">
-                                                <Link to="#" className="package-btn-link">
+                                                <p
+                                                    className="package-btn-link"
+                                                    onClick={() => handleLinkToProvince(province)}
+                                                >
                                                     {t('link.viewDetail')}
-                                                </Link>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
