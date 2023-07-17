@@ -34,7 +34,7 @@ const TableDataStatis = (props: any) => {
             averageRate: dataStatisticMonth[i]?.averageRate ? dataStatisticMonth[i].averageRate : '0',
             numberOfView: dataStatisticMonth[i]?.numberOfView ? dataStatisticMonth[i].numberOfView : '0',
             reservationRate: dataStatisticMonth[i]?.reservationRate
-                ? `${dataStatisticMonth[i].reservationRate} %`
+                ? `${dataStatisticMonth[i].reservationRate.toFixed(2)} %`
                 : '0 %',
             revenue: dataStatisticMonth[i]?.revenue ? formatPrice(dataStatisticMonth[i].revenue) : '0 VND',
         });
