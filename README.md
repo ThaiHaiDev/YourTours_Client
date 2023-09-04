@@ -169,15 +169,15 @@
 
 - View table notification
 
-![3](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/69f224e8-c1ce-4cab-82ce-32b7c7831e29)
+![FireShot Capture 117 - Yourtours UTE - your-tours-client vercel app](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/6d580562-51d3-4d9e-b048-c6e78307020b)
 
 - View select language
 
-![4](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/d4be3def-2c5a-48a4-be1d-37befdf5cae4)
+![FireShot Capture 118 - Yourtours UTE - your-tours-client vercel app](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/d994d39c-f91d-408a-80d7-fc18669fec83)
 
 - View infomation room from search by province or name room
 
-![5](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/9d0e0563-5fa5-4bde-8d93-70c01855fe93)
+![FireShot Capture 119 - Yourtours UTE - your-tours-client vercel app](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/48bbb484-ccb4-4534-b15c-29c5cee55d73)
 
 </details>
 
@@ -190,159 +190,160 @@
 
 - View more house utilities
 
-![3](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/2754b01a-472c-4afc-b9cf-a58c8a5f3f1f)
+![3](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/285c4feb-39b2-4dfd-ae6d-1acea71ffeaf)
 
 - Details of base price by day
 
-![4](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/224a2b57-a010-4bcd-b237-9fd7796b34cc)
+![4](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/33a3d800-5ffe-4d04-973c-bb5c146df69c)
 
 - Selected count client rent home
 
-![5](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/1d2516e3-d345-40c9-b916-63f714374d04)
+![5](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/88cecca2-e205-479c-ac74-0e2038b74b60)
 
 - Full booking information with promotion
 
-![6](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/2f1639a9-cdcd-46f8-85ef-8304eeb82739)
+![6](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/0e6525fd-551e-4df9-8339-63144af995f9)
 
 </details>
 
 ### Booking page
-![7](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/1d93d59e-aaf1-483b-8735-00e4e106b090)
+![7](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/90a88464-438f-466f-849a-2085601d41bb)
 
 ### Page becomes the host
 
 - Introduce
 
-![10](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/e41819c5-0d5a-4fc4-9119-fd923f7c3dfc)
+![10](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/b2284dcd-d613-4f9a-8472-afc2be213a45)
 
 - Step setup one
 
-![11](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/4037ac29-9643-4969-9b20-b11abe17a0df)
+![11](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/dc30035e-5ee5-4752-9de5-2ac5388252c8)
 
 - Step setup two
   
-![12](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/324a71e3-b75e-416b-96a0-70c21337c7f6)
+![12](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/ad674cb4-b401-461b-b94e-95d0a587155a)
 
 - Step setup three
   
-![13](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/68dbf68e-2b92-458c-a11b-ab00a89d18c6)
+![13](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/21b424d8-995d-48d4-a16f-9e0f0b77af01)
 
 - Step setup four
 
-![14](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/982f0341-2487-422b-9bb5-3af600f0cf1b)
+![14](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/aa601144-b55f-4df5-8d8c-c0a22584f2fb)
 
 - Step setup five
 
-![15](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/3294778c-7b0a-44ce-b2d9-d33d6fb4aafb)
+![15](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/8a4bae2d-22fd-4596-9fb5-dc1794a50af1)
 
 - Confirm setup
   
-![17](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/93e06708-8cad-470b-bf4c-fe64dbf5c9dd)
+![17](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/945f6a12-21d7-4313-ab87-bb96295ad4aa)
 
 - Welcome owner new
 
-![18](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/b1584275-6287-43ac-8621-256ddaee46e7)
+![18](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/eac0d113-f771-410b-ba7b-f232129e871c)
 
 <details>
 <summary><b>Plus</b></summary><br />
 
 - When close setup
 
-![16](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/c14e09fa-d818-418f-8c57-72fa40b30c64)
+![16](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/de4682dd-d6e8-40a0-b440-b08eb6153d38)
 
 </details>
 
 ### List room page
 
-![8](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/687fc28c-b578-4d25-b035-8936527c6c50)
+![8](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/876211a1-70e7-46e7-a806-d728b15eb685)
 
 <details>
 <summary><b>Plus</b></summary><br />
 
 - Filter
 
-![9](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/f45ed252-a02e-4aed-a0d3-e620cb240811)
+![9](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/428a11a7-e166-4723-a8df-898f19972d72)
 
 </details>
 
 ### Favorites page
 
-![19](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/5a056692-6c79-416c-a506-ed6c0f432bf5)
+![19](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/c5c5a012-85c1-4ec3-a0f7-6280d6a3e955)
 
 ### History for customer page
 
-![20](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/9d443552-5288-4cb3-b2fa-fff885cbd6e4)
+![20](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/d28d9ecc-4136-4712-833b-f77ce9d14705)
 
 <details>
 <summary><b>Plus</b></summary><br />
 
 - Rate
 
-![21](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/fad4915b-ad4e-4587-836f-e39655af8a92)
+![21](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/348f9554-833d-4ef2-8a3a-434311212776)
 
 </details>
 
 ### Overview host page
 
-![22](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/b66c0d97-e733-4ee3-99f0-d5b0da77f5e5)
+![22](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/9d940f3e-b401-4537-a6ce-87a47b18fae0)
 
-![23](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/c97168d2-63a3-4097-839a-cdcd050f6807)
+![23](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/694cc744-39ef-4b0b-8777-9a7b98e6b8fe)
 
-![24](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/bbd75343-6780-4e92-8929-1e3609cc8086)
+![24](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/2be0b8d0-9dff-4237-8e52-144b349c2f21)
 
 ### List room of host page
 
-![25](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/b7d8215c-387c-4774-8f17-13dbf69e664e)
+![25](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/6452d84a-d196-4e7d-8436-ac71d74493f6)
 
 ### Config for room of host (*Main config)
 
-![26](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/9ed2a951-3a7a-40d1-a627-1bd8909720fa)
+![26](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/e55fc3d3-a680-42a6-9778-1c8a3f6329d8)
 
 <details>
 <summary><b>Plus</b></summary><br />
 
 - Config type room page
 
-![27](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/1044a88c-1c97-4c9e-b897-37c0e7eb4559)
+![27](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/b15d6baa-f21e-417e-88d2-1c09f7cb22e1)
 
-![28](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/1f8f1e87-e588-414b-a64d-fbc28c0fb403)
+![28](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/3a1de851-3f07-4fff-b33d-12088424be21)
 
 - Config type bed page
 
-![29](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/37e1222e-f2e6-41e5-b30a-1a79416d2192)
+![29](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/5e77fb45-f518-463a-b09d-155594a24641)
 
 - Config convenient for room page
 
-![30](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/5fb72b9c-b9cc-4044-b2ed-7a29598b40e6)
+![30](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/027cbdd0-7194-419d-ab0e-cca358c8755c)
 
 </details>
 
 ### Calender set config price special page
 
-![31](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/7a003c76-e85f-4acb-8c0b-22b82d4cd754)
+![31](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/f53cfb03-abee-4c6e-84ac-c3eed87b91eb)
 
 ### History transaction of host page
 
-![32](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/6b5173d0-783b-4f99-a9b9-b18653da3999)
+![32](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/2686cc41-4f5f-418d-b64f-2b7b9b568080)
 
 ### Sign in page
 
-![33](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/1c46d2c4-6778-4c91-affe-09c30ccbf3fe)
+![33](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/7067de40-65c4-4577-bbdc-1391f6b3a405)
 
 ### Forgot password
 
-![35](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/544ec446-ddab-47b3-9e3e-59103943075e)
+![35](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/37e7d333-5603-4886-8cf0-f116f8bb9e6e)
 
-![36](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/2689eb00-40d0-4ace-ac4b-c4eb31b4836f)
+![36](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/48df21bf-9cbe-48fe-931e-3260174b05ec)
 
 ### Dashboard admin
 
-![37](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/029c5252-2f93-4dfe-a375-6454a0bfa92f)
+![37](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/fbe605a9-3807-4a23-ad4d-bc4204dfb81d)
 
 ### Management CMS (because they are similar, show a few pages)
 
-![38](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/42c7cec5-4437-4288-bbe8-2c391cc85a78)
+![38](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/6c91288a-5cdf-4360-a57e-03c9ca7ada87)
 
-![39](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/f03d3afe-768e-4fd6-a0fc-8d079d2944ca)
+![39](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/c276d1a5-7876-4eb1-a984-2d003ac667c1)
+
 
 
