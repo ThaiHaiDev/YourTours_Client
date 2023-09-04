@@ -162,7 +162,7 @@
 </details>
 
 ### Home page
-![1](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/0d922b7e-b1e6-4d29-acdd-0a7cec802fd5)
+![FireShot Capture 123 - Yourtours UTE - your-tours-client vercel app](https://github.com/ThaiHaiDev/YourTours_Client/assets/85157423/aaab055c-644d-4a4c-947b-bf47c1ef344f)
 
 <details>
 <summary><b>Plus</b></summary><br />
